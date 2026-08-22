@@ -58,7 +58,8 @@ def expected_counts() -> dict:
         d = os.path.join(ANNO_DIR, split)
         for fn in os.listdir(d):
             if fn.endswith(".json"):
-                out[fn[:-5]] = json.load(open(os.path.join(d, fn)))["frame_count"]
+                with open(os.path.join(d, fn)) as f:
+                    out[fn[:-5]] = json.load(f)["frame_count"]
     return out
 
 

@@ -58,7 +58,12 @@ class Classifier(nn.Module):
     def forward(self, visual_feats):
         text_feats = self.text_encoder(visual_feats)
         visual_feats = visual_feats.unsqueeze(dim=1).float()
-        # visual_feats /= visual_feats.norm(dim=-1, keepdim=True)
+        if self.args.normalize_visual_feats:
+            visual_feats = visual_feats / visual_feats.norm(dim=-1, keepdim=True)
+        # Upstream ships this normalisation disabled, and the authors' CLIP object
+        # bank is itself un-normalised (docs/10_Known-issues.md §4), so the released
+        # checkpoints were trained on un-normalised features. Enabling it changes
+        # every object score; it is a flag so the ablation is one argument away.
         similarity = torch.bmm(visual_feats, text_feats.transpose(1, 2))*100
         similarity = similarity.squeeze(dim=1)
 

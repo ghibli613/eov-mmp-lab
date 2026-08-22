@@ -2,8 +2,8 @@
 
 Part of the [knowledge base](README.md). This file records where the code came
 from and **every way it differs from upstream EOV-MMP**. Current blockers live
-in [known-issues.md](known-issues.md); the method itself is in
-[architecture.md](architecture.md).
+in [10_Known-issues.md](10_Known-issues.md); the method itself is in
+[01_Architecture.md](01_Architecture.md).
 
 Started 2026-08-20. This repository began as a refactor of **RePro** (ICLR 2023);
 RePro's method code was then replaced with **EOV-MMP**'s, keeping the structure.
@@ -28,7 +28,7 @@ records where the EOV code came from and how it was changed.
 | `data_loading/dataset.py` | `dataset/dataset.py` |
 | `inference/` | `utils/video_relation_detection*.py`, `post_process.py`, `format_trajs.py` |
 | `utils/` | `utils/utils.py` (as `eov_utils.py`), `parser_func.py`, `model/arguments.py` |
-| `cli/train.py`, `cli/run_train.sh` | `train/train.py`, `train/run_train.sh` |
+| `cli/train.py`, `cli/evaluate.py`, `cli/common.py` | `train/train.py` (their `run_train.sh` is now argument defaults) |
 
 RePro's `models/`, `data_loading/`, `inference/`, `cli/`, `vlm/alpro*`, `ops/*.py`,
 `experiments/`, `tests/`, `docs/` were removed. They are not recoverable from
@@ -84,7 +84,16 @@ live and would have broken a real run:
 | `models/gen_labels.py` | `ROOT` + 6 literals | `paths.*` (honours `VIDVRD_FRAME_DIR`) |
 | `models/end2end_model.py` | 2 unconditional ECC loads | tolerant, see below |
 
-The duplicate `--clip_feat_path` mattered: whichever parser ran last silently won.
+**Correction (2026-08-21).** An earlier version of this file said the duplicate
+`--clip_feat_path` "mattered: whichever parser ran last silently won". That was
+wrong. `utils/arguments.py` defines a parser, but nothing ever *calls*
+`get_args_parser()` — the old `cli/train.py` imported the name and never used
+it, and the CLI split removed even that import. Only `utils/parser_func.py`'s
+`parse_args()` has ever run.
+
+So there was no runtime conflict. The broken default in `parser_func.py` was
+real and needed fixing; the second declaration in `arguments.py` was inert, and
+`utils/arguments.py` is dead code — see the audit below.
 
 The eval-time defaults mattered more -- `train.py` calls
 `eval_relation_detection_openvoc()` with only three arguments, so all three broken
@@ -103,8 +112,9 @@ printed warning. `Tracker.camera_update` guards with `if video in ecc.keys()`, s
 an empty dict makes camera-motion compensation a no-op -- tracking still runs.
 **This is a real quality loss on moving-camera videos, not an equivalence.**
 
-**`gpu_id=3` in `cli/run_train.sh`.** Upstream default; on a single-GPU machine
-`CUDA_VISIBLE_DEVICES=3` exposes no GPU at all. Now `${gpu_id:-0}`.
+**`gpu_id=3` in their `run_train.sh`.** Upstream default; on a single-GPU
+machine `CUDA_VISIBLE_DEVICES=3` exposes no GPU at all. That script is gone --
+see "Entry points split" below.
 
 **Evaluate-only path added.** There was none: `--eval`/`--resume`/`--ckpt_path`
 were parsed but unused, so testing required a full training epoch. `cli/train.py`
@@ -222,6 +232,102 @@ every rule re-verified with `git check-ignore -v`.
 and produced a 703-line diff for a 10-line change. All subsequent edits go
 through a helper that detects and restores the original endings.
 
+### Entry points split, shell wrappers removed (2026-08-20)
+
+`cli/train.py` and `cli/evaluate.py` are run as modules from the repository
+root -- `python -m cli.train` -- and no longer manipulate `sys.path`. An earlier
+version inserted the repo root so `python cli/train.py` also worked, but that
+forced the imports below the insert, which linters flag and `ruff --fix` would
+"repair" by hoisting them, breaking both scripts. Dropping the shim removed the
+hazard and the need for any lint configuration.
+
+`cli/` is now `train.py`, `evaluate.py` and `common.py` (shared setup, model
+construction, the evaluation pass). Previously one script did both jobs behind
+an `--eval_only` flag.
+
+Splitting them buys more than tidiness: **evaluation no longer builds the train
+dataset**, which the old `--eval_only` path constructed and never used. Each
+`Dataset_new` holds two CLIP ViT-L/14@336px models, so that is ~2.7 GB of VRAM
+reclaimed, on top of skipping the three step-1/2/3 checkpoint loads.
+
+`run_train.sh` and `run_eval.sh` were deleted. They existed to set 25 flags, and
+**13 of those differed from the argument defaults** -- so running the Python
+directly silently produced a different experiment. Two of the gaps were serious:
+
+| flag | script | old default |
+|---|---|---|
+| `lr` | 1e-5 | **0.01** (1000x) |
+| `src_split` | base | **all** |
+
+`src_split=base` *is* the open-vocabulary setting -- training on `all` lets the
+model see novel categories, making the novel-split score meaningless. Anyone
+running `python -m cli.train` without the wrapper would have got believable
+numbers from an invalid experiment.
+
+The defaults are now the paper's VidVRD configuration, verified to match the old
+`run_train.sh` flag for flag. The wrappers had nothing left to add.
+
+### Dead-code audit (2026-08-21)
+
+Measured by importing `cli.train`/`cli.evaluate` and diffing `sys.modules`
+against `git ls-files`, then checking every unloaded file for references.
+
+**Removed:** `ops/build/` was **tracked in git** — four compiled artefacts, byte
+-identical to `ops/functions/` and `ops/modules/`. `.gitignore` lists
+`ops/build/`, but gitignore does not apply to already-tracked files, so they had
+survived every earlier cleanup.
+
+### Removed in the 2026-08-22 cleanup
+
+The audit above originally *documented* this dead code rather than deleting it,
+on the reasoning that removing files present upstream widens the diff against
+EOV. That reasoning was reversed: the diff against upstream is recorded here in
+prose, whereas a reader of the code has no way to tell a live module from a dead
+one, and two of these were active traps (see below). All were verified
+unreachable by an AST import walk from `cli/`, then by grep, then by the test
+suite in `tests/test_imports.py`, which fails if any of them is ever imported
+again.
+
+| Removed | Lines | Why |
+|---|---|---|
+| `models/methods/detectors/ov_prompt/solq.py` | 1,393 | alternative detector; its only import was already commented out |
+| `models/methods/segmentation.py` | 390 | reachable only through `solq.py` |
+| `models/methods/detectors/ov_prompt/dct.py` | 198 | reachable only through `solq.py` |
+| `models/methods/detectors/ov_prompt/backbone.py` | 141 | superseded by `models/methods/backbones/clip_backbone.py`, which is what the live detector imports |
+| `inference/video_relation_detection.py` | 298 | **trap**: no importer, and it differs from `_ab.py` by 7 lines. The live file is `_openvoc.py`, so editing the obviously-named one had no effect |
+| `inference/video_relation_detection_ab.py` | 301 | as above |
+| `utils/arguments.py` | 222 | parser never called |
+| `utils/video_transform.py` | 751 | byte-identical to `vlm/backbones/internvideo/video_transform.py`, which is the one that gets imported |
+| `models/util/scheduler.py` | 248 | no importer |
+| `vlm/ptm_encoder.py` | 59 | no importer |
+| `configs/VidVRD_class_spilt_info.py` | 52 | a second copy of `VidVRD_class_spilt_info.json`; nothing read it, and two sources of truth for a class split can drift silently |
+| `tools/freeze_model.py`, `tools/generate_detections.py` | 400 | deep_sort's TensorFlow feature extractor; imports `tensorflow.contrib.slim`, which does not exist in TF2 |
+
+Total 39,740 → 35,332 tracked Python lines.
+
+Two unreachable, broken branches were also removed from
+`models/relation_classifier.py`: `ObjectTextEncoder` and `PredicateTextEncoder`
+both branched on `text_encoder == 'intern'` and called a
+`build_intern_fixed_prompts()` **defined nowhere**, with the predicate branch
+additionally leaving `pre_classifier_weights` unbound. Nothing passed `'intern'`,
+so neither could run; they now raise `ValueError` for an unsupported encoder.
+
+### Deliberately kept, though currently unreachable
+
+| Kept | Lines | Why |
+|---|---|---|
+| `vlm/backbones/internvideo/` | 8,787 | a vendored **video** encoder, orphaned when `ptm_encoder.py` went. Kept because the temporal-degeneracy work in [91_Extension-guide.md](91_Extension-guide.md) may want a real video backbone, and this is already vendored for this task. Delete it if that direction is abandoned |
+| `vlm/backbones/{i3d,resnet}.py` | 1,000 | same reasoning, lower value |
+| `tools/build_clip_object_bank.py` | — | superseded for VidVRD by the authors' bank, but needed for any new dataset |
+
+**Verified clean:** every module we wrote (`cli/`, our `tools/`, `utils/paths.py`)
+reports no unused imports or variables. The ~100 findings in the ported model
+tree are upstream style, left alone to keep the diff against EOV readable.
+
+**Four `simple_tokenizer.py` copies** exist across the CLIP variants. That
+duplication is upstream's — each vendored backbone carries its own — and
+de-duplicating it would diverge for no functional gain.
+
 ## 4. Environment
 
 `conda env repro-next` — python 3.12.13, torch 2.11.0+cu128, CUDA available on
@@ -328,8 +434,7 @@ the checkpoints, not on the code.
   moved onto `utils.paths` — left alone so far to avoid touching label
   generation before anything runs.
 - **4 GB of VRAM is the main risk.** EOV runs CLIP ViT-L/14@336px *and* TagCLIP
-  *and* a deformable-DETR detector *and* InternVideo. `run_train.sh` already uses
-  batch_size 1. The op's own gradcheck already OOMed here. Expect to need Colab
+  *and* a deformable-DETR detector *and* InternVideo. batch_size is already 1. The op's own gradcheck already OOMed here. Expect to need Colab
   (T4, 16 GB) or a bigger card for real training; this machine is fine for
   development and inference-sized work.
 - Disk: frames are ~42 GB. There was 916 GB free.
@@ -360,5 +465,5 @@ python -c "import MultiScaleDeformableAttention"   # extension present?
 Then obtain the checkpoints (5.1) and try:
 
 ```bash
-cd cli && bash run_train.sh
+python -m cli.train
 ```

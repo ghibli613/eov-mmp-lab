@@ -74,8 +74,18 @@ OUTPUT_ROOT = _env("VIDVRD_OUTPUT_ROOT", os.path.join(REPO_ROOT, "output"))
 CKPT_DIR = os.path.join(OUTPUT_ROOT, "ckpt")
 LOG_DIR = os.path.join(OUTPUT_ROOT, "log")
 
-#: default AFLink tracker weights; override with --path_AFLink
+#: Pretrained weights, as named by the authors. Each is overridable on the
+#: command line, so a differently-named copy needs no code change.
+#: Files from Google Drive may carry a "-001"/"-002" dedup suffix, and the object
+#: classifier may arrive as ".pth.zip" -- that is torch's own zipfile
+#: serialisation, not an archive: rename it, do not extract it.
 AFLINK_CKPT = os.path.join(CKPT_DIR, "AFLink_epoch20.pth")
+DETECTOR_CKPT = os.path.join(CKPT_DIR, "checkpoint_vidvrd0059_new_1e-5.pth")
+OBJ_CLASSIFIER_CKPT = os.path.join(
+    CKPT_DIR, "vidvrd_backboneViT-L_14@336px_lr0.01vision-guided.pth")
+RELATION_CKPT = os.path.join(
+    CKPT_DIR, "baseline_fbce_vidvrd_bs1_lr0.0001_drop0.5"
+              "_dim512_none_rel_mot_clip_bbox_stage2_new_L14_e2e.pth")
 
 
 def ensure_output_dirs() -> None:

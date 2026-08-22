@@ -101,13 +101,17 @@ def setup_seed(seed):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
 
+#: The input streams the relation classifier actually consumes, in a fixed
+#: order. Upstream's parser also defines mask_feat / lan_feat / v2d_feat /
+#: v3d_feat / intern_feat, all default True, but nothing reads them -- they are
+#: left over from MMP. Listing them in experiment names implied the model used
+#: eight streams when it uses four, so only these are reported.
+RELATION_INPUT_STREAMS = ("rel_feat", "mot_feat", "clip_feat", "bbox_feat")
+
+
 def get_feat_types(args):
-    feat_types = []
-    args = args.__dict__
-    for k in args:
-        if ('_feat' in k) and (args[k] == True):
-            feat_types.append(k)
-    return feat_types
+    """The enabled relation-input streams, in canonical order."""
+    return [name for name in RELATION_INPUT_STREAMS if getattr(args, name, False)]
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""

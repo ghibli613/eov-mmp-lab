@@ -8,7 +8,7 @@ import torch.nn as nn
 from torch.nn.utils.rnn import pack_padded_sequence,pad_packed_sequence
 import torch.nn.functional as F
 from copy import deepcopy
-from utils.eov_utils import get_feat_types
+from utils.eov_utils import RELATION_INPUT_STREAMS
 from utils.eov_utils import FocalWithLogitsLoss, FocalWithLogitsLossAlpha
 import json
 from vlm.backbones.clip import clip
@@ -100,20 +100,45 @@ class SpatialDecoder(nn.Module):
         # return x_rel, torch.zeros((x_rel.shape[0], 512)).cuda(), torch.zeros((x_rel.shape[0], 512)).cuda()
 
 class FeatEmbedding(nn.Module):
+    """Turns the four per-clip input streams into subject / object / predicate
+    embeddings.
+
+    The streams, and what each one carries (see docs/02_Code-walkthrough.md §3):
+
+      clip_feat  CLIP appearance, masked-pooled over 4 regions
+                 (subject box, object box, union box, whole frame) --
+                 sampled from ONE frame per clip
+      bbox_feat  box coordinates of those same 4 regions
+      rel_feat   relative geometry between subject and object
+      mot_feat   box displacement across begin/mid/end of the clip
+
+    Each is gated by its --<name> flag. A disabled stream is zeroed rather than
+    removed, so tensor shapes and every downstream module are untouched and the
+    ablation is exactly "this evidence was unavailable". With all four enabled
+    (the default) the computation is identical to upstream EOV.
+    """
+
+    STREAMS = RELATION_INPUT_STREAMS
 
     def __init__(self, args):
         super().__init__()
-        self.feat_types = get_feat_types(args)
+        self.enabled_streams = {n: bool(getattr(args, n, True)) for n in self.STREAMS}
         self.spatial_decoder = SpatialDecoder()
         self.temporal_decoder = TemporalDecoder()
+
+    def _stream(self, inputs, name):
+        """The stream if enabled, otherwise zeros of the same shape."""
+        x = inputs[name]
+        return x if self.enabled_streams[name] else torch.zeros_like(x)
 
     def forward(self, inputs, seq_lens):
         bs, slen = inputs['clip_feat'].shape[0], inputs['clip_feat'].shape[1]
         interactiveness = torch.ones((bs, slen)).cuda()
 
-        img_feat = inputs['clip_feat']
-        bbox_feat =inputs['bbox_feat']
-        pos_feat = torch.cat((inputs['rel_feat'], inputs['mot_feat']), dim=-1)
+        img_feat = self._stream(inputs, 'clip_feat')
+        bbox_feat = self._stream(inputs, 'bbox_feat')
+        pos_feat = torch.cat((self._stream(inputs, 'rel_feat'),
+                              self._stream(inputs, 'mot_feat')), dim=-1)
 
         pre_embs, sbj_embs, obj_embs = self.spatial_decoder(
             x_img = img_feat.view(bs*slen, 4, -1), 
@@ -316,10 +341,13 @@ class ObjectTextEncoder(nn.Module):
         self.convert_oid_on_base = torch.tensor(convert_oid_on_base).cuda()
 
         classnames = [self.id2cls[str(id_)] for id_ in range(len(self.id2cls))]
-        if text_encoder == 'clip':
-            classifier_weights = self.build_clip_fixed_prompts(classnames)
-        elif text_encoder == 'intern':
-            classifier_weights = self.build_intern_fixed_prompts(classnames)
+        # Upstream also branched on text_encoder == 'intern', calling a
+        # build_intern_fixed_prompts() that is defined nowhere. Nothing ever
+        # passed 'intern', so the branch was unreachable and would have raised
+        # AttributeError if reached; removed rather than left as a trap.
+        if text_encoder != 'clip':
+            raise ValueError(f"unsupported text_encoder: {text_encoder!r}")
+        classifier_weights = self.build_clip_fixed_prompts(classnames)
         self.register_buffer("classifier_weights", classifier_weights, persistent=False)
 
 
@@ -354,14 +382,13 @@ class PredicateTextEncoder(nn.Module):
         self.all_pids = list(range(len(self.id2cls)))
 
         classnames = [self.id2cls[str(id_)] for id_ in range(len(self.id2cls))]
-        if text_encoder == 'clip':
-            sbj_classifier_weights = self.build_clip_fixed_prompts('subject', classnames)
-            obj_classifier_weights = self.build_clip_fixed_prompts('object', classnames)
-            pre_classifier_weights = self.build_clip_fixed_prompts('predicate', classnames)
-        elif text_encoder == 'intern':
-            sbj_classifier_weights = self.build_intern_fixed_prompts('subject', classnames)
-            obj_classifier_weights = self.build_intern_fixed_prompts('object', classnames)
-            # pre_classifier_weights = self.build_intern_fixed_prompts('predicate', classnames)
+        # See ObjectTextEncoder: the 'intern' branch called an undefined method
+        # and left pre_classifier_weights unbound as well. Removed.
+        if text_encoder != 'clip':
+            raise ValueError(f"unsupported text_encoder: {text_encoder!r}")
+        sbj_classifier_weights = self.build_clip_fixed_prompts('subject', classnames)
+        obj_classifier_weights = self.build_clip_fixed_prompts('object', classnames)
+        pre_classifier_weights = self.build_clip_fixed_prompts('predicate', classnames)
         self.register_buffer("sbj_classifier_weights", sbj_classifier_weights, persistent=False)
         self.register_buffer("obj_classifier_weights", obj_classifier_weights, persistent=False)
         self.register_buffer("pre_classifier_weights", pre_classifier_weights, persistent=False)
@@ -398,7 +425,6 @@ class Model(nn.Module):
         self.temp = args.temp_model
         self.ptm_mode = args.ptm_mode
         self.clip_pred_dim = ds2dim[args.dataset]
-        self.feat_types = get_feat_types(args)
         self.featEmbedding = FeatEmbedding(args)
         self.int_criterion = FocalWithLogitsLoss()
         self.pre_criterion = FocalWithLogitsLoss()

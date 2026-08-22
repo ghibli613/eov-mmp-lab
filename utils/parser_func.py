@@ -16,6 +16,23 @@ def parse_args():
     parser.add_argument('--clip_len', dest='clip_len',
                         help='Atomatic clip length in training and test',
                         type=int, default=30)
+    parser.add_argument('--normalize_visual_feats', dest='normalize_visual_feats',
+                        help="L2-normalise region features before matching them "
+                             "against the CLIP text embeddings in the object "
+                             "classifier. Off by default, matching upstream and the "
+                             "un-normalised object bank the checkpoints were trained "
+                             "with. Turning it on changes every object score.",
+                        action='store_true')
+    parser.add_argument('--frame_stride', dest='frame_stride',
+                        help="Encode every Nth frame and reuse those features for "
+                             "the frames in between. 1 (the default) reproduces the "
+                             "shipped EOV behaviour: every frame is encoded. The "
+                             "paper's Implementation Details say frames are sampled "
+                             "every 30, which is --frame_stride 30 and ~30x cheaper. "
+                             "The two do NOT give identical results and it is unknown "
+                             "which the released checkpoints were trained with -- see "
+                             "docs/10_Known-issues.md before changing it.",
+                        type=int, default=1)
     parser.add_argument('--use_unlabeld_pair', dest='use_unlabeld_pair',
                         help='Whether to use unlabeled trajectory pairs for training',
                         action='store_true')                                                    
@@ -27,13 +44,13 @@ def parse_args():
                         type=int, default=32)
     parser.add_argument('--lr', dest='lr',
                         help='Initial learning rate',
-                        type=float, default=0.01)
+                        type=float, default=1e-5)
     parser.add_argument('--dropout_r', dest='dropout_r',
                         help='Dropout value',
                         type=float, default=0.5)
     parser.add_argument('--num_layers', dest='num_layers',
                         help='Lstm Number of Layers',
-                        type=int, default=2)
+                        type=int, default=0)
     parser.add_argument('--momentum', dest='momentum',
                         help='The momentum of SGD optimizer',
                         type=float, default=0.9)
@@ -42,7 +59,7 @@ def parse_args():
                         type=float, default=0.0001)
     parser.add_argument('--max_epoch', dest='max_epoch',
                         help='The epoch to stop',
-                        type=int, default=40)
+                        type=int, default=20)
     parser.add_argument('--start_epoch', dest='start_epoch',
                         help='The epoch to run from',
                         type=int, default=0)
@@ -63,7 +80,7 @@ def parse_args():
                         type=int, default=200)
     parser.add_argument('--ps', dest='ps',
                         help='The P.S. information for this training process',
-                        type=str, default="")
+                        type=str, default='test_new')
     parser.add_argument('--train_traj', dest='train_traj',
                         help='The trajectories for training split',
                         type=str, default="gt")
@@ -78,10 +95,10 @@ def parse_args():
                         action='store_true')
     parser.add_argument('--temp_model', dest='temp_model',
                         help='The temporal model used to encoding context',
-                        default=None)
+                        default='none')
     parser.add_argument('--obj_loss_weight', dest='obj_loss_weight',
                         help='The loss weight factor for object loss',
-                        type=float, default=0.1)
+                        type=float, default=0.2)
     parser.add_argument('--int_loss_weight', dest='int_loss_weight',
                         help='The loss weight factor for interactive loss',
                         type=float, default=0.1)
@@ -91,34 +108,34 @@ def parse_args():
                         type=ast.literal_eval, default=True)
     parser.add_argument('--mask_feat', dest='mask_feat',
                         help='Use mask location feature or not',
-                        type=ast.literal_eval, default=True)
+                        type=ast.literal_eval, default=False)
     parser.add_argument('--lan_feat', dest='lan_feat',
                         help='Use language feature or not',
-                        type=ast.literal_eval, default=True)
+                        type=ast.literal_eval, default=False)
     parser.add_argument('--v2d_feat', dest='v2d_feat',
                         help='Use visual 2d feature or not',
-                        type=ast.literal_eval, default=True)
+                        type=ast.literal_eval, default=False)
     parser.add_argument('--mot_feat', dest='mot_feat',
                         help='Use motion location feature or not',
                         type=ast.literal_eval, default=True)
     parser.add_argument('--v3d_feat', dest='v3d_feat',
                         help='Use visual 3d feature or not',
-                        type=ast.literal_eval, default=True)
+                        type=ast.literal_eval, default=False)
     parser.add_argument('--clip_feat', dest='clip_feat',
                         help='Use clip visual feature or not',
                         type=ast.literal_eval, default=True)
     parser.add_argument('--intern_feat', dest='intern_feat',
                         help='Use intern visual feature or not',
-                        type=ast.literal_eval, default=True)
+                        type=ast.literal_eval, default=False)
     parser.add_argument('--bbox_feat', dest='bbox_feat',
                         help='Use bbox location feature or not',
                         type=ast.literal_eval, default=True)
     parser.add_argument('--ptm_mode', dest='ptm_mode',
                         help='Use vision only or vision-text model to train',
-                        type=str, default='vision_only')
+                        type=str, default='vision_text')
     parser.add_argument('--src_split', dest='src_split',
                         help='Use what data for training',
-                        type=str, default='all')
+                        type=str, default='base')
     parser.add_argument('--tgt_split', dest='tgt_split',
                         help='Use what data for evaluation',
                         type=str, default='all')
@@ -179,6 +196,14 @@ def parse_args():
     # evaluate-only switch for cli/train.py.
     parser.add_argument('--eval_only', action='store_true',
                         help='skip training: load --ckpt_path and evaluate once')
+    # The step-1/2/3 weights. Defaults are the authors' own filenames; override
+    # these rather than renaming your copies.
+    parser.add_argument('--detector_ckpt', type=str, default=paths.DETECTOR_CKPT,
+                        help='step-1 trajectory detector weights')
+    parser.add_argument('--obj_classifier_ckpt', type=str, default=paths.OBJ_CLASSIFIER_CKPT,
+                        help='step-2 object classifier weights')
+    parser.add_argument('--relation_ckpt', type=str, default=paths.RELATION_CKPT,
+                        help='step-3 relationship classifier weights')
     parser.add_argument('--position_embedding', default='sine', type=str)
     parser.add_argument('--pos_dim', default=256, type=int, help="Size of the embeeding for pos")
     parser.add_argument('--reduced_dim', default=256, type=int, help="Size of the embeddings for head")

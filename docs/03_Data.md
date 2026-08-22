@@ -110,19 +110,22 @@ ground-truth object crops. The detector samples one per category per step as an
 "image query", mixed 75% text / 25% image (OV-DETR's scheme) — see
 [`models/methods/detectors/ov_prompt/model.py:274`](../models/methods/detectors/ov_prompt/model.py).
 
-> ⚠️ **This is a reconstruction, not the authors' file.** They never published
-> theirs. Every input is real — real GT boxes, real frames, the real CLIP
-> encoder — but their recipe is unknown: exemplars per class, which frames, crop
-> padding, train-only or not. Those choices shift the image queries and
-> therefore the trained detector, so **numbers built on this bank are not
-> directly comparable to the paper.** Every choice made is recorded in
-> [`tools/build_clip_object_bank.py`](../tools/build_clip_object_bank.py).
+**This is the authors' own file**, supplied directly by them on 2026-08-20:
+35 categories, **189,345 exemplars** (180–26,010 per category), float16, and
+**not** L2-normalised.
 
-Current bank: 35/35 categories, 15–50 exemplars each, L2-normalised, dim 768.
+`tools/build_clip_object_bank.py` can rebuild an approximation from GT crops and
+is kept for datasets with no published bank — but it is not used for VidVRD any
+more, and its output differs enough (≈1,500 exemplars, float32, normalised) that
+results from it were never comparable to the paper.
 
-Written with `torch.save`, because the consumer is `torch.load`. An earlier
-version of the tool used `pickle.dump`, which `torch.load` cannot read
-("Invalid magic number").
+## `data/vidvrd/data/VidVRD_ECC_{train,test}.json` — camera motion
+
+Per-video, per-frame 3×3 homographies from ECC image alignment, used by
+deep_sort's `camera_update` to cancel camera motion before predicting box
+positions. 199 videos; frame keys are strings; `‖I−M‖` stays well under the 100
+cutoff in `get_matrix`. Supplied by the authors — they cannot be derived from
+anything else in this repo.
 
 ---
 
@@ -130,9 +133,11 @@ version of the tool used `pickle.dump`, which `torch.load` cannot read
 
 | Missing | Consequence |
 |---|---|
-| The 4 pretrained checkpoints | cannot train; see [known-issues.md](known-issues.md#1-checkpoints) |
-| `VidVRD_ECC_{train,test}.json` | camera-motion compensation disabled |
-| Steps 1–3 training code | cannot regenerate the checkpoints yourself |
+| Steps 1–3 **training code** | the checkpoints can be used but not regenerated; see [01_Architecture.md §4](01_Architecture.md#4-what-is-publicly-available) |
+
+Checkpoints, the CLIP bank and the ECC matrices all arrived from the author on
+2026-08-20 and live under `output/ckpt/` and `data/vidvrd/data/`. They are
+gitignored — large binaries — so a fresh clone still needs them from the author.
 
 None of it is faked. Where a file is missing, the code either fails with a clear
 message or degrades explicitly and says so.

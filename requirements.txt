@@ -1,27 +1,30 @@
-# Verified working 2026-08-19 on python 3.12.13.
+# Verified working 2026-08-22 on python 3.12.13 (conda env `repro-next`).
 #
 # Tracks Google Colab's runtime so the repo runs there without an environment
 # fight: Colab 2026.07 ships python 3.12.13 and torch 2.11. numpy is a little
 # ahead of Colab's 2.0.2 and works equally well.
 # Verified on GPU locally (GTX 1650, sm_75 -- same compute capability as
-# Colab's T4).
+# Colab's T4). 4 GB is enough to import and construct, not to train:
+# see docs/known-issues.md.
 #
-# On this stack the 58 golden probes reproduce the upstream results to within
-# rtol 1e-6 (largest observed drift 9.7e-07), NOT bit-identically -- different
-# kernels move the last bits. For bit-exact verification use requirements-pinned.txt.
-#
-#   conda create --override-channels -c conda-forge -n repro python=3.12
+#   conda create --override-channels -c conda-forge -n repro-next python=3.12
 #   pip install -r requirements.txt
+#   pip install -e ops/           # MultiScaleDeformableAttention CUDA extension
 
 torch==2.11.0                 # +cu128 build: matches Colab's torch, and cu128 is the
 torchvision==0.26.0           # newest CUDA a 12.8 driver serves. Install with
                               #   --index-url https://download.pytorch.org/whl/cu128
-transformers==5.15.1          # 5.x removed file_utils, get_head_mask,
-tokenizers==0.22.2            # batch_encode_plus and find_pruneable_heads_and_indices;
-huggingface_hub==1.28.0       # vlm/backbones/alpro_modeling/ handles all four
+transformers==5.15.1
+tokenizers==0.22.2
+huggingface_hub==1.28.0       # tools/hugging_*.py fetch and publish the weights
 numpy==2.5.2
-scipy==1.18.0                 # used by inference/association.py -- fails AFTER inference
-einops==0.8.2                 # used by the vendored TimeSformer
+scipy==1.18.0                 # linear_sum_assignment, used by the tracker and the
+                              # detector's Hungarian matcher
+opencv-python                 # cv2: frame extraction and the tracker
+einops==0.8.2                 # vendored InternVideo
+timm==1.0.28                  # vendored detector backbone
+ftfy                          # CLIP tokenizer
+regex                         # CLIP tokenizer
 six==1.17.0                   # used by torch.utils.tensorboard
 tensorboard==2.21.0
 protobuf==7.35.1
@@ -29,4 +32,4 @@ easydict==1.13
 pillow==12.3.0
 tqdm==4.70.0
 
-pytest                        # tests/ only
+pytest                        # tests/

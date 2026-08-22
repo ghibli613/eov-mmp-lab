@@ -30,6 +30,18 @@ model for each, then joins them.
 | 3 | *What relation* holds between a pair? | `relationship_classification_model` | `baseline_fbce_..._stage2_new_L14_e2e.pth` |
 | 4 | Which detections are *the same object over time*? | `sort_model` (AFLink) | `--path_AFLink` |
 
+> **Which of these is EOV's own?** EOV-MMP is a journal extension of the same
+> group's AAAI'24 paper (OV-MMP = MMP), and its "differences from the preliminary
+> version" section is explicit: what is new is (1) the **end-to-end integration**
+> and (2) the **relationship-aware open-vocabulary trajectory detector**. The
+> relationship classifier with multi-modal prompting — component 3 below — is
+> **carried over from MMP**, which is why `models/relation_classifier.py` is
+> recognisably MMP's `model_stage2.py`. See
+> [30_Landscape.md](30_Landscape.md) §3.
+>
+> So the new contribution is components 1 and the joining of them all — and
+> component 1 is precisely the one with no released training code (§4).
+
 ### 2.1 The trajectory detector
 
 A query-based Transformer decoder — Deformable DETR — in
@@ -43,7 +55,7 @@ inform detection — the "relationship-aware" part of the paper's title.
 
 ### 2.2 The object classifier
 
-[`models/model.py`](../models/model.py), class `Classifier`. This is the
+[`models/object_classifier.py`](../models/object_classifier.py), class `Classifier`. This is the
 open-vocabulary trick. Instead of a fixed softmax over 35 classes, it classifies
 by matching a region's features against **CLIP text embeddings of class names**:
 
@@ -63,7 +75,7 @@ tokens, with the `[OBJ]` token at the end of the sequence.
 
 ### 2.3 The relationship classifier
 
-[`models/model_zoo/model_tuing_plus_repro_copy_new_cross_dataset.py`](../models/model_zoo).
+[`models/relation_classifier.py`](../models/relation_classifier.py).
 Takes a **pair** of object trajectories and predicts the predicate. Same
 prompting scheme — eight continuous plus eight conditional tokens — but the
 `[REL]` token sits at **75% of the token length** rather than the end.
@@ -147,7 +159,7 @@ spatio-temporal module with hand-written prompts, then freeze the vision side
 and train the vision-guided prompt module) correspond to EOV's steps 2 and 3.
 
 MMP also runs on **pre-extracted features** rather than encoding frames live,
-which makes it far lighter — see [known-issues.md](known-issues.md#2-vram).
+which makes it far lighter — see [10_Known-issues.md](10_Known-issues.md#2-vram).
 
 ---
 
@@ -160,7 +172,7 @@ Worth knowing before you report anything.
 | Step 1 epochs | 10 | filename says `0059` (epoch 59) |
 | Step 2 lr | 1e-3 | filename says `lr0.01` |
 | Step 3 batch | 32 | filename says `bs1` |
-| Step 4 epochs | 5 | `run_train.sh` sets `max_epoch=20` |
+| Step 4 epochs | 5 | the default `max_epoch` is 20 |
 | Step 4 schedule | — | `MultiStepLR(milestones=[15,20,25])`, which is *step 3's* schedule |
 
 Step 3's learning rate is the one that does match: paper 1e-4, filename

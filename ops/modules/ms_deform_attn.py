@@ -79,7 +79,7 @@ class MSDeformAttn(nn.Module):
         constant_(self.output_proj.bias.data, 0.)
 
     def forward(self, query, reference_points, input_flatten, input_spatial_shapes, input_level_start_index, input_padding_mask=None):
-        """
+        r"""
         :param query                       (N, Length_{query}, C)
         :param reference_points            (N, Length_{query}, n_levels, 2), range in [0, 1], top-left (0,0), bottom-right (1, 1), including padding area
                                         or (N, Length_{query}, n_levels, 4), add additional (w, h) to form reference boxes
@@ -172,7 +172,7 @@ class DetachableAttn(nn.Module):
 
     def forward(self, src_query, src_value, src_reference_points, src_spatial_shapes, src_level_start_index,
                 tgt_query, tgt_reference_points, src_padding_mask=None):
-        """
+        r"""
         :param src_query                   (N, Length_{patch query}, C)
         :param src_value                   (N, \sum_{l=0}^{L-1} H_l \cdot W_l, C)
         :param src_reference_points        (N, Length_{patch query}, n_levels, 2), range in [0, 1], top-left (0,0), bottom-right (1, 1), including padding area

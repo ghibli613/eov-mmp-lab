@@ -55,8 +55,8 @@ from tqdm import tqdm
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 
-from utils import paths  # noqa: E402
-from vlm.backbones import clip  # noqa: E402
+from utils import paths
+from vlm.backbones import clip
 
 OUT_DEFAULT = os.path.join(paths.META_DIR, "clip_L14_feat_vidvrd.pkl")
 
@@ -98,9 +98,10 @@ def main():
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     args = ap.parse_args()
 
-    split_info = json.load(open(paths.OBJ_SPLIT_INFO))
-    cls2id = split_info["cls2id"]
-    traj = json.load(open(paths.TRAIN_TRAJ))
+    with open(paths.OBJ_SPLIT_INFO) as f:
+        cls2id = json.load(f)["cls2id"]
+    with open(paths.TRAIN_TRAJ) as f:
+        traj = json.load(f)
     print(f"  categories: {len(cls2id)}   train videos: {len(traj)}")
 
     per_cat = crop_boxes_for_category(traj, cls2id, args.per_class)

@@ -20,6 +20,24 @@ from torchvision.transforms import InterpolationMode
 BICUBIC = InterpolationMode.BICUBIC
 import copy
 
+_ENCODER_CACHE = {}
+
+
+def _shared_encoder(kind: str, backbone: str, device: str = "cuda"):
+    """One copy of each frozen encoder per process.
+
+    cli/train.py builds a train and a val dataset, and each used to load its own
+    CLIP-L *and* TagCLIP-L onto the GPU -- four copies of two frozen models, the
+    5.32 GB measured in docs/10_Known-issues.md. They are frozen and stateless, so
+    one copy each is enough. Loading is deferred to first use so that tooling
+    which only needs the annotations never pays for it.
+    """
+    key = (kind, backbone, device)
+    if key not in _ENCODER_CACHE:
+        loader = clip if kind == "clip" else clip_tagclip
+        _ENCODER_CACHE[key] = loader.load(backbone, device=device)[0]
+    return _ENCODER_CACHE[key]
+
 def _convert_image_to_rgb(image):
     return image.convert("RGB")
 
@@ -58,8 +76,10 @@ class Dataset_new(BaseDataset):
         self.pre_num = len(self.pre_split['id2cls'])
         self.prior = pickle.load(open(join(data_dir, 'prior.pkl'), 'rb'))
         self.preprocess = _transform_resize(336, 336)
-        self.clip, _= clip.load('ViT-L/14@336px', device='cuda')
-        self.tagclip,_ = clip_tagclip.load('ViT-L/14@336px', device='cuda')
+        backbone = getattr(args, "clip_backbone", "ViT-L/14@336px")
+        self.clip = _shared_encoder("clip", backbone)
+        self.tagclip = _shared_encoder("tagclip", backbone)
+        self.frame_stride = getattr(args, "frame_stride", 1)
         self.id2pre = json.load(open(join(data_dir, 'id2predicate.json'), "r"))
         self.pre2id = json.load(open(join(data_dir, 'predicate2id.json'), "r"))
         self.id2obj = json.load(open(join(data_dir, 'id2object.json'), "r"))
@@ -74,26 +94,29 @@ class Dataset_new(BaseDataset):
         patch_ = []
         patch_proj = []
         global_proj = []
+        gp = p = pp = None
         for i in frame_list:
-            # if int(i.split('.')[0])%30 == 1:
+            # Frame files are 1-indexed (docs/03_Data.md), so frame 1 is always
+            # encoded and later frames reuse it until the next stride boundary.
+            frame_no = int(i.split('.')[0])
+            encode_this_frame = (frame_no - 1) % self.frame_stride == 0 or gp is None
+            if encode_this_frame:
                 with torch.no_grad():
-                    frame_path = data_path +'/'+i
-                    # frame_path = '../dataset/vidvrd/frames/ILSVRC2015_val_00046001/000100.jpg'
+                    frame_path = data_path + '/' + i
                     image = Image.open(frame_path).convert("RGB")
                     image_w, image_h = image.size
                     image_resize = self.preprocess(image).unsqueeze(0).cuda()
                     _, gp = self.clip.encode_image(image_resize)
                     gp = gp.cpu()
-                    global_proj.append(gp)
-                    p, pp = self.tagclip.encode_image_tagclip(image_resize, 336, 336, attn_mask=1)
+                    p, pp = self.tagclip.encode_image_tagclip(
+                        image_resize, 336, 336, attn_mask=1)
                     p = p.cpu()
                     pp = pp.cpu()
-                    patch_.append(p)
-                    patch_proj.append(pp)
-            # else:
-            #     global_proj.append(gp)
-            #     patch_.append(p)
-            #     patch_proj.append(pp)
+            # Otherwise reuse the last encoded frame's features. image_w/image_h
+            # are constant within a video, so they carry over unchanged.
+            global_proj.append(gp)
+            patch_.append(p)
+            patch_proj.append(pp)
         begin_fid = video_len
         end_fid = 0
         for t in self.gt_traj[video_name]:

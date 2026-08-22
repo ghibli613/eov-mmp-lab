@@ -19,8 +19,13 @@ an interruption is cheap and safe. Nothing here is synthetic: videos,
 annotations, trajectories and class splits are downloaded, and the frames, GT
 and CLIP bank are computed from them.
 
-NOT covered: the four pretrained checkpoints. They are not publicly downloadable
--- see README section 4 and docs/PORT_STATUS.md section 5.1.
+The weights step needs --manifest, pointing at a MANIFEST.json you host (see
+tools/hugging_upload.py). They are not publicly downloadable. Without it that
+step is skipped and everything else still runs.
+
+All downloading is delegated to tools/hugging_download.py; this module owns the
+step order, the state checks, and the three local derivations (frames, gt,
+bank).
 """
 from __future__ import annotations
 
@@ -34,7 +39,9 @@ import zipfile
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO)
 
-from utils import paths  # noqa: E402
+from hugging_download import fetch, hf_file, url_file  # sibling module in tools/
+
+from utils import paths
 
 HF_DATASET = "shangxd/imagenet-vidvrd"
 MMP_RAW = ("https://raw.githubusercontent.com/wangyongqi558/"
@@ -57,7 +64,19 @@ MMP_FILES = [
 ]
 
 GT_FILES = ["VidVRDtest_gts.json", "VidVRDtest_segment_gts.json"]
+
+#: set from --manifest / --only; the weights step is skipped without a manifest
+_MANIFEST = None
+_ONLY = "all"
 BANK = os.path.join(paths.META_DIR, "clip_L14_feat_vidvrd.pkl")
+
+#: what a runnable clone needs beyond the data. Fetched by the weights step.
+WEIGHT_FILES = [
+    paths.DETECTOR_CKPT, paths.OBJ_CLASSIFIER_CKPT, paths.RELATION_CKPT,
+    paths.AFLINK_CKPT,
+    os.path.join(paths.META_DIR, "VidVRD_ECC_train.json"),
+    os.path.join(paths.META_DIR, "VidVRD_ECC_test.json"),
+]
 GT_DIR = os.path.join(REPO, "data", "gt_jsons")
 
 
@@ -95,6 +114,7 @@ def status() -> dict:
         "frames": (n_frame_dirs(), 1000),
         "gt":     (n_gt(), len(GT_FILES)),
         "bank":   (int(os.path.exists(BANK)), 1),
+        "weights": (sum(os.path.exists(p) for p in WEIGHT_FILES), len(WEIGHT_FILES)),
     }
 
 
@@ -119,11 +139,10 @@ def _fully_extracted(zip_path: str, out_dir: str) -> bool:
 
 
 def step_videos():
-    from huggingface_hub import hf_hub_download
     os.makedirs(paths.VIDEO_DIR, exist_ok=True)
     for part in ("vidvrd-videos-part1.zip", "vidvrd-videos-part2.zip"):
         print(f"    downloading {part} ...")
-        p = hf_hub_download(HF_DATASET, part, repo_type="dataset", local_dir=paths.VIDEO_DIR)
+        p = hf_file(HF_DATASET, part, local_dir=paths.VIDEO_DIR)
         with zipfile.ZipFile(p) as z:
             for m in (n for n in z.namelist() if n.endswith(".mp4")):
                 dst = os.path.join(paths.VIDEO_DIR, os.path.basename(m))
@@ -137,8 +156,7 @@ def step_videos():
 
 
 def step_anno():
-    from huggingface_hub import hf_hub_download
-    p = hf_hub_download(HF_DATASET, "vidvrd-annotations.zip", repo_type="dataset")
+    p = hf_file(HF_DATASET, "vidvrd-annotations.zip")
     # ONE copy, under anno/. Both the training dataset and the GT builder read it
     # through utils.paths -- see step_gt.
     with zipfile.ZipFile(p) as z:
@@ -154,14 +172,13 @@ def step_anno():
 
 def step_meta():
     """Trajectories and class splits, from MMP -- EOV expects these exact names."""
-    import urllib.request
     os.makedirs(paths.META_DIR, exist_ok=True)
     for f in MMP_FILES:
         dst = os.path.join(paths.META_DIR, f)
         if os.path.exists(dst):
             continue
         print(f"    {f} ...")
-        urllib.request.urlretrieve(f"{MMP_RAW}/{f}", dst)
+        url_file(f"{MMP_RAW}/{f}", dst)
     print(f"    {n_meta()}/{len(MMP_FILES)} files")
 
 
@@ -173,11 +190,20 @@ def step_gt():
     os.makedirs(GT_DIR, exist_ok=True)
     helper = os.path.join(REPO, "third_party", "vidvrd_ii_helper")
     sys.path.insert(0, helper)
-    from prepare_gts_for_eval import prepare_gts_for_vidvrd  # noqa: E402
+    from prepare_gts_for_eval import prepare_gts_for_vidvrd
     # NOTE: their __main__ writes video-level data under the segment-level
     # filename; call the function directly with the right flag for each.
     prepare_gts_for_vidvrd(os.path.join(GT_DIR, "VidVRDtest_gts.json"), segment_gt=False)
     prepare_gts_for_vidvrd(os.path.join(GT_DIR, "VidVRDtest_segment_gts.json"), segment_gt=True)
+
+
+def step_weights():
+    """Pretrained weights, via a manifest you host. See tools/hugging_upload.py."""
+    if not _MANIFEST:
+        print("    no --manifest given; skipping. Weights are not publicly "
+              "downloadable -- see the README.")
+        return
+    fetch(_MANIFEST, only=_ONLY)
 
 
 def step_bank():
@@ -193,6 +219,8 @@ STEPS = [
     ("frames", step_frames, lambda s: s["frames"][0] >= 1000),
     ("gt",     step_gt,     lambda s: s["gt"][0] >= len(GT_FILES)),
     ("bank",   step_bank,   lambda s: s["bank"][0] >= 1),
+    # last: the only step needing something you host yourself
+    ("weights", step_weights, lambda s: s["weights"][0] >= s["weights"][1]),
 ]
 
 
@@ -203,7 +231,16 @@ def main():
     ap.add_argument("--steps", default=None,
                     help="comma-separated subset, e.g. frames,bank")
     ap.add_argument("--force", action="store_true", help="run steps even if they look done")
+    ap.add_argument("--manifest", default=None,
+                    help="URL or path to a weights MANIFEST.json (see "
+                         "tools/hugging_upload.py). Without it the weights step "
+                         "is skipped.")
+    ap.add_argument("--only", choices=["all", "train", "eval"], default="all",
+                    help="with --manifest: 'eval' skips the train-only weights")
     args = ap.parse_args()
+
+    global _MANIFEST, _ONLY
+    _MANIFEST, _ONLY = args.manifest, args.only
 
     if args.check:
         report()
@@ -229,8 +266,7 @@ def main():
     if missing:
         print(f"\n  INCOMPLETE: {', '.join(missing)}")
         return 1
-    print("\n  All data ready. Remaining blocker: the four pretrained checkpoints "
-          "(README section 4).")
+    print("\n  Everything present.")
     return 0
 
 
