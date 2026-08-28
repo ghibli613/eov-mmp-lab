@@ -1,0 +1,432 @@
+{
+ "novel_within": {
+  "above": {
+   "nearest_novel": "run_above",
+   "sim": 0.9597839117050171,
+   "nearest_base": "sit_above",
+   "sim_base": 0.9515991806983948,
+   "group": "geometric_static"
+  },
+  "away": {
+   "nearest_novel": "run_away",
+   "sim": 0.9584059119224548,
+   "nearest_base": "left",
+   "sim_base": 0.9600394368171692,
+   "group": "geometric_dynamic"
+  },
+  "beneath": {
+   "nearest_novel": "run_beneath",
+   "sim": 0.9605937004089355,
+   "nearest_base": "creep_beneath",
+   "sim_base": 0.9520792961120605,
+   "group": "geometric_static"
+  },
+  "bite": {
+   "nearest_novel": "fight",
+   "sim": 0.9157711267471313,
+   "nearest_base": "right",
+   "sim_base": 0.9227257370948792,
+   "group": "appearance_dynamic"
+  },
+  "creep_above": {
+   "nearest_novel": "creep_past",
+   "sim": 0.9394683837890625,
+   "nearest_base": "creep_beneath",
+   "sim_base": 0.9517005085945129,
+   "group": "geometric_dynamic"
+  },
+  "creep_away": {
+   "nearest_novel": "creep_past",
+   "sim": 0.9752005934715271,
+   "nearest_base": "creep_right",
+   "sim_base": 0.9734024405479431,
+   "group": "geometric_dynamic"
+  },
+  "creep_next_to": {
+   "nearest_novel": "creep_above",
+   "sim": 0.9215062856674194,
+   "nearest_base": "creep_behind",
+   "sim_base": 0.9493341445922852,
+   "group": "geometric_dynamic"
+  },
+  "creep_past": {
+   "nearest_novel": "creep_away",
+   "sim": 0.9752005934715271,
+   "nearest_base": "creep_right",
+   "sim_base": 0.9730879068374634,
+   "group": "geometric_dynamic"
+  },
+  "creep_toward": {
+   "nearest_novel": "creep_past",
+   "sim": 0.9704780578613281,
+   "nearest_base": "creep_right",
+   "sim_base": 0.9598592519760132,
+   "group": "geometric_dynamic"
+  },
+  "drive": {
+   "nearest_novel": "move_away",
+   "sim": 0.94524085521698,
+   "nearest_base": "front",
+   "sim_base": 0.9540205001831055,
+   "group": "appearance_static"
+  },
+  "feed": {
+   "nearest_novel": "drive",
+   "sim": 0.9319945573806763,
+   "nearest_base": "front",
+   "sim_base": 0.9343122243881226,
+   "group": "appearance_dynamic"
+  },
+  "fight": {
+   "nearest_novel": "run_away",
+   "sim": 0.9266953468322754,
+   "nearest_base": "right",
+   "sim_base": 0.9362935423851013,
+   "group": "appearance_dynamic"
+  },
+  "fly_away": {
+   "nearest_novel": "fly_right",
+   "sim": 0.9669040441513062,
+   "nearest_base": "fly_toward",
+   "sim_base": 0.9611029624938965,
+   "group": "geometric_dynamic"
+  },
+  "fly_behind": {
+   "nearest_novel": "fly_front",
+   "sim": 0.9500666260719299,
+   "nearest_base": "fly_with",
+   "sim_base": 0.9629502892494202,
+   "group": "geometric_dynamic"
+  },
+  "fly_front": {
+   "nearest_novel": "fly_right",
+   "sim": 0.9797559976577759,
+   "nearest_base": "fly_with",
+   "sim_base": 0.9618098735809326,
+   "group": "geometric_dynamic"
+  },
+  "fly_left": {
+   "nearest_novel": "fly_front",
+   "sim": 0.9635674357414246,
+   "nearest_base": "fly_toward",
+   "sim_base": 0.9511314630508423,
+   "group": "geometric_dynamic"
+  },
+  "fly_right": {
+   "nearest_novel": "fly_front",
+   "sim": 0.9797559976577759,
+   "nearest_base": "fly_with",
+   "sim_base": 0.9677910804748535,
+   "group": "geometric_dynamic"
+  },
+  "hold": {
+   "nearest_novel": "toward",
+   "sim": 0.9429963827133179,
+   "nearest_base": "right",
+   "sim_base": 0.9587360620498657,
+   "group": "appearance_static"
+  },
+  "jump_above": {
+   "nearest_novel": "jump_with",
+   "sim": 0.9665814638137817,
+   "nearest_base": "jump_right",
+   "sim_base": 0.9587289690971375,
+   "group": "geometric_dynamic"
+  },
+  "jump_away": {
+   "nearest_novel": "jump_past",
+   "sim": 0.9644606113433838,
+   "nearest_base": "jump_right",
+   "sim_base": 0.9750251173973083,
+   "group": "geometric_dynamic"
+  },
+  "jump_behind": {
+   "nearest_novel": "jump_past",
+   "sim": 0.9788951873779297,
+   "nearest_base": "jump_right",
+   "sim_base": 0.9640649557113647,
+   "group": "geometric_dynamic"
+  },
+  "jump_past": {
+   "nearest_novel": "jump_behind",
+   "sim": 0.9788951873779297,
+   "nearest_base": "jump_right",
+   "sim_base": 0.9646934270858765,
+   "group": "geometric_dynamic"
+  },
+  "jump_with": {
+   "nearest_novel": "jump_above",
+   "sim": 0.9665814638137817,
+   "nearest_base": "jump_next_to",
+   "sim_base": 0.963985025882721,
+   "group": "geometric_dynamic"
+  },
+  "kick": {
+   "nearest_novel": "fight",
+   "sim": 0.9171200394630432,
+   "nearest_base": "right",
+   "sim_base": 0.9223102331161499,
+   "group": "appearance_dynamic"
+  },
+  "lie_above": {
+   "nearest_novel": "above",
+   "sim": 0.9549440741539001,
+   "nearest_base": "lie_behind",
+   "sim_base": 0.9450979828834534,
+   "group": "geometric_static"
+  },
+  "lie_beneath": {
+   "nearest_novel": "beneath",
+   "sim": 0.9531514644622803,
+   "nearest_base": "lie_behind",
+   "sim_base": 0.9405381083488464,
+   "group": "geometric_static"
+  },
+  "lie_inside": {
+   "nearest_novel": "lie_beneath",
+   "sim": 0.945534348487854,
+   "nearest_base": "lie_behind",
+   "sim_base": 0.9415087103843689,
+   "group": "geometric_static"
+  },
+  "lie_with": {
+   "nearest_novel": "lie_beneath",
+   "sim": 0.9445738196372986,
+   "nearest_base": "lie_behind",
+   "sim_base": 0.9626544117927551,
+   "group": "geometric_static"
+  },
+  "move_above": {
+   "nearest_novel": "run_above",
+   "sim": 0.9531095027923584,
+   "nearest_base": "sit_above",
+   "sim_base": 0.9490528702735901,
+   "group": "geometric_dynamic"
+  },
+  "move_away": {
+   "nearest_novel": "move_past",
+   "sim": 0.9787574410438538,
+   "nearest_base": "move_right",
+   "sim_base": 0.9794859886169434,
+   "group": "geometric_dynamic"
+  },
+  "move_next_to": {
+   "nearest_novel": "move_past",
+   "sim": 0.9663902521133423,
+   "nearest_base": "move_with",
+   "sim_base": 0.9738249778747559,
+   "group": "geometric_dynamic"
+  },
+  "move_past": {
+   "nearest_novel": "move_away",
+   "sim": 0.9787574410438538,
+   "nearest_base": "move_behind",
+   "sim_base": 0.978253185749054,
+   "group": "geometric_dynamic"
+  },
+  "move_toward": {
+   "nearest_novel": "move_away",
+   "sim": 0.9707444906234741,
+   "nearest_base": "move_right",
+   "sim_base": 0.9606425762176514,
+   "group": "geometric_dynamic"
+  },
+  "past": {
+   "nearest_novel": "away",
+   "sim": 0.9491732120513916,
+   "nearest_base": "right",
+   "sim_base": 0.9580831527709961,
+   "group": "geometric_dynamic"
+  },
+  "pull": {
+   "nearest_novel": "drive",
+   "sim": 0.9421814680099487,
+   "nearest_base": "play",
+   "sim_base": 0.9386727213859558,
+   "group": "appearance_dynamic"
+  },
+  "run_above": {
+   "nearest_novel": "above",
+   "sim": 0.9597839117050171,
+   "nearest_base": "sit_above",
+   "sim_base": 0.9409263730049133,
+   "group": "geometric_dynamic"
+  },
+  "run_away": {
+   "nearest_novel": "run_toward",
+   "sim": 0.9616135358810425,
+   "nearest_base": "run_right",
+   "sim_base": 0.969055712223053,
+   "group": "geometric_dynamic"
+  },
+  "run_beneath": {
+   "nearest_novel": "beneath",
+   "sim": 0.9605937004089355,
+   "nearest_base": "move_beneath",
+   "sim_base": 0.9466822147369385,
+   "group": "geometric_dynamic"
+  },
+  "run_next_to": {
+   "nearest_novel": "move_next_to",
+   "sim": 0.9299847483634949,
+   "nearest_base": "run_with",
+   "sim_base": 0.9606068134307861,
+   "group": "geometric_dynamic"
+  },
+  "run_toward": {
+   "nearest_novel": "run_away",
+   "sim": 0.9616135358810425,
+   "nearest_base": "run_past",
+   "sim_base": 0.9695925712585449,
+   "group": "geometric_dynamic"
+  },
+  "sit_behind": {
+   "nearest_novel": "sit_next_to",
+   "sim": 0.9523032903671265,
+   "nearest_base": "sit_front",
+   "sim_base": 0.9514582753181458,
+   "group": "geometric_static"
+  },
+  "sit_beneath": {
+   "nearest_novel": "beneath",
+   "sim": 0.9474034309387207,
+   "nearest_base": "sit_above",
+   "sim_base": 0.9384958744049072,
+   "group": "geometric_static"
+  },
+  "sit_inside": {
+   "nearest_novel": "stand_inside",
+   "sim": 0.951386570930481,
+   "nearest_base": "sit_right",
+   "sim_base": 0.9197359681129456,
+   "group": "geometric_static"
+  },
+  "sit_next_to": {
+   "nearest_novel": "sit_behind",
+   "sim": 0.9523032903671265,
+   "nearest_base": "sit_right",
+   "sim_base": 0.9465325474739075,
+   "group": "geometric_static"
+  },
+  "stand_above": {
+   "nearest_novel": "above",
+   "sim": 0.9482402801513672,
+   "nearest_base": "sit_above",
+   "sim_base": 0.9468132257461548,
+   "group": "geometric_static"
+  },
+  "stand_beneath": {
+   "nearest_novel": "sit_beneath",
+   "sim": 0.9450897574424744,
+   "nearest_base": "move_beneath",
+   "sim_base": 0.941547691822052,
+   "group": "geometric_static"
+  },
+  "stand_inside": {
+   "nearest_novel": "sit_inside",
+   "sim": 0.951386570930481,
+   "nearest_base": "stand_behind",
+   "sim_base": 0.9213190078735352,
+   "group": "geometric_static"
+  },
+  "stand_with": {
+   "nearest_novel": "stand_beneath",
+   "sim": 0.9314435720443726,
+   "nearest_base": "stand_right",
+   "sim_base": 0.9554951786994934,
+   "group": "geometric_static"
+  },
+  "stop_above": {
+   "nearest_novel": "stop_with",
+   "sim": 0.9607617259025574,
+   "nearest_base": "stop_right",
+   "sim_base": 0.9554519653320312,
+   "group": "geometric_static"
+  },
+  "stop_beneath": {
+   "nearest_novel": "stop_next_to",
+   "sim": 0.9433020949363708,
+   "nearest_base": "stop_behind",
+   "sim_base": 0.9412874579429626,
+   "group": "geometric_static"
+  },
+  "stop_next_to": {
+   "nearest_novel": "stop_with",
+   "sim": 0.9609097242355347,
+   "nearest_base": "stop_behind",
+   "sim_base": 0.9540854692459106,
+   "group": "geometric_static"
+  },
+  "stop_with": {
+   "nearest_novel": "stop_next_to",
+   "sim": 0.9609097242355347,
+   "nearest_base": "stop_front",
+   "sim_base": 0.9706519842147827,
+   "group": "geometric_static"
+  },
+  "swim_behind": {
+   "nearest_novel": "swim_next_to",
+   "sim": 0.9516952037811279,
+   "nearest_base": "swim_with",
+   "sim_base": 0.9558522701263428,
+   "group": "geometric_dynamic"
+  },
+  "swim_beneath": {
+   "nearest_novel": "swim_behind",
+   "sim": 0.9401834011077881,
+   "nearest_base": "swim_with",
+   "sim_base": 0.93954998254776,
+   "group": "geometric_dynamic"
+  },
+  "swim_next_to": {
+   "nearest_novel": "swim_behind",
+   "sim": 0.9516952037811279,
+   "nearest_base": "swim_with",
+   "sim_base": 0.9541836977005005,
+   "group": "geometric_dynamic"
+  },
+  "toward": {
+   "nearest_novel": "move_toward",
+   "sim": 0.9514724016189575,
+   "nearest_base": "right",
+   "sim_base": 0.9421384334564209,
+   "group": "geometric_dynamic"
+  },
+  "walk_above": {
+   "nearest_novel": "run_above",
+   "sim": 0.9477356672286987,
+   "nearest_base": "walk_right",
+   "sim_base": 0.9331324696540833,
+   "group": "geometric_dynamic"
+  },
+  "walk_away": {
+   "nearest_novel": "walk_past",
+   "sim": 0.9537466764450073,
+   "nearest_base": "walk_right",
+   "sim_base": 0.9578387141227722,
+   "group": "geometric_dynamic"
+  },
+  "walk_beneath": {
+   "nearest_novel": "run_beneath",
+   "sim": 0.948502779006958,
+   "nearest_base": "move_beneath",
+   "sim_base": 0.9337055683135986,
+   "group": "geometric_dynamic"
+  },
+  "walk_past": {
+   "nearest_novel": "walk_away",
+   "sim": 0.9537466764450073,
+   "nearest_base": "walk_behind",
+   "sim_base": 0.9594013690948486,
+   "group": "geometric_dynamic"
+  },
+  "walk_toward": {
+   "nearest_novel": "walk_past",
+   "sim": 0.9519680738449097,
+   "nearest_base": "walk_front",
+   "sim_base": 0.9624669551849365,
+   "group": "geometric_dynamic"
+  }
+ },
+ "object_control_mean_nn_sim": 0.8559842109680176
+}

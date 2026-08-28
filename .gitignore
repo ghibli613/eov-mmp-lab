@@ -47,3 +47,17 @@ ops/*.egg-info/
 # *.pkl rules above are not enough on their own.
 vlm/backbones/alpro_weights/
 models/cache/
+
+# Papers: 18 MB of third-party PDFs. Kept locally for reference, not committed —
+# they are copyrighted and this repo has a public remote.
+_paper/
+
+# Derived pilot artefacts. Regenerate rather than track:
+#   python pilot_analysis/scripts/gt_trajectories.py --mode strict --dump
+pilot_analysis/gt_trajectories.json
+
+# Run logs stay local. They are the protocol's ground-rule-5 audit trail and are
+# kept on disk, but they are machine-specific (absolute paths, driver versions)
+# and one of them -- the HuggingFace upload log -- reached 8.85 MB of
+# carriage-return progress bars. Regenerate with pilot_analysis/logs/commands.md.
+pilot_analysis/logs/

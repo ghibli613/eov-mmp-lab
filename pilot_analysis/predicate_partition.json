@@ -1,0 +1,1190 @@
+{
+ "above": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "relative box position in one frame",
+  "review": false,
+  "test_instances": 5,
+  "time": "static"
+ },
+ "away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "gap widens across frames",
+  "review": false,
+  "test_instances": 7,
+  "time": "dynamic"
+ },
+ "behind": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "depth ordering from box overlap in one frame",
+  "review": false,
+  "test_instances": 33,
+  "time": "static"
+ },
+ "beneath": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "relative box position in one frame",
+  "review": false,
+  "test_instances": 7,
+  "time": "static"
+ },
+ "bite": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "novel",
+  "rationale": "momentary contact event; needs appearance change",
+  "review": false,
+  "test_instances": 4,
+  "time": "dynamic"
+ },
+ "chase": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "both boxes move, one following the other's path",
+  "review": false,
+  "test_instances": 12,
+  "time": "dynamic"
+ },
+ "creep_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 4,
+  "time": "dynamic"
+ },
+ "creep_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "creep_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 18,
+  "time": "dynamic"
+ },
+ "creep_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 4,
+  "time": "dynamic"
+ },
+ "creep_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 14,
+  "time": "dynamic"
+ },
+ "creep_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 17,
+  "time": "dynamic"
+ },
+ "creep_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "creep_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "creep_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 11,
+  "time": "dynamic"
+ },
+ "creep_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `creep`: slow locomotion, visible as box displacement; spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "drive": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "person-inside-vehicle is box containment given the categories; REVIEWED 2026-08-27, moved from appearance_static",
+  "review": false,
+  "test_instances": 3,
+  "time": "static"
+ },
+ "fall_off": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fall`: downward box displacement; spatial `off`: requires separation across frames (only in `fall_off`)",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "faster": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "comparison of box displacement rates",
+  "review": false,
+  "test_instances": 21,
+  "time": "dynamic"
+ },
+ "feed": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "novel",
+  "rationale": "transfer action; needs appearance change; REVIEWED 2026-08-27, kept",
+  "review": false,
+  "test_instances": 9,
+  "time": "dynamic"
+ },
+ "fight": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "novel",
+  "rationale": "sustained reciprocal action; no single frame decides it",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "fly_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 4,
+  "time": "dynamic"
+ },
+ "fly_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "fly_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "fly_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "fly_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "fly_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 22,
+  "time": "dynamic"
+ },
+ "fly_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 4,
+  "time": "dynamic"
+ },
+ "fly_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "fly_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 3,
+  "time": "dynamic"
+ },
+ "fly_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `fly`: locomotion, visible as box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 70,
+  "time": "dynamic"
+ },
+ "follow": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "both boxes move along the same path, offset in time",
+  "review": false,
+  "test_instances": 25,
+  "time": "dynamic"
+ },
+ "front": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "depth ordering from box overlap in one frame",
+  "review": false,
+  "test_instances": 60,
+  "time": "static"
+ },
+ "hold": {
+  "evidence": "appearance",
+  "group": "appearance_static",
+  "ov_split": "novel",
+  "rationale": "contact state; a single frame suffices once established",
+  "review": false,
+  "test_instances": 8,
+  "time": "static"
+ },
+ "jump_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `jump`: vertical box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "jump_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `jump`: vertical box displacement; spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 3,
+  "time": "dynamic"
+ },
+ "jump_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `jump`: vertical box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "jump_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 13,
+  "time": "dynamic"
+ },
+ "jump_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 15,
+  "time": "dynamic"
+ },
+ "jump_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 18,
+  "time": "dynamic"
+ },
+ "jump_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 10,
+  "time": "dynamic"
+ },
+ "jump_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `jump`: vertical box displacement; spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "jump_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 20,
+  "time": "dynamic"
+ },
+ "jump_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `jump`: vertical box displacement; spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "jump_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `jump`: vertical box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 2,
+  "time": "dynamic"
+ },
+ "kick": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "novel",
+  "rationale": "momentary limb action; needs appearance change",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "larger": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "box area comparison; no appearance needed",
+  "review": false,
+  "test_instances": 117,
+  "time": "static"
+ },
+ "left": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "relative box position in one frame",
+  "review": false,
+  "test_instances": 42,
+  "time": "static"
+ },
+ "lie_above": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 4,
+  "time": "static"
+ },
+ "lie_behind": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 39,
+  "time": "static"
+ },
+ "lie_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "static"
+ },
+ "lie_front": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 34,
+  "time": "static"
+ },
+ "lie_inside": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `inside`: box containment in one frame",
+  "review": false,
+  "test_instances": 1,
+  "time": "static"
+ },
+ "lie_left": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 51,
+  "time": "static"
+ },
+ "lie_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 29,
+  "time": "static"
+ },
+ "lie_right": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 57,
+  "time": "static"
+ },
+ "lie_with": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `lie`: posture, readable from box aspect ratio in one frame; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 2,
+  "time": "static"
+ },
+ "move_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "move_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "move_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 83,
+  "time": "dynamic"
+ },
+ "move_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 65,
+  "time": "dynamic"
+ },
+ "move_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 40,
+  "time": "dynamic"
+ },
+ "move_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 56,
+  "time": "dynamic"
+ },
+ "move_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "move_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 11,
+  "time": "dynamic"
+ },
+ "move_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 47,
+  "time": "dynamic"
+ },
+ "move_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "move_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `move`: locomotion, visible as box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 22,
+  "time": "dynamic"
+ },
+ "next_to": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `next`: only in `next_to`; proximity in one frame; spatial `to`: box proximity in one frame (only in `next_to`)",
+  "review": false,
+  "test_instances": 18,
+  "time": "static"
+ },
+ "past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "relative displacement across frames",
+  "review": false,
+  "test_instances": 6,
+  "time": "dynamic"
+ },
+ "play": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "base",
+  "rationale": "sustained reciprocal activity; REVIEWED 2026-08-27, kept -- note it is 100% of appearance_dynamic on the base split, and its boundary with `fight` remains a caveat",
+  "review": false,
+  "test_instances": 79,
+  "time": "dynamic"
+ },
+ "pull": {
+  "evidence": "appearance",
+  "group": "appearance_dynamic",
+  "ov_split": "novel",
+  "rationale": "boxes moving together is `move_with`; telling pulling from being dragged alongside needs pixels to see which entity initiates; REVIEWED 2026-08-27, kept",
+  "review": false,
+  "test_instances": 3,
+  "time": "dynamic"
+ },
+ "ride": {
+  "evidence": "appearance",
+  "group": "appearance_static",
+  "ov_split": "base",
+  "rationale": "support state; a single frame suffices once established",
+  "review": false,
+  "test_instances": 71,
+  "time": "static"
+ },
+ "right": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "relative box position in one frame",
+  "review": false,
+  "test_instances": 50,
+  "time": "static"
+ },
+ "run_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "run_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "run_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 13,
+  "time": "dynamic"
+ },
+ "run_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 5,
+  "time": "dynamic"
+ },
+ "run_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 24,
+  "time": "dynamic"
+ },
+ "run_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 31,
+  "time": "dynamic"
+ },
+ "run_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 8,
+  "time": "dynamic"
+ },
+ "run_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 14,
+  "time": "dynamic"
+ },
+ "run_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 32,
+  "time": "dynamic"
+ },
+ "run_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 9,
+  "time": "dynamic"
+ },
+ "run_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `run`: locomotion, visible as box displacement (faster); spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 10,
+  "time": "dynamic"
+ },
+ "sit_above": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 78,
+  "time": "static"
+ },
+ "sit_behind": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 47,
+  "time": "static"
+ },
+ "sit_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 20,
+  "time": "static"
+ },
+ "sit_front": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 48,
+  "time": "static"
+ },
+ "sit_inside": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `inside`: box containment in one frame",
+  "review": false,
+  "test_instances": 3,
+  "time": "static"
+ },
+ "sit_left": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 74,
+  "time": "static"
+ },
+ "sit_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 38,
+  "time": "static"
+ },
+ "sit_right": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `sit`: posture, readable from box aspect ratio in one frame; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 89,
+  "time": "static"
+ },
+ "stand_above": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 35,
+  "time": "static"
+ },
+ "stand_behind": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 175,
+  "time": "static"
+ },
+ "stand_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 6,
+  "time": "static"
+ },
+ "stand_front": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 158,
+  "time": "static"
+ },
+ "stand_inside": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `inside`: box containment in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "static"
+ },
+ "stand_left": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 244,
+  "time": "static"
+ },
+ "stand_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 118,
+  "time": "static"
+ },
+ "stand_right": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 262,
+  "time": "static"
+ },
+ "stand_with": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stand`: posture, readable from box aspect ratio in one frame; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 64,
+  "time": "static"
+ },
+ "stop_above": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stop`: absence of box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 2,
+  "time": "static"
+ },
+ "stop_behind": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stop`: absence of box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 43,
+  "time": "static"
+ },
+ "stop_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stop`: absence of box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 13,
+  "time": "static"
+ },
+ "stop_front": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stop`: absence of box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 14,
+  "time": "static"
+ },
+ "stop_left": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stop`: absence of box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 48,
+  "time": "static"
+ },
+ "stop_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stop`: absence of box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 10,
+  "time": "static"
+ },
+ "stop_right": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "verb `stop`: absence of box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 54,
+  "time": "static"
+ },
+ "stop_with": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "novel",
+  "rationale": "verb `stop`: absence of box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 2,
+  "time": "static"
+ },
+ "swim_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 13,
+  "time": "dynamic"
+ },
+ "swim_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 1,
+  "time": "dynamic"
+ },
+ "swim_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 60,
+  "time": "dynamic"
+ },
+ "swim_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 58,
+  "time": "dynamic"
+ },
+ "swim_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 25,
+  "time": "dynamic"
+ },
+ "swim_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 63,
+  "time": "dynamic"
+ },
+ "swim_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `swim`: locomotion, visible as box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 84,
+  "time": "dynamic"
+ },
+ "taller": {
+  "evidence": "geometric",
+  "group": "geometric_static",
+  "ov_split": "base",
+  "rationale": "box height comparison; no appearance needed",
+  "review": false,
+  "test_instances": 133,
+  "time": "static"
+ },
+ "touch": {
+  "evidence": "appearance",
+  "group": "appearance_static",
+  "ov_split": "base",
+  "rationale": "a single frame shows the contact; REVIEWED 2026-08-27, moved from appearance_dynamic (38 base instances -- the only reassignment that moves a number)",
+  "review": false,
+  "test_instances": 38,
+  "time": "static"
+ },
+ "toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "gap closes across frames",
+  "review": false,
+  "test_instances": 6,
+  "time": "dynamic"
+ },
+ "walk_above": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `above`: relative box position in one frame",
+  "review": false,
+  "test_instances": 12,
+  "time": "dynamic"
+ },
+ "walk_away": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `away`: requires the gap to widen across frames",
+  "review": false,
+  "test_instances": 47,
+  "time": "dynamic"
+ },
+ "walk_behind": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `behind`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 135,
+  "time": "dynamic"
+ },
+ "walk_beneath": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `beneath`: relative box position in one frame",
+  "review": false,
+  "test_instances": 17,
+  "time": "dynamic"
+ },
+ "walk_front": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `front`: depth ordering, read from box overlap/size in one frame",
+  "review": false,
+  "test_instances": 165,
+  "time": "dynamic"
+ },
+ "walk_left": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `left`: relative box position in one frame",
+  "review": false,
+  "test_instances": 209,
+  "time": "dynamic"
+ },
+ "walk_next_to": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `next_to`: box proximity in one frame",
+  "review": false,
+  "test_instances": 88,
+  "time": "dynamic"
+ },
+ "walk_past": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `past`: requires relative displacement across frames",
+  "review": false,
+  "test_instances": 34,
+  "time": "dynamic"
+ },
+ "walk_right": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `right`: relative box position in one frame",
+  "review": false,
+  "test_instances": 216,
+  "time": "dynamic"
+ },
+ "walk_toward": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "novel",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `toward`: requires the gap to close across frames",
+  "review": false,
+  "test_instances": 43,
+  "time": "dynamic"
+ },
+ "walk_with": {
+  "evidence": "geometric",
+  "group": "geometric_dynamic",
+  "ov_split": "base",
+  "rationale": "verb `walk`: locomotion, visible as box displacement; spatial `with`: accompaniment; temporality comes from the verb",
+  "review": false,
+  "test_instances": 52,
+  "time": "dynamic"
+ },
+ "watch": {
+  "evidence": "appearance",
+  "group": "appearance_static",
+  "ov_split": "base",
+  "rationale": "gaze direction, read from one frame",
+  "review": false,
+  "test_instances": 97,
+  "time": "static"
+ }
+}
