@@ -18,6 +18,8 @@ _ext
 *.log
 **/events.*
 *.ipynb
+# ...except the Colab runner, which is a deliverable rather than a scratch pad.
+!colab_pilot_runner.ipynb
 **/.ipynb_checkpoints/
 note*.md
 

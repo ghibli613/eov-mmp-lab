@@ -61,78 +61,75 @@ def main():
     pair = make_pair(4)
     scores = torch.rand(4, N_PRED)
     clip_rels = process_pred(args, id2pre, obj2id, prior, scores, pair)
-    segs = extract_segments(clip_rels)
-    ok &= check("one entry per (clip, top-n) pair",
-                len(segs) == 4 * args.clip_top_n, f"{len(segs)} records")
-    ok &= check("segment_index covers every clip",
-                sorted({s['segment_index'] for s in segs}) == [0, 1, 2, 3])
+    recs = extract_segments(clip_rels, pair)
+    ok &= check("one record per tracklet pair", len(recs) == 1, f"{len(recs)}")
+    r = recs[0]
+    ok &= check("trajectories stored once per pair, not per candidate",
+                len(r["sbj_traj"]) == 120 and len(r["obj_traj"]) == 120,
+                f"{len(r['sbj_traj'])} boxes")
+    ok &= check("one segment entry per clip", len(r["segments"]) == 4)
+    ok &= check("top-n predicates per segment",
+                all(len(s["preds"]) == args.clip_top_n for s in r["segments"]))
     ok &= check("frame_range tiles [0,120) with no overlap",
-                sorted({tuple(s['frame_range']) for s in segs})
+                [tuple(s["frame_range"]) for s in r["segments"]]
                 == [(0, 30), (30, 60), (60, 90), (90, 120)])
-    ok &= check("triplet is [sbj, pre, obj] order",
-                all(s['triplet'][0] == 'dog' and s['triplet'][2] == 'person' for s in segs))
-    ok &= check("confidence is a float, not a tensor",
-                all(isinstance(s['confidence'], float) for s in segs))
+    ok &= check("scores are floats, not tensors",
+                all(isinstance(p[1], float) for s in r["segments"] for p in s["preds"]))
 
     print("\n2. ragged tail (3 clips + 17 frames, 107 total)")
     pair = make_pair(3, tail=17)
-    clip_rels = process_pred(args, id2pre, obj2id, prior, torch.rand(4, N_PRED), pair)
-    segs = extract_segments(clip_rels)
-    rng = sorted({tuple(s['frame_range']) for s in segs})
+    recs = extract_segments(
+        process_pred(args, id2pre, obj2id, prior, torch.rand(4, N_PRED), pair), pair)
+    rng = [tuple(s["frame_range"]) for s in recs[0]["segments"]]
     ok &= check("last segment ends at the true end, not a multiple of 30",
                 rng[-1] == (90, 107), f"{rng[-1]}")
+    ok &= check("trajectory length matches the pair duration",
+                len(recs[0]["sbj_traj"]) == 107)
 
     print("\n3. non-zero begin_fid (offset 45) -- the 15-frame grid case (SS B.3)")
     pair = make_pair(2, begin=45)
-    clip_rels = process_pred(args, id2pre, obj2id, prior, torch.rand(2, N_PRED), pair)
-    segs = extract_segments(clip_rels)
+    recs = extract_segments(
+        process_pred(args, id2pre, obj2id, prior, torch.rand(2, N_PRED), pair), pair)
     ok &= check("frame_range is absolute, offset by begin_fid",
-                sorted({tuple(s['frame_range']) for s in segs}) == [(45, 75), (75, 105)])
+                [tuple(s["frame_range"]) for s in recs[0]["segments"]]
+                == [(45, 75), (75, 105)])
+    ok &= check("duration is absolute too", recs[0]["duration"] == [45, 105])
 
     print("\n4. dump happens BEFORE association() mutates clip_rels")
     pair = make_pair(3)
     clip_rels = process_pred(args, id2pre, obj2id, prior, torch.rand(3, N_PRED), pair)
-    before = extract_segments(clip_rels)
+    before = extract_segments(clip_rels, pair)
     lens_before = [len(c['sbj_traj']) for clip in clip_rels for c in clip]
     merged = association(clip_rels)
-    after = extract_segments(clip_rels)
     lens_after = [len(c['sbj_traj']) for clip in clip_rels for c in clip]
     ok &= check("association() DOES mutate the trajectories in place",
                 lens_before != lens_after,
                 "confirms the dump must run first, as it does")
-    # Re-extracting AFTER association gives corrupted records: association()
-    # rewrites duration[1] to the end of the merged chain and overwrites pre_scr
-    # with the chain mean. So `after` != `before` is the POINT -- it is what
-    # proves the ordering in predict_and_dump matters. (An earlier version of
-    # this test asserted before == after, which had the logic backwards.)
-    ok &= check("re-extracting after association is CORRUPTED (so order matters)",
-                before != after,
-                f"{sum(1 for x, y in zip(before, after) if x != y)} of "
-                f"{len(before)} records differ")
-    ok &= check("the pre-merge snapshot is immune to the mutation",
-                sorted({tuple(x['frame_range']) for x in before})
-                == [(0, 30), (30, 60), (60, 90)],
-                "frame_range still tiles the original segments")
-    stretched = [tuple(x['frame_range']) for x in after
-                 if x['frame_range'][1] - x['frame_range'][0] > CLIP_LEN]
-    ok &= check("and the corruption is visible: post-merge spans exceed clip_len",
-                len(stretched) > 0, f"{len(stretched)} stretched spans, e.g. {stretched[:2]}")
+    ok &= check("the pre-merge snapshot still tiles the original segments",
+                [tuple(s["frame_range"]) for s in before[0]["segments"]]
+                == [(0, 30), (30, 60), (60, 90)])
 
-    print("\n5. full chain through format_, the evaluator's input shape")
+    print("\n5. Phase 3.2(b) is reconstructible from the dump")
+    r = before[0]
+    ok &= check("segment boxes recoverable by slicing the pair trajectory",
+                all(len(r["sbj_traj"][s["frame_range"][0] - r["duration"][0]:
+                                      s["frame_range"][1] - r["duration"][0]])
+                    == s["frame_range"][1] - s["frame_range"][0]
+                    for s in r["segments"]),
+                "oracle merge can rebuild instances without another GPU pass")
+
+    print("\n6. full chain through format_, the evaluator's input shape")
     fmt = format_(args, merged)
     ok &= check("format_ accepts association()'s output", len(fmt) > 0, f"{len(fmt)} instances")
-    keys = set(fmt[0])
     ok &= check("keys match the evaluator's expectation",
-                {"triplet", "score", "sub_traj", "obj_traj", "duration"} <= keys,
-                str(sorted(keys)))
+                {"triplet", "score", "sub_traj", "obj_traj", "duration"} <= set(fmt[0]))
     ok &= check("len(sub_traj) == duration span (format_'s own assert)",
                 all(len(f['sub_traj']) == f['duration'][1] - f['duration'][0] for f in fmt))
 
-    print("\n6. JSON-serialisable (json.dump would not raise)")
+    print("\n7. JSON-serialisable (json.dump would not raise)")
     import json
     try:
-        json.dumps({"v": before})
-        json.dumps({"v": fmt})
+        json.dumps({"v": before}); json.dumps({"v": fmt})
         ok &= check("both dumps serialise", True)
     except TypeError as e:
         ok &= check("both dumps serialise", False, str(e))

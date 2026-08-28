@@ -118,22 +118,39 @@ def _drop_batch(video_ids, frame_dir):
         shutil.rmtree(os.path.join(frame_dir, vid), ignore_errors=True)
 
 
-def extract_segments(clip_rels):
-    """clip_rels (process_pred's output) -> the pre-merge records for
+def extract_segments(clip_rels, pair_data):
+    """clip_rels (process_pred's output) -> ONE record per tracklet pair for
     segments_raw.json. Split out so it can be unit-tested without a GPU; see
-    pilot_analysis/scripts/test_dump_logic.py."""
-    out = []
+    pilot_analysis/scripts/test_dump_logic.py.
+
+    Trajectories are stored ONCE per pair, not per candidate. An earlier version
+    dumped only (triplet, frame_range, confidence) per candidate, which made
+    Phase 3.2(b) impossible: oracle-merging segments back into instances needs
+    the boxes, and re-running inference to get them would cost another GPU pass.
+    Storing them per candidate instead would repeat the same boxes clip_top_n
+    times over.
+    """
+    segs = []
     for seg_idx, cands in enumerate(clip_rels):
-        for c in cands:
-            out.append({
-                "segment_index": seg_idx,
-                "frame_range": list(c["duration"]),
-                "triplet": [c["sbj_cls"], c["pre_cls"], c["obj_cls"]],
-                "confidence": float(c["pre_scr"]),
-                "sbj_scr": float(c["sbj_scr"]),
-                "obj_scr": float(c["obj_scr"]),
-            })
-    return out
+        if not cands:
+            continue
+        segs.append({
+            "segment_index": seg_idx,
+            "frame_range": list(cands[0]["duration"]),
+            # every candidate in a segment shares the pair's boxes; only the
+            # predicate and its score differ
+            "preds": [[c["pre_cls"], float(c["pre_scr"])] for c in cands],
+        })
+    if not segs:
+        return []
+    return [{
+        "sbj_cls": pair_data["sbj_cls"], "obj_cls": pair_data["obj_cls"],
+        "sbj_scr": float(pair_data["sbj_scr"]), "obj_scr": float(pair_data["obj_scr"]),
+        "duration": list(pair_data["duration"]),
+        "sbj_traj": [[float(x) for x in b] for b in pair_data["sbj_traj"]],
+        "obj_traj": [[float(x) for x in b] for b in pair_data["obj_traj"]],
+        "segments": segs,
+    }]
 
 
 def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, limit,
@@ -216,7 +233,8 @@ def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, li
                         args, val_dataset.id2pre, val_dataset.obj2id, val_dataset.prior,
                         pre_preds[seq_id][:seq_len], pair_data[seq_id])
                     # ---- the pre-merge dump, before association() mutates anything
-                    segments[vid].extend(extract_segments(clip_rels))
+                    segments[vid].extend(
+                        extract_segments(clip_rels, pair_data[seq_id]))
                     pred_rels[vid].extend(association(clip_rels))
             if len(pending) >= flush_every:
                 for v in pending:
@@ -363,15 +381,40 @@ def main():
 
         full_list = list(val_dataset.path_list)
         for split in ("all", "novel"):
-            for bi, batch in enumerate(batches):
+            # Which videos are already on disk from an earlier session? Batches
+            # that are fully done must be skipped BEFORE fetching -- otherwise a
+            # resume at 90% re-downloads 90% of the frames only to skip the
+            # compute, which is most of the cost of the run.
+            merged_path = f"{OUT}/final_merged_{split}.json"
+            already = set()
+            if os.path.exists(merged_path):
+                try:
+                    already = set(json.load(open(merged_path)))
+                except (json.JSONDecodeError, OSError):
+                    already = set()
+            todo = [b for b in batches
+                    if not {e["video_id"] for e in b} <= already]
+            if already:
+                print(f"[{split}] resuming: {len(already)} videos already done, "
+                      f"{len(batches) - len(todo)} of {len(batches)} batches skipped "
+                      f"(no re-download)")
+            if not todo:
+                # everything is done; still score it so metrics.json is complete
+                print(f"[{split}] all batches already complete -- scoring only")
+                val_dataset.path_list = []
+                loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
+                metrics[split] = predict_and_dump(
+                    args, model, sort_model, loader, val_dataset, split, 0,
+                    flush_every=known.flush_every, evaluate=True)
+            for bi, batch in enumerate(todo):
                 vids = _fetch_batch(batch, url_of, known.staging, paths.FRAME_DIR)
                 val_dataset.path_list = [v for v in full_list if v in set(vids)]
                 loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
-                print(f"[{split}] batch {bi+1}/{len(batches)}: {len(val_dataset.path_list)} videos")
+                print(f"[{split}] batch {bi+1}/{len(todo)}: {len(val_dataset.path_list)} videos")
                 metrics[split] = predict_and_dump(
                     args, model, sort_model, loader, val_dataset, split, known.limit,
                     flush_every=known.flush_every,
-                    evaluate=(bi == len(batches) - 1))
+                    evaluate=(bi == len(todo) - 1))
                 _drop_batch(vids, paths.FRAME_DIR)
             val_dataset.path_list = full_list
             m = metrics[split]
