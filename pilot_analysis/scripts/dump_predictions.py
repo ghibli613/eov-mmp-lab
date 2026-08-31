@@ -66,6 +66,67 @@ OUT = os.environ.get("PILOT_PREDS_DIR", "pilot_analysis/preds")
 DRIVE_COPY = None
 
 
+#: Settings that change what the predictions MEAN. Resuming across a change in
+#: any of these would silently blend two experiments into one file.
+RUN_KEYS = ("frame_stride", "clip_len", "clip_top_n", "max_per_video", "ckpt_path")
+
+
+def guard_run_config(out_dir, args):
+    """Write out_dir/run_config.json, or refuse to resume into a different run.
+
+    The dumps carry no record of the settings that produced them, and the resume
+    logic keys only on video id -- so re-running with a different --frame_stride
+    and the same --out would skip the finished videos and append new ones scored
+    under different conditions, producing one file that is half one experiment and
+    half another, with nothing to reveal it.
+    """
+    cfg = {k: getattr(args, k, None) for k in RUN_KEYS}
+    path = os.path.join(out_dir, "run_config.json")
+    if os.path.exists(path):
+        try:
+            prev = json.load(open(path))
+        except (json.JSONDecodeError, OSError):
+            prev = None
+        if prev:
+            diff = {k: (prev.get(k), cfg[k]) for k in RUN_KEYS if prev.get(k) != cfg[k]}
+            if diff:
+                lines = "\n".join(f"    {k}: existing {a!r} vs now {b!r}"
+                                  for k, (a, b) in diff.items())
+                raise SystemExit(
+                    f"REFUSING to resume: {out_dir} holds a run with different "
+                    f"settings.\n{lines}\n\n"
+                    f"  Resuming would skip the finished videos and append new ones\n"
+                    f"  scored under different conditions -- one file, two experiments.\n"
+                    f"  Use a different --out, or delete {out_dir} to start over.")
+    os.makedirs(out_dir, exist_ok=True)
+    json.dump(cfg, open(path, "w"), indent=1)
+    return path
+
+
+def _mirror(*paths):
+    """Copy finished files to DRIVE_COPY, if set.
+
+    Local is always the source of truth: the atomic write happens on the session
+    disk and Drive gets a plain copy, because os.replace is not reliably atomic
+    across a FUSE mount. A Drive failure warns rather than killing the run.
+    """
+    if not DRIVE_COPY:
+        return
+    try:
+        os.makedirs(DRIVE_COPY, exist_ok=True)
+    except OSError as e:
+        print(f"  [warn] cannot create {DRIVE_COPY} ({e}); local copies are intact")
+        return
+    for path in paths:
+        if not os.path.exists(path):
+            continue
+        try:
+            shutil.copy2(path, os.path.join(DRIVE_COPY, os.path.basename(path)))
+        except OSError as e:
+            print(f"  [warn] Drive copy of {os.path.basename(path)} failed ({e}); "
+                  f"local copy is intact")
+
+
 def _plan_batches(shards, budget_bytes):
     """Group shards into batches under a byte budget, never splitting a video --
     the dataset reads every frame of a video in one __getitem__, so a video is
@@ -200,13 +261,7 @@ def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, li
             with open(tmp, "w") as fh:
                 json.dump(obj, fh)
             os.replace(tmp, path)
-        if DRIVE_COPY:
-            os.makedirs(DRIVE_COPY, exist_ok=True)
-            for path in (merged_path, segs_path):
-                try:
-                    shutil.copy2(path, os.path.join(DRIVE_COPY, os.path.basename(path)))
-                except OSError as e:      # a Drive hiccup must not kill the run
-                    print(f"  [warn] Drive copy failed ({e}); local copy is intact")
+        _mirror(merged_path, segs_path)
 
     seen = set(done)
     pending = []                      # videos finished but not yet formatted+flushed
@@ -236,6 +291,17 @@ def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, li
                     segments[vid].extend(
                         extract_segments(clip_rels, pair_data[seq_id]))
                     pred_rels[vid].extend(association(clip_rels))
+            if vid_in not in seen:
+                # The model yielded nothing for this video -- no trajectories, or
+                # no pair with a long enough overlap. Record it as attempted
+                # anyway: an absent key and an empty list are identical to the
+                # evaluator (it uses prediction_results.get(vid, [])), but without
+                # the key this video is retried on every resume AND its batch
+                # never counts as complete, so its frames re-download each time.
+                seen.add(vid_in)
+                pending.append(vid_in)
+                pred_rels.setdefault(vid_in, [])
+                segments.setdefault(vid_in, [])
             if len(pending) >= flush_every:
                 for v in pending:
                     pred_rels[v] = format_(args, pred_rels[v])
@@ -312,6 +378,12 @@ def main():
     require_files([("--ckpt_path", args.ckpt_path),
                    ("--path_AFLink", args.path_AFLink)])
 
+    cfg_path = guard_run_config(OUT, args)
+    # Mirror the settings NOW, not at the end. If the session dies mid-run, Drive
+    # holds partial predictions; without this it would not say which frame_stride
+    # or checkpoint produced them, and partial data you cannot identify is
+    # partial data you cannot use.
+    _mirror(cfg_path)
     logger = make_logger(args, "pilot_dump")
     val_dataset, val_loader = build_eval_data(args)
     model, sort_model = build_model_stack(args, load_components=False)
@@ -423,7 +495,9 @@ def main():
 
     os.makedirs(OUT, exist_ok=True)
     json.dump(metrics, open(f"{OUT}/metrics.json", "w"), indent=1)
-    print(f"\nwrote {OUT}/metrics.json")
+    _mirror(f"{OUT}/metrics.json", cfg_path)   # headline numbers and settings both
+    print(f"\nwrote {OUT}/metrics.json"
+          + (f" (mirrored to {DRIVE_COPY})" if DRIVE_COPY else ""))
     print("Phase 1 targets: all mAP 26.34 / novel mAP 15.04 (paper), or "
           "26.88 / 15.64 (this checkpoint's reported figures -- see "
           "PILOT-STATUS.md SS C.3).")

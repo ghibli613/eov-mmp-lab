@@ -17,6 +17,24 @@ actually turns on:
        Fragmentation is reported too, but SS C.5 shows the loss rate is the
        criterion that means anything here.
 
+WHICH PASS EACH NUMBER COMES FROM. dump_predictions.py writes two dumps per run,
+because model.modelC.tgt_split decides what the classifier may guess: the 'all'
+pass scores against all 132 predicates, the 'novel' pass against only the 61
+novel ones. The novel pass is the paper's novel-split protocol and is a strictly
+easier task -- a base predicate cannot be chosen at all. So:
+
+  * base-category rows  <- the 'all' dump   (base predicates are candidates there)
+  * novel-category rows <- the 'novel' dump (protocol-correct, comparable to the
+                                             published 15.04 / this checkpoint's 15.64)
+  * the confusion check <- the 'all' dump, deliberately. SS B.11's prediction is
+    about novel names collapsing onto BASE ones (38 of 61 novel predicates sit
+    above 0.95 text similarity to a base predicate), and the novel pass makes
+    that confusion impossible to observe because base predicates are not on the
+    ballot.
+
+Mixing these up silently changes what a number means, so every table below says
+which dump it came from.
+
 Every mAP comes from the repo's own evaluator (ground rule 2).
 
 VALIDATION STATUS. This script has been exercised end to end on synthetic
@@ -67,23 +85,35 @@ def write_verb_split(part, out):
 
 
 # ----------------------------------------------------------------- Phase 2
-def phase2(preds, part):
+def phase2(dumps, part):
+    """dumps: {'all': preds_from_all_pass, 'novel': preds_from_novel_pass}"""
     print("=" * 74)
     print("PHASE 2 / H1'  -- per-group mAP (repo evaluator, group split file)")
     print("=" * 74)
+    #: base rows come from the 'all' pass, novel rows from the 'novel' pass -- see
+    #: the module docstring. Falls back to whichever dump exists.
+    src = {"base": "all", "novel": "novel"}
     res = {}
-    print(f"\n{'group':22} {'split':6} {'mAP':>8} {'R@50':>8} {'R@100':>8}")
+    print(f"\n{'group':22} {'split':6} {'from':6} {'mAP':>8} {'R@50':>8} {'R@100':>8}")
     for g in GROUPS:
         for sp in ("base", "novel"):
+            want = src[sp]
+            preds = dumps.get(want) or dumps.get("all") or dumps.get("novel")
+            used = want if dumps.get(want) else ("all" if dumps.get("all") else "novel")
+            if preds is None:
+                continue
             try:
                 m, r = eval_at(preds, target_split_pred=f"{g}__{sp}",
                                pred_cls_split_info_path=GROUP_SPLIT)
             except Exception as e:
-                print(f"{g:22} {sp:6}  failed: {type(e).__name__}")
+                print(f"{g:22} {sp:6} {used:6}  failed: {type(e).__name__}")
                 continue
             res[(g, sp)] = m
             note = "" if g.startswith("geometric") else "  <- descriptive, small n"
-            print(f"{g:22} {sp:6} {m*100:8.2f} {r[50]*100:8.2f} {r[100]*100:8.2f}{note}")
+            if used != want:
+                note += f"  !! wanted the '{want}' dump, used '{used}'"
+            print(f"{g:22} {sp:6} {used:6} {m*100:8.2f} {r[50]*100:8.2f} "
+                  f"{r[100]*100:8.2f}{note}")
 
     print("\n--- H1' VERDICT " + "-" * 58)
     for sp in ("base", "novel"):
@@ -102,11 +132,12 @@ def phase2(preds, part):
     return res
 
 
-def phase2_verb_control(preds, part, tmpdir):
+def phase2_verb_control(dumps, part, tmpdir):
     print("\n" + "=" * 74)
     print("PHASE 2 CONTROL -- per verb family (holds label granularity constant)")
     print("=" * 74)
     vs = write_verb_split(part, os.path.join(tmpdir, "pred_split_verb_x_ov.json"))
+    src = {"base": "all", "novel": "novel"}
     fams = defaultdict(lambda: {"n": 0, "group": None})
     for p, d in part.items():
         if "_" not in p:
@@ -119,15 +150,18 @@ def phase2_verb_control(preds, part, tmpdir):
         if fams[v]["n"] < 4:            # `fall` and `next` are 1 variant each
             continue
         for sp in ("base", "novel"):
+            preds = dumps.get(src[sp]) or dumps.get("all") or dumps.get("novel")
+            if preds is None:
+                continue
             try:
                 m, _ = eval_at(preds, target_split_pred=f"{v}__{sp}",
                                pred_cls_split_info_path=vs)
             except Exception:
                 continue
             rows.append((v, fams[v]["group"], sp, fams[v]["n"], m))
-    print(f"\n{'verb':8} {'group':20} {'split':6} {'variants':>9} {'mAP':>8}")
+    print(f"\n{'verb':8} {'group':20} {'split':6} {'variants':>9} {'mAP':>8}   from")
     for v, g, sp, n, m in rows:
-        print(f"{v:8} {g:20} {sp:6} {n:9d} {m*100:8.2f}")
+        print(f"{v:8} {g:20} {sp:6} {n:9d} {m*100:8.2f}   {src[sp]}")
     print("\n  matched pairs (similar variant counts, one static one dynamic):")
     for a, b in (("stand", "walk"), ("sit", "run"), ("lie", "fly"), ("stop", "creep")):
         for sp in ("base", "novel"):
@@ -256,27 +290,41 @@ def loss_and_fragmentation(preds, gt, thresh=0.5):
     return hist
 
 
-def phase3(merged, segs, gt):
+def phase3(dumps, segdumps, gt):
+    """H2 is about the merge, not the vocabulary, so each split is scored against
+    its own pass: the 'all' number from the all dump, 'novel' from the novel dump."""
     print("\n" + "=" * 74)
     print("PHASE 3 / H2 -- the price of the greedy merge")
     print("=" * 74)
     res = {}
-    for name, pr in (("(a) greedy association()", merged),
-                     ("(b) oracle merge, mean", rebuild_oracle(segs, gt, "mean")),
-                     ("(b) oracle merge, max ", rebuild_oracle(segs, gt, "max"))):
-        for sp in ("all", "novel"):
+    for sp in ("all", "novel"):
+        merged = dumps.get(sp)
+        segs = segdumps.get(sp)
+        if merged is None or segs is None:
+            print(f"  ({sp} dump missing -- skipped)")
+            continue
+        for name, pr in (("(a) greedy association()", merged),
+                         ("(b) oracle merge, mean", rebuild_oracle(segs, gt, "mean")),
+                         ("(b) oracle merge, max ", rebuild_oracle(segs, gt, "max"))):
             m, _ = eval_at(pr, target_split_pred=sp)
             res[(name, sp)] = m
-    print(f"\n{'variant':26} {'all mAP':>9} {'novel mAP':>11}")
+    print(f"\n{'variant':26} {'all mAP':>9} {'novel mAP':>11}   (each from its own pass)")
     for name in ("(a) greedy association()", "(b) oracle merge, mean", "(b) oracle merge, max "):
-        print(f"{name:26} {res[(name,'all')]*100:9.2f} {res[(name,'novel')]*100:11.2f}")
+        a = res.get((name, "all")); n = res.get((name, "novel"))
+        print(f"{name:26} {a*100:9.2f}" % () if False else
+              f"{name:26} {(a*100 if a is not None else float('nan')):9.2f} "
+              f"{(n*100 if n is not None else float('nan')):11.2f}")
     for sp in ("all", "novel"):
+        if (("(a) greedy association()", sp)) not in res:
+            continue
         gain = max(res[("(b) oracle merge, mean", sp)],
                    res[("(b) oracle merge, max ", sp)]) - res[("(a) greedy association()", sp)]
         v = "SUPPORTED" if gain * 100 >= 2.0 else "NOT SUPPORTED"
         print(f"\n  {sp:6}: oracle-merge gain {gain*100:+.2f} mAP -> H2 {v} (criterion >= 2.0)")
 
-    print("\n--- Phase 3.2(c) relaxed vIoU (how much is mislocalisation) ---")
+    print("\n--- Phase 3.2(c) relaxed vIoU, 'all' pass (how much is mislocalisation) ---")
+    merged = dumps.get("all") or dumps.get("novel")
+    segs = segdumps.get("all") or segdumps.get("novel")
     print(f"  {'thr':>5} {'greedy':>9} {'oracle':>9} {'gap':>8}")
     om = rebuild_oracle(segs, gt, "mean")
     for thr in (0.5, 0.3, 0.1):
@@ -302,29 +350,53 @@ def phase3(merged, segs, gt):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--preds", default="pilot_analysis/preds/full")
-    ap.add_argument("--split", default="all", choices=["all", "novel"],
-                    help="which merged/segment dump to load for Phase 3")
     a = ap.parse_args()
 
     part = json.load(open(PART))
     gt = json.load(open(paths.TEST_RELATION_GT))
-    mp = os.path.join(a.preds, f"final_merged_{a.split}.json")
-    sp = os.path.join(a.preds, f"segments_raw_{a.split}.json")
-    if not os.path.exists(mp):
-        raise SystemExit(f"no {mp} -- run dump_predictions.py first")
-    merged = json.load(open(mp))
-    print(f"loaded {len(merged)} videos of merged predictions from {mp}")
 
-    phase2(merged, part)
-    phase2_verb_control(merged, part, a.preds)
+    # Both dumps, each used where it is the correct one -- see the module docstring.
+    dumps, segdumps = {}, {}
+    for sp in ("all", "novel"):
+        mp = os.path.join(a.preds, f"final_merged_{sp}.json")
+        sgp = os.path.join(a.preds, f"segments_raw_{sp}.json")
+        if os.path.exists(mp):
+            dumps[sp] = json.load(open(mp))
+            print(f"loaded '{sp}' pass: {len(dumps[sp])} videos from {os.path.basename(mp)}")
+        if os.path.exists(sgp):
+            segdumps[sp] = json.load(open(sgp))
+            print(f"   + {sum(len(v) for v in segdumps[sp].values())} tracklet pairs "
+                  f"from {os.path.basename(sgp)}")
+    if not dumps:
+        raise SystemExit(f"no final_merged_*.json in {a.preds} -- run dump_predictions.py first")
+    missing = {"all", "novel"} - set(dumps)
+    if missing:
+        print(f"\n!! missing the {sorted(missing)} pass. Rows that need it fall back to")
+        print("   whichever dump exists and are flagged '!!' -- those are NOT")
+        print("   protocol-correct. Re-run dump_predictions.py to completion for the")
+        print("   published-comparable numbers.")
 
-    if os.path.exists(sp):
-        segs = json.load(open(sp))
-        print(f"\nloaded {sum(len(v) for v in segs.values())} tracklet pairs from {sp}")
-        phase2_confusion(segs, gt, part, "novel")
-        phase3(merged, segs, gt)
+    cfg = os.path.join(a.preds, "run_config.json")
+    if os.path.exists(cfg):
+        print(f"\nrun_config: {json.load(open(cfg))}")
+
+    print()
+    phase2(dumps, part)
+    phase2_verb_control(dumps, part, a.preds)
+
+    if segdumps:
+        # deliberately the 'all' pass: SS B.11's prediction is about novel names
+        # collapsing onto BASE ones, which the novel pass cannot show
+        cs = segdumps.get("all")
+        if cs is None:
+            print("\n!! no 'all' segment dump -- the confusion check needs it, since the")
+            print("   novel pass cannot produce a base-predicate confusion. Skipped.")
+        else:
+            phase2_confusion(cs, gt, part, "novel")
+        phase3(dumps, segdumps, gt)
     else:
-        print(f"\n!! no {sp} -- Phase 3 and the confusion table need the pre-merge dump")
+        print("\n!! no segments_raw_*.json -- Phase 3 and the confusion table need the")
+        print("   pre-merge dump.")
     return 0
 
 
