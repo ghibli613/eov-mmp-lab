@@ -127,6 +127,36 @@ def _mirror(*paths):
                   f"local copy is intact")
 
 
+def _score(split, preds, only=None):
+    """mAP / recalls for one predicate split. `only` restricts the GROUND TRUTH to
+    a set of video ids, which is what makes a --limit run's number mean anything:
+    the evaluator averages AP per video, so unrun videos would each contribute 0.
+
+    Replicates eval_relation_detection_openvoc's category filtering rather than
+    calling it, because that function takes a GT path and offers no way to subset.
+    The AP computation is still the repo's own evaluate().
+    """
+    from inference.video_relation_detection_openvoc import evaluate, load_json
+    from utils import paths as _paths
+    traj = load_json(_paths.OBJ_SPLIT_INFO)["cls2split"]
+    pred = load_json(_paths.PRED_SPLIT_INFO)["cls2split"]
+    traj_ok = {c for c in traj if c != "__background__"}
+    pred_ok = {c for c, s in pred.items()
+               if (s == split or split == "all") and c != "__background__"}
+
+    def keep(rels):
+        return [r for r in rels
+                if r["triplet"][0] in traj_ok and r["triplet"][1] in pred_ok
+                and r["triplet"][2] in traj_ok]
+
+    gt = {v: keep(r) for v, r in load_json(_paths.TEST_RELATION_GT).items()
+          if only is None or v in only}
+    gt = {v: r for v, r in gt.items() if r}
+    mean_ap, rec_at_n, _ = evaluate(gt, {v: keep(r) for v, r in preds.items()},
+                                    viou_threshold=0.5)
+    return mean_ap, rec_at_n
+
+
 def _plan_batches(shards, budget_bytes):
     """Group shards into batches under a byte budget, never splitting a video --
     the dataset reads every frame of a video in one __getitem__, so a video is
@@ -329,17 +359,28 @@ def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, li
               f"duration={ex['duration']} score={ex['score']:.4f} "
               f"len(sub_traj)={len(ex['sub_traj'])}")
 
+    def _py(x):
+        """numpy scalar -> python float. The evaluator returns float32, which
+        json.dump refuses -- and it refuses at the very END of the run, after
+        every video has been paid for."""
+        return float(x) if x is not None else None
+
     if not evaluate:
         # Mid-run scoring would average AP over videos that have not been run
         # yet, which reads as a collapse rather than as progress. Only the
         # final call scores.
         return {"videos": len(pred_rels), "new_videos": n_new,
                 "segments": n_seg, "instances": n_rel, "minutes": elapsed / 60}
-    mean_ap, rec = eval_relation_detection_openvoc(
-        target_split_pred=split, prediction_results=dict(pred_rels))
-    return {"mAP": mean_ap, "R@50": rec[50], "R@100": rec[100],
+    # With --limit, only a handful of videos have predictions while the GT covers
+    # all 200. Scoring against the full GT gives every unrun video AP 0 and the
+    # printed mAP collapses to near zero, which looks like catastrophic failure
+    # rather than a partial run. Restrict the GT to the videos actually run.
+    partial = len(pred_rels) < 190
+    mean_ap, rec = _score(split, dict(pred_rels), only=set(pred_rels) if partial else None)
+    return {"mAP": _py(mean_ap), "R@50": _py(rec[50]), "R@100": _py(rec[100]),
             "videos": len(pred_rels), "new_videos": n_new,
-            "segments": n_seg, "instances": n_rel, "minutes": elapsed / 60}
+            "segments": n_seg, "instances": n_rel, "minutes": elapsed / 60,
+            "scored_over": "videos run only" if partial else "full test set"}
 
 
 def main():

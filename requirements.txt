@@ -9,7 +9,9 @@
 #
 #   conda create --override-channels -c conda-forge -n repro-next python=3.12
 #   pip install -r requirements.txt
-#   pip install -e ops/           # MultiScaleDeformableAttention CUDA extension
+#   pip install ops/              # MultiScaleDeformableAttention CUDA extension.
+#                                Not -e: an editable install leaves the compiled .so
+#                                in the build tree and the import fails.
 
 torch==2.11.0                 # +cu128 build: matches Colab's torch, and cu128 is the
 torchvision==0.26.0           # newest CUDA a 12.8 driver serves. Install with

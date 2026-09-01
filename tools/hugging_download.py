@@ -13,6 +13,12 @@ Private HuggingFace repos work: a token is read from --token, HF_TOKEN,
 HUGGINGFACE_HUB_TOKEN, or the `hf auth login` cache, and attached only to
 huggingface.co requests.
 
+HuggingFace URLs are pulled with hf_hub_download (parallel range requests,
+resumable, and hf_transfer-aware if that package is installed) rather than the
+single urllib stream used for other hosts -- on a 2.58 GB checkpoint that is the
+difference between minutes and most of an hour. Install `hf_transfer` and set
+HF_HUB_ENABLE_HF_TRANSFER=1 to go faster still.
+
 Each entry carries a sha256, so a truncated or corrupted download is caught
 rather than surfacing later as an unexplained accuracy drop. Files already
 present with the right hash are skipped, making this resumable.
@@ -28,6 +34,7 @@ import hashlib
 import json
 import os
 import sys
+import shutil
 import urllib.request
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -90,6 +97,75 @@ def url_file(url: str, dst: str) -> str:
     return dst
 
 
+#: Manifest `dest` values are repo-relative, but utils.paths honours
+#: VIDVRD_DATA_ROOT / VIDVRD_OUTPUT_ROOT -- which Colab sets so data lands on the
+#: session disk and output on Drive. Writing to REPO/<dest> then puts files where
+#: nothing looks for them: the run dies on a missing clip_L14_feat_vidvrd.pkl even
+#: though it downloaded fine. Route the known destinations through paths instead.
+def _resolve_dest(dest: str) -> str:
+    from utils import paths
+    known = {
+        "output/ckpt": paths.CKPT_DIR,
+        "data/vidvrd/data": paths.META_DIR,
+        "data/vidvrd/frames": paths.FRAME_DIR,
+        "data/vidvrd/videos": paths.VIDEO_DIR,
+        "data/gt_jsons": paths.GT_JSON_DIR,
+    }
+    d = known.get(dest.strip("/").replace("\\", "/"))
+    return d if d else os.path.join(REPO, dest)
+
+
+def _parse_hf_url(base: str):
+    """A HuggingFace resolve URL -> (repo_id, repo_type), or None if not one.
+
+    Layouts:
+      https://huggingface.co/<owner>/<name>/resolve/<rev>            model
+      https://huggingface.co/datasets/<owner>/<name>/resolve/<rev>   dataset
+    """
+    if "huggingface.co/" not in base or "/resolve/" not in base:
+        return None
+    tail = base.split("huggingface.co/", 1)[1].split("/resolve/", 1)[0]
+    parts = tail.split("/")
+    if parts and parts[0] in ("datasets", "spaces"):
+        kind = {"datasets": "dataset", "spaces": "space"}[parts[0]]
+        parts = parts[1:]
+    else:
+        kind = "model"
+    if len(parts) != 2:
+        return None
+    return "/".join(parts), kind
+
+
+def hf_fast_download(base: str, name: str, dst: str) -> bool:
+    """Pull one file via hf_hub_download instead of urllib. Returns True if used.
+
+    urllib.request.urlopen is a SINGLE stream with no parallelism, which on a
+    2.58 GB checkpoint is the difference between minutes and the better part of an
+    hour. hf_hub_download issues parallel range requests, resumes, and honours
+    HF_HUB_ENABLE_HF_TRANSFER for the Rust downloader when it is installed.
+    Falls back to urllib for anything that is not a HuggingFace resolve URL.
+    """
+    parsed = _parse_hf_url(base)
+    if parsed is None:
+        return False
+    repo_id, repo_type = parsed
+    try:
+        from huggingface_hub import hf_hub_download
+    except ImportError:
+        return False
+    try:
+        cached = hf_hub_download(repo_id, name, repo_type=repo_type)
+    except Exception as exc:            # auth, 404, offline -- let urllib try
+        print(f"       (hf_hub_download failed: {type(exc).__name__}; "
+              f"falling back to a single stream)")
+        return False
+    os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
+    tmp = dst + ".part"
+    shutil.copyfile(cached, tmp)        # the cache may be on another filesystem
+    os.replace(tmp, dst)
+    return True
+
+
 def load_manifest(src: str) -> dict:
     if src.startswith(("http://", "https://")):
         with _open(src) as r:
@@ -140,7 +216,7 @@ def fetch(manifest: str, only: str = "all", check: bool = False,
     print(f"  {len(entries)} file(s), {sum(e['bytes'] for e in entries)/1e9:.2f} GB\n")
     missing = 0
     for e in entries:
-        dst = os.path.join(REPO, e["dest"], e["name"])
+        dst = os.path.join(_resolve_dest(e["dest"]), e["name"])
         label = f"{e['name'][:54]:54s}"
         if os.path.exists(dst) and os.path.getsize(dst) == e["bytes"]:
             if sha256(dst) == e["sha256"]:
@@ -156,7 +232,8 @@ def fetch(manifest: str, only: str = "all", check: bool = False,
             continue
 
         print(f"  GET  {label}")
-        download(f"{base}/{e['name']}", dst)
+        if not hf_fast_download(base, e["name"], dst):
+            download(f"{base}/{e['name']}", dst)
         got = sha256(dst)
         if got != e["sha256"]:
             os.remove(dst)
