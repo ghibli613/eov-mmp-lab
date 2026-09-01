@@ -818,6 +818,26 @@ when only `modelC`'s text embeddings differ; fusing them would roughly halve it.
 
 ---
 
+### B.21 --fuse-splits validated exact, 1.85x faster
+
+Measured on Colab, 2026-09-01, `--limit 5 --frame_stride 1`, same 5 videos:
+
+| split | unfused | fused | diff |
+|---|---|---|---|
+| all | 36.55 | 36.55 | **0.00** |
+| novel | 41.02 | 41.02 | **0.00** |
+
+Wall clock 15.0 min unfused vs **8.1 min fused** -- 1.85x, not 2x, because
+`modelC` still runs twice; everything before it (detector per frame, tracker,
+AFLink, CLIP encoding, pairing) runs once. The comparison asserts agreement to
+within 1e-6, so the fused path is numerically identical rather than merely close.
+
+Use it for the full run: ~11 h becomes ~5.5-7 h. Note `fuse_splits` is in
+RUN_KEYS, so a fused run cannot resume into a directory written by an unfused one
+-- start fresh or keep the flag consistent.
+
+---
+
 ### B.18 A trap: `--test_traj gt` looks like Phase 4 and does nothing
 
 `utils/parser_func.py` defines `--train_traj`, `--val_traj` and `--test_traj`,

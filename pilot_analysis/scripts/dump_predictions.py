@@ -49,6 +49,7 @@ command after a disconnect picks up where it stopped. A disconnect costs at most
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 import os
 import shutil
@@ -114,6 +115,41 @@ def guard_run_config(out_dir, args):
     os.makedirs(out_dir, exist_ok=True)
     json.dump(cfg, open(path, "w"), indent=1)
     return path
+
+
+def _ram():
+    """(used_GiB, available_GiB) from /proc/meminfo -- no psutil dependency."""
+    try:
+        info = {}
+        with open("/proc/meminfo") as fh:
+            for line in fh:
+                k, v = line.split(":", 1)
+                info[k] = int(v.split()[0]) / 1024 / 1024      # kB -> GiB
+        total, avail = info["MemTotal"], info["MemAvailable"]
+        return total - avail, avail
+    except (OSError, KeyError):
+        return float("nan"), float("nan")
+
+
+def _release(*objs):
+    """Drop the per-video tensors promptly.
+
+    dataset.__getitem__ materialises patch_ and patch_proj for a WHOLE video --
+    2.37 GiB for the longest test video. Python frees them when the last
+    reference goes, but the DataLoader and the local `data` name can keep one
+    alive across the next iteration, so on a long-video run memory climbs and
+    the machine starts swapping. That shows up as a per-video time that keeps
+    growing and eventually a killed process.
+    """
+    for o in objs:
+        try:
+            if isinstance(o, dict):
+                o.clear()
+        except Exception:
+            pass
+    gc.collect()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
 
 def _mirror(*paths):
@@ -372,6 +408,7 @@ def predict_fused(args, model, sort_model, val_loader, val_dataset, limit,
                 break
             model.modelC.other.clear()
             results = list(model(data, sort_model))
+            used, avail = _ram()
             other = model.modelC.other
             if len(other) != len(results):
                 raise SystemExit(
@@ -395,6 +432,10 @@ def predict_fused(args, model, sort_model, val_loader, val_dataset, limit,
                 for split in ("all", "novel"):
                     acc[split]["merged"].setdefault(vid_in, [])
                     acc[split]["segs"].setdefault(vid_in, [])
+            model.modelC.other.clear()
+            del results
+            _release(data)                 # the video's patch_ tensors, ~GiB each
+            val_loader_ram = f"RAM {used:.1f}/{used+avail:.1f}GiB"
             if len(pending) >= flush_every:
                 for v in pending:
                     for split in ("all", "novel"):
@@ -402,6 +443,9 @@ def predict_fused(args, model, sort_model, val_loader, val_dataset, limit,
                 n_new += len(pending)
                 pending = []
                 flush()
+                u2, a2 = _ram()
+                print(f"  [flush] {len(seen)-len(done)} done this session, "
+                      f"RAM {u2:.1f}/{u2+a2:.1f} GiB used", flush=True)
     for v in pending:
         for split in ("all", "novel"):
             acc[split]["merged"][v] = format_(args, acc[split]["merged"][v])
@@ -729,7 +773,10 @@ def main():
             os.makedirs(OUT, exist_ok=True)
             json.dump(metrics, open(f"{OUT}/metrics.json", "w"), indent=1)
             _mirror(f"{OUT}/metrics.json", cfg_path)
-            print(f"\nwrote {OUT}/metrics.json")
+            # say whether Drive got it -- the unfused path does, and the log line
+            # is how you confirm a session's results survived
+            print(f"\nwrote {OUT}/metrics.json"
+                  + (f" (mirrored to {DRIVE_COPY})" if DRIVE_COPY else ""))
             return 0
 
         for split in ("all", "novel"):
