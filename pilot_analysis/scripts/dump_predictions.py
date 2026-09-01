@@ -28,6 +28,18 @@ Writes, under pilot_analysis/preds/:
 Run the sanity gate first: `--limit 5` and check the printed shapes and the
 runtime estimate before launching the full 200 videos.
 
+--fuse-splits (VALIDATE BEFORE A LONG RUN). The 'all' and 'novel' passes repeat
+the detector, tracker and CLIP work when only modelC's text embeddings differ, so
+fusing them roughly halves a 9.7 h run. The flag is off by default because it
+reorganises the loop and was written without GPU access. Validate it the cheap
+way -- run --limit 5 with and without and confirm the mAPs match:
+
+    ... --out /content/preds/fuse5  --limit 5 --frame_stride 1 --fuse-splits
+
+against the unfused stride-1 sanity numbers for the same 5 videos (all 36.55 /
+novel 41.02, PILOT-STATUS.md SS B.20). Matching numbers mean the fusion is sound;
+anything else means use the default path and lose the 4.9 h.
+
 CRASH SAFETY (matters on Colab): results are flushed to disk every
 `--flush-every` videos (default 5) via write-to-temp-then-rename, and the run
 RESUMES from whatever is already in pilot_analysis/preds/ -- re-running the same
@@ -68,7 +80,8 @@ DRIVE_COPY = None
 
 #: Settings that change what the predictions MEAN. Resuming across a change in
 #: any of these would silently blend two experiments into one file.
-RUN_KEYS = ("frame_stride", "clip_len", "clip_top_n", "max_per_video", "ckpt_path")
+RUN_KEYS = ("frame_stride", "clip_len", "clip_top_n", "max_per_video", "ckpt_path",
+            "fuse_splits")
 
 
 def guard_run_config(out_dir, args):
@@ -125,6 +138,52 @@ def _mirror(*paths):
         except OSError as e:
             print(f"  [warn] Drive copy of {os.path.basename(path)} failed ({e}); "
                   f"local copy is intact")
+
+
+class _BothSplits(torch.nn.Module):
+    """Wrap modelC so ONE pipeline pass yields both predicate splits.
+
+    _predict_split runs the whole pipeline twice -- detector per frame, tracker,
+    AFLink, CLIP encoding, pairing -- when the only thing that differs between
+    'all' and 'novel' is which text embeddings modelC scores the (already
+    computed) visual embeddings against. At ~87 s/video that second pass is
+    ~4.9 h of a 9.7 h run.
+
+    end2end_model calls `self.modelC(feats, seq_lens)` once per tracklet pair and
+    appends one final_result per call, so call order matches result order. This
+    wrapper calls the real modelC twice -- once per split -- returns the 'all'
+    triple to keep end2end_model's unpacking intact, and stashes the 'novel'
+    triple in `other` for the caller to pair up afterwards.
+
+    It is an nn.Module because assigning a plain object to model.modelC would be
+    rejected: PyTorch refuses a non-Module where a child Module lives.
+
+    tgt_split is delegated to the inner module so existing
+    `model.modelC.tgt_split = split` assignments keep working.
+    """
+
+    def __init__(self, inner):
+        super().__init__()
+        self.inner = inner
+        self.other = []
+
+    @property
+    def tgt_split(self):
+        return self.inner.tgt_split
+
+    @tgt_split.setter
+    def tgt_split(self, v):
+        self.inner.tgt_split = v
+
+    def forward(self, feats, seq_lens, labels=None):
+        if labels is not None:                 # training path -- untouched
+            return self.inner(feats, seq_lens, labels)
+        self.inner.tgt_split = "all"
+        first = self.inner(feats, seq_lens)
+        self.inner.tgt_split = "novel"
+        second = self.inner(feats, seq_lens)
+        self.other.append(tuple(t.detach() for t in second))
+        return first
 
 
 def _score(split, preds, only=None):
@@ -242,6 +301,133 @@ def extract_segments(clip_rels, pair_data):
         "obj_traj": [[float(x) for x in b] for b in pair_data["obj_traj"]],
         "segments": segs,
     }]
+
+
+def _accumulate(args, val_dataset, vid, pre_preds, seq_lens, pair_data,
+                pred_rels, segments):
+    """One video's raw modelC output -> the two accumulators. Shared by the
+    single-split and fused paths so they cannot drift apart."""
+    for seq_id, seq_len in enumerate(seq_lens):
+        clip_rels = process_pred(
+            args, val_dataset.id2pre, val_dataset.obj2id, val_dataset.prior,
+            pre_preds[seq_id][:seq_len], pair_data[seq_id])
+        # the pre-merge dump, before association() mutates anything
+        segments[vid].extend(extract_segments(clip_rels, pair_data[seq_id]))
+        pred_rels[vid].extend(association(clip_rels))
+
+
+def predict_fused(args, model, sort_model, val_loader, val_dataset, limit,
+                  flush_every=5):
+    """One pipeline pass, both predicate splits.
+
+    Returns {split: metrics}. See _BothSplits for why this is safe to do and the
+    module docstring for how to validate it.
+    """
+    from torch.utils.data import DataLoader  # noqa: F401  (documented dependency)
+
+    if args.batch_size != 1:
+        raise SystemExit("--batch_size must be 1 for the resume logic to be correct")
+    os.makedirs(OUT, exist_ok=True)
+    acc = {}
+    for split in ("all", "novel"):
+        mp = f"{OUT}/final_merged_{split}.json"
+        sp = f"{OUT}/segments_raw_{split}.json"
+        pr, sg, done = defaultdict(list), defaultdict(list), set()
+        if os.path.exists(mp):
+            try:
+                prev = json.load(open(mp))
+                prevs = json.load(open(sp)) if os.path.exists(sp) else {}
+                for v, r in prev.items():
+                    pr[v] = r
+                for v, r in prevs.items():
+                    sg[v] = r
+                done = set(prev)
+            except (json.JSONDecodeError, OSError):
+                pr, sg, done = defaultdict(list), defaultdict(list), set()
+        acc[split] = {"merged": pr, "segs": sg, "done": done, "mp": mp, "sp": sp}
+    # a video counts as done only when BOTH splits have it, otherwise a crash
+    # between the two writes would leave it half-recorded
+    done = acc["all"]["done"] & acc["novel"]["done"]
+    if done:
+        print(f"[fused] RESUMING: {len(done)} videos already on disk")
+
+    def flush():
+        for split in ("all", "novel"):
+            a = acc[split]
+            for path, obj in ((a["mp"], a["merged"]), (a["sp"], a["segs"])):
+                tmp = path + ".tmp"
+                with open(tmp, "w") as fh:
+                    json.dump(obj, fh)
+                os.replace(tmp, path)
+        _mirror(*[acc[s][k] for s in ("all", "novel") for k in ("mp", "sp")])
+
+    seen, pending, n_new = set(done), [], 0
+    t0 = time.time()
+    with torch.no_grad():
+        for data in tqdm(val_loader, desc="eval[fused]"):
+            vid_in = data["video_name"][0]
+            if vid_in in done:
+                continue
+            if limit and len(seen) - len(done) >= limit and vid_in not in seen:
+                break
+            model.modelC.other.clear()
+            results = list(model(data, sort_model))
+            other = model.modelC.other
+            if len(other) != len(results):
+                raise SystemExit(
+                    f"fused mode desync: {len(results)} results but {len(other)} "
+                    f"stashed novel outputs. modelC call order no longer matches "
+                    f"final_results order -- use the default path.")
+            for k, fr in enumerate(results):
+                vids, seq_lens, pair_data = (fr["video_name"], fr["seq_lens"],
+                                             fr["pair_data"])
+                vid = vids[0]
+                if vid not in seen:
+                    seen.add(vid)
+                    pending.append(vid)
+                _accumulate(args, val_dataset, vid, fr["pre_preds"], seq_lens,
+                            pair_data, acc["all"]["merged"], acc["all"]["segs"])
+                _accumulate(args, val_dataset, vid, other[k][0], seq_lens,
+                            pair_data, acc["novel"]["merged"], acc["novel"]["segs"])
+            if vid_in not in seen:
+                seen.add(vid_in)
+                pending.append(vid_in)
+                for split in ("all", "novel"):
+                    acc[split]["merged"].setdefault(vid_in, [])
+                    acc[split]["segs"].setdefault(vid_in, [])
+            if len(pending) >= flush_every:
+                for v in pending:
+                    for split in ("all", "novel"):
+                        acc[split]["merged"][v] = format_(args, acc[split]["merged"][v])
+                n_new += len(pending)
+                pending = []
+                flush()
+    for v in pending:
+        for split in ("all", "novel"):
+            acc[split]["merged"][v] = format_(args, acc[split]["merged"][v])
+    n_new += len(pending)
+    flush()
+    elapsed = time.time() - t0
+
+    out = {}
+    print(f"\n[fused] {n_new} new videos in {elapsed/60:.1f} min "
+          f"({elapsed/max(n_new,1):.1f} s/video) -- ONE pass, both splits")
+    if limit and n_new:
+        full = elapsed / n_new * 200 / 60
+        print(f"[fused] ESTIMATE for all 200 videos: {full:.0f} min ({full/60:.1f} h) "
+              f"for BOTH splits")
+    for split in ("all", "novel"):
+        pr = acc[split]["merged"]
+        partial = len(pr) < 190
+        m, rec = _score(split, dict(pr), only=set(pr) if partial else None)
+        out[split] = {"mAP": float(m), "R@50": float(rec[50]), "R@100": float(rec[100]),
+                      "videos": len(pr), "new_videos": n_new,
+                      "segments": sum(len(v) for v in acc[split]["segs"].values()),
+                      "instances": sum(len(v) for v in pr.values()),
+                      "minutes": elapsed / 60,
+                      "scored_over": "videos run only" if partial else "full test set",
+                      "fused": True}
+    return out
 
 
 def predict_and_dump(args, model, sort_model, val_loader, val_dataset, split, limit,
@@ -404,6 +590,12 @@ def main():
                      help="batched mode: frames on disk at once (default 1.0 GiB)")
     pre.add_argument("--staging", default="/tmp/vidvrd_shards",
                      help="batched mode: where tars land before untarring")
+    pre.add_argument("--fuse-splits", action="store_true",
+                     help="run the pipeline ONCE and score both predicate splits "
+                          "from it, instead of two full passes. Roughly halves the "
+                          "run. OFF by default: it reorganises the inference loop "
+                          "and has not been validated on a GPU -- see the note in "
+                          "the module docstring before trusting it for a long run.")
     known, rest = pre.parse_known_args()
     sys.argv = [sys.argv[0]] + rest
 
@@ -419,6 +611,8 @@ def main():
     require_files([("--ckpt_path", args.ckpt_path),
                    ("--path_AFLink", args.path_AFLink)])
 
+    args.fuse_splits = bool(known.fuse_splits)   # recorded, so a fused run and an
+                                                 # unfused one cannot share an --out
     cfg_path = guard_run_config(OUT, args)
     # Mirror the settings NOW, not at the end. If the session dies mid-run, Drive
     # holds partial predictions; without this it would not say which frame_stride
@@ -493,6 +687,51 @@ def main():
               f"at {known.disk_budget:.2f} GiB\n")
 
         full_list = list(val_dataset.path_list)
+
+        if known.fuse_splits:
+            model.modelC = _BothSplits(model.modelC)
+            print("[fused] one pipeline pass will score both splits "
+                  "-- validate against the unfused numbers before a long run")
+            merged_all = f"{OUT}/final_merged_all.json"
+            already = set()
+            if os.path.exists(merged_all):
+                try:
+                    already = set(json.load(open(merged_all)))
+                except (json.JSONDecodeError, OSError):
+                    already = set()
+            todo_f = [b for b in batches if not {e["video_id"] for e in b} <= already]
+            if known.limit:
+                trimmed, seen_v = [], 0
+                for b in todo_f:
+                    if seen_v >= known.limit:
+                        break
+                    trimmed.append(b)
+                    seen_v += len({e["video_id"] for e in b})
+                todo_f = trimmed
+            if already:
+                print(f"[fused] resuming: {len(already)} done, "
+                      f"{len(batches)-len(todo_f)}/{len(batches)} batches skipped")
+            for bi, batch in enumerate(todo_f):
+                vids = _fetch_batch(batch, url_of, known.staging, paths.FRAME_DIR)
+                val_dataset.path_list = [v for v in full_list if v in set(vids)]
+                loader = DataLoader(val_dataset, batch_size=args.batch_size, shuffle=False)
+                print(f"[fused] batch {bi+1}/{len(todo_f)}: "
+                      f"{len(val_dataset.path_list)} videos")
+                res = predict_fused(args, model, sort_model, loader, val_dataset,
+                                    known.limit, flush_every=known.flush_every)
+                _drop_batch(vids, paths.FRAME_DIR)
+            val_dataset.path_list = full_list
+            metrics.update(res)
+            for split in ("all", "novel"):
+                m = metrics[split]
+                print(f"[{split}] mAP {m['mAP']*100:.2f}  R@50 {m['R@50']*100:.2f}  "
+                      f"R@100 {m['R@100']*100:.2f}")
+            os.makedirs(OUT, exist_ok=True)
+            json.dump(metrics, open(f"{OUT}/metrics.json", "w"), indent=1)
+            _mirror(f"{OUT}/metrics.json", cfg_path)
+            print(f"\nwrote {OUT}/metrics.json")
+            return 0
+
         for split in ("all", "novel"):
             # Which videos are already on disk from an earlier session? Batches
             # that are fully done must be skipped BEFORE fetching -- otherwise a

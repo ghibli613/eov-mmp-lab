@@ -759,6 +759,65 @@ confirms R@50/R@100 of 16.03/18.18 (novel) and 16.48/19.54 (all).
 
 ---
 
+### B.20 MEASURED: stride 30 destroys the model. The stride question is settled.
+
+First real GPU run, Colab T4, 2026-09-01. Sanity gate only -- `--limit 5`, the
+same 5 videos in both conditions (the batch planner sorts by video id, so the cut
+falls in the same place).
+
+| | all mAP | novel mAP | s/video |
+|---|---|---|---|
+| `--frame_stride 30` | **~0.8** | ~0.0 | 74.6 |
+| `--frame_stride 1` | **36.55** | **41.02** | 87.4 |
+
+**~45x the accuracy for 17% more runtime.** The stride-30 figure is the printed
+0.02 corrected for the scoring bug (it was averaged over all 200 GT videos while
+only 5 had predictions); the stride-1 figures are scored correctly over the 5.
+
+**The qualitative difference confirms the mechanism predicted in SS B.1/SS B.5.**
+Sample instances from the two runs:
+
+```
+stride 30:  ['person','stand_above','bicycle']  duration=[60, 90]   len(sub_traj)=30
+stride  1:  ['person','ride','bicycle']         duration=[0, 105]   len(sub_traj)=105
+```
+
+At stride 30 the output is a **single 30-frame segment, never merged**. That is
+what identical per-frame CLIP tensors produce: the detector runs per frame on
+`patch_[img_id]` and is deterministic, so boxes are constant across a block,
+trajectories become step functions, and `association()` has nothing coherent to
+chain. At stride 1 the same pair merges into a 105-frame instance and the
+predicate shifts from a geometric guess (`stand_above`) to the semantically
+correct `ride`.
+
+This retires the prediction in SS A/SS E as **confirmed by measurement** rather
+than by code reading.
+
+**What it means for the paper.** The Implementation Details say frames are
+sampled every 30; the released code has that sampling commented out. We now know
+the commented-out state is not an oversight -- with these checkpoints stride 30
+is unusable. Either the sentence describes training-time clip sampling, or the
+released checkpoints were not produced as the paper describes. Worth asking the
+author directly.
+
+**What it means for the plan.** Stride 1 is the configuration. The feature-cache
+idea (SS on HuggingFace staging) is therefore dead: at stride 1 a cached-feature
+dataset is 100.3 GiB against 7.40 GiB of frames.
+
+**Caveats, stated because the numbers are tempting.** Five videos, scored over
+those five. The published 26.88 / 15.64 are over 200. 36.55 > 26.88 says nothing
+about reproduction -- per-video AP varies enormously and novel (41.02) coming out
+above all (36.55) is backwards from the usual pattern, which is what a 5-video
+sample looks like. The only safe conclusion is that the pipeline runs correctly
+end to end.
+
+**Runtime.** 87.4 s/video at stride 1 -> 291 min per split, ~9.7 h for both. That
+is more than a free Colab session and probably more than a day's quota. The
+`all` and `novel` passes repeat the entire detector, tracker and CLIP pipeline
+when only `modelC`'s text embeddings differ; fusing them would roughly halve it.
+
+---
+
 ### B.18 A trap: `--test_traj gt` looks like Phase 4 and does nothing
 
 `utils/parser_func.py` defines `--train_traj`, `--val_traj` and `--test_traj`,

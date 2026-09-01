@@ -18,7 +18,7 @@ import torch
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 sys.path.insert(0, os.path.dirname(__file__))
 
-from dump_predictions import extract_segments
+from dump_predictions import _BothSplits, extract_segments
 from inference.post_process import association, format_, process_pred
 
 CLIP_LEN = 30
@@ -133,6 +133,48 @@ def main():
         ok &= check("both dumps serialise", True)
     except TypeError as e:
         ok &= check("both dumps serialise", False, str(e))
+
+    print("\n8. --fuse-splits: one pipeline pass, both predicate splits")
+
+    class _FakeC(torch.nn.Module):
+        def __init__(self):
+            super().__init__(); self.tgt_split = "all"; self.calls = []
+        def forward(self, feats, seq_lens, labels=None):
+            self.calls.append(self.tgt_split)
+            v = 1.0 if self.tgt_split == "all" else 2.0
+            return (torch.full((1, 3, N_PRED), v), torch.full((1, 35), v),
+                    torch.full((1, 35), v))
+
+    class _FakeE2E(torch.nn.Module):
+        def __init__(self, mc):
+            super().__init__(); self.modelC = mc
+
+    inner = _FakeC(); e2e = _FakeE2E(inner)
+    e2e.modelC = _BothSplits(e2e.modelC)   # TypeError here if not an nn.Module
+    ok &= check("wrapper can replace a child Module",
+                isinstance(e2e.modelC, torch.nn.Module))
+    e2e.modelC.tgt_split = "novel"
+    ok &= check("tgt_split delegates to the inner module", inner.tgt_split == "novel")
+    e2e.modelC.other.clear(); inner.calls.clear()
+    a, _, _ = e2e.modelC(None, torch.tensor([3]))
+    ok &= check("one call runs the inner module for BOTH splits",
+                inner.calls == ["all", "novel"], str(inner.calls))
+    ok &= check("returns the 'all' output so end2end_model's unpacking holds",
+                a[0, 0, 0].item() == 1.0)
+    ok &= check("stashes the 'novel' output for the caller",
+                e2e.modelC.other[0][0][0, 0, 0].item() == 2.0)
+    e2e.modelC.other.clear()
+    for _ in range(4):
+        e2e.modelC(None, torch.tensor([3]))
+    ok &= check("call order preserved, one stash per pair",
+                len(e2e.modelC.other) == 4,
+                "final_results[k] must line up with other[k]")
+    e2e.modelC.other.clear(); inner.calls.clear()
+    e2e.modelC(None, torch.tensor([3]), labels={"x": 1})
+    ok &= check("training path passes straight through",
+                len(e2e.modelC.other) == 0 and len(inner.calls) == 1)
+    e2e.eval()
+    ok &= check("model.eval() still reaches the inner module", not inner.training)
 
     print("\n" + ("ALL CHECKS PASSED" if ok else "*** FAILURES ABOVE ***"))
     return 0 if ok else 1
