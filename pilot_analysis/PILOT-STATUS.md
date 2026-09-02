@@ -838,6 +838,46 @@ RUN_KEYS, so a fused run cannot resume into a directory written by an unfused on
 
 ---
 
+### B.22 A system-RAM ceiling, not a VRAM one: 12.7 GiB cannot finish the test set
+
+Three Colab sessions died reproducibly on the **same video**:
+`ILSVRC2015_train_00023006`, 645 frames — the 11th in batch 1's processing order
+and nearly double anything else in that batch.
+
+| | |
+|---|---|
+| system RAM | 12.7 GB, plateau ~2-3 GB then a **thin sharp spike** at death |
+| GPU RAM | peak 5.5 / 15.0 GiB — never close |
+| disk | 54.8 / 112.6 GB — flat |
+
+So the constraint is **system RAM**, not VRAM. `dataset.__getitem__` accumulates
+one tensor per frame and then `torch.cat`s them, holding the list *and* the
+output simultaneously: for 645 frames that is ~2.5 GiB transient on top of
+everything else, in a burst too short for Colab's sampled graph to draw.
+
+**This is a ceiling on the method, not just on Colab.** 645 frames is not the
+worst case — the longest test video is **1,234 frames**, roughly twice the peak.
+So a 12.7 GB machine can never complete the test set regardless of session
+length or retries.
+
+An earlier reading of the same symptom as Colab preempting the runtime was
+**wrong**: preemption would not land on the same video three times. The
+monotonically rising s/it that suggested gradual leakage was also wrong — batch 1
+simply contains three unusually long videos, and tqdm reports a smoothed recent
+rate.
+
+**Requirement for any host: >= 32 GB system RAM.** `tools/setup_rented_box.sh`
+checks it and warns. A 24 GB card (3090/4090) is also what step-4 fine-tuning
+will need later, since `docs/10_Known-issues.md` measured 9.26 GB allocated
+before a single backward pass.
+
+Fixable in principle by pre-allocating the output tensor and filling it frame by
+frame instead of `cat`-ing a list — that halves the peak. Not done: it modifies
+the data path the stride and fusion results were measured on, and it probably
+still fails on the 1,234-frame video.
+
+---
+
 ### B.18 A trap: `--test_traj gt` looks like Phase 4 and does nothing
 
 `utils/parser_func.py` defines `--train_traj`, `--val_traj` and `--test_traj`,

@@ -9,19 +9,29 @@
 #
 #   conda create --override-channels -c conda-forge -n repro-next python=3.12
 #   pip install -r requirements.txt
-#   pip install ops/              # MultiScaleDeformableAttention CUDA extension.
+#   pip install --no-build-isolation ops/   # MultiScaleDeformableAttention.
+#                                # --no-build-isolation is required: setup.py
+#                                # imports torch, which pip's isolated build
+#                                # environment does not have.
 #                                Not -e: an editable install leaves the compiled .so
 #                                in the build tree and the import fails.
 
 torch==2.11.0                 # +cu128 build: matches Colab's torch, and cu128 is the
 torchvision==0.26.0           # newest CUDA a 12.8 driver serves. Install with
                               #   --index-url https://download.pytorch.org/whl/cu128
-transformers==5.15.1
-tokenizers==0.22.2
+# transformers / tokenizers were listed here but are imported nowhere in the
+# live tree -- removed rather than installed on every fresh box.
 huggingface_hub==1.28.0       # tools/hugging_*.py fetch and publish the weights
 numpy==2.5.2
 scipy==1.18.0                 # linear_sum_assignment, used by the tracker and the
                               # detector's Hungarian matcher
+matplotlib                    # utils/eov_utils.py imports pyplot at module level, so
+                              # this is on the import chain for cli/* -- it was missing
+                              # from this file and a fresh environment died with
+                              # ModuleNotFoundError before reaching the model
+pyyaml                        # third_party/detectron2/utils/env.py
+fvcore                        # vendored detector backbone
+pycocotools                   # third_party/detectron2/structures/masks.py
 opencv-python                 # cv2: frame extraction and the tracker
 einops==0.8.2                 # vendored InternVideo
 timm==1.0.28                  # vendored detector backbone

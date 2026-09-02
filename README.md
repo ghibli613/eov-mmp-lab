@@ -206,7 +206,7 @@ export CC=$CUDA_HOME/bin/x86_64-conda-linux-gnu-gcc
 export CXX=$CUDA_HOME/bin/x86_64-conda-linux-gnu-g++
 export CPATH=$CUDA_HOME/targets/x86_64-linux/include:$CPATH
 export TORCH_CUDA_ARCH_LIST="8.6"        # ← from the table above
-pip install .                            # not -e, and not `setup.py install`
+pip install --no-build-isolation .       # not -e, and not `setup.py install`
                                          # (removed in setuptools 80); -e leaves the .so
                                          # in the build tree and the import then fails
 cd ..
@@ -290,7 +290,7 @@ Colab already has `nvcc` matching its torch, so no toolchain install is needed:
 ```bash
 %cd ops
 !rm -rf build *.egg-info
-!TORCH_CUDA_ARCH_LIST="7.5" pip install .
+!TORCH_CUDA_ARCH_LIST="7.5" pip install --no-build-isolation .
 %cd ..
 ```
 
