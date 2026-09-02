@@ -45,7 +45,18 @@ fi
 
 say "1. clone"
 mkdir -p "$(dirname "$WORK")"
-if [ -d "$WORK/.git" ]; then git -C "$WORK" pull --ff-only; else git clone "$REPO" "$WORK"; fi
+if [ -d "$WORK/.git" ]; then
+  # hard-sync rather than pull: the history upstream may have been amended or
+  # force-pushed, and `pull --ff-only` refuses that, leaving you to delete the
+  # checkout by hand. reset --hard only touches TRACKED files, so preds/,
+  # output/ckpt/ and data/ (all untracked or gitignored) survive -- which is why
+  # there is deliberately no `git clean` here.
+  git -C "$WORK" fetch --quiet origin
+  git -C "$WORK" reset --hard --quiet origin/main
+  echo "  hard-synced to origin/main (untracked preds/, output/, data/ kept)"
+else
+  git clone --quiet "$REPO" "$WORK"
+fi
 cd "$WORK"
 git log --oneline -1
 
@@ -59,7 +70,7 @@ pip install -q scipy matplotlib pyyaml ftfy regex einops timm fvcore pycocotools
                opencv-python-headless gdown huggingface_hub hf_transfer \
                easydict tensorboard six protobuf pytest
 python - <<'PYCHK'
-import importlib, sys
+import importlib.util, sys
 missing = [m for m in ("scipy", "matplotlib", "yaml", "cv2", "numpy", "PIL", "tqdm",
                        "einops", "timm", "ftfy", "regex", "easydict", "fvcore",
                        "pycocotools", "huggingface_hub")
