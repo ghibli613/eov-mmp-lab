@@ -1,0 +1,12 @@
+{
+ "ILSVRC2015_train_00194007": {
+  "frames_compared": 178,
+  "byte_identical": 178,
+  "max_pixel_diff": 0
+ },
+ "ILSVRC2015_train_00190003": {
+  "frames_compared": 377,
+  "byte_identical": 377,
+  "max_pixel_diff": 0
+ }
+}

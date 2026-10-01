@@ -1,0 +1,11 @@
+{
+ "train": [
+  "ILSVRC2015_train_00290008",
+  "ILSVRC2015_train_00533001",
+  "ILSVRC2015_train_00770001"
+ ],
+ "test": [
+  "ILSVRC2015_train_00194007",
+  "ILSVRC2015_train_00190003"
+ ]
+}
