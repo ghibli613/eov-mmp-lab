@@ -159,7 +159,7 @@ def run_modelC(m, feats, slen):
     return dict(logits=logits[0].float().cpu(), int_logit=inter[0].float().cpu(),
                 vpe=vpe[0].half().cpu(), spatial=x_rel.half().cpu(),
                 cond_mean=vpe[0].mean(0).half().cpu(), bias=caps["bias"][0].half().cpu(),
-                sbj=F.normalize(sbj, dim=-1)[0].half().cpu(), obj=F.normalize(obj, dim=-1)[0].half().cpu(),
+                sbj_emb=F.normalize(sbj, dim=-1)[0].half().cpu(), obj_emb=F.normalize(obj, dim=-1)[0].half().cpu(),
                 pre_scores=pre_scores[0].float().cpu()), resid
 
 
@@ -174,7 +174,7 @@ def run_pair(m, item):
         o, r = run_modelC(m, {k: v[:, a:b] for k, v in feats.items()}, b - a)
         outs.append(o); resid = max(resid, r)
     cat = lambda k: torch.cat([o[k] for o in outs], 0)
-    per_pair = {k: torch.stack([o[k] for o in outs], 0) for k in ("cond_mean", "bias", "sbj", "obj")}
+    per_pair = {k: torch.stack([o[k] for o in outs], 0) for k in ("cond_mean", "bias", "sbj_emb", "obj_emb")}
     slot_in = {k: v[0].half() for k, v in feats.items()}
     return dict(logits=cat("logits"), int_logit=cat("int_logit"), vpe=cat("vpe"), spatial=cat("spatial"),
                 pre_scores=cat("pre_scores"), slot_inputs=slot_in, windows=wins, **per_pair), resid
