@@ -1,0 +1,44 @@
+{
+ "thresholds": {
+  "motion": 0.004467745447533635,
+  "gap": 0.3309524601681074,
+  "dead_zone": 0.41104717657616563
+ },
+ "fit": {
+  "motion": {
+   "rule": "subject/object moving iff motion_rate > threshold",
+   "units": "net compensated displacement over the extent, in the entity's box diagonals, per frame",
+   "positives": "FIT base instances asserting subject_state=moving",
+   "negatives": "FIT base instances asserting subject_state=stationary",
+   "n_pos": 7001,
+   "n_neg": 6695,
+   "balanced_agreement_on_fit": 0.753166916622068,
+   "auc_on_fit": 0.8123015500079526
+  },
+  "gap": {
+   "rule": "adjacent iff mean normalised gap < threshold (and not contained)",
+   "units": "gap / mean of the two box diagonals",
+   "positives": "FIT base instances asserting proximity=adjacent",
+   "negatives": "FIT base instances asserting a left/right/above/beneath/front/behind term and no proximity value",
+   "n_pos": 1037,
+   "n_neg": 12246,
+   "balanced_agreement_on_fit": 0.697826822715496
+  },
+  "dead_zone": {
+   "rule": "90th percentile of |change in d| over FIT base co_move (*_with) instances",
+   "units": "change in centre distance / mean box diagonal, last third minus first third",
+   "n": 1064
+  }
+ },
+ "rejected": {
+  "speed": {
+   "value": 0.0018869455501152829,
+   "rule": "as specified: mean compensated step > threshold",
+   "units": "fraction of frame diagonal per frame",
+   "balanced_agreement_on_fit": 0.674555912688884,
+   "auc_on_fit": 0.7248877920885942,
+   "why": "subject_state FAIL on HELD; replaced by motion_rate (see axis_check.md)"
+  }
+ },
+ "train_split": "train_split.json"
+}

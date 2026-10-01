@@ -1,0 +1,714 @@
+{
+ "n": {
+  "all": 22315,
+  "fit": 17950,
+  "held": 4365,
+  "no_ecc_videos": 17
+ },
+ "thresholds": {
+  "motion": 0.004467745447533635,
+  "gap": 0.3309524601681074,
+  "dead_zone": 0.41104717657616563
+ },
+ "rejected_speed": 0.0018869455501152829,
+ "fit_ba": {
+  "motion": 0.753166916622068,
+  "speed": 0.674555912688884,
+  "gap": 0.697826822715496
+ },
+ "fit_auc": {
+  "motion": 0.8123015500079526,
+  "speed": 0.7248877920885942
+ },
+ "res": {
+  "horizontal": {
+   "values": {
+    "left": [
+     835,
+     869
+    ],
+    "right": [
+     834,
+     869
+    ]
+   },
+   "labels": [
+    "left",
+    "right"
+   ],
+   "auc": [
+    0.9725436032845975,
+    0.9413074093047744,
+    0.9925299961383388
+   ]
+  },
+  "vertical": {
+   "values": {
+    "above": [
+     58,
+     58
+    ],
+    "beneath": [
+     76,
+     76
+    ]
+   },
+   "labels": [
+    "above",
+    "beneath"
+   ],
+   "auc": [
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "depth": {
+   "values": {
+    "front": [
+     532,
+     582
+    ],
+    "behind": [
+     495,
+     545
+    ]
+   },
+   "labels": [
+    "front",
+    "behind"
+   ],
+   "auc": [
+    0.9506163498218734,
+    0.9112113619196079,
+    0.9772785908385004
+   ]
+  },
+  "subject_state": {
+   "values": {
+    "moving": [
+     1128,
+     1439
+    ],
+    "stationary": [
+     1281,
+     1763
+    ]
+   },
+   "labels": [
+    "moving",
+    "stationary"
+   ],
+   "auc": [
+    0.8100716724800617,
+    0.7420670024948225,
+    0.8698193123890173
+   ]
+  },
+  "subject_state@spec": {
+   "values": {
+    "moving": [
+     963,
+     1439
+    ],
+    "stationary": [
+     984,
+     1763
+    ]
+   },
+   "labels": [
+    "moving",
+    "stationary"
+   ],
+   "auc": [
+    0.6852658519635926,
+    0.5843737541189058,
+    0.768206530643545
+   ]
+  },
+  "object_state": {
+   "values": {
+    "moving": [
+     164,
+     186
+    ]
+   },
+   "auc": null
+  },
+  "object_state@spec": {
+   "values": {
+    "moving": [
+     79,
+     186
+    ]
+   },
+   "auc": null
+  },
+  "proximity": {
+   "values": {
+    "adjacent": [
+     202,
+     279
+    ]
+   },
+   "auc": [
+    0.7366852272143283,
+    0.6913159208735639,
+    0.7844880164043275
+   ],
+   "neg": [
+    1731,
+    2999
+   ]
+  },
+  "relative_motion": {
+   "values": {
+    "co_move": [
+     116,
+     186
+    ]
+   },
+   "low_n": {
+    "pass": {
+     "held": [
+      1,
+      14
+     ],
+     "all": [
+      3,
+      53
+     ]
+    },
+    "approach": {
+     "held": [
+      1,
+      1
+     ],
+     "all": [
+      5,
+      12
+     ]
+    }
+   },
+   "dist": {
+    "co_move": {
+     "co_move": 758,
+     "approach": 76,
+     "none": 354,
+     "recede": 52,
+     "pass": 10
+    },
+    "pass": {
+     "recede": 11,
+     "none": 17,
+     "co_move": 14,
+     "pass": 3,
+     "approach": 8
+    },
+    "approach": {
+     "none": 6,
+     "approach": 5,
+     "co_move": 1
+    }
+   },
+   "held_dist": {
+    "co_move": 116,
+    "none": 38,
+    "approach": 18,
+    "pass": 4,
+    "recede": 10
+   },
+   "auc": null
+  },
+  "relative_motion@spec": {
+   "values": {
+    "co_move": [
+     36,
+     186
+    ]
+   },
+   "low_n": {
+    "pass": {
+     "held": [
+      1,
+      14
+     ],
+     "all": [
+      3,
+      53
+     ]
+    },
+    "approach": {
+     "held": [
+      1,
+      1
+     ],
+     "all": [
+      5,
+      12
+     ]
+    }
+   },
+   "dist": {
+    "co_move": {
+     "co_move": 632,
+     "approach": 76,
+     "none": 480,
+     "recede": 52,
+     "pass": 10
+    },
+    "pass": {
+     "recede": 11,
+     "none": 12,
+     "pass": 3,
+     "co_move": 19,
+     "approach": 8
+    },
+    "approach": {
+     "none": 5,
+     "approach": 5,
+     "co_move": 2
+    }
+   },
+   "held_dist": {
+    "co_move": 36,
+    "none": 118,
+    "approach": 18,
+    "pass": 4,
+    "recede": 10
+   },
+   "auc": null
+  }
+ },
+ "tables": {
+  "horizontal": {
+   "right->right": 834,
+   "left->left": 835,
+   "right->left": 35,
+   "left->right": 34
+  },
+  "vertical": {
+   "beneath->beneath": 76,
+   "above->above": 58
+  },
+  "depth": {
+   "behind->behind": 495,
+   "front->front": 532,
+   "front->behind": 50,
+   "behind->front": 50
+  },
+  "subject_state": {
+   "stationary->stationary": 1281,
+   "moving->moving": 1128,
+   "moving->stationary": 311,
+   "stationary->moving": 482
+  },
+  "subject_state@spec": {
+   "stationary->stationary": 984,
+   "moving->moving": 963,
+   "moving->stationary": 476,
+   "stationary->moving": 779
+  }
+ },
+ "comparative": {
+  "larger": {
+   "hit": 209,
+   "n": 221,
+   "tie": 0,
+   "auc": [
+    0.9891484613337155,
+    0.9730556117897369,
+    0.9980461801447432
+   ]
+  },
+  "taller": {
+   "hit": 192,
+   "n": 206,
+   "tie": 0,
+   "auc": [
+    0.9746912998397587,
+    0.9454155955408245,
+    0.9923347658132655
+   ]
+  },
+  "faster": {
+   "hit": 19,
+   "n": 21,
+   "tie": 0,
+   "auc": [
+    0.9047619047619048,
+    0.7643966082894593,
+    1.0
+   ]
+  }
+ },
+ "symmetry": {
+  "time_n": 22315,
+  "time_ok": 22315,
+  "swap_n": 66945,
+  "swap_ok": 66945,
+  "comp_n": 66945,
+  "comp_ok": 66945
+ },
+ "fp": {
+  "recede_on_comove": [
+   10,
+   186
+  ],
+  "recede_on_posture": [
+   26,
+   1486
+  ],
+  "contained_on_ride": [
+   1,
+   418
+  ],
+  "contained_on_all": [
+   2299,
+   22315
+  ]
+ },
+ "contained_by": {
+  "move_beneath": 158,
+  "play": 122,
+  "stand_front": 107,
+  "stand_next_to": 105,
+  "walk_next_to": 101,
+  "walk_left": 88,
+  "stand_left": 84,
+  "stand_right": 82,
+  "sit_front": 82,
+  "stop_behind": 78,
+  "walk_front": 77,
+  "watch": 75,
+  "walk_behind": 75,
+  "walk_right": 73,
+  "sit_right": 72
+ },
+ "verdicts": [
+  {
+   "axis": "horizontal",
+   "agreement": 0.9597238204833142,
+   "auc": [
+    0.9725436032845975,
+    0.9413074093047744,
+    0.9925299961383388
+   ],
+   "verdict": "PASS",
+   "novel_dependents": [
+    "fly_left",
+    "fly_right"
+   ]
+  },
+  {
+   "axis": "vertical",
+   "agreement": 1.0,
+   "auc": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "verdict": "PASS",
+   "novel_dependents": [
+    "above",
+    "beneath",
+    "creep_above",
+    "jump_above",
+    "lie_above",
+    "lie_beneath",
+    "move_above",
+    "run_above",
+    "run_beneath",
+    "sit_beneath",
+    "stand_above",
+    "stand_beneath",
+    "stop_above",
+    "stop_beneath",
+    "swim_beneath",
+    "walk_above",
+    "walk_beneath"
+   ]
+  },
+  {
+   "axis": "depth",
+   "agreement": 0.908256880733945,
+   "auc": [
+    0.9506163498218734,
+    0.9112113619196079,
+    0.9772785908385004
+   ],
+   "verdict": "PASS",
+   "novel_dependents": [
+    "fly_behind",
+    "fly_front",
+    "jump_behind",
+    "sit_behind",
+    "swim_behind"
+   ]
+  },
+  {
+   "axis": "proximity",
+   "agreement": 0.7240143369175627,
+   "auc": [
+    0.7366852272143283,
+    0.6913159208735639,
+    0.7844880164043275
+   ],
+   "verdict": "PASS",
+   "novel_dependents": [
+    "creep_next_to",
+    "drive",
+    "lie_inside",
+    "move_next_to",
+    "run_next_to",
+    "sit_inside",
+    "sit_next_to",
+    "stand_inside",
+    "stop_next_to",
+    "swim_next_to"
+   ]
+  },
+  {
+   "axis": "subject_state@spec",
+   "agreement": 0.5581395348837209,
+   "auc": [
+    0.6852658519635926,
+    0.5843737541189058,
+    0.768206530643545
+   ],
+   "verdict": "FAIL",
+   "novel_dependents": [
+    "creep_above",
+    "creep_away",
+    "creep_next_to",
+    "creep_past",
+    "creep_toward",
+    "fly_away",
+    "fly_behind",
+    "fly_front",
+    "fly_left",
+    "fly_right",
+    "jump_above",
+    "jump_away",
+    "jump_behind",
+    "jump_past",
+    "jump_with",
+    "lie_above",
+    "lie_beneath",
+    "lie_inside",
+    "lie_with",
+    "move_above",
+    "move_away",
+    "move_next_to",
+    "move_past",
+    "move_toward",
+    "run_above",
+    "run_away",
+    "run_beneath",
+    "run_next_to",
+    "run_toward",
+    "sit_behind",
+    "sit_beneath",
+    "sit_inside",
+    "sit_next_to",
+    "stand_above",
+    "stand_beneath",
+    "stand_inside",
+    "stand_with",
+    "stop_above",
+    "stop_beneath",
+    "stop_next_to",
+    "stop_with",
+    "swim_behind",
+    "swim_beneath",
+    "swim_next_to",
+    "walk_above",
+    "walk_away",
+    "walk_beneath",
+    "walk_past",
+    "walk_toward"
+   ]
+  },
+  {
+   "axis": "subject_state",
+   "agreement": 0.7266023823028928,
+   "auc": [
+    0.8100716724800617,
+    0.7420670024948225,
+    0.8698193123890173
+   ],
+   "verdict": "PASS",
+   "novel_dependents": [
+    "creep_above",
+    "creep_away",
+    "creep_next_to",
+    "creep_past",
+    "creep_toward",
+    "fly_away",
+    "fly_behind",
+    "fly_front",
+    "fly_left",
+    "fly_right",
+    "jump_above",
+    "jump_away",
+    "jump_behind",
+    "jump_past",
+    "jump_with",
+    "lie_above",
+    "lie_beneath",
+    "lie_inside",
+    "lie_with",
+    "move_above",
+    "move_away",
+    "move_next_to",
+    "move_past",
+    "move_toward",
+    "run_above",
+    "run_away",
+    "run_beneath",
+    "run_next_to",
+    "run_toward",
+    "sit_behind",
+    "sit_beneath",
+    "sit_inside",
+    "sit_next_to",
+    "stand_above",
+    "stand_beneath",
+    "stand_inside",
+    "stand_with",
+    "stop_above",
+    "stop_beneath",
+    "stop_next_to",
+    "stop_with",
+    "swim_behind",
+    "swim_beneath",
+    "swim_next_to",
+    "walk_above",
+    "walk_away",
+    "walk_beneath",
+    "walk_past",
+    "walk_toward"
+   ]
+  },
+  {
+   "axis": "object_state@spec",
+   "agreement": 0.42473118279569894,
+   "auc": null,
+   "verdict": "UNRESOLVED (<70%, no negative class for an AUC)",
+   "novel_dependents": [
+    "drive",
+    "jump_with",
+    "pull"
+   ]
+  },
+  {
+   "axis": "object_state",
+   "agreement": 0.8817204301075269,
+   "auc": null,
+   "verdict": "PASS",
+   "novel_dependents": [
+    "drive",
+    "jump_with",
+    "pull"
+   ]
+  },
+  {
+   "axis": "relative_motion@spec",
+   "agreement": 0.1935483870967742,
+   "auc": null,
+   "verdict": "UNRESOLVED (<70%, no negative class for an AUC)",
+   "novel_dependents": [
+    "away",
+    "creep_away",
+    "creep_past",
+    "creep_toward",
+    "drive",
+    "fly_away",
+    "jump_away",
+    "jump_past",
+    "jump_with",
+    "move_away",
+    "move_past",
+    "move_toward",
+    "past",
+    "pull",
+    "run_away",
+    "run_toward",
+    "toward",
+    "walk_away",
+    "walk_past",
+    "walk_toward"
+   ]
+  },
+  {
+   "axis": "relative_motion",
+   "agreement": 0.6236559139784946,
+   "auc": null,
+   "verdict": "UNRESOLVED (<70%, no negative class for an AUC)",
+   "novel_dependents": [
+    "away",
+    "creep_away",
+    "creep_past",
+    "creep_toward",
+    "drive",
+    "fly_away",
+    "jump_away",
+    "jump_past",
+    "jump_with",
+    "move_away",
+    "move_past",
+    "move_toward",
+    "past",
+    "pull",
+    "run_away",
+    "run_toward",
+    "toward",
+    "walk_away",
+    "walk_past",
+    "walk_toward"
+   ]
+  },
+  {
+   "axis": "comparative=larger",
+   "agreement": 0.9457013574660633,
+   "auc": [
+    0.9891484613337155,
+    0.9730556117897369,
+    0.9980461801447432
+   ],
+   "verdict": "PASS",
+   "novel_dependents": []
+  },
+  {
+   "axis": "comparative=taller",
+   "agreement": 0.9320388349514563,
+   "auc": [
+    0.9746912998397587,
+    0.9454155955408245,
+    0.9923347658132655
+   ],
+   "verdict": "PASS",
+   "novel_dependents": []
+  },
+  {
+   "axis": "comparative=faster",
+   "agreement": 0.9047619047619048,
+   "auc": [
+    0.9047619047619048,
+    0.7643966082894593,
+    1.0
+   ],
+   "verdict": "PASS",
+   "novel_dependents": []
+  }
+ ],
+ "base_support": {
+  "subject_state=moving": 8556,
+  "subject_state=stationary": 8585,
+  "object_state=moving": 1254,
+  "relative_motion=co_move": 1254,
+  "relative_motion=pass": 54,
+  "relative_motion=approach": 12,
+  "proximity=adjacent": 1342
+ }
+}

@@ -1,0 +1,538 @@
+{
+ "mirrorable": 70,
+ "no_partner": [
+  "fly_above",
+  "swim_beneath"
+ ],
+ "novel": [
+  {
+   "pred": "above",
+   "axis": "vertical",
+   "inverse": "beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "beneath",
+   "axis": "vertical",
+   "inverse": "above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "bite",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "creep_above",
+   "axis": "vertical",
+   "inverse": "creep_beneath",
+   "inverse_split": "base",
+   "base_train": 3
+  },
+  {
+   "pred": "creep_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "creep_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "creep_past",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "creep_toward",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "drive",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "feed",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "fight",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "fly_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "fly_behind",
+   "axis": "depth",
+   "inverse": "fly_front",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "fly_front",
+   "axis": "depth",
+   "inverse": "fly_behind",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "fly_left",
+   "axis": "horizontal",
+   "inverse": "fly_right",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "fly_right",
+   "axis": "horizontal",
+   "inverse": "fly_left",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "hold",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "jump_above",
+   "axis": "vertical",
+   "inverse": "jump_beneath",
+   "inverse_split": "base",
+   "base_train": 74
+  },
+  {
+   "pred": "jump_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "jump_behind",
+   "axis": "depth",
+   "inverse": "jump_front",
+   "inverse_split": "base",
+   "base_train": 52
+  },
+  {
+   "pred": "jump_past",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "jump_with",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "kick",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "lie_above",
+   "axis": "vertical",
+   "inverse": "lie_beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "lie_beneath",
+   "axis": "vertical",
+   "inverse": "lie_above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "lie_inside",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "lie_with",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "move_above",
+   "axis": "vertical",
+   "inverse": "move_beneath",
+   "inverse_split": "base",
+   "base_train": 302
+  },
+  {
+   "pred": "move_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "move_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "move_past",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "move_toward",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "past",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "pull",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "run_above",
+   "axis": "vertical",
+   "inverse": "run_beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "run_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "run_beneath",
+   "axis": "vertical",
+   "inverse": "run_above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "run_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "run_toward",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "sit_behind",
+   "axis": "depth",
+   "inverse": "sit_front",
+   "inverse_split": "base",
+   "base_train": 296
+  },
+  {
+   "pred": "sit_beneath",
+   "axis": "vertical",
+   "inverse": "sit_above",
+   "inverse_split": "base",
+   "base_train": 398
+  },
+  {
+   "pred": "sit_inside",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "sit_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "stand_above",
+   "axis": "vertical",
+   "inverse": "stand_beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "stand_beneath",
+   "axis": "vertical",
+   "inverse": "stand_above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "stand_inside",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "stand_with",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "stop_above",
+   "axis": "vertical",
+   "inverse": "stop_beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "stop_beneath",
+   "axis": "vertical",
+   "inverse": "stop_above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "stop_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "stop_with",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "swim_behind",
+   "axis": "depth",
+   "inverse": "swim_front",
+   "inverse_split": "base",
+   "base_train": 44
+  },
+  {
+   "pred": "swim_beneath",
+   "axis": "vertical",
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "swim_next_to",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "toward",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "walk_above",
+   "axis": "vertical",
+   "inverse": "walk_beneath",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "walk_away",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "walk_beneath",
+   "axis": "vertical",
+   "inverse": "walk_above",
+   "inverse_split": "novel",
+   "base_train": null
+  },
+  {
+   "pred": "walk_past",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  },
+  {
+   "pred": "walk_toward",
+   "axis": null,
+   "inverse": null,
+   "inverse_split": null,
+   "base_train": null
+  }
+ ],
+ "transfer": [
+  "creep_above",
+  "jump_above",
+  "jump_behind",
+  "move_above",
+  "sit_behind",
+  "sit_beneath",
+  "swim_behind"
+ ],
+ "stats": {
+  "depth": {
+   "mirror spatial term, different predicate": 3240,
+   "_n": 6391,
+   "_n_mirror_base": 5999,
+   "_exact_when_possible": 2793,
+   "exact mirror predicate": 2793,
+   "other base label, no term on this axis": 277,
+   "no base label on reversed pair": 80,
+   "SAME spatial term (contradiction)": 1
+  },
+  "horizontal": {
+   "mirror spatial term, different predicate": 4022,
+   "_n": 8254,
+   "_n_mirror_base": 8254,
+   "_exact_when_possible": 4217,
+   "exact mirror predicate": 4217,
+   "no base label on reversed pair": 7,
+   "other base label, no term on this axis": 8
+  },
+  "vertical": {
+   "other base label, no term on this axis": 113,
+   "_n": 813,
+   "mirror spatial term, different predicate": 599,
+   "no base label on reversed pair": 101
+  }
+ },
+ "geometry": {
+  "depth": {
+   "annotated_n": 6033,
+   "annotated_agree": 5072,
+   "unannotated_n": 358,
+   "unannotated_agree": 311
+  },
+  "horizontal": {
+   "annotated_n": 8239,
+   "annotated_agree": 7963,
+   "unannotated_n": 15,
+   "unannotated_agree": 12
+  },
+  "vertical": {
+   "unannotated_n": 214,
+   "unannotated_agree": 213,
+   "annotated_n": 599,
+   "annotated_agree": 599
+  }
+ },
+ "different_predicate_mirrors": {
+  "depth": {
+   "stand_behind \u2192 walk_front": 338,
+   "walk_front \u2192 stand_behind": 332,
+   "walk_behind \u2192 stand_front": 284,
+   "stand_front \u2192 walk_behind": 273,
+   "stop_front \u2192 walk_behind": 147,
+   "walk_behind \u2192 stop_front": 147,
+   "move_front \u2192 stop_behind": 125,
+   "stop_behind \u2192 move_front": 125,
+   "lie_behind \u2192 sit_front": 93,
+   "sit_front \u2192 lie_behind": 93,
+   "stand_behind \u2192 sit_front": 69,
+   "sit_front \u2192 stand_behind": 69,
+   "walk_front \u2192 stop_behind": 67,
+   "stop_behind \u2192 walk_front": 67,
+   "stop_behind \u2192 front": 60
+  },
+  "horizontal": {
+   "walk_left \u2192 stand_right": 366,
+   "stand_right \u2192 walk_left": 363,
+   "walk_right \u2192 stand_left": 346,
+   "stand_left \u2192 walk_right": 336,
+   "move_right \u2192 stop_left": 196,
+   "stop_left \u2192 move_right": 196,
+   "walk_right \u2192 stop_left": 138,
+   "stop_left \u2192 walk_right": 137,
+   "walk_right \u2192 sit_left": 102,
+   "sit_left \u2192 walk_right": 96,
+   "left \u2192 stand_right": 91,
+   "walk_left \u2192 sit_right": 85,
+   "sit_right \u2192 walk_left": 82,
+   "stop_right \u2192 move_left": 81,
+   "move_left \u2192 stop_right": 79
+  },
+  "vertical": {
+   "move_beneath \u2192 sit_above": 287,
+   "sit_above \u2192 move_beneath": 287,
+   "jump_beneath \u2192 sit_above": 72,
+   "sit_above \u2192 jump_beneath": 72,
+   "move_beneath \u2192 fly_above": 32,
+   "fly_above \u2192 move_beneath": 32,
+   "fly_above \u2192 jump_beneath": 7,
+   "jump_beneath \u2192 fly_above": 7
+  }
+ }
+}

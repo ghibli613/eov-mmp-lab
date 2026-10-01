@@ -1,0 +1,860 @@
+{
+ "above": {
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "away": {
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "behind": {
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "beneath": {
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "bite": {
+  "contact_action": "bite",
+  "_split": "novel",
+  "_evidence": "pixel"
+ },
+ "chase": {
+  "subject_state": "moving",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "creep_above": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "creep_away": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "creep_behind": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "creep_beneath": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "vertical": "beneath",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "creep_front": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "creep_left": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "creep_next_to": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "creep_past": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "relative_motion": "pass",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "creep_right": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "creep_toward": {
+  "subject_state": "moving",
+  "locomotion": "creep",
+  "relative_motion": "approach",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "drive": {
+  "_split": "novel",
+  "_evidence": "unassigned"
+ },
+ "fall_off": {
+  "subject_state": "moving",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "faster": {
+  "comparative": "faster",
+  "subject_state": "moving",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "feed": {
+  "contact_action": "feed",
+  "_split": "novel",
+  "_evidence": "pixel"
+ },
+ "fight": {
+  "_split": "novel",
+  "_evidence": "unassigned"
+ },
+ "fly_above": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "vertical": "above",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "fly_away": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "fly_behind": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "depth": "behind",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "fly_front": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "depth": "front",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "fly_left": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "horizontal": "left",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "fly_next_to": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "fly_past": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "relative_motion": "pass",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "fly_right": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "horizontal": "right",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "fly_toward": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "relative_motion": "approach",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "fly_with": {
+  "subject_state": "moving",
+  "locomotion": "fly",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "follow": {
+  "subject_state": "moving",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "front": {
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "hold": {
+  "contact_action": "hold",
+  "_split": "novel",
+  "_evidence": "pixel"
+ },
+ "jump_above": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "jump_away": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "jump_behind": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "depth": "behind",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "jump_beneath": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "vertical": "beneath",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_front": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_left": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_next_to": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_past": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "relative_motion": "pass",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "jump_right": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_toward": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "relative_motion": "approach",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "jump_with": {
+  "subject_state": "moving",
+  "locomotion": "jump",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "kick": {
+  "contact_action": "kick",
+  "_split": "novel",
+  "_evidence": "pixel"
+ },
+ "larger": {
+  "comparative": "larger",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "left": {
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_above": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "lie_behind": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_beneath": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "lie_front": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_inside": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "overlapping",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "lie_left": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_next_to": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_right": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "lie_with": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_above": {
+  "subject_state": "moving",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_away": {
+  "subject_state": "moving",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_behind": {
+  "subject_state": "moving",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "move_beneath": {
+  "subject_state": "moving",
+  "vertical": "beneath",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "move_front": {
+  "subject_state": "moving",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "move_left": {
+  "subject_state": "moving",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "move_next_to": {
+  "subject_state": "moving",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_past": {
+  "subject_state": "moving",
+  "relative_motion": "pass",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_right": {
+  "subject_state": "moving",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "move_toward": {
+  "subject_state": "moving",
+  "relative_motion": "approach",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "move_with": {
+  "subject_state": "moving",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "next_to": {
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "past": {
+  "relative_motion": "pass",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "play": {
+  "_split": "base",
+  "_evidence": "unassigned"
+ },
+ "pull": {
+  "_split": "novel",
+  "_evidence": "unassigned"
+ },
+ "ride": {
+  "contact_action": "ride",
+  "_split": "base",
+  "_evidence": "pixel"
+ },
+ "right": {
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "run_above": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "run_away": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "run_behind": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "run_beneath": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "run_front": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "run_left": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "run_next_to": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "run_past": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "relative_motion": "pass",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "run_right": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "run_toward": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "relative_motion": "approach",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "run_with": {
+  "subject_state": "moving",
+  "locomotion": "run",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "sit_above": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "above",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "sit_behind": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "behind",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "sit_beneath": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "sit_front": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "sit_inside": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "overlapping",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "sit_left": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "sit_next_to": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "sit_right": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_above": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stand_behind": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_beneath": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stand_front": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_inside": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "overlapping",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stand_left": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_next_to": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_right": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stand_with": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stop_above": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stop_behind": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stop_beneath": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stop_front": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stop_left": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stop_next_to": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "stop_right": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "stop_with": {
+  "subject_state": "stationary",
+  "locomotion": "none",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "swim_behind": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "depth": "behind",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "swim_beneath": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "swim_front": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "swim_left": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "swim_next_to": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "proximity": "adjacent",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "swim_right": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "swim_with": {
+  "subject_state": "moving",
+  "locomotion": "swim",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "taller": {
+  "comparative": "taller",
+  "_split": "base",
+  "_evidence": "box"
+ },
+ "touch": {
+  "contact_action": "touch",
+  "_split": "base",
+  "_evidence": "pixel"
+ },
+ "toward": {
+  "relative_motion": "approach",
+  "_split": "novel",
+  "_evidence": "box"
+ },
+ "walk_above": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "vertical": "above",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "walk_away": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "relative_motion": "recede",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "walk_behind": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "depth": "behind",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "walk_beneath": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "vertical": "beneath",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "walk_front": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "depth": "front",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "walk_left": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "horizontal": "left",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "walk_next_to": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "proximity": "adjacent",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "walk_past": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "relative_motion": "pass",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "walk_right": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "horizontal": "right",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "walk_toward": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "relative_motion": "approach",
+  "_split": "novel",
+  "_evidence": "both"
+ },
+ "walk_with": {
+  "subject_state": "moving",
+  "locomotion": "walk",
+  "relative_motion": "co_move",
+  "object_state": "moving",
+  "_split": "base",
+  "_evidence": "both"
+ },
+ "watch": {
+  "_split": "base",
+  "_evidence": "unassigned"
+ }
+}

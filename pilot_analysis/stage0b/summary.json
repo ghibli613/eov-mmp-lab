@@ -1,0 +1,686 @@
+{
+ "support_posture": {
+  "stand": 4676,
+  "sit": 1508,
+  "lie": 852
+ },
+ "support_state_change": {
+  "halt": 1549,
+  "start": 0,
+  "none": 0
+ },
+ "masked_posture": {
+  "stand": 331,
+  "sit": 602,
+  "lie": 94
+ },
+ "masked_state_change": {
+  "halt": 148,
+  "start": 0,
+  "none": 0
+ },
+ "unreachable": [
+  "bite",
+  "drive",
+  "feed",
+  "fight",
+  "hold",
+  "kick",
+  "pull"
+ ],
+ "unassigned": [
+  "drive",
+  "fight",
+  "pull"
+ ],
+ "learned_thin": {
+  "bite": [
+   "contact_action=bite"
+  ],
+  "feed": [
+   "contact_action=feed"
+  ],
+  "hold": [
+   "contact_action=hold"
+  ],
+  "kick": [
+   "contact_action=kick"
+  ]
+ },
+ "reachable": 54,
+ "measured_zero": {
+  "away": [
+   "relative_motion=recede"
+  ],
+  "creep_away": [
+   "relative_motion=recede"
+  ],
+  "fly_away": [
+   "relative_motion=recede"
+  ],
+  "jump_away": [
+   "relative_motion=recede"
+  ],
+  "lie_inside": [
+   "proximity=overlapping"
+  ],
+  "move_away": [
+   "relative_motion=recede"
+  ],
+  "run_away": [
+   "relative_motion=recede"
+  ],
+  "sit_inside": [
+   "proximity=overlapping"
+  ],
+  "stand_inside": [
+   "proximity=overlapping"
+  ],
+  "walk_away": [
+   "relative_motion=recede"
+  ]
+ },
+ "collisions0": {
+  "all-novel": [
+   [
+    "lie_beneath",
+    "sit_beneath",
+    "stand_beneath",
+    "stop_beneath"
+   ],
+   [
+    "lie_inside",
+    "sit_inside",
+    "stand_inside"
+   ],
+   [
+    "lie_with",
+    "stand_with",
+    "stop_with"
+   ]
+  ],
+  "base-novel": [
+   [
+    "lie_above",
+    "sit_above",
+    "stand_above",
+    "stop_above"
+   ],
+   [
+    "lie_behind",
+    "sit_behind",
+    "stand_behind",
+    "stop_behind"
+   ],
+   [
+    "lie_next_to",
+    "sit_next_to",
+    "stand_next_to",
+    "stop_next_to"
+   ]
+  ],
+  "all-base": [
+   [
+    "chase",
+    "fall_off",
+    "follow"
+   ],
+   [
+    "lie_front",
+    "sit_front",
+    "stand_front",
+    "stop_front"
+   ],
+   [
+    "lie_left",
+    "sit_left",
+    "stand_left",
+    "stop_left"
+   ],
+   [
+    "lie_right",
+    "sit_right",
+    "stand_right",
+    "stop_right"
+   ]
+  ]
+ },
+ "collisions0_fate": {
+  "chase,fall_off,follow": "still collides: chase,fall_off,follow",
+  "lie_above,sit_above,stand_above,stop_above": "separated",
+  "lie_behind,sit_behind,stand_behind,stop_behind": "separated",
+  "lie_beneath,sit_beneath,stand_beneath,stop_beneath": "separated",
+  "lie_front,sit_front,stand_front,stop_front": "separated",
+  "lie_inside,sit_inside,stand_inside": "separated",
+  "lie_left,sit_left,stand_left,stop_left": "separated",
+  "lie_next_to,sit_next_to,stand_next_to,stop_next_to": "separated",
+  "lie_right,sit_right,stand_right,stop_right": "separated",
+  "lie_with,stand_with,stop_with": "separated"
+ },
+ "collisions_b": {
+  "all-novel": [],
+  "base-novel": [],
+  "all-base": [
+   [
+    "chase",
+    "fall_off",
+    "follow"
+   ]
+  ]
+ },
+ "subset_pairs": 392,
+ "subset_pairs_novel_involved": 209,
+ "move_checks": [
+  {
+   "move": "move_above",
+   "manner": "walk_above",
+   "strict_subset": true
+  },
+  {
+   "move": "move_above",
+   "manner": "run_above",
+   "strict_subset": true
+  },
+  {
+   "move": "move_above",
+   "manner": "fly_above",
+   "strict_subset": true
+  },
+  {
+   "move": "move_above",
+   "manner": "creep_above",
+   "strict_subset": true
+  },
+  {
+   "move": "move_above",
+   "manner": "jump_above",
+   "strict_subset": true
+  },
+  {
+   "move": "move_away",
+   "manner": "walk_away",
+   "strict_subset": true
+  },
+  {
+   "move": "move_away",
+   "manner": "run_away",
+   "strict_subset": true
+  },
+  {
+   "move": "move_away",
+   "manner": "fly_away",
+   "strict_subset": true
+  },
+  {
+   "move": "move_away",
+   "manner": "creep_away",
+   "strict_subset": true
+  },
+  {
+   "move": "move_away",
+   "manner": "jump_away",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "walk_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "run_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "fly_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "swim_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "creep_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_behind",
+   "manner": "jump_behind",
+   "strict_subset": true
+  },
+  {
+   "move": "move_beneath",
+   "manner": "walk_beneath",
+   "strict_subset": true
+  },
+  {
+   "move": "move_beneath",
+   "manner": "run_beneath",
+   "strict_subset": true
+  },
+  {
+   "move": "move_beneath",
+   "manner": "swim_beneath",
+   "strict_subset": true
+  },
+  {
+   "move": "move_beneath",
+   "manner": "creep_beneath",
+   "strict_subset": true
+  },
+  {
+   "move": "move_beneath",
+   "manner": "jump_beneath",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "walk_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "run_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "fly_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "swim_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "creep_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_front",
+   "manner": "jump_front",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "walk_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "run_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "fly_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "swim_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "creep_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_left",
+   "manner": "jump_left",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "walk_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "run_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "fly_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "swim_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "creep_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_next_to",
+   "manner": "jump_next_to",
+   "strict_subset": true
+  },
+  {
+   "move": "move_past",
+   "manner": "walk_past",
+   "strict_subset": true
+  },
+  {
+   "move": "move_past",
+   "manner": "run_past",
+   "strict_subset": true
+  },
+  {
+   "move": "move_past",
+   "manner": "fly_past",
+   "strict_subset": true
+  },
+  {
+   "move": "move_past",
+   "manner": "creep_past",
+   "strict_subset": true
+  },
+  {
+   "move": "move_past",
+   "manner": "jump_past",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "walk_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "run_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "fly_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "swim_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "creep_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_right",
+   "manner": "jump_right",
+   "strict_subset": true
+  },
+  {
+   "move": "move_toward",
+   "manner": "walk_toward",
+   "strict_subset": true
+  },
+  {
+   "move": "move_toward",
+   "manner": "run_toward",
+   "strict_subset": true
+  },
+  {
+   "move": "move_toward",
+   "manner": "fly_toward",
+   "strict_subset": true
+  },
+  {
+   "move": "move_toward",
+   "manner": "creep_toward",
+   "strict_subset": true
+  },
+  {
+   "move": "move_toward",
+   "manner": "jump_toward",
+   "strict_subset": true
+  },
+  {
+   "move": "move_with",
+   "manner": "walk_with",
+   "strict_subset": true
+  },
+  {
+   "move": "move_with",
+   "manner": "run_with",
+   "strict_subset": true
+  },
+  {
+   "move": "move_with",
+   "manner": "fly_with",
+   "strict_subset": true
+  },
+  {
+   "move": "move_with",
+   "manner": "swim_with",
+   "strict_subset": true
+  },
+  {
+   "move": "move_with",
+   "manner": "jump_with",
+   "strict_subset": true
+  }
+ ],
+ "ref_fb": [
+  {
+   "stratum": "all",
+   "feature": "(i) log area ratio subj/obj  [camera: front=larger]",
+   "n": 6391,
+   "n_front": 3369,
+   "auc": 0.7342962727669005,
+   "lo": 0.6868023797259826,
+   "hi": 0.7778622395675114
+  },
+  {
+   "stratum": "all",
+   "feature": "(ii) bottom-edge y diff  [camera: front=lower in image]",
+   "n": 6391,
+   "n_front": 3369,
+   "auc": 0.8944986690066847,
+   "lo": 0.8641507199801776,
+   "hi": 0.9220628171282609
+  },
+  {
+   "stratum": "all",
+   "feature": "(iii) subject velocity . subj->obj  [heading: front=moving away]",
+   "n": 6391,
+   "n_front": 3369,
+   "auc": 0.5233373191431432,
+   "lo": 0.49448258564561015,
+   "hi": 0.552350673448596
+  },
+  {
+   "stratum": "all",
+   "feature": "(iii-b) object velocity . obj->subj  [heading: front=obj approaches]",
+   "n": 6391,
+   "n_front": 3369,
+   "auc": 0.5196064911535255,
+   "lo": 0.491819578559257,
+   "hi": 0.5499731612831107
+  },
+  {
+   "stratum": "subject verb stationary (stand/sit/lie/stop)",
+   "feature": "(i) log area ratio subj/obj  [camera: front=larger]",
+   "n": 3195,
+   "n_front": 1655,
+   "auc": 0.7651516459371445,
+   "lo": 0.7160747124150717,
+   "hi": 0.8107960040104066
+  },
+  {
+   "stratum": "subject verb stationary (stand/sit/lie/stop)",
+   "feature": "(ii) bottom-edge y diff  [camera: front=lower in image]",
+   "n": 3195,
+   "n_front": 1655,
+   "auc": 0.9363775650331542,
+   "lo": 0.9038569922145969,
+   "hi": 0.9608017183919325
+  },
+  {
+   "stratum": "subject verb stationary (stand/sit/lie/stop)",
+   "feature": "(iii) subject velocity . subj->obj  [heading: front=moving away]",
+   "n": 3195,
+   "n_front": 1655,
+   "auc": 0.4918825283477851,
+   "lo": 0.446017923346037,
+   "hi": 0.5310020867326526
+  },
+  {
+   "stratum": "subject verb stationary (stand/sit/lie/stop)",
+   "feature": "(iii-b) object velocity . obj->subj  [heading: front=obj approaches]",
+   "n": 3195,
+   "n_front": 1655,
+   "auc": 0.49539098363871775,
+   "lo": 0.4571265004719031,
+   "hi": 0.5318196089726815
+  },
+  {
+   "stratum": "subject verb moving",
+   "feature": "(i) log area ratio subj/obj  [camera: front=larger]",
+   "n": 2639,
+   "n_front": 1423,
+   "auc": 0.6990825073048045,
+   "lo": 0.6419788713463742,
+   "hi": 0.7507887930961669
+  },
+  {
+   "stratum": "subject verb moving",
+   "feature": "(ii) bottom-edge y diff  [camera: front=lower in image]",
+   "n": 2639,
+   "n_front": 1423,
+   "auc": 0.8418434691348893,
+   "lo": 0.7893350851169673,
+   "hi": 0.8859293156410708
+  },
+  {
+   "stratum": "subject verb moving",
+   "feature": "(iii) subject velocity . subj->obj  [heading: front=moving away]",
+   "n": 2639,
+   "n_front": 1423,
+   "auc": 0.5602975783186004,
+   "lo": 0.520144318534858,
+   "hi": 0.6038151116193751
+  },
+  {
+   "stratum": "subject verb moving",
+   "feature": "(iii-b) object velocity . obj->subj  [heading: front=obj approaches]",
+   "n": 2639,
+   "n_front": 1423,
+   "auc": 0.5468674871472426,
+   "lo": 0.501986178574104,
+   "hi": 0.5938324610999782
+  },
+  {
+   "stratum": "subject measurably moving (>2% of diagonal)",
+   "feature": "(i) log area ratio subj/obj  [camera: front=larger]",
+   "n": 4319,
+   "n_front": 2268,
+   "auc": 0.7226857118779758,
+   "lo": 0.6704624494272239,
+   "hi": 0.7691376926397651
+  },
+  {
+   "stratum": "subject measurably moving (>2% of diagonal)",
+   "feature": "(ii) bottom-edge y diff  [camera: front=lower in image]",
+   "n": 4319,
+   "n_front": 2268,
+   "auc": 0.8795936210408826,
+   "lo": 0.8371992865517689,
+   "hi": 0.9133526426118173
+  },
+  {
+   "stratum": "subject measurably moving (>2% of diagonal)",
+   "feature": "(iii) subject velocity . subj->obj  [heading: front=moving away]",
+   "n": 4319,
+   "n_front": 2268,
+   "auc": 0.5275739799143017,
+   "lo": 0.49007583582457953,
+   "hi": 0.5665372692219138
+  },
+  {
+   "stratum": "subject measurably moving (>2% of diagonal)",
+   "feature": "(iii-b) object velocity . obj->subj  [heading: front=obj approaches]",
+   "n": 4319,
+   "n_front": 2268,
+   "auc": 0.5136142562194894,
+   "lo": 0.4747411113491115,
+   "hi": 0.5491809033403152
+  },
+  {
+   "stratum": "object measurably moving (>2% of diagonal)",
+   "feature": "(i) log area ratio subj/obj  [camera: front=larger]",
+   "n": 4313,
+   "n_front": 2250,
+   "auc": 0.724213281628696,
+   "lo": 0.6686551733643982,
+   "hi": 0.768455243788193
+  },
+  {
+   "stratum": "object measurably moving (>2% of diagonal)",
+   "feature": "(ii) bottom-edge y diff  [camera: front=lower in image]",
+   "n": 4313,
+   "n_front": 2250,
+   "auc": 0.8799965530241827,
+   "lo": 0.8401026799901965,
+   "hi": 0.9152625397696974
+  },
+  {
+   "stratum": "object measurably moving (>2% of diagonal)",
+   "feature": "(iii) subject velocity . subj->obj  [heading: front=moving away]",
+   "n": 4313,
+   "n_front": 2250,
+   "auc": 0.5189766790542361,
+   "lo": 0.4821265489967683,
+   "hi": 0.5546662617676662
+  },
+  {
+   "stratum": "object measurably moving (>2% of diagonal)",
+   "feature": "(iii-b) object velocity . obj->subj  [heading: front=obj approaches]",
+   "n": 4313,
+   "n_front": 2250,
+   "auc": 0.5238076156621964,
+   "lo": 0.4860906372220049,
+   "hi": 0.5584226278281137
+  }
+ ],
+ "ref_lr": [
+  {
+   "stratum": "all",
+   "feature": "signed horizontal offset  [camera: left=subject further left]",
+   "n": 8254,
+   "n_left": 4124,
+   "auc": 0.9713611106544576,
+   "lo": 0.9557418323156497,
+   "hi": 0.9824793837678828
+  },
+  {
+   "stratum": "subject verb stationary (stand/sit/lie/stop)",
+   "feature": "signed horizontal offset  [camera: left=subject further left]",
+   "n": 4373,
+   "n_left": 2207,
+   "auc": 0.9711794838968262,
+   "lo": 0.9501323868252785,
+   "hi": 0.9857040910027826
+  },
+  {
+   "stratum": "subject verb moving",
+   "feature": "signed horizontal offset  [camera: left=subject further left]",
+   "n": 3158,
+   "n_left": 1535,
+   "auc": 0.9702198245497842,
+   "lo": 0.9523007449290012,
+   "hi": 0.9834255268045519
+  }
+ ]
+}

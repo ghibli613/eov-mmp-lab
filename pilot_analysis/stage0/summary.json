@@ -1,0 +1,181 @@
+{
+ "split_file": "data/vidvrd/data/openvoc_pred_class_spilt_info.json",
+ "alt_split_file": "configs/VidVRD_pred_class_spilt_info_v2.json",
+ "alt_agrees": true,
+ "n_pred": 132,
+ "n_base": 71,
+ "n_novel": 61,
+ "n_train_videos": 800,
+ "n_test_videos": 200,
+ "totals": {
+  "base_train": 22616,
+  "novel_train": 3301,
+  "base_test": 4230,
+  "novel_test": 605
+ },
+ "n_components": 41,
+ "evidence_all": {
+  "box": 61,
+  "pixel": 6,
+  "both": 60,
+  "unassigned": 5
+ },
+ "evidence_novel": {
+  "box": 26,
+  "pixel": 4,
+  "both": 28,
+  "unassigned": 3
+ },
+ "d": {
+  "above50": 39,
+  "above200": 29,
+  "zero": 14,
+  "zero_list": [
+   "away",
+   "bite",
+   "creep_away",
+   "feed",
+   "fly_away",
+   "hold",
+   "jump_away",
+   "kick",
+   "lie_inside",
+   "move_away",
+   "run_away",
+   "sit_inside",
+   "stand_inside",
+   "walk_away"
+  ],
+  "unassigned": [
+   "drive",
+   "fight",
+   "pull"
+  ],
+  "mid": 5
+ },
+ "thin": [
+  {
+   "ingredient": "contact_action=bite",
+   "support": 0,
+   "novel": [
+    "bite"
+   ]
+  },
+  {
+   "ingredient": "contact_action=feed",
+   "support": 0,
+   "novel": [
+    "feed"
+   ]
+  },
+  {
+   "ingredient": "contact_action=hold",
+   "support": 0,
+   "novel": [
+    "hold"
+   ]
+  },
+  {
+   "ingredient": "contact_action=kick",
+   "support": 0,
+   "novel": [
+    "kick"
+   ]
+  },
+  {
+   "ingredient": "proximity=overlapping",
+   "support": 0,
+   "novel": [
+    "lie_inside",
+    "sit_inside",
+    "stand_inside"
+   ]
+  },
+  {
+   "ingredient": "relative_motion=recede",
+   "support": 0,
+   "novel": [
+    "away",
+    "creep_away",
+    "fly_away",
+    "jump_away",
+    "move_away",
+    "run_away",
+    "walk_away"
+   ]
+  },
+  {
+   "ingredient": "relative_motion=approach",
+   "support": 12,
+   "novel": [
+    "creep_toward",
+    "move_toward",
+    "run_toward",
+    "toward",
+    "walk_toward"
+   ]
+  }
+ ],
+ "unused": [
+  "horizontal=none",
+  "vertical=none",
+  "depth=none",
+  "proximity=separated",
+  "relative_motion=none",
+  "object_state=stationary",
+  "comparative=none",
+  "contact_action=none"
+ ],
+ "e": {
+  "exact": 52,
+  "containment": 41,
+  "containment_list": [
+   "away",
+   "bite",
+   "creep_away",
+   "feed",
+   "fly_away",
+   "hold",
+   "jump_away",
+   "kick",
+   "lie_inside",
+   "move_away",
+   "run_away",
+   "sit_inside",
+   "stand_inside",
+   "walk_away",
+   "creep_toward",
+   "run_toward",
+   "walk_toward",
+   "creep_past",
+   "jump_past",
+   "walk_past",
+   "swim_behind",
+   "swim_beneath",
+   "swim_next_to",
+   "creep_above",
+   "creep_next_to",
+   "jump_above",
+   "jump_behind",
+   "jump_with",
+   "lie_beneath",
+   "run_beneath",
+   "sit_beneath",
+   "stand_beneath",
+   "stop_beneath",
+   "walk_beneath",
+   "run_above",
+   "walk_above",
+   "run_next_to",
+   "fly_behind",
+   "fly_front",
+   "fly_left",
+   "fly_right"
+  ],
+  "identical_to_base": 6
+ },
+ "collisions": {
+  "groups": 10,
+  "predicates": 37
+ }
+}

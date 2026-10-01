@@ -1,0 +1,111 @@
+{
+ "train": {
+  "stats": {
+   "tracks_annotated": 2430,
+   "videos": 800,
+   "tracks": 4044,
+   "pairs": 8926,
+   "slots": 13558
+  },
+  "pairs_over_40": [],
+  "ecc_missing": [
+   "ILSVRC2015_train_00082000",
+   "ILSVRC2015_train_00100002",
+   "ILSVRC2015_train_00109001",
+   "ILSVRC2015_train_00109003",
+   "ILSVRC2015_train_00161017",
+   "ILSVRC2015_train_00265063",
+   "ILSVRC2015_train_00300012",
+   "ILSVRC2015_train_00345000",
+   "ILSVRC2015_train_00591001",
+   "ILSVRC2015_train_00667004",
+   "ILSVRC2015_train_00679000",
+   "ILSVRC2015_train_00760000",
+   "ILSVRC2015_train_00770001",
+   "ILSVRC2015_train_00911000",
+   "ILSVRC2015_val_00123004",
+   "ILSVRC2015_val_00127005",
+   "ILSVRC2015_val_00133000"
+  ],
+  "ecc_key_convention": [
+   {
+    "min_key": 2,
+    "max_key_minus_frames": 0,
+    "n_keys_minus_frames": -1,
+    "videos": 783
+   }
+  ],
+  "ecc_residual_median": {
+   "none": [
+    0.002407410049285454,
+    24822
+   ],
+   "key t+1": [
+    0.002216204990431208,
+    24822
+   ],
+   "key t": [
+    0.0023584424848637456,
+    24557
+   ],
+   "inverse key t+1": [
+    0.0038738169229889188,
+    24822
+   ]
+  }
+ },
+ "test": {
+  "stats": {
+   "tracks_annotated": 587,
+   "frames_dropped_by_gap_rule": 1650,
+   "tracks_with_preroll_below_0": 447,
+   "videos": 200,
+   "tracks": 583,
+   "pairs": 1392,
+   "slots": 8508,
+   "tracks_rejected_65pct_rule": 4
+  },
+  "pairs_over_40": [],
+  "ecc_missing": [
+   "ILSVRC2015_train_00250013"
+  ],
+  "ecc_key_convention": [
+   {
+    "min_key": 2,
+    "max_key_minus_frames": 0,
+    "n_keys_minus_frames": -1,
+    "videos": 199
+   }
+  ],
+  "ecc_residual_median": {
+   "none": [
+    0.001871665625140085,
+    58634
+   ],
+   "key t+1": [
+    0.001994857511103576,
+    58634
+   ],
+   "key t": [
+    0.0020952513342266566,
+    58368
+   ],
+   "inverse key t+1": [
+    0.003148279984968038,
+    58634
+   ]
+  }
+ },
+ "train_optionA_record": {
+  "stats": {
+   "tracks_annotated": 2430,
+   "frames_dropped_by_gap_rule": 8835,
+   "tracks_with_preroll_below_0": 1106,
+   "videos": 800,
+   "tracks": 1617,
+   "pairs": 3728,
+   "slots": 5714,
+   "tracks_rejected_65pct_rule": 813
+  }
+ }
+}

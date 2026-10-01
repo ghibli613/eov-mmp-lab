@@ -1,0 +1,894 @@
+{
+ "support_contact": 599,
+ "unreachable_b": [
+  "bite",
+  "drive",
+  "feed",
+  "fight",
+  "hold",
+  "kick",
+  "pull"
+ ],
+ "unreachable_strict": [
+  "bite",
+  "feed",
+  "fight",
+  "hold",
+  "kick"
+ ],
+ "unreachable_fallback": [
+  "fight"
+ ],
+ "collisions": {
+  "stage0b": {
+   "all-novel": 0,
+   "base-novel": 0,
+   "all-base": 1
+  },
+  "v3": {
+   "all-novel": 1,
+   "base-novel": 2,
+   "all-base": 1
+  },
+  "fallback": {
+   "all-novel": 2,
+   "base-novel": 2,
+   "all-base": 1
+  }
+ },
+ "new_collisions": [
+  [
+   "lie_next_to",
+   "lie_with"
+  ],
+  [
+   "stand_next_to",
+   "stand_with"
+  ],
+  [
+   "stop_next_to",
+   "stop_with"
+  ]
+ ],
+ "new_collisions_fallback": [
+  [
+   "bite",
+   "feed",
+   "hold",
+   "kick"
+  ]
+ ],
+ "subset_pairs": {
+  "stage0b": 392,
+  "v3": 373,
+  "fallback": 401
+ },
+ "novel_subset_pairs": {
+  "stage0b": 87,
+  "v3": 65,
+  "fallback": 93
+ },
+ "new_novel_subset": [
+  [
+   "pull",
+   "drive"
+  ]
+ ],
+ "removed_novel_subset": [
+  [
+   "lie_with",
+   "lie_above"
+  ],
+  [
+   "lie_with",
+   "lie_behind"
+  ],
+  [
+   "lie_with",
+   "lie_beneath"
+  ],
+  [
+   "lie_with",
+   "lie_front"
+  ],
+  [
+   "lie_with",
+   "lie_inside"
+  ],
+  [
+   "lie_with",
+   "lie_left"
+  ],
+  [
+   "lie_with",
+   "lie_next_to"
+  ],
+  [
+   "lie_with",
+   "lie_right"
+  ],
+  [
+   "stand_with",
+   "stand_above"
+  ],
+  [
+   "stand_with",
+   "stand_behind"
+  ],
+  [
+   "stand_with",
+   "stand_beneath"
+  ],
+  [
+   "stand_with",
+   "stand_front"
+  ],
+  [
+   "stand_with",
+   "stand_inside"
+  ],
+  [
+   "stand_with",
+   "stand_left"
+  ],
+  [
+   "stand_with",
+   "stand_next_to"
+  ],
+  [
+   "stand_with",
+   "stand_right"
+  ],
+  [
+   "stop_with",
+   "stop_above"
+  ],
+  [
+   "stop_with",
+   "stop_behind"
+  ],
+  [
+   "stop_with",
+   "stop_beneath"
+  ],
+  [
+   "stop_with",
+   "stop_front"
+  ],
+  [
+   "stop_with",
+   "stop_left"
+  ],
+  [
+   "stop_with",
+   "stop_next_to"
+  ],
+  [
+   "stop_with",
+   "stop_right"
+  ]
+ ],
+ "new_novel_subset_fallback": [
+  [
+   "bite",
+   "drive"
+  ],
+  [
+   "bite",
+   "lie_inside"
+  ],
+  [
+   "bite",
+   "pull"
+  ],
+  [
+   "bite",
+   "ride"
+  ],
+  [
+   "bite",
+   "sit_inside"
+  ],
+  [
+   "bite",
+   "stand_inside"
+  ],
+  [
+   "bite",
+   "touch"
+  ],
+  [
+   "feed",
+   "drive"
+  ],
+  [
+   "feed",
+   "lie_inside"
+  ],
+  [
+   "feed",
+   "pull"
+  ],
+  [
+   "feed",
+   "ride"
+  ],
+  [
+   "feed",
+   "sit_inside"
+  ],
+  [
+   "feed",
+   "stand_inside"
+  ],
+  [
+   "feed",
+   "touch"
+  ],
+  [
+   "hold",
+   "drive"
+  ],
+  [
+   "hold",
+   "lie_inside"
+  ],
+  [
+   "hold",
+   "pull"
+  ],
+  [
+   "hold",
+   "ride"
+  ],
+  [
+   "hold",
+   "sit_inside"
+  ],
+  [
+   "hold",
+   "stand_inside"
+  ],
+  [
+   "hold",
+   "touch"
+  ],
+  [
+   "kick",
+   "drive"
+  ],
+  [
+   "kick",
+   "lie_inside"
+  ],
+  [
+   "kick",
+   "pull"
+  ],
+  [
+   "kick",
+   "ride"
+  ],
+  [
+   "kick",
+   "sit_inside"
+  ],
+  [
+   "kick",
+   "stand_inside"
+  ],
+  [
+   "kick",
+   "touch"
+  ]
+ ],
+ "ride": {
+  "n": 420,
+  "n_motion": 418,
+  "no_ecc": 2,
+  "cats": {
+   "overlapping, subject centre above": 409,
+   "contained (>=90% of subject box inside object box)": 8,
+   "overlapping, subject centre not above": 1,
+   "disjoint, subject above": 2
+  },
+  "both_move": 355,
+  "aligned": 336,
+  "neither": 37,
+  "stable": 370,
+  "drive_like": 336,
+  "ios_median": 0.546244959793937,
+  "top_above": 0.9848412698412699
+ },
+ "cooc_bare": [
+  {
+   "anchor": "left",
+   "n": 382,
+   "hit": 21,
+   "any_other": 259,
+   "per": {
+    "walk_left": 7,
+    "stand_left": 9,
+    "run_left": 3,
+    "sit_left": 3,
+    "jump_left": 1
+   },
+   "rev": {
+    "creep_left": [
+     0,
+     40
+    ],
+    "jump_left": [
+     1,
+     50
+    ],
+    "lie_left": [
+     0,
+     172
+    ],
+    "move_left": [
+     0,
+     359
+    ],
+    "run_left": [
+     3,
+     141
+    ],
+    "sit_left": [
+     3,
+     418
+    ],
+    "stand_left": [
+     10,
+     1186
+    ],
+    "stop_left": [
+     0,
+     431
+    ],
+    "swim_left": [
+     0,
+     30
+    ],
+    "walk_left": [
+     9,
+     915
+    ]
+   },
+   "excluded": [
+    "fly_left"
+   ]
+  },
+  {
+   "anchor": "right",
+   "n": 341,
+   "hit": 16,
+   "any_other": 270,
+   "per": {
+    "walk_right": 4,
+    "sit_right": 9,
+    "run_right": 3,
+    "lie_right": 1,
+    "stand_right": 1
+   },
+   "rev": {
+    "creep_right": [
+     0,
+     48
+    ],
+    "jump_right": [
+     0,
+     34
+    ],
+    "lie_right": [
+     1,
+     191
+    ],
+    "move_right": [
+     0,
+     404
+    ],
+    "run_right": [
+     3,
+     151
+    ],
+    "sit_right": [
+     9,
+     396
+    ],
+    "stand_right": [
+     1,
+     1242
+    ],
+    "stop_right": [
+     0,
+     337
+    ],
+    "swim_right": [
+     0,
+     59
+    ],
+    "walk_right": [
+     4,
+     927
+    ]
+   },
+   "excluded": [
+    "fly_right"
+   ]
+  },
+  {
+   "anchor": "front",
+   "n": 291,
+   "hit": 7,
+   "any_other": 185,
+   "per": {
+    "sit_front": 4,
+    "run_front": 1,
+    "walk_front": 1,
+    "stand_front": 2,
+    "creep_front": 1,
+    "lie_front": 1
+   },
+   "rev": {
+    "creep_front": [
+     1,
+     54
+    ],
+    "jump_front": [
+     0,
+     52
+    ],
+    "lie_front": [
+     1,
+     186
+    ],
+    "move_front": [
+     0,
+     394
+    ],
+    "run_front": [
+     1,
+     127
+    ],
+    "sit_front": [
+     4,
+     296
+    ],
+    "stand_front": [
+     2,
+     865
+    ],
+    "stop_front": [
+     0,
+     308
+    ],
+    "swim_front": [
+     0,
+     44
+    ],
+    "walk_front": [
+     1,
+     752
+    ]
+   },
+   "excluded": [
+    "fly_front"
+   ]
+  },
+  {
+   "anchor": "behind",
+   "n": 266,
+   "hit": 11,
+   "any_other": 190,
+   "per": {
+    "walk_behind": 5,
+    "stand_behind": 5,
+    "creep_behind": 2
+   },
+   "rev": {
+    "creep_behind": [
+     2,
+     31
+    ],
+    "lie_behind": [
+     0,
+     163
+    ],
+    "move_behind": [
+     0,
+     359
+    ],
+    "run_behind": [
+     0,
+     105
+    ],
+    "stand_behind": [
+     4,
+     904
+    ],
+    "stop_behind": [
+     0,
+     473
+    ],
+    "walk_behind": [
+     5,
+     721
+    ]
+   },
+   "excluded": [
+    "fly_behind",
+    "jump_behind",
+    "sit_behind",
+    "swim_behind"
+   ]
+  }
+ ],
+ "cooc_move": [
+  {
+   "anchor": "move_behind",
+   "n": 359,
+   "hit": 0,
+   "any_other": 267,
+   "per": {},
+   "rev": {
+    "creep_behind": [
+     0,
+     31
+    ],
+    "run_behind": [
+     0,
+     105
+    ],
+    "walk_behind": [
+     0,
+     721
+    ]
+   },
+   "excluded": [
+    "fly_behind",
+    "jump_behind",
+    "swim_behind"
+   ]
+  },
+  {
+   "anchor": "move_beneath",
+   "n": 302,
+   "hit": 8,
+   "any_other": 23,
+   "per": {
+    "jump_beneath": 8
+   },
+   "rev": {
+    "creep_beneath": [
+     0,
+     3
+    ],
+    "jump_beneath": [
+     9,
+     74
+    ]
+   },
+   "excluded": [
+    "run_beneath",
+    "swim_beneath",
+    "walk_beneath"
+   ]
+  },
+  {
+   "anchor": "move_front",
+   "n": 394,
+   "hit": 0,
+   "any_other": 239,
+   "per": {},
+   "rev": {
+    "creep_front": [
+     0,
+     54
+    ],
+    "jump_front": [
+     0,
+     52
+    ],
+    "run_front": [
+     0,
+     127
+    ],
+    "swim_front": [
+     0,
+     44
+    ],
+    "walk_front": [
+     0,
+     752
+    ]
+   },
+   "excluded": [
+    "fly_front"
+   ]
+  },
+  {
+   "anchor": "move_left",
+   "n": 359,
+   "hit": 0,
+   "any_other": 257,
+   "per": {},
+   "rev": {
+    "creep_left": [
+     0,
+     40
+    ],
+    "jump_left": [
+     0,
+     50
+    ],
+    "run_left": [
+     0,
+     141
+    ],
+    "swim_left": [
+     0,
+     30
+    ],
+    "walk_left": [
+     0,
+     915
+    ]
+   },
+   "excluded": [
+    "fly_left"
+   ]
+  },
+  {
+   "anchor": "move_right",
+   "n": 404,
+   "hit": 0,
+   "any_other": 254,
+   "per": {},
+   "rev": {
+    "creep_right": [
+     0,
+     48
+    ],
+    "jump_right": [
+     0,
+     34
+    ],
+    "run_right": [
+     0,
+     151
+    ],
+    "swim_right": [
+     0,
+     59
+    ],
+    "walk_right": [
+     0,
+     927
+    ]
+   },
+   "excluded": [
+    "fly_right"
+   ]
+  },
+  {
+   "anchor": "move_with",
+   "n": 156,
+   "hit": 0,
+   "any_other": 140,
+   "per": {},
+   "rev": {
+    "fly_with": [
+     0,
+     674
+    ],
+    "run_with": [
+     0,
+     88
+    ],
+    "swim_with": [
+     0,
+     42
+    ],
+    "walk_with": [
+     0,
+     294
+    ]
+   },
+   "excluded": [
+    "jump_with"
+   ]
+  }
+ ],
+ "stop_reverted": {
+  "subsets": {
+   "stop_above": [
+    "lie_above",
+    "sit_above",
+    "stand_above"
+   ],
+   "stop_beneath": [
+    "lie_beneath",
+    "sit_beneath",
+    "stand_beneath"
+   ],
+   "stop_next_to": [
+    "lie_next_to",
+    "lie_with",
+    "sit_next_to",
+    "stand_next_to",
+    "stand_with"
+   ],
+   "stop_with": [
+    "lie_next_to",
+    "lie_with",
+    "sit_next_to",
+    "stand_next_to",
+    "stand_with"
+   ]
+  },
+  "unreachable": [
+   "bite",
+   "feed",
+   "fight",
+   "hold",
+   "kick"
+  ],
+  "new_collisions": []
+ },
+ "subject_categories": {
+  "stand": {
+   "person": 671,
+   "elephant": 626,
+   "antelope": 544,
+   "bird": 438,
+   "cattle": 427,
+   "zebra": 407,
+   "sheep": 361,
+   "horse": 323,
+   "dog": 206,
+   "bear": 132,
+   "lion": 129,
+   "monkey": 119,
+   "fox": 117,
+   "red_panda": 58,
+   "domestic_cat": 55,
+   "tiger": 32,
+   "giant_panda": 19,
+   "turtle": 11,
+   "rabbit": 1
+  },
+  "sit": {
+   "person": 533,
+   "monkey": 467,
+   "rabbit": 126,
+   "lion": 93,
+   "giant_panda": 75,
+   "domestic_cat": 71,
+   "squirrel": 50,
+   "red_panda": 29,
+   "dog": 19,
+   "hamster": 14,
+   "bear": 11,
+   "sheep": 8,
+   "fox": 6,
+   "zebra": 4,
+   "bird": 2
+  },
+  "stop": {
+   "car": 1126,
+   "watercraft": 170,
+   "bicycle": 86,
+   "bus": 52,
+   "motorcycle": 46,
+   "airplane": 46,
+   "train": 23
+  },
+  "lie": {
+   "domestic_cat": 126,
+   "lion": 95,
+   "dog": 91,
+   "giant_panda": 70,
+   "lizard": 68,
+   "cattle": 66,
+   "turtle": 38,
+   "snake": 37,
+   "red_panda": 35,
+   "bear": 33,
+   "fox": 25,
+   "tiger": 24,
+   "elephant": 21,
+   "zebra": 20,
+   "person": 19,
+   "rabbit": 17,
+   "bird": 16,
+   "squirrel": 14,
+   "sheep": 12,
+   "antelope": 8,
+   "monkey": 6,
+   "hamster": 5,
+   "motorcycle": 3,
+   "bicycle": 3
+  }
+ },
+ "halt": {
+  "tau": 0.0019125077240587022,
+  "stats": {
+   "stop": {
+    "n": 1533,
+    "n_before": 404,
+    "before_exceeds": 59,
+    "transition": 127,
+    "ext_med": 0.001577927488551246,
+    "bef_med": 0.0011484221186897558,
+    "ext_moving": 639
+   },
+   "stand": {
+    "n": 4149,
+    "n_before": 1222,
+    "before_exceeds": 182,
+    "transition": 443,
+    "ext_med": 0.0014914614463261639,
+    "bef_med": 0.001700814773461335,
+    "ext_moving": 1572
+   },
+   "walk_run": {
+    "n": 4596,
+    "n_before": 1756,
+    "before_exceeds": 124,
+    "transition": 421,
+    "ext_med": 0.003001667828372472,
+    "bef_med": 0.002955244744893931,
+    "ext_moving": 3449
+   },
+   "stand_cat_matched": null
+  },
+  "auc": [
+   {
+    "feature": "extent speed (i)",
+    "n": 5682,
+    "n_stop": 1533,
+    "auc": 0.5173237855316719,
+    "lo": 0.42702709452598914,
+    "hi": 0.6112734546056316
+   },
+   {
+    "feature": "before-window speed (ii)",
+    "n": 1626,
+    "n_stop": 404,
+    "auc": 0.469087763931876,
+    "lo": 0.271166252445911,
+    "hi": 0.6489653018839651
+   },
+   {
+    "feature": "log(before / extent)",
+    "n": 1626,
+    "n_stop": 404,
+    "auc": 0.40411555476333233,
+    "lo": 0.2773776175940089,
+    "hi": 0.5283093640901183
+   },
+   {
+    "feature": "first-third minus last-third speed",
+    "n": 5682,
+    "n_stop": 1533,
+    "auc": 0.46213715232822,
+    "lo": 0.4035664022039779,
+    "hi": 0.5179922746265095
+   }
+  ],
+  "skipped": {
+   "no ECC for video": 126
+  },
+  "stop_cats": {
+   "car": 1126,
+   "watercraft": 170,
+   "bicycle": 86,
+   "bus": 52,
+   "motorcycle": 46,
+   "airplane": 30,
+   "train": 23
+  },
+  "cat_cov": 0
+ }
+}

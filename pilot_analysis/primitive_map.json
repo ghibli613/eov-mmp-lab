@@ -1,0 +1,1058 @@
+{
+ "above": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "away": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "behind": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "beneath": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "bite": {
+  "action": "bite",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "contact entails adjacency",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "chase": {
+  "action": "chase",
+  "basis": "entailed",
+  "confidence": "high",
+  "note": "the chaser trails the chased; `behind` is definitional",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "creep_above": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "creep_away": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "creep_behind": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "creep_beneath": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "beneath"
+ },
+ "creep_front": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "creep_left": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "creep_next_to": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "creep_past": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "past"
+ },
+ "creep_right": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "creep_toward": {
+  "action": "creep",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "drive": {
+  "action": "drive",
+  "basis": "entailed",
+  "confidence": "low",
+  "note": "FLAGGED: person-inside-vehicle, but the annotation may intend an external view where no containment is visible",
+  "ov_split": "novel",
+  "spatial": "inside"
+ },
+ "fall_off": {
+  "action": "fall",
+  "basis": "entailed",
+  "confidence": "low",
+  "note": "FLAGGED: `off` is not in the spatial vocabulary. Read as ending below the object; `away` (separation) is the alternative and would move 4 base instances into `away`",
+  "ov_split": "base",
+  "spatial": "beneath"
+ },
+ "faster": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "speed comparative; singleton primitive",
+  "ov_split": "base",
+  "spatial": "faster"
+ },
+ "feed": {
+  "action": "feed",
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "proximity is arguable; left empty per the C1 spec's own example",
+  "ov_split": "novel",
+  "spatial": null
+ },
+ "fight": {
+  "action": "fight",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "engagement entails proximity",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "fly_above": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "above"
+ },
+ "fly_away": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "fly_behind": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "behind"
+ },
+ "fly_front": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "front"
+ },
+ "fly_left": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "left"
+ },
+ "fly_next_to": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "fly_past": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "past"
+ },
+ "fly_right": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "right"
+ },
+ "fly_toward": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "toward"
+ },
+ "fly_with": {
+  "action": "fly",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "with"
+ },
+ "follow": {
+  "action": "follow",
+  "basis": "entailed",
+  "confidence": "high",
+  "note": "same geometry as chase, slower manner",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "front": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "hold": {
+  "action": "hold",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "contact entails adjacency",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "jump_above": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "jump_away": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "jump_behind": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "behind"
+ },
+ "jump_beneath": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "beneath"
+ },
+ "jump_front": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "jump_left": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "jump_next_to": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "jump_past": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "past"
+ },
+ "jump_right": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "jump_toward": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "toward"
+ },
+ "jump_with": {
+  "action": "jump",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "with"
+ },
+ "kick": {
+  "action": "kick",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "momentary contact entails adjacency",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "larger": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "size comparative; singleton primitive",
+  "ov_split": "base",
+  "spatial": "larger"
+ },
+ "left": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "lie_above": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "lie_behind": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "lie_beneath": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "lie_front": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "lie_inside": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "inside"
+ },
+ "lie_left": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "lie_next_to": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "lie_right": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "lie_with": {
+  "action": "lie",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "with"
+ },
+ "move_above": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "move_away": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "move_behind": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "move_beneath": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "beneath"
+ },
+ "move_front": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "move_left": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "move_next_to": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "move_past": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "past"
+ },
+ "move_right": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "move_toward": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "move_with": {
+  "action": "move",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "with"
+ },
+ "next_to": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "past": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "novel",
+  "spatial": "past"
+ },
+ "play": {
+  "action": "play",
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "no configuration entailed; the two agents may be anywhere",
+  "ov_split": "base",
+  "spatial": null
+ },
+ "pull": {
+  "action": "pull",
+  "basis": "entailed",
+  "confidence": "low",
+  "note": "FLAGGED: the object moves toward the subject, but `with` (moving together) is an equally defensible reading",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "ride": {
+  "action": "ride",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "person-on-bicycle/horse: subject box sits above the object's",
+  "ov_split": "base",
+  "spatial": "above"
+ },
+ "right": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "run_above": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "run_away": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "run_behind": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "run_beneath": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "run_front": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "run_left": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "run_next_to": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "run_past": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "past"
+ },
+ "run_right": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "run_toward": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "run_with": {
+  "action": "run",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "with"
+ },
+ "sit_above": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "above"
+ },
+ "sit_behind": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "behind"
+ },
+ "sit_beneath": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "sit_front": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "sit_inside": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "inside"
+ },
+ "sit_left": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "sit_next_to": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "sit_right": {
+  "action": "sit",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "stand_above": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "stand_behind": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "stand_beneath": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "stand_front": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "stand_inside": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "inside"
+ },
+ "stand_left": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "stand_next_to": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "stand_right": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "stand_with": {
+  "action": "stand",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "with"
+ },
+ "stop_above": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "stop_behind": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "stop_beneath": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "stop_front": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "stop_left": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "stop_next_to": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "stop_right": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "stop_with": {
+  "action": "stop",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "with"
+ },
+ "swim_behind": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "behind"
+ },
+ "swim_beneath": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "swim_front": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "swim_left": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "swim_next_to": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "next_to"
+ },
+ "swim_right": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "swim_with": {
+  "action": "swim",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "with"
+ },
+ "taller": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "size comparative; singleton primitive",
+  "ov_split": "base",
+  "spatial": "taller"
+ },
+ "touch": {
+  "action": "touch",
+  "basis": "entailed",
+  "confidence": "medium",
+  "note": "contact entails adjacency",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "toward": {
+  "action": null,
+  "basis": "degenerate",
+  "confidence": "high",
+  "note": "bare spatial term",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "walk_above": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "above"
+ },
+ "walk_away": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "away"
+ },
+ "walk_behind": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "behind"
+ },
+ "walk_beneath": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "beneath"
+ },
+ "walk_front": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "front"
+ },
+ "walk_left": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "left"
+ },
+ "walk_next_to": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "next_to"
+ },
+ "walk_past": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "past"
+ },
+ "walk_right": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "right"
+ },
+ "walk_toward": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "novel",
+  "spatial": "toward"
+ },
+ "walk_with": {
+  "action": "walk",
+  "basis": "lexical",
+  "confidence": "high",
+  "note": "",
+  "ov_split": "base",
+  "spatial": "with"
+ },
+ "watch": {
+  "action": "watch",
+  "basis": "degenerate",
+  "confidence": "medium",
+  "note": "arguably entails `toward` via gaze, but gaze is not box geometry",
+  "ov_split": "base",
+  "spatial": null
+ }
+}

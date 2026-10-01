@@ -1,0 +1,133 @@
+predicate,split,train_instances,test_instances,train_videos,test_videos,train_instances_usable,train_note
+above,novel,60,5,19,5,0,not-available-for-training (masked)
+away,novel,43,7,12,3,0,not-available-for-training (masked)
+behind,base,266,33,74,21,266,
+beneath,novel,84,7,25,6,0,not-available-for-training (masked)
+bite,novel,50,4,20,4,0,not-available-for-training (masked)
+chase,base,83,12,32,6,83,
+creep_above,novel,5,4,2,3,0,not-available-for-training (masked)
+creep_away,novel,1,1,1,1,0,not-available-for-training (masked)
+creep_behind,base,31,18,11,4,31,
+creep_beneath,base,3,4,2,1,3,
+creep_front,base,54,14,15,3,54,
+creep_left,base,40,17,11,4,40,
+creep_next_to,novel,15,2,8,2,0,not-available-for-training (masked)
+creep_past,novel,18,2,3,1,0,not-available-for-training (masked)
+creep_right,base,48,11,16,3,48,
+creep_toward,novel,17,1,5,1,0,not-available-for-training (masked)
+drive,novel,31,3,14,3,0,not-available-for-training (masked)
+fall_off,base,4,1,2,1,4,
+faster,base,89,21,39,9,89,
+feed,novel,45,9,14,7,0,not-available-for-training (masked)
+fight,novel,183,8,29,5,0,not-available-for-training (masked)
+fly_above,base,36,4,11,2,36,
+fly_away,novel,8,1,3,1,0,not-available-for-training (masked)
+fly_behind,novel,16,2,7,2,0,not-available-for-training (masked)
+fly_front,novel,10,1,6,1,0,not-available-for-training (masked)
+fly_left,novel,12,2,5,2,0,not-available-for-training (masked)
+fly_next_to,base,156,22,10,4,156,
+fly_past,base,9,4,3,3,9,
+fly_right,novel,9,2,4,1,0,not-available-for-training (masked)
+fly_toward,base,2,3,1,2,2,
+fly_with,base,674,70,12,5,674,
+follow,base,294,25,94,16,294,
+front,base,291,60,80,29,291,
+hold,novel,76,8,27,8,0,not-available-for-training (masked)
+jump_above,novel,14,2,10,2,0,not-available-for-training (masked)
+jump_away,novel,16,3,9,2,0,not-available-for-training (masked)
+jump_behind,novel,19,8,14,5,0,not-available-for-training (masked)
+jump_beneath,base,74,13,34,11,74,
+jump_front,base,52,15,24,9,52,
+jump_left,base,50,18,31,8,50,
+jump_next_to,base,6,10,5,5,6,
+jump_past,novel,14,2,7,2,0,not-available-for-training (masked)
+jump_right,base,34,20,19,11,34,
+jump_toward,base,10,8,7,6,10,
+jump_with,novel,8,2,1,1,0,not-available-for-training (masked)
+kick,novel,1,1,1,1,0,not-available-for-training (masked)
+larger,base,1161,117,228,52,1161,
+left,base,382,42,107,24,382,
+lie_above,novel,32,4,10,3,0,not-available-for-training (masked)
+lie_behind,base,163,39,49,16,163,
+lie_beneath,novel,47,2,16,2,0,not-available-for-training (masked)
+lie_front,base,186,34,59,12,186,
+lie_inside,novel,1,1,1,1,0,not-available-for-training (masked)
+lie_left,base,172,51,58,19,172,
+lie_next_to,base,140,29,32,10,140,
+lie_right,base,191,57,65,20,191,
+lie_with,novel,14,2,3,1,0,not-available-for-training (masked)
+move_above,novel,2,1,1,1,0,not-available-for-training (masked)
+move_away,novel,57,1,15,1,0,not-available-for-training (masked)
+move_behind,base,359,83,88,11,359,
+move_beneath,base,302,65,109,48,302,
+move_front,base,394,40,95,18,394,
+move_left,base,359,56,84,16,359,
+move_next_to,novel,108,8,26,2,0,not-available-for-training (masked)
+move_past,novel,150,11,41,8,0,not-available-for-training (masked)
+move_right,base,404,47,87,14,404,
+move_toward,novel,79,8,17,4,0,not-available-for-training (masked)
+move_with,base,156,22,24,4,156,
+next_to,base,169,18,35,11,169,
+past,novel,40,6,20,3,0,not-available-for-training (masked)
+play,base,556,79,113,38,556,
+pull,novel,67,3,17,3,0,not-available-for-training (masked)
+ride,base,420,71,131,59,420,
+right,base,341,50,94,26,341,
+run_above,novel,7,1,5,1,0,not-available-for-training (masked)
+run_away,novel,38,8,20,5,0,not-available-for-training (masked)
+run_behind,base,105,13,34,8,105,
+run_beneath,novel,54,5,15,5,0,not-available-for-training (masked)
+run_front,base,127,24,52,13,127,
+run_left,base,141,31,47,15,141,
+run_next_to,novel,30,8,17,5,0,not-available-for-training (masked)
+run_past,base,45,14,22,8,45,
+run_right,base,151,32,50,16,151,
+run_toward,novel,32,9,20,3,0,not-available-for-training (masked)
+run_with,base,88,10,11,3,88,
+sit_above,base,398,78,124,50,398,
+sit_behind,novel,292,47,62,19,0,not-available-for-training (masked)
+sit_beneath,novel,42,20,14,6,0,not-available-for-training (masked)
+sit_front,base,296,48,65,17,296,
+sit_inside,novel,39,3,15,3,0,not-available-for-training (masked)
+sit_left,base,418,74,89,19,418,
+sit_next_to,novel,229,38,51,18,0,not-available-for-training (masked)
+sit_right,base,396,89,92,29,396,
+stand_above,novel,167,35,57,28,0,not-available-for-training (masked)
+stand_behind,base,904,175,182,55,904,
+stand_beneath,novel,61,6,17,4,0,not-available-for-training (masked)
+stand_front,base,865,158,183,54,865,
+stand_inside,novel,1,2,1,1,0,not-available-for-training (masked)
+stand_left,base,1186,244,216,74,1186,
+stand_next_to,base,479,118,114,34,479,
+stand_right,base,1242,262,227,73,1242,
+stand_with,novel,102,64,13,6,0,not-available-for-training (masked)
+stop_above,novel,8,2,3,2,0,not-available-for-training (masked)
+stop_behind,base,473,43,70,10,473,
+stop_beneath,novel,16,13,7,9,0,not-available-for-training (masked)
+stop_front,base,308,14,56,5,308,
+stop_left,base,431,48,66,7,431,
+stop_next_to,novel,120,10,24,1,0,not-available-for-training (masked)
+stop_right,base,337,54,65,10,337,
+stop_with,novel,4,2,1,1,0,not-available-for-training (masked)
+swim_behind,novel,30,13,12,1,0,not-available-for-training (masked)
+swim_beneath,novel,16,1,2,1,0,not-available-for-training (masked)
+swim_front,base,44,60,14,2,44,
+swim_left,base,30,58,11,4,30,
+swim_next_to,novel,27,25,8,2,0,not-available-for-training (masked)
+swim_right,base,59,63,18,2,59,
+swim_with,base,42,84,10,2,42,
+taller,base,1102,133,231,58,1102,
+touch,base,179,38,55,24,179,
+toward,novel,28,6,14,2,0,not-available-for-training (masked)
+walk_above,novel,39,12,22,7,0,not-available-for-training (masked)
+walk_away,novel,141,47,71,25,0,not-available-for-training (masked)
+walk_behind,base,721,135,176,48,721,
+walk_beneath,novel,69,17,19,10,0,not-available-for-training (masked)
+walk_front,base,752,165,181,50,752,
+walk_left,base,915,209,210,65,915,
+walk_next_to,base,392,88,103,29,392,
+walk_past,novel,175,34,75,17,0,not-available-for-training (masked)
+walk_right,base,927,216,211,63,927,
+walk_toward,novel,182,43,75,25,0,not-available-for-training (masked)
+walk_with,base,294,52,49,12,294,
+watch,base,608,97,149,39,608,

@@ -1,0 +1,474 @@
+{
+ "vehicles": [
+  "airplane",
+  "bicycle",
+  "bus",
+  "car",
+  "motorcycle",
+  "train",
+  "watercraft"
+ ],
+ "vehicle_counts": {
+  "car": 1126,
+  "watercraft": 170,
+  "bicycle": 86,
+  "bus": 52,
+  "motorcycle": 46,
+  "airplane": 46,
+  "train": 23
+ },
+ "vehicle_subjects_in_other_base_predicates": {
+  "fly_with": 666,
+  "move_right": 402,
+  "move_front": 388,
+  "move_behind": 359,
+  "move_left": 358,
+  "move_beneath": 291,
+  "larger": 223,
+  "taller": 197,
+  "fly_next_to": 156,
+  "move_with": 156,
+  "follow": 53,
+  "jump_beneath": 50,
+  "behind": 38,
+  "right": 28,
+  "faster": 26,
+  "fly_above": 21,
+  "jump_front": 18,
+  "chase": 16,
+  "left": 11,
+  "jump_left": 9,
+  "fly_past": 8,
+  "jump_right": 4,
+  "lie_right": 4,
+  "front": 3,
+  "fly_toward": 2,
+  "jump_next_to": 2,
+  "lie_front": 1,
+  "lie_next_to": 1,
+  "walk_next_to": 1,
+  "walk_right": 1
+ },
+ "vehicle_subject_instances_any_base_predicate": 5042,
+ "vehicle_share_by_verb": {
+  "stop": [
+   1549,
+   1549
+  ],
+  "move": [
+   1954,
+   1974
+  ],
+  "fly": [
+   853,
+   877
+  ],
+  "jump": [
+   83,
+   226
+  ],
+  "faster": [
+   26,
+   89
+  ],
+  "chase": [
+   16,
+   83
+  ],
+  "larger": [
+   223,
+   1161
+  ],
+  "follow": [
+   53,
+   294
+  ],
+  "taller": [
+   197,
+   1102
+  ],
+  "behind": [
+   38,
+   266
+  ],
+  "right": [
+   28,
+   341
+  ],
+  "left": [
+   11,
+   382
+  ],
+  "front": [
+   3,
+   291
+  ],
+  "lie": [
+   6,
+   852
+  ],
+  "walk": [
+   2,
+   4001
+  ]
+ },
+ "move_manner_pairs": [
+  60,
+  26
+ ],
+ "support": {
+  "subject_kind=vehicle": 1549,
+  "subject_kind=animate": 0,
+  "proximity=contained": 0,
+  "proximity=overlapping": 0,
+  "proximity=adjacent": 1342,
+  "contact=contact": 599
+ },
+ "ride": {
+  "n": 420,
+  "contained_majority_frames": 8,
+  "contained_median": 8
+ },
+ "task2": {
+  "outcome": "B",
+  "base_rate": 0.5917049876193845,
+  "pooled": {
+   "with": [
+    1144,
+    1254
+   ],
+   "next_to": [
+    998,
+    1342
+   ]
+  },
+  "per": {
+   "fly_with": [
+    674,
+    674
+   ],
+   "move_with": [
+    154,
+    156
+   ],
+   "run_with": [
+    48,
+    88
+   ],
+   "swim_with": [
+    42,
+    42
+   ],
+   "walk_with": [
+    226,
+    294
+   ],
+   "fly_next_to": [
+    156,
+    156
+   ],
+   "jump_next_to": [
+    5,
+    6
+   ],
+   "lie_next_to": [
+    77,
+    140
+   ],
+   "next_to": [
+    105,
+    169
+   ],
+   "stand_next_to": [
+    374,
+    479
+   ],
+   "walk_next_to": [
+    281,
+    392
+   ]
+  },
+  "matched": {
+   "fly": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "walk": [
+    0.0518707482993197,
+    -0.13143597978852475,
+    0.21469948925239574
+   ]
+  },
+  "excluded": {
+   "with": [
+    "jump_with",
+    "lie_with",
+    "stand_with",
+    "stop_with"
+   ],
+   "next_to": [
+    "creep_next_to",
+    "move_next_to",
+    "run_next_to",
+    "sit_next_to",
+    "stop_next_to",
+    "swim_next_to"
+   ]
+  }
+ },
+ "tables": {
+  "v3": {
+   "unreachable": [
+    "bite",
+    "feed",
+    "fight",
+    "hold",
+    "kick"
+   ],
+   "kinds": {
+    "all-novel": 1,
+    "base-novel": 2,
+    "all-base": 1
+   },
+   "pairs": 373,
+   "novel_subset": 65
+  },
+  "v4a": {
+   "unreachable": [
+    "bite",
+    "feed",
+    "fight",
+    "hold",
+    "kick"
+   ],
+   "kinds": {
+    "all-novel": 1,
+    "base-novel": 2,
+    "all-base": 1
+   },
+   "pairs": 373,
+   "novel_subset": 65
+  },
+  "v4": {
+   "unreachable": [
+    "bite",
+    "feed",
+    "fight",
+    "hold",
+    "kick"
+   ],
+   "kinds": {
+    "all-novel": 0,
+    "base-novel": 0,
+    "all-base": 1
+   },
+   "pairs": 393,
+   "novel_subset": 88
+  }
+ },
+ "new_collisions": [],
+ "removed_collisions": [
+  [
+   "lie_next_to",
+   "lie_with"
+  ],
+  [
+   "stand_next_to",
+   "stand_with"
+  ],
+  [
+   "stop_next_to",
+   "stop_with"
+  ]
+ ],
+ "new_novel_subset": [
+  [
+   "lie_with",
+   "lie_above"
+  ],
+  [
+   "lie_with",
+   "lie_behind"
+  ],
+  [
+   "lie_with",
+   "lie_beneath"
+  ],
+  [
+   "lie_with",
+   "lie_front"
+  ],
+  [
+   "lie_with",
+   "lie_inside"
+  ],
+  [
+   "lie_with",
+   "lie_left"
+  ],
+  [
+   "lie_with",
+   "lie_next_to"
+  ],
+  [
+   "lie_with",
+   "lie_right"
+  ],
+  [
+   "stand_with",
+   "stand_above"
+  ],
+  [
+   "stand_with",
+   "stand_behind"
+  ],
+  [
+   "stand_with",
+   "stand_beneath"
+  ],
+  [
+   "stand_with",
+   "stand_front"
+  ],
+  [
+   "stand_with",
+   "stand_inside"
+  ],
+  [
+   "stand_with",
+   "stand_left"
+  ],
+  [
+   "stand_with",
+   "stand_next_to"
+  ],
+  [
+   "stand_with",
+   "stand_right"
+  ],
+  [
+   "stop_with",
+   "stop_above"
+  ],
+  [
+   "stop_with",
+   "stop_behind"
+  ],
+  [
+   "stop_with",
+   "stop_beneath"
+  ],
+  [
+   "stop_with",
+   "stop_front"
+  ],
+  [
+   "stop_with",
+   "stop_left"
+  ],
+  [
+   "stop_with",
+   "stop_next_to"
+  ],
+  [
+   "stop_with",
+   "stop_right"
+  ]
+ ],
+ "removed_novel_subset": [],
+ "returned_by_task2": [
+  [
+   "lie_with",
+   "lie_above"
+  ],
+  [
+   "lie_with",
+   "lie_behind"
+  ],
+  [
+   "lie_with",
+   "lie_beneath"
+  ],
+  [
+   "lie_with",
+   "lie_front"
+  ],
+  [
+   "lie_with",
+   "lie_inside"
+  ],
+  [
+   "lie_with",
+   "lie_left"
+  ],
+  [
+   "lie_with",
+   "lie_next_to"
+  ],
+  [
+   "lie_with",
+   "lie_right"
+  ],
+  [
+   "stand_with",
+   "stand_above"
+  ],
+  [
+   "stand_with",
+   "stand_behind"
+  ],
+  [
+   "stand_with",
+   "stand_beneath"
+  ],
+  [
+   "stand_with",
+   "stand_front"
+  ],
+  [
+   "stand_with",
+   "stand_inside"
+  ],
+  [
+   "stand_with",
+   "stand_left"
+  ],
+  [
+   "stand_with",
+   "stand_next_to"
+  ],
+  [
+   "stand_with",
+   "stand_right"
+  ],
+  [
+   "stop_with",
+   "stop_above"
+  ],
+  [
+   "stop_with",
+   "stop_behind"
+  ],
+  [
+   "stop_with",
+   "stop_beneath"
+  ],
+  [
+   "stop_with",
+   "stop_front"
+  ],
+  [
+   "stop_with",
+   "stop_left"
+  ],
+  [
+   "stop_with",
+   "stop_next_to"
+  ],
+  [
+   "stop_with",
+   "stop_right"
+  ]
+ ]
+}

@@ -1,0 +1,832 @@
+{
+ "vehicles": [
+  "airplane",
+  "bicycle",
+  "bus",
+  "car",
+  "motorcycle",
+  "train",
+  "watercraft"
+ ],
+ "animate": [
+  "antelope",
+  "bear",
+  "bird",
+  "cattle",
+  "dog",
+  "domestic_cat",
+  "elephant",
+  "fox",
+  "giant_panda",
+  "hamster",
+  "horse",
+  "lion",
+  "lizard",
+  "monkey",
+  "person",
+  "rabbit",
+  "red_panda",
+  "sheep",
+  "snake",
+  "squirrel",
+  "tiger",
+  "turtle",
+  "whale",
+  "zebra"
+ ],
+ "other": [
+  "ball",
+  "frisbee",
+  "skateboard",
+  "sofa"
+ ],
+ "subject_kind_instances": {
+  "animate": 17304,
+  "other": 270,
+  "vehicle": 5042
+ },
+ "vehicle_subjects_in_animate_verbs": {
+  "lie_front": {
+   "bicycle": 1
+  },
+  "lie_next_to": {
+   "bicycle": 1
+  },
+  "lie_right": {
+   "motorcycle": 3,
+   "bicycle": 1
+  },
+  "walk_next_to": {
+   "car": 1
+  },
+  "walk_right": {
+   "car": 1
+  }
+ },
+ "families": {
+  "move": {
+   "k": 1954,
+   "n": 1974,
+   "passes": true,
+   "rows": [
+    [
+     "move_behind",
+     359,
+     359,
+     {}
+    ],
+    [
+     "move_beneath",
+     291,
+     302,
+     {
+      "skateboard": 11
+     }
+    ],
+    [
+     "move_front",
+     388,
+     394,
+     {
+      "skateboard": 6
+     }
+    ],
+    [
+     "move_left",
+     358,
+     359,
+     {
+      "skateboard": 1
+     }
+    ],
+    [
+     "move_right",
+     402,
+     404,
+     {
+      "skateboard": 2
+     }
+    ],
+    [
+     "move_with",
+     156,
+     156,
+     {}
+    ]
+   ]
+  },
+  "fly": {
+   "k": 853,
+   "n": 877,
+   "passes": false,
+   "rows": [
+    [
+     "fly_above",
+     21,
+     36,
+     {
+      "bird": 15
+     }
+    ],
+    [
+     "fly_next_to",
+     156,
+     156,
+     {}
+    ],
+    [
+     "fly_past",
+     8,
+     9,
+     {
+      "bird": 1
+     }
+    ],
+    [
+     "fly_toward",
+     2,
+     2,
+     {}
+    ],
+    [
+     "fly_with",
+     666,
+     674,
+     {
+      "bird": 8
+     }
+    ]
+   ]
+  },
+  "stop": {
+   "k": 1549,
+   "n": 1549,
+   "passes": true,
+   "rows": [
+    [
+     "stop_behind",
+     473,
+     473,
+     {}
+    ],
+    [
+     "stop_front",
+     308,
+     308,
+     {}
+    ],
+    [
+     "stop_left",
+     431,
+     431,
+     {}
+    ],
+    [
+     "stop_right",
+     337,
+     337,
+     {}
+    ]
+   ]
+  }
+ },
+ "vehicle_verbs": [
+  "move",
+  "stop"
+ ],
+ "ride": {
+  "n": 420,
+  "contained": 191,
+  "s_in_o_gt_o_in_s": 223,
+  "centre": {
+   "above": 84,
+   "within": 332,
+   "other": 4
+  },
+  "agrees_with_90pct": 237,
+  "old90": 8,
+  "sanity_nested": true,
+  "sanity_rider": false,
+  "contained_pairs": [
+   [
+    "person-horse",
+    92
+   ],
+   [
+    "person-motorcycle",
+    61
+   ],
+   [
+    "person-bicycle",
+    33
+   ],
+   [
+    "person-watercraft",
+    3
+   ],
+   [
+    "bear-bicycle",
+    2
+   ]
+  ]
+ },
+ "v4": {
+  "unr": [
+   "bite",
+   "feed",
+   "fight",
+   "hold",
+   "kick"
+  ],
+  "kinds": {
+   "all-novel": 0,
+   "base-novel": 0,
+   "all-base": 1
+  },
+  "pairs": 393,
+  "nsub": 88
+ },
+ "frozen": {
+  "unr": [
+   "bite",
+   "feed",
+   "fight",
+   "hold",
+   "kick"
+  ],
+  "kinds": {
+   "all-novel": 0,
+   "base-novel": 0,
+   "all-base": 1
+  },
+  "pairs": 333,
+  "nsub": 62
+ },
+ "new_collisions": [],
+ "removed_collisions": [],
+ "new_pairs": [],
+ "new_novel_subset": [],
+ "removed_novel_subset": [
+  [
+   "move_above",
+   "creep_above"
+  ],
+  [
+   "move_above",
+   "fly_above"
+  ],
+  [
+   "move_above",
+   "jump_above"
+  ],
+  [
+   "move_above",
+   "run_above"
+  ],
+  [
+   "move_above",
+   "walk_above"
+  ],
+  [
+   "move_away",
+   "creep_away"
+  ],
+  [
+   "move_away",
+   "fly_away"
+  ],
+  [
+   "move_away",
+   "jump_away"
+  ],
+  [
+   "move_away",
+   "run_away"
+  ],
+  [
+   "move_away",
+   "walk_away"
+  ],
+  [
+   "move_next_to",
+   "creep_next_to"
+  ],
+  [
+   "move_next_to",
+   "fly_next_to"
+  ],
+  [
+   "move_next_to",
+   "jump_next_to"
+  ],
+  [
+   "move_next_to",
+   "run_next_to"
+  ],
+  [
+   "move_next_to",
+   "swim_next_to"
+  ],
+  [
+   "move_next_to",
+   "walk_next_to"
+  ],
+  [
+   "move_past",
+   "creep_past"
+  ],
+  [
+   "move_past",
+   "fly_past"
+  ],
+  [
+   "move_past",
+   "jump_past"
+  ],
+  [
+   "move_past",
+   "run_past"
+  ],
+  [
+   "move_past",
+   "walk_past"
+  ],
+  [
+   "move_toward",
+   "creep_toward"
+  ],
+  [
+   "move_toward",
+   "fly_toward"
+  ],
+  [
+   "move_toward",
+   "jump_toward"
+  ],
+  [
+   "move_toward",
+   "run_toward"
+  ],
+  [
+   "move_toward",
+   "walk_toward"
+  ]
+ ],
+ "no_learned": [
+  "above",
+  "away",
+  "beneath",
+  "move_above",
+  "move_away",
+  "move_next_to",
+  "move_past",
+  "move_toward",
+  "past",
+  "stop_above",
+  "stop_beneath",
+  "stop_next_to",
+  "stop_with",
+  "toward"
+ ],
+ "unreachable": [
+  "bite",
+  "feed",
+  "fight",
+  "hold",
+  "kick"
+ ],
+ "effective": {
+  "pairs": 77,
+  "nsub": 31,
+  "groups": [
+   [
+    "chase",
+    "fall_off",
+    "follow"
+   ]
+  ],
+  "nsub_list": [
+   [
+    "above",
+    "move_above"
+   ],
+   [
+    "above",
+    "stop_above"
+   ],
+   [
+    "away",
+    "move_away"
+   ],
+   [
+    "beneath",
+    "move_beneath"
+   ],
+   [
+    "beneath",
+    "stop_beneath"
+   ],
+   [
+    "lie_with",
+    "lie_above"
+   ],
+   [
+    "lie_with",
+    "lie_behind"
+   ],
+   [
+    "lie_with",
+    "lie_beneath"
+   ],
+   [
+    "lie_with",
+    "lie_front"
+   ],
+   [
+    "lie_with",
+    "lie_inside"
+   ],
+   [
+    "lie_with",
+    "lie_left"
+   ],
+   [
+    "lie_with",
+    "lie_next_to"
+   ],
+   [
+    "lie_with",
+    "lie_right"
+   ],
+   [
+    "past",
+    "move_past"
+   ],
+   [
+    "pull",
+    "drive"
+   ],
+   [
+    "stand_with",
+    "stand_above"
+   ],
+   [
+    "stand_with",
+    "stand_behind"
+   ],
+   [
+    "stand_with",
+    "stand_beneath"
+   ],
+   [
+    "stand_with",
+    "stand_front"
+   ],
+   [
+    "stand_with",
+    "stand_inside"
+   ],
+   [
+    "stand_with",
+    "stand_left"
+   ],
+   [
+    "stand_with",
+    "stand_next_to"
+   ],
+   [
+    "stand_with",
+    "stand_right"
+   ],
+   [
+    "stop_with",
+    "stop_above"
+   ],
+   [
+    "stop_with",
+    "stop_behind"
+   ],
+   [
+    "stop_with",
+    "stop_beneath"
+   ],
+   [
+    "stop_with",
+    "stop_front"
+   ],
+   [
+    "stop_with",
+    "stop_left"
+   ],
+   [
+    "stop_with",
+    "stop_next_to"
+   ],
+   [
+    "stop_with",
+    "stop_right"
+   ],
+   [
+    "toward",
+    "move_toward"
+   ]
+  ]
+ },
+ "scoped": {
+  "pairs": 257,
+  "nsub": 31,
+  "groups": [
+   [
+    "chase",
+    "fall_off",
+    "follow"
+   ]
+  ],
+  "nsub_list": [
+   [
+    "above",
+    "move_above"
+   ],
+   [
+    "above",
+    "stop_above"
+   ],
+   [
+    "away",
+    "move_away"
+   ],
+   [
+    "beneath",
+    "move_beneath"
+   ],
+   [
+    "beneath",
+    "stop_beneath"
+   ],
+   [
+    "lie_with",
+    "lie_above"
+   ],
+   [
+    "lie_with",
+    "lie_behind"
+   ],
+   [
+    "lie_with",
+    "lie_beneath"
+   ],
+   [
+    "lie_with",
+    "lie_front"
+   ],
+   [
+    "lie_with",
+    "lie_inside"
+   ],
+   [
+    "lie_with",
+    "lie_left"
+   ],
+   [
+    "lie_with",
+    "lie_next_to"
+   ],
+   [
+    "lie_with",
+    "lie_right"
+   ],
+   [
+    "past",
+    "move_past"
+   ],
+   [
+    "pull",
+    "drive"
+   ],
+   [
+    "stand_with",
+    "stand_above"
+   ],
+   [
+    "stand_with",
+    "stand_behind"
+   ],
+   [
+    "stand_with",
+    "stand_beneath"
+   ],
+   [
+    "stand_with",
+    "stand_front"
+   ],
+   [
+    "stand_with",
+    "stand_inside"
+   ],
+   [
+    "stand_with",
+    "stand_left"
+   ],
+   [
+    "stand_with",
+    "stand_next_to"
+   ],
+   [
+    "stand_with",
+    "stand_right"
+   ],
+   [
+    "stop_with",
+    "stop_above"
+   ],
+   [
+    "stop_with",
+    "stop_behind"
+   ],
+   [
+    "stop_with",
+    "stop_beneath"
+   ],
+   [
+    "stop_with",
+    "stop_front"
+   ],
+   [
+    "stop_with",
+    "stop_left"
+   ],
+   [
+    "stop_with",
+    "stop_next_to"
+   ],
+   [
+    "stop_with",
+    "stop_right"
+   ],
+   [
+    "toward",
+    "move_toward"
+   ]
+  ]
+ },
+ "ride_alternatives": {
+  "nested": 0,
+  "comparative_top": 1
+ },
+ "licence": [
+  {
+   "family": "bare spatial (left, right, front, behind, next_to)",
+   "n": 1449,
+   "loco": 32,
+   "posture": 45,
+   "any": 1069
+  },
+  {
+   "family": "move_* (all base)",
+   "n": 1974,
+   "loco": 8,
+   "posture": 0,
+   "any": 1180
+  },
+  {
+   "family": "stop_* (all base)",
+   "n": 1549,
+   "loco": 1,
+   "posture": 0,
+   "any": 1026
+  },
+  {
+   "family": "stand_* (all base)",
+   "n": 4676,
+   "loco": 92,
+   "posture": null,
+   "any": 3516
+  },
+  {
+   "family": "sit_* (all base)",
+   "n": 1508,
+   "loco": 11,
+   "posture": null,
+   "any": 973
+  },
+  {
+   "family": "lie_* (all base)",
+   "n": 852,
+   "loco": 2,
+   "posture": null,
+   "any": 604
+  },
+  {
+   "family": "walk_* (all base)",
+   "n": 4001,
+   "loco": null,
+   "posture": 98,
+   "any": 3134
+  },
+  {
+   "family": "run_* (all base)",
+   "n": 657,
+   "loco": null,
+   "posture": 8,
+   "any": 550
+  },
+  {
+   "family": "fly_* (all base)",
+   "n": 877,
+   "loco": null,
+   "posture": 0,
+   "any": 336
+  },
+  {
+   "family": "swim_* (all base)",
+   "n": 175,
+   "loco": null,
+   "posture": 1,
+   "any": 127
+  },
+  {
+   "family": "creep_* (all base)",
+   "n": 176,
+   "loco": null,
+   "posture": 0,
+   "any": 74
+  },
+  {
+   "family": "jump_* (all base)",
+   "n": 226,
+   "loco": null,
+   "posture": 8,
+   "any": 130
+  },
+  {
+   "family": "`chase`",
+   "n": 83,
+   "loco": 58,
+   "posture": 1,
+   "any": 83
+  },
+  {
+   "family": "`fall_off`",
+   "n": 4,
+   "loco": 0,
+   "posture": 2,
+   "any": 2
+  },
+  {
+   "family": "`faster`",
+   "n": 89,
+   "loco": 60,
+   "posture": 0,
+   "any": 88
+  },
+  {
+   "family": "`follow`",
+   "n": 294,
+   "loco": 209,
+   "posture": 3,
+   "any": 293
+  },
+  {
+   "family": "`larger`",
+   "n": 1161,
+   "loco": 352,
+   "posture": 467,
+   "any": 1121
+  },
+  {
+   "family": "`play`",
+   "n": 556,
+   "loco": 173,
+   "posture": 285,
+   "any": 524
+  },
+  {
+   "family": "`ride`",
+   "n": 420,
+   "loco": 0,
+   "posture": 336,
+   "any": 336
+  },
+  {
+   "family": "`taller`",
+   "n": 1102,
+   "loco": 323,
+   "posture": 498,
+   "any": 1094
+  },
+  {
+   "family": "`touch`",
+   "n": 179,
+   "loco": 15,
+   "posture": 102,
+   "any": 157
+  },
+  {
+   "family": "`watch`",
+   "n": 608,
+   "loco": 139,
+   "posture": 346,
+   "any": 552
+  }
+ ]
+}

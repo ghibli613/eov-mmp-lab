@@ -61,3 +61,11 @@ pilot_analysis/gt_trajectories.json
 # and one of them -- the HuggingFace upload log -- reached 8.85 MB of
 # carriage-return progress bars. Regenerate with pilot_analysis/logs/commands.md.
 pilot_analysis/logs/
+
+# The pilot's prediction dumps (228 MB): kept locally, never committed. The one
+# file a GPU session needs (segments_raw_all.json) is copied to the box directly.
+pilot_analysis/preds_from_pod/
+
+# Option-A train tracks: superseded by preregistration amendment A5. gt_tracks.py
+# rewrites this on every run (the script's hash is pinned, so it stays as is).
+pilot_analysis/stage1c/gt_tracks_train_optionA.json

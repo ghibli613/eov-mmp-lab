@@ -1,0 +1,364 @@
+{
+ "counts_session2": {
+  "tracks": 2430,
+  "pairs": 6326,
+  "slots": 23222,
+  "pairs_over_40": 10,
+  "labelled_slots": 13659,
+  "labelled_slots_with_ecc": 13420
+ },
+ "counts_optionB": {
+  "tracks": 4044,
+  "pairs": 8926,
+  "slots": 13558,
+  "pairs_over_40": 0,
+  "labelled_slots": 12365,
+  "labelled_slots_with_ecc": 12154
+ },
+ "reproduced": true,
+ "rows": [
+  {
+   "metric": "horizontal=left",
+   "session2_summary": [
+    833,
+    867
+   ],
+   "rescored_session2_grid": [
+    833,
+    867
+   ],
+   "optionB": [
+    751,
+    781
+   ],
+   "drop_points": -0.08,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "horizontal=right",
+   "session2_summary": [
+    831,
+    866
+   ],
+   "rescored_session2_grid": [
+    831,
+    866
+   ],
+   "optionB": [
+    750,
+    781
+   ],
+   "drop_points": -0.07,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "vertical=above",
+   "session2_summary": [
+    68,
+    68
+   ],
+   "rescored_session2_grid": [
+    68,
+    68
+   ],
+   "optionB": [
+    60,
+    60
+   ],
+   "drop_points": 0.0,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "vertical=beneath",
+   "session2_summary": [
+    83,
+    83
+   ],
+   "rescored_session2_grid": [
+    83,
+    83
+   ],
+   "optionB": [
+    74,
+    74
+   ],
+   "drop_points": 0.0,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "depth=behind",
+   "session2_summary": [
+    529,
+    578
+   ],
+   "rescored_session2_grid": [
+    529,
+    578
+   ],
+   "optionB": [
+    468,
+    512
+   ],
+   "drop_points": 0.12,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "depth=front",
+   "session2_summary": [
+    566,
+    617
+   ],
+   "rescored_session2_grid": [
+    566,
+    617
+   ],
+   "optionB": [
+    502,
+    546
+   ],
+   "drop_points": -0.21,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "subject_state=moving",
+   "session2_summary": [
+    709,
+    937
+   ],
+   "rescored_session2_grid": [
+    709,
+    937
+   ],
+   "optionB": [
+    651,
+    856
+   ],
+   "drop_points": -0.38,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "subject_state=stationary",
+   "session2_summary": [
+    965,
+    1330
+   ],
+   "rescored_session2_grid": [
+    965,
+    1330
+   ],
+   "optionB": [
+    849,
+    1171
+   ],
+   "drop_points": 0.05,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "object_state=moving",
+   "session2_summary": [
+    154,
+    178
+   ],
+   "rescored_session2_grid": [
+    154,
+    178
+   ],
+   "optionB": [
+    148,
+    172
+   ],
+   "drop_points": 0.47,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "proximity=adjacent",
+   "session2_summary": [
+    175,
+    282
+   ],
+   "rescored_session2_grid": [
+    175,
+    282
+   ],
+   "optionB": [
+    169,
+    257
+   ],
+   "drop_points": -3.7,
+   "reproduces": true,
+   "learned_since_A3": true
+  },
+  {
+   "metric": "proximity=non-adjacent negatives",
+   "session2_summary": [
+    1495,
+    2144
+   ],
+   "rescored_session2_grid": [
+    1495,
+    2144
+   ],
+   "optionB": [
+    1286,
+    1915
+   ],
+   "drop_points": 2.58,
+   "reproduces": true,
+   "learned_since_A3": true
+  },
+  {
+   "metric": "comparative=larger",
+   "session2_summary": [
+    237,
+    245
+   ],
+   "rescored_session2_grid": [
+    237,
+    245
+   ],
+   "optionB": [
+    206,
+    218
+   ],
+   "drop_points": 2.24,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "comparative=taller",
+   "session2_summary": [
+    216,
+    232
+   ],
+   "rescored_session2_grid": [
+    216,
+    232
+   ],
+   "optionB": [
+    188,
+    203
+   ],
+   "drop_points": 0.49,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "comparative=faster",
+   "session2_summary": [
+    17,
+    19
+   ],
+   "rescored_session2_grid": [
+    17,
+    19
+   ],
+   "optionB": [
+    16,
+    18
+   ],
+   "drop_points": 0.58,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "D2 co_move on *_with",
+   "session2_summary": [
+    123,
+    178
+   ],
+   "rescored_session2_grid": [
+    123,
+    178
+   ],
+   "optionB": [
+    111,
+    172
+   ],
+   "drop_points": 4.57,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "D2 toward on chase/follow",
+   "session2_summary": [
+    25,
+    77
+   ],
+   "rescored_session2_grid": [
+    25,
+    77
+   ],
+   "optionB": [
+    26,
+    71
+   ],
+   "drop_points": -4.15,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "D2 subject-driven on stand/sit/lie (false positive)",
+   "session2_summary": [
+    4,
+    1144
+   ],
+   "rescored_session2_grid": [
+    4,
+    1144
+   ],
+   "optionB": [
+    7,
+    988
+   ],
+   "drop_points": 0.36,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "D1 co_move on *_with",
+   "session2_summary": [
+    122,
+    178
+   ],
+   "rescored_session2_grid": [
+    122,
+    178
+   ],
+   "optionB": [
+    112,
+    172
+   ],
+   "drop_points": 3.42,
+   "reproduces": true,
+   "learned_since_A3": false
+  },
+  {
+   "metric": "D1 approach-or-co_move on chase/follow",
+   "session2_summary": [
+    55,
+    77
+   ],
+   "rescored_session2_grid": [
+    55,
+    77
+   ],
+   "optionB": [
+    50,
+    71
+   ],
+   "drop_points": 1.01,
+   "reproduces": true,
+   "learned_since_A3": false
+  }
+ ],
+ "stop": []
+}
