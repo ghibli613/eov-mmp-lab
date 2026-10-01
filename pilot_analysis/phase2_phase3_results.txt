@@ -1,0 +1,122 @@
+loaded 'all' pass: 200 videos from final_merged_all.json
+   + 1580 tracklet pairs from segments_raw_all.json
+loaded 'novel' pass: 200 videos from final_merged_novel.json
+   + 1580 tracklet pairs from segments_raw_novel.json
+
+run_config: {'frame_stride': 1, 'clip_len': 30, 'clip_top_n': 20, 'max_per_video': 200, 'ckpt_path': 'output/ckpt/baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth', 'fuse_splits': True}
+
+==========================================================================
+PHASE 2 / H1'  -- per-group mAP (repo evaluator, group split file)
+==========================================================================
+
+group                  split  from        mAP     R@50    R@100
+geometric_static       base   all       34.11    24.18    25.53
+geometric_static       novel  novel     21.97    26.69    27.44
+geometric_dynamic      base   all       23.34    14.06    14.81
+geometric_dynamic      novel  novel      9.33     8.82    10.78
+appearance_static      base   all       58.26    45.63    45.63  <- descriptive, small n
+appearance_static      novel  novel     62.50    62.50    62.50  <- descriptive, small n
+appearance_dynamic     base   all       24.67    29.11    29.11  <- descriptive, small n
+appearance_dynamic     novel  novel     12.10    36.00    36.00  <- descriptive, small n
+
+--- H1' VERDICT ----------------------------------------------------------
+  base  : dynamic 23.34 / static 34.11 = ratio 0.684   -> NOT SUPPORTED (criterion <= 0.500)
+  novel : dynamic 9.33 / static 21.97 = ratio 0.425   -> SUPPORTED (criterion <= 0.500)
+  NOTE: SS B.19 argues the 0.5x bar is a large leap from the mechanism
+        evidence (an 0.0086 gap in text separability). Report the ratio
+        with an interval; treat 0.5 as a landmark, not a pass/fail line.
+
+==========================================================================
+PHASE 2 CONTROL -- per verb family (holds label granularity constant)
+==========================================================================
+
+verb     group                split   variants      mAP   from
+creep    geometric_dynamic    base          10     0.00   all
+creep    geometric_dynamic    novel         10     0.00   novel
+fly      geometric_dynamic    base          10    41.23   all
+fly      geometric_dynamic    novel         10     0.00   novel
+jump     geometric_dynamic    base          11    23.08   all
+jump     geometric_dynamic    novel         11     0.00   novel
+move     geometric_dynamic    base          11    46.23   all
+move     geometric_dynamic    novel         11     5.23   novel
+run      geometric_dynamic    base          11     8.93   all
+run      geometric_dynamic    novel         11    16.83   novel
+swim     geometric_dynamic    base           7     1.26   all
+swim     geometric_dynamic    novel          7     0.00   novel
+walk     geometric_dynamic    base          11    10.40   all
+walk     geometric_dynamic    novel         11    11.05   novel
+lie      geometric_static     base           9    14.99   all
+lie      geometric_static     novel          9     5.00   novel
+sit      geometric_static     base           8    51.99   all
+sit      geometric_static     novel          8    11.65   novel
+stand    geometric_static     base           9    22.56   all
+stand    geometric_static     novel          9    49.47   novel
+stop     geometric_static     base           8    11.79   all
+stop     geometric_static     novel          8    35.08   novel
+
+  matched pairs (similar variant counts, one static one dynamic):
+    base   stand (static)  22.56  vs  walk  (dynamic)  10.40   ratio 0.461
+    novel  stand (static)  49.47  vs  walk  (dynamic)  11.05   ratio 0.223
+    base   sit   (static)  51.99  vs  run   (dynamic)   8.93   ratio 0.172
+    novel  sit   (static)  11.65  vs  run   (dynamic)  16.83   ratio 1.445
+    base   lie   (static)  14.99  vs  fly   (dynamic)  41.23   ratio 2.751
+    novel  lie   (static)   5.00  vs  fly   (dynamic)   0.00   ratio 0.000
+    base   stop  (static)  11.79  vs  creep (dynamic)   0.00   ratio 0.000
+    novel  stop  (static)  35.08  vs  creep (dynamic)   0.00   ratio 0.000
+
+==========================================================================
+PHASE 2.3 -- what novel predicates get confused with (mechanism check)
+==========================================================================
+
+misclassified novel instances with a matched tracklet pair: 126
+  confusion WITHIN the same verb family :    50  (39.7%)
+  confusion ACROSS verb families        :    76  (60.3%)
+
+  SS B.11 predicted errors cluster WITHIN a verb family -> NOT CONFIRMED
+
+  top 15 confusions (GT -> predicted):
+    stand_above      -> ride               17   cross-verb
+    stand_with       -> stand_next_to       7   same-verb
+    stand_with       -> stand_left          5   same-verb
+    walk_away        -> stand_right         5   cross-verb
+    stop_beneath     -> move_beneath        4   cross-verb
+    sit_behind       -> sit_left            4   same-verb
+    move_next_to     -> move_with           4   same-verb
+    stand_with       -> stand_front         4   same-verb
+    sit_beneath      -> sit_front           3   same-verb
+    walk_away        -> stand_left          3   cross-verb
+    sit_behind       -> sit_right           3   same-verb
+    stand_with       -> stand_right         3   same-verb
+    stand_with       -> stand_behind        3   same-verb
+    feed             -> stand_left          3   cross-verb
+    walk_toward      -> stand_left          3   cross-verb
+
+==========================================================================
+PHASE 3 / H2 -- the price of the greedy merge
+==========================================================================
+
+variant                      all mAP   novel mAP   (each from its own pass)
+(a) greedy association()       27.18       15.79
+(b) oracle merge, mean         27.26       15.72
+(b) oracle merge, max          27.04       15.37
+
+  all   : oracle-merge gain +0.07 mAP -> H2 NOT SUPPORTED (criterion >= 2.0)
+
+  novel : oracle-merge gain -0.07 mAP -> H2 NOT SUPPORTED (criterion >= 2.0)
+
+--- Phase 3.2(c) relaxed vIoU, 'all' pass (how much is mislocalisation) ---
+    thr    greedy    oracle      gap
+    0.5     27.18     27.26     0.07
+    0.3     33.22     33.18    -0.04
+    0.1     39.23     39.28     0.06
+
+--- Phase 3.3 -- loss rate, not fragmentation (SS C.5) ---
+  GT instances >= 2 segments long: 2834
+    0:  2046 (72.2%)  lost entirely
+    1:   775 (27.3%)  correctly merged
+    2:    11 ( 0.4%)  2 pieces
+    3:     2 ( 0.1%)  3 pieces
+
+  LOSS rate 72.2%   FRAGMENTATION rate 0.5%
+  SS C.5: use the loss rate. Fragmentation reads ~1% even when the merge
+          is costing double digits, because it truncates rather than splits.

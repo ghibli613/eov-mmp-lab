@@ -14,7 +14,18 @@
 #   DISK       >= 60 GB
 #
 # Does NOT install torch -- it compiles the CUDA operator against whatever the
-# image ships. Use a PyTorch 2.x + CUDA 12.x template.
+# image ships, so any recent PyTorch image works and nothing here is pinned.
+#
+# VERIFIED IMAGE: Vast.ai's own PyTorch template (RTX 4090, 2026-09-02):
+#   Ubuntu 24.04.4, Python 3.12, venv /venv/main
+#   torch 2.11.0+cu128, torchvision 0.26.0+cu128, numpy 2.5.2
+#   nvcc 12.8 == torch CUDA 12.8, cudnn 91900
+# which matches requirements.txt exactly. It ships only torch, torchvision,
+# numpy and PyYAML -- step 2 installs the rest.
+#
+# Do NOT use a bare pytorch/pytorch:*-devel from Docker Hub: it has nvcc but no
+# sshd, so the host's launch script loops on "ssh: command not found" and the
+# instance is unreachable. A "-runtime" image has sshd but no nvcc.
 set -euo pipefail
 
 WORK="${WORK:-$HOME/ov-vidvrd}"
@@ -32,15 +43,50 @@ say() { printf '\n\033[1m== %s\033[0m\n' "$*"; }
 
 : "${HF_TOKEN:?set HF_TOKEN first -- both HuggingFace repos are private}"
 
-say "0. machine"
+say "0. preflight -- adapts to whatever the image ships"
+# Nothing here is pinned to a torch or CUDA version. The operator is built
+# against the image's own torch, so any recent PyTorch -devel image works; this
+# step just reports what it found and fails fast on the things that genuinely
+# break the run.
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
-free -g | awk 'NR==2{printf "system RAM: %s GiB total, %s available\n", $2, $7}'
-df -h --output=avail "$(dirname "$WORK")" | tail -1 | xargs echo "disk available:"
+free -g | awk 'NR==2{printf "system RAM : %s GiB total, %s available\n", $2, $7}'
+df -h --output=avail / | tail -1 | xargs echo "disk       :"
+
+if ! command -v nvcc >/dev/null 2>&1; then
+  echo
+  echo "!! nvcc NOT FOUND. The CUDA operator compiles from source, so this image"
+  echo "!! cannot build it -- you have a -runtime image, not a -devel one."
+  echo "!! Either re-rent with a '-devel' PyTorch image, or:"
+  echo "!!   apt-get update && apt-get install -y cuda-toolkit-\$(python -c \"import torch;print(torch.version.cuda.replace('.','-'))\")"
+  exit 1
+fi
+
+python - <<'PYCHK'
+import shutil, subprocess, sys, torch
+tv, tc = torch.__version__, torch.version.cuda
+cc = torch.cuda.get_device_capability()
+out = subprocess.run(["nvcc", "--version"], capture_output=True, text=True).stdout
+nv = next((w.rstrip(",") for w in out.split() if w.startswith("V") and w[1:2].isdigit()), "?")[1:]
+print(f"torch      : {tv}  (built for CUDA {tc})")
+print(f"nvcc       : {nv}")
+print(f"GPU        : {torch.cuda.get_device_name(0)}, compute {cc[0]}.{cc[1]}")
+if not torch.cuda.is_available():
+    sys.exit("!! torch.cuda.is_available() is False -- the image cannot see the GPU")
+if tc and nv != "?" and tc.split(".")[0] != nv.split(".")[0]:
+    print(f"!! nvcc is CUDA {nv} but torch was built for {tc}. Major versions differ,")
+    print("!! so the operator may fail to build or import. If it does, install a torch")
+    print(f"!! matching nvcc:  pip install torch --index-url "
+          f"https://download.pytorch.org/whl/cu{nv.replace('.','')[:3]}")
+PYCHK
+
 RAM_GB=$(free -g | awk 'NR==2{print $2}')
 if [ "$RAM_GB" -lt 30 ]; then
-  echo "!! system RAM is ${RAM_GB} GiB. The longest videos need ~5 GB transient and"
-  echo "!! 12.7 GiB is known to fail. Consider a box with >= 32 GB."
-  echo "!! Continuing anyway in 10s; Ctrl-C to stop." && sleep 10
+  echo
+  echo "!! system RAM is ${RAM_GB} GiB. dataset.__getitem__ holds a whole video's"
+  echo "!! per-frame tensors twice during torch.cat -- ~2.5 GiB for a 645-frame"
+  echo "!! video, and the longest test video is 1,234 frames. 12.7 GiB failed"
+  echo "!! reproducibly (PILOT-STATUS.md SS B.22). Want >= 32 GB."
+  echo "!! Continuing in 10s; Ctrl-C to stop." && sleep 10
 fi
 
 say "1. clone"
@@ -66,12 +112,13 @@ python -c "import torch; print('torch', torch.__version__, 'cuda', torch.version
 # use linear_sum_assignment, and third_party/vidvrd_ii_helper imports interp1d.
 # Leaving it out fails at step 4 with ModuleNotFoundError: No module named 'scipy'.
 # transformers/tokenizers are in requirements.txt but imported nowhere, so skipped.
-pip install -q scipy matplotlib pyyaml ftfy regex einops timm fvcore pycocotools \
+pip install -q scipy scikit-learn matplotlib pyyaml ftfy regex einops timm fvcore pycocotools \
                opencv-python-headless gdown huggingface_hub hf_transfer \
                easydict tensorboard six protobuf pytest
 python - <<'PYCHK'
 import importlib.util, sys
-missing = [m for m in ("scipy", "matplotlib", "yaml", "cv2", "numpy", "PIL", "tqdm",
+missing = [m for m in ("scipy", "sklearn", "matplotlib", "yaml", "cv2", "numpy",
+                       "PIL", "tqdm",
                        "einops", "timm", "ftfy", "regex", "easydict", "fvcore",
                        "pycocotools", "huggingface_hub")
            if importlib.util.find_spec(m) is None]
@@ -80,6 +127,16 @@ if missing:
 print("all imports present")
 PYCHK
 export HF_HUB_ENABLE_HF_TRANSFER=1
+
+# Cap torch's intra-op threads. MEASURED on a 255-core box: leaving this to
+# torch's default (one thread per core) gave 228 s/video; capping it at 8 gave
+# ~60 -- roughly 4x, taking a 12-hour run down to under 3. The pipeline's CPU
+# work is many small per-frame tensors, so hundreds of threads spend more time
+# synchronising than computing. Scale with the box, but do not remove: a big
+# machine is where this hurts most.
+THREADS="${THREADS:-8}"
+export OMP_NUM_THREADS="$THREADS" MKL_NUM_THREADS="$THREADS"
+echo "  OMP_NUM_THREADS=$THREADS (of $(nproc) cores) -- see the comment above"
 
 say "3. CUDA operator"
 ARCH=$(python -c "import torch;c=torch.cuda.get_device_capability();print(f'{c[0]}.{c[1]}')")
@@ -92,8 +149,33 @@ echo "compute capability $ARCH"
 python -c "import torch, MultiScaleDeformableAttention; print('operator OK')"
 
 say "4. annotations, trajectories, class splits, GT"
-# NOT --steps frames: frames stream per batch during the run
-python tools/prepare_data.py --steps anno,meta,gt
+# NOT --steps frames: frames stream per batch during the run.
+# `|| true` because prepare_data reports on EVERY step and exits 1 if any is
+# incomplete -- including videos, frames, bank and weights, which we skip on
+# purpose. Its exit code is therefore always 1 here, and under `set -e` that
+# killed the script after a perfectly successful data prep. Verify what we
+# actually need instead.
+python tools/prepare_data.py --steps anno,meta,gt || true
+python - <<'PYCHK'
+import glob, os, sys
+sys.path.insert(0, os.getcwd())
+from utils import paths
+tr = len(glob.glob(os.path.join(paths.ANNO_TRAIN_DIR, "*.json")))
+te = len(glob.glob(os.path.join(paths.ANNO_TEST_DIR, "*.json")))
+meta = len(glob.glob(os.path.join(paths.META_DIR, "*.json"))) \
+     + len(glob.glob(os.path.join(paths.META_DIR, "*.pkl")))
+gt = [os.path.join(paths.META_DIR, "test_relation_gt.json"),
+      os.path.join(paths.META_DIR, "test_object_trajectories_gt.json")]
+print(f"  annotations {tr} train + {te} test")
+print(f"  meta files  {meta}")
+bad = []
+if tr != 800 or te != 200: bad.append(f"annotations ({tr}/800, {te}/200)")
+for g in gt:
+    if not os.path.exists(g): bad.append(f"missing {os.path.basename(g)}")
+if bad:
+    sys.exit("  data prep INCOMPLETE: " + "; ".join(bad))
+print("  data prep OK")
+PYCHK
 
 say "5. weights (eval subset, 2.92 GB)"
 python tools/hugging_download.py --manifest "$WEIGHTS_MANIFEST" --only eval

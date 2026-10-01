@@ -878,6 +878,79 @@ still fails on the 1,234-frame video.
 
 ---
 
+### B.23 Thread oversubscription: 228 s/video -> 60 on a 255-core box
+
+Measured on Vast.ai, RTX 4090, 2026-09-02.
+
+| threads | s/video | full run |
+|---|---|---|
+| torch default (255, = core count) | **228.7** | ~12 h |
+| `OMP_NUM_THREADS=8` | **~60** | **~2-3 h** |
+
+The GPU was at **17% utilisation** with the machine 81% idle and no I/O wait, so
+the bottleneck was neither the GPU, nor contention, nor disk. The python process
+was consuming 2230% CPU -- 22 cores' worth -- on a pipeline whose CPU work is
+many small per-frame tensors: JPEG decode, deep_sort association, AFLink. With
+one thread per core, synchronisation costs more than the arithmetic.
+
+Notably the T4 box did **97.6 s/video** with 28 dedicated cores, i.e. a 4090 with
+255 cores was **2.3x slower** than a T4 until this was capped. The 28-core box was
+accidentally near-optimal.
+
+**Set OMP_NUM_THREADS on any many-core machine.** `tools/setup_rented_box.sh`
+defaults it to 8 and prints what it chose; override with `THREADS=16`. Nothing
+about the numbers changes -- this is pure throughput.
+
+---
+
+### B.24 THE RUN: reproduction passed, H2 refuted, the failure is upstream
+
+Full test set, RTX 4090, 2026-09-02. Numbers and verdicts are in
+[`report.md`](report.md); raw output in `phase2_phase3_results.txt`. What matters
+for this record is which of this document's own predictions survived.
+
+**Held:**
+
+* Phase 1 reproduces — all **27.18** vs 26.88, novel **15.79** vs 15.64, both
+  within +0.5 over 200/200 videos.
+* H1's *direction* (§C.1's reframing): `geometric_dynamic` is worse than
+  `geometric_static` on both splits — base 23.34 vs 34.11, novel 9.33 vs 21.97.
+  The ≤0.5x criterion is met on novel (0.425), not base (0.684).
+* §C.5's warning that fragmentation is the wrong metric: measured **0.5%**.
+
+**Failed:**
+
+* **§B.12's H2 magnitude was badly wrong.** The simulation predicted an 11-26 mAP
+  oracle-merge gain; measured is **+0.07 all / -0.07 novel**, i.e. H2 refuted by a
+  factor of 30. Cutting GT into segments and dropping some at random does not
+  resemble real model output. The header caveat -- that the fixture could not
+  validate direction -- was the operative sentence, and the simulated figure
+  should not be cited.
+* **§B.11's within-verb-family confusion prediction was wrong.** Pre-registered
+  before any prediction existed; measured **39.7% within vs 60.3% across**.
+  Text-embedding separability turned out not to predict where errors land.
+* **§B.19's granularity control did not resolve the confound.** Per-verb-family
+  ratios came out 0.461, 0.223, 0.172, 1.445, 2.751, 0.000, 0.000, 0.000, with
+  several families at exactly zero (floor effects) and one running the opposite
+  way. Label granularity remains as plausible as verb semantics for the
+  group-level gap.
+
+**New, and larger than anything the protocol proposed:**
+
+**72.2% of GT instances spanning >=2 segments have no matching prediction at
+all** -- 2046 of 2834. Fragmentation 0.5%, correctly merged 27.3%. So there is
+usually nothing to merge, because the correct triplet was never produced at an
+acceptable vIoU. Relaxing the vIoU threshold from 0.5 to 0.1 gains **12 mAP**
+(27.18 -> 39.23) while the oracle-merge gap stays ~0 at every threshold: temporal
+extents are substantially wrong, but not because of how segments are merged. The
+headroom is in the detector, the tracker and predicate scoring.
+
+Also worth noting: the largest single confusion is `stand_above -> ride`, 17
+instances, where both labels arguably describe the same scene -- an annotation
+ambiguity rather than a model error.
+
+---
+
 ### B.18 A trap: `--test_traj gt` looks like Phase 4 and does nothing
 
 `utils/parser_func.py` defines `--train_traj`, `--val_traj` and `--test_traj`,

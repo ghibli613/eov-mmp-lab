@@ -25,6 +25,10 @@ huggingface_hub==1.28.0       # tools/hugging_*.py fetch and publish the weights
 numpy==2.5.2
 scipy==1.18.0                 # linear_sum_assignment, used by the tracker and the
                               # detector's Hungarian matcher
+scikit-learn                  # models/tracking/aflink/AppFreeLink.py imports
+                              # sklearn.preprocessing.normalize at module level, and
+                              # end2end_model.py imports AppFreeLink -- so it is on
+                              # the live path, not just in aflink/train.py
 matplotlib                    # utils/eov_utils.py imports pyplot at module level, so
                               # this is on the import chain for cli/* -- it was missing
                               # from this file and a fresh environment died with

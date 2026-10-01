@@ -18,9 +18,10 @@ untangling the rest.
 
 > **You need ~16 GB of VRAM.** The model peaks at **9.26 GB before a single
 > backward pass**, so 4–8 GB cards cannot run it. A 16 GB card (RTX 4080, A4000,
-> Colab T4) or better is the requirement. Setup instructions for
+> a T4) or better is the requirement, **and ≥32 GB of system RAM** — the
+> longest videos need ~2.5 GiB transient and 12.7 GB fails (§B.22). Setup for
 > [your own machine](#setup-on-your-own-machine) and for
-> [Colab](#setup-on-google-colab) are both below — pick one.
+> [a rented box](#setup-on-a-rented-gpu-box) are both below — pick one.
 
 ---
 
@@ -30,8 +31,8 @@ untangling the rest.
 
 - [Setup on your own machine](#setup-on-your-own-machine) — persistent disk, no
   session limits. Best if you have a 16 GB+ GPU.
-- [Setup on Google Colab](#setup-on-google-colab) — no hardware needed, but the
-  disk is ephemeral and needs planning.
+- [Setup on a rented GPU box](#setup-on-a-rented-gpu-box) — no hardware needed,
+  one command, a few dollars.
 
 **Then, common to both:**
 
@@ -73,7 +74,7 @@ derived from the repo root, so the project moves between machines cleanly:
 python -m utils.paths        # print every path and whether it exists
 ```
 
-Two environment variables relocate everything — essential on Colab:
+Two environment variables relocate everything:
 
 ```bash
 export VIDVRD_DATA_ROOT=/content/data/vidvrd
@@ -163,7 +164,7 @@ without it.
 
 The detector uses Deformable DETR's `MultiScaleDeformableAttention`, a CUDA
 extension compiled from source. PyTorch ships a CUDA *runtime* but not a
-*compiler*, so you need `nvcc` and headers. (Colab has these already; a normal
+*compiler*, so you need `nvcc` and headers. (A `-devel` container has these; a normal
 machine does not.)
 
 ```bash
@@ -234,106 +235,72 @@ That is the whole local setup. Everything persists, so you do this once.
 
 ---
 
-# Setup on Google Colab
+# Setup on a rented GPU box
 
-Use this if you do not have a 16 GB GPU. The trade-off is that Colab's local
-disk is **ephemeral** — plan the layout before you start.
+Use this if you do not have a 16 GB GPU. Vast.ai, RunPod and similar rent one by
+the hour; the whole pilot is one command.
 
-## 1. Get a GPU session
+**Colab does not work for this.** Not for want of VRAM — for want of system RAM.
+`dataset.__getitem__` builds one tensor per frame and `torch.cat`s them, holding
+the list and the output at once: ~2.5 GiB transient for a 645-frame video, and
+the longest test video is 1,234 frames. Three Colab sessions died reproducibly on
+the same video with 12.7 GB. See
+[pilot_analysis/PILOT-STATUS.md](pilot_analysis/PILOT-STATUS.md) §B.22.
 
-Runtime → Change runtime type → **T4 GPU** (or better), then `!nvidia-smi` to
-confirm ≥ 16 GB.
+## 1. Rent
 
-## 2. Mount Drive and clone
+| filter | value | why |
+|---|---|---|
+| GPU | RTX 3090 / 4090 | 24 GB VRAM, ~3-4x a T4 |
+| **system RAM** | **≥ 32 GB** | the binding constraint |
+| disk | 60 GB | image + weights + a streaming frame batch |
+| type | On-Demand | interruptible gets preempted |
+| image | **Vast's own PyTorch template** | verified; see below |
 
-Drive holds what is slow or impossible to re-fetch; the session disk holds the
-big derived data, rebuilt each time.
+A `-runtime` image has no `nvcc` and the operator build fails. A bare
+`pytorch/pytorch:*-devel` from Docker Hub has `nvcc` but **no sshd**, so Vast's
+launch script loops on `ssh: command not found` and you can never connect. Use
+Vast's own template.
 
-```python
-from google.colab import drive
-drive.mount('/content/drive')
+**Verified 2026-09-02** — Vast's PyTorch template, on an RTX 4090:
+
 ```
+Ubuntu 24.04.4 LTS, Python 3.12, venv at /venv/main
+torch 2.11.0+cu128   torchvision 0.26.0+cu128   numpy 2.5.2
+nvcc 12.8 == torch CUDA 12.8, cudnn 91900, compute 8.9
+```
+
+That is exactly what `requirements.txt` pins, so there is no version risk. The
+image ships only torch, torchvision, numpy and PyYAML; the setup script installs
+the rest.
+
+A `-runtime` image has no `nvcc` and the build fails. Vast splits RAM across a
+machine's GPUs, so check the figure for *your* selection, not the machine total.
+
+## 2. Run
 
 ```bash
-%cd /content
-!git clone https://github.com/<you>/ov-vidvrd-lab.git
-%cd ov-vidvrd-lab
+export WORK=/workspace/ov-vidvrd HF_TOKEN=hf_...
+curl -sL https://raw.githubusercontent.com/<you>/ov-vidvrd-lab/main/tools/setup_rented_box.sh | bash
 ```
 
-```python
-import os
-os.environ['VIDVRD_DATA_ROOT']   = '/content/data/vidvrd'
-os.environ['VIDVRD_OUTPUT_ROOT'] = '/content/drive/MyDrive/vidvrd/output'
-```
+Inside `tmux`, then `Ctrl-B` `D` to detach — the run takes hours and a dropped
+connection would otherwise kill it.
 
-**Outputs go to Drive on purpose** — a disconnected session must not cost you a
-training run.
+[`tools/setup_rented_box.sh`](tools/setup_rented_box.sh) clones, installs the
+dependencies (**not** torch — it builds the operator against the image's own
+build, whatever version that is), compiles the operator at the detected compute
+capability, prepares the data, fetches the evaluation weights, runs both
+predicate splits in one pass, and then runs Phases 2 and 3. It is idempotent:
+re-run it after any interruption and it hard-syncs the checkout, skips installed
+packages and verified downloads, and resumes the run from `preds/`.
 
-## 3. Install dependencies
+It preflights the machine first — VRAM, system RAM, disk, `nvcc` against
+`torch.version.cuda` — and fails in seconds rather than after the downloads.
 
-**Do not install PyTorch.** Colab ships a build matched to its own driver;
-replacing it is slow and frequently breaks CUDA.
-
-```bash
-!pip install -q ftfy regex einops timm fvcore pycocotools opencv-python-headless gdown
-```
-
-```python
-import torch
-print(torch.__version__, torch.version.cuda, torch.cuda.get_device_name(0))
-```
-
-## 4. Compile the operator
-
-Colab already has `nvcc` matching its torch, so no toolchain install is needed:
-
-```bash
-%cd ops
-!rm -rf build *.egg-info
-!TORCH_CUDA_ARCH_LIST="7.5" pip install --no-build-isolation .
-%cd ..
-```
-
-`setup.py install` was removed in setuptools 80 (2025); use pip.
-
-Use `7.5` for T4, `8.0` for A100, `8.9` for L4 — or query it as in the
-[local instructions](#5-compile-the-operator).
-
-```python
-import torch, MultiScaleDeformableAttention
-print('ok')
-```
-
-## 5. Stage the videos on Drive (first time only)
-
-The 42 GB of frames cannot live on Drive; the 4.3 GB of videos they derive from
-can. Download once, keep forever:
-
-```bash
-!python tools/prepare_data.py --steps videos
-!mkdir -p /content/drive/MyDrive/vidvrd
-!cp -r $VIDVRD_DATA_ROOT/videos /content/drive/MyDrive/vidvrd/
-```
-
-Every later session symlinks instead of downloading:
-
-```bash
-!mkdir -p $VIDVRD_DATA_ROOT
-!ln -sfn /content/drive/MyDrive/vidvrd/videos $VIDVRD_DATA_ROOT/videos
-```
-
-Keep the weights on Drive the same way, and symlink `output/ckpt` at them.
-
-## 6. Build the rest of the data, each session
-
-```bash
-!df -h /content              # confirm room for ~45 GB
-!python tools/prepare_data.py
-```
-
-With the videos symlinked it skips straight to decoding frames — 30–40 minutes.
-
----
+**Results live on the container disk and die with the instance.** Copy them off
+before destroying it; the script prints the `scp` line. Set `PREDS_REPO` to also
+publish them to a private HuggingFace dataset.
 
 # Get the data
 
@@ -399,7 +366,7 @@ python -m cli.train --max_epoch 5 --lr 5e-6
 Training starts from the three step-1/2/3 checkpoints — this is **fine-tuning,
 not training from scratch**. See [`docs/01_Architecture.md`](docs/01_Architecture.md).
 
-**Measure one epoch before committing to twenty.** Colab sessions are
+**Measure one epoch before committing to twenty.** Rented sessions are
 time-limited, and an epoch is 800 videos × ~260 frames × 2 CLIP-L encoders.
 [`docs/10_Known-issues.md`](docs/10_Known-issues.md) documents a commented-out
 sampling branch that can cut this by ~30×.
@@ -467,7 +434,7 @@ checkpoints too** — they let you evaluate without training at all.
 ## Hosting them yourself
 
 Once you have them, put them somewhere you control so every machine — and every
-Colab session — can fetch them in one command. A **private** HuggingFace repo is
+fresh box — can fetch them in one command. A **private** HuggingFace repo is
 the simplest option:
 
 ```bash
@@ -506,7 +473,7 @@ python tools/hugging_download.py --manifest $MANIFEST --only eval   # 2.9 GB not
 ```
 
 That repo is **private**, so run `hf auth login` first (or set `HF_TOKEN`) on any
-machine that needs it — including each Colab session.
+machine that needs it — including each fresh rented box.
 
 Every file is sha256-verified, so a truncated download fails loudly instead of
 becoming an unexplained accuracy drop. Correct files are skipped, so it resumes.
@@ -536,7 +503,7 @@ equivalence.
 | `FileNotFoundError: .../clip_L14_feat_vidvrd.pkl` | the CLIP object bank is missing |
 | `CUDA out of memory` | < 16 GB of VRAM. Batch size is already 1 |
 | `prepare_data.py` stops mid-download | just run it again — completed steps are skipped |
-| Everything vanished between sessions | Colab's local disk is ephemeral; only Drive persists |
+| Everything vanished between sessions | a rented box's container disk dies with the instance; copy results off before destroying it |
 | conda `CondaToSNonInteractiveError` | add `--override-channels -c conda-forge` |
 | `torch.cuda.is_available()` is `False` | the PyTorch build does not match the driver — reinstall from the index for your `nvidia-smi` CUDA version |
 | `nvcc: command not found` | the CUDA toolchain step was skipped, or `CUDA_HOME`/`PATH` are not exported in this shell |

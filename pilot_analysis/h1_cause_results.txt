@@ -1,0 +1,75 @@
+==========================================================================
+ANALYSIS 1 -- ERROR DESTINATION
+==========================================================================
+
+--- 'all' pass  (GT restricted to 132 predicates) -------------------
+  GT instances with a matched pair : 1170
+    of which correct (top-1)       : 404  (34.5%)
+    errors                         : 766   (dynamic-GT 280, static-GT 486)
+
+  dynamic-GT errors landing on a STATIC predicate :  60.0%   (168/280)
+  static-GT errors landing on a DYNAMIC predicate  :  13.6%   (66/486)
+
+  nulls for 'lands on static':
+    uniform over the 132 labels           36.4%
+    the MODEL's own top-1 distribution    70.3%   <- strictest
+    GT-frequency weighted                 52.7%
+
+  observed 60.0% vs model null 70.3%  -> ratio 0.85x
+  ASYMMETRY: dyn->static 60.0% vs static->dyn 13.6%   (difference +46.4%)
+
+  of the 168 dyn->static errors, prediction is the STATIC COUNTERPART (same spatial term, motion dropped): 55 (32.7%)
+    chance among static labels: 7.6%
+
+--- 'novel' pass  (GT restricted to 61 predicates) ------------------
+  GT instances with a matched pair : 133
+    of which correct (top-1)       : 55  (41.4%)
+    errors                         : 78   (dynamic-GT 42, static-GT 36)
+
+  dynamic-GT errors landing on a STATIC predicate :  57.1%   (24/42)
+  static-GT errors landing on a DYNAMIC predicate  :   8.3%   (3/36)
+
+  nulls for 'lands on static':
+    uniform over the 132 labels           36.4%
+    the MODEL's own top-1 distribution    65.2%   <- strictest
+    GT-frequency weighted                 45.3%
+
+  observed 57.1% vs model null 65.2%  -> ratio 0.88x
+  ASYMMETRY: dyn->static 57.1% vs static->dyn 8.3%   (difference +48.8%)
+
+  of the 24 dyn->static errors, prediction is the STATIC COUNTERPART (same spatial term, motion dropped): 1 (4.2%)
+    chance among static labels: 1.3%
+
+==========================================================================
+ANALYSIS 2 -- GRANULARITY REGRESSION
+==========================================================================
+
+BASE split -- control: log(train instance count)
+  71 base predicates scored, 15 at exactly AP=0
+
+  base  (n=71: 28 static, 43 dynamic, zeros kept)
+    AP ~ log(train count)           R2  0.237
+    AP ~ log(train count) + group        R2  0.239   partial R2 of group  0.002
+    group coefficient (dynamic)    -1.96 mAP pts  +- 9.55 (95%)  -> INCLUDES 0
+    log(train count) coefficient            +6.14  +- 3.17
+
+  base  (n=56: 27 static, 29 dynamic, zero-AP dropped)
+    AP ~ log(train count)           R2  0.070
+    AP ~ log(train count) + group        R2  0.072   partial R2 of group  0.001
+    group coefficient (dynamic)    -1.38 mAP pts  +-10.77 (95%)  -> INCLUDES 0
+    log(train count) coefficient            +4.82  +- 5.41
+
+NOVEL split -- control: nearest-neighbour text similarity (SS B.11)
+  61 novel predicates scored, 36 at exactly AP=0
+
+  novel  (n=61: 20 static, 41 dynamic, zeros kept)
+    AP ~ NN text similarity         R2  0.044
+    AP ~ NN text similarity + group        R2  0.088   partial R2 of group  0.046
+    group coefficient (dynamic)    -8.36 mAP pts  +- 9.77 (95%)  -> INCLUDES 0
+    NN text similarity coefficient          -213.12  +-302.63
+
+  novel  (n=25: 11 static, 14 dynamic, zero-AP dropped)
+    AP ~ NN text similarity         R2  0.036
+    AP ~ NN text similarity + group        R2  0.073   partial R2 of group  0.038
+    group coefficient (dynamic)    -8.11 mAP pts  +-17.09 (95%)  -> INCLUDES 0
+    NN text similarity coefficient          -280.75  +-684.17
