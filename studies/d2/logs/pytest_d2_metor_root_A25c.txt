@@ -1,0 +1,34 @@
+# 2026-10-10T10:21:23+07:00 cd METOR/studies; D2_CODE_ROOT=/home/totoro/Documents/thesis/source/METOR python -m pytest -p no:cacheprovider d2/tests -v   (A25c; METOR's vendored front end); code_pins.json 95816845ec3a367ed890796f5018421253a6edf0e78b63a891852c2420b09028
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/totoro/miniconda3/envs/repro-next/bin/python
+rootdir: /home/totoro/Documents/thesis/source/METOR/studies
+plugins: anyio-4.14.2
+collecting ... collected 25 items
+
+d2/tests/test_d2_analyse.py::test_check_video_passes_on_a_consistent_recording PASSED [  4%]
+d2/tests/test_d2_analyse.py::test_every_relation_lands_in_its_stage PASSED [  8%]
+d2/tests/test_d2_analyse.py::test_o1b_scores_follow_the_oracles_own_choice PASSED [ 12%]
+d2/tests/test_d2_analyse.py::test_frame_range_table PASSED               [ 16%]
+d2/tests/test_d2_analyse.py::test_reading_names_ties_and_unseparated_groups PASSED [ 20%]
+d2/tests/test_d2_analyse.py::test_funnel PASSED                          [ 24%]
+d2/tests/test_d2_analyse.py::test_main_verifies_everything_before_opening_labels PASSED [ 28%]
+d2/tests/test_d2_analyse.py::test_join_matches_by_value_and_stops_when_counts_differ PASSED [ 32%]
+d2/tests/test_d2_recorders.py::test_recorders_on_vs_off_identical PASSED [ 36%]
+d2/tests/test_d2_recorders.py::test_comparison_detects_a_changed_pipeline PASSED [ 40%]
+d2/tests/test_d2_recorders.py::test_recorder_ignores_frames_outside_a_video PASSED [ 44%]
+d2/tests/test_d2_stages.py::test_iou_many_equals_the_repo_iou PASSED     [ 48%]
+d2/tests/test_d2_stages.py::test_empty_frames_add_nothing_to_the_repo_viou PASSED [ 52%]
+d2/tests/test_d2_stages.py::test_clip_boxes_as_end2end PASSED            [ 56%]
+d2/tests/test_d2_stages.py::test_oracle_picks_highest_iou_first_on_ties_and_no_box_at_zero PASSED [ 60%]
+d2/tests/test_d2_stages.py::test_cut_viou_is_d1s_convention PASSED       [ 64%]
+d2/tests/test_d2_stages.py::test_length_rule_is_ten_frames_on_the_repo_function PASSED [ 68%]
+d2/tests/test_d2_stages.py::test_replay_track_rules PASSED               [ 72%]
+d2/tests/test_d2_stages.py::test_replay_video_is_format_plus_the_range_rule PASSED [ 76%]
+d2/tests/test_d2_stages.py::test_pre_filter_tracks_interpolate_inside_gaps PASSED [ 80%]
+d2/tests/test_d2_stages.py::test_fragmentation PASSED                    [ 84%]
+d2/tests/test_d2_stages.py::test_classify_side_every_branch PASSED       [ 88%]
+d2/tests/test_d2_stages.py::test_relation_label_is_the_most_upstream PASSED [ 92%]
+d2/tests/test_d2_stages.py::test_boot_share_is_d1s PASSED                [ 96%]
+d2/tests/test_d2_stages.py::test_boot_diff_is_paired PASSED              [100%]
+
+============================= 25 passed in 37.80s ==============================

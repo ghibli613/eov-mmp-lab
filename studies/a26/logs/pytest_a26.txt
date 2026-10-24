@@ -1,0 +1,39 @@
+# 2026-10-11T16:47:10+07:00 cd METOR/studies; python -m pytest -p no:cacheprovider a26/tests -v   (METOR root first on sys.path); METOR HEAD b2af688cfce0ed8939b2b5fc74b7ec7f74a6973e + uncommitted a26/; code_pins.json 699508ff79f56d3678a7e95e369e4d12138fe911c69e4212b9c860be5c424d96
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/totoro/miniconda3/envs/repro-next/bin/python
+rootdir: /home/totoro/Documents/thesis/source/METOR/studies
+plugins: anyio-4.14.2
+collecting ... collected 30 items
+
+a26/tests/test_a26_evaluate.py::test_per_video_aggregate_equals_the_official_evaluator[novel] PASSED [  3%]
+a26/tests/test_a26_evaluate.py::test_per_video_aggregate_equals_the_official_evaluator[all] PASSED [  6%]
+a26/tests/test_a26_evaluate.py::test_bootstrap_equals_the_evaluator_on_resamples PASSED [ 10%]
+a26/tests/test_a26_evaluate.py::test_draws_are_fixed_and_shared PASSED   [ 13%]
+a26/tests/test_a26_evaluate.py::test_reading[-1.2-ci0-large-lower under the clean protocol] PASSED [ 16%]
+a26/tests/test_a26_evaluate.py::test_reading[-1.0-ci1-large-lower under the clean protocol] PASSED [ 20%]
+a26/tests/test_a26_evaluate.py::test_reading[-0.99-ci2-moderate-lower under the clean protocol] PASSED [ 23%]
+a26/tests/test_a26_evaluate.py::test_reading[-0.3-ci3-moderate-lower under the clean protocol] PASSED [ 26%]
+a26/tests/test_a26_evaluate.py::test_reading[-0.29-ci4-small-not read] PASSED [ 30%]
+a26/tests/test_a26_evaluate.py::test_reading[-1.5-ci5-small-not read] PASSED [ 33%]
+a26/tests/test_a26_evaluate.py::test_reading[-0.5-ci6-small-not read] PASSED [ 36%]
+a26/tests/test_a26_evaluate.py::test_reading[1.3-ci7-large-higher under the clean protocol] PASSED [ 40%]
+a26/tests/test_a26_evaluate.py::test_reading[0.4-ci8-moderate-higher under the clean protocol] PASSED [ 43%]
+a26/tests/test_a26_evaluate.py::test_compare_helpers PASSED              [ 46%]
+a26/tests/test_a26_evaluate.py::test_projection PASSED                   [ 50%]
+a26/tests/test_a26_evaluate.py::test_evaluation_path_on_synthetic_runs PASSED [ 53%]
+a26/tests/test_a26_pipeline.py::test_r0_equals_the_repos_own_predict_split PASSED [ 56%]
+a26/tests/test_a26_pipeline.py::test_four_configurations PASSED          [ 60%]
+a26/tests/test_a26_pipeline.py::test_fusion_restored_on_error PASSED     [ 63%]
+a26/tests/test_a26_pipeline.py::test_whole_video_moves_the_length_rule PASSED [ 66%]
+a26/tests/test_a26_pipeline.py::test_predictions_for_refuses_a_desync PASSED [ 70%]
+a26/tests/test_a26_pipeline.py::test_set_fusion_is_what_end2end_reads PASSED [ 73%]
+a26/tests/test_a26_wrappers.py::test_whole_video_sets_only_the_range PASSED [ 76%]
+a26/tests/test_a26_wrappers.py::test_whole_video_refuses_a_range_outside_the_video[10-10-60] PASSED [ 80%]
+a26/tests/test_a26_wrappers.py::test_whole_video_refuses_a_range_outside_the_video[20-10-60] PASSED [ 83%]
+a26/tests/test_a26_wrappers.py::test_whole_video_refuses_a_range_outside_the_video[0-61-60] PASSED [ 86%]
+a26/tests/test_a26_wrappers.py::test_whole_video_refuses_a_range_outside_the_video[-1-30-60] PASSED [ 90%]
+a26/tests/test_a26_wrappers.py::test_real_dataset_item_then_whole_video PASSED [ 93%]
+a26/tests/test_a26_wrappers.py::test_set_fusion PASSED                   [ 96%]
+a26/tests/test_a26_wrappers.py::test_both_splits PASSED                  [100%]
+
+============================= 30 passed in 52.69s ==============================

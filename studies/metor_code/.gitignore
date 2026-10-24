@@ -1,0 +1,83 @@
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+develop-eggs/
+eggs/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+# virtualenvs
+.venv/
+venv/
+env/
+ENV/
+
+# test / type / lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ------------------------------------------------------------------ data
+# `data/` and `output/` are symlinks into ../ov-vidvrd-lab on the dev machine
+# (42 GB of VidVRD frames, ~9 GB of checkpoints). Neither belongs in git, and a
+# symlink pointing outside the repo is meaningless in a clone.
+# Set them up per docs/22_Data-pipeline.md, then check with `python -m utils.paths`.
+data/
+output/
+
+# model weights, feature banks and extracted frames, wherever they land
+*.pth
+*.pth.tar
+*.pt
+*.ckpt
+*.safetensors
+*.pkl
+*.npy
+*.npz
+*.h5
+
+# ------------------------------------------------------------- the paper
+# The METOR paper is on arXiv (2505.06663) and does not need redistributing
+# here. NOTE: docs/figures/*.png are cropped from it and ARE tracked -- arXiv
+# publishes it under CC-BY 4.0, which permits that with attribution.
+*.pdf
+
+# --------------------------------------------------------- CUDA extension
+# Built by ops/make.sh; must be compiled per machine, never committed.
+ops/build/
+ops/*.egg-info/
+ops/**/*.so
+
+# ------------------------------------------------------- editors / OS junk
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------ local
+.env
+.env.*
+!.env.example
+*.log
+scratch/
+scratchpad/

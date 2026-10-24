@@ -1,0 +1,100 @@
+{
+ "step": "d2_analyse",
+ "time": "2026-10-10T15:34:57+0700",
+ "command": "/home/totoro/Documents/thesis/source/METOR/studies/d2/analyse.py --rec_dir d2/data/rec",
+ "config": {
+  "thr": 0.5,
+  "floor": 0.05,
+  "floors": [
+   0.01,
+   0.05,
+   0.1
+  ],
+  "rec_dir": "d2/data/rec"
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "executable": "/home/totoro/miniconda3/envs/repro-next/bin/python",
+  "omp_num_threads": null,
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "scipy": "1.18.0",
+  "sklearn": "1.9.0",
+  "cv2": "5.0.0",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce GTX 1650",
+  "cudnn": 91900,
+  "tf32": {
+   "cudnn": true,
+   "matmul": false
+  }
+ },
+ "code": {
+  "d2/__init__.py": "aa4649022474c0e251a8b5666b4f5a4331d6524754f14db3438d919637fa0fd8",
+  "d2/analyse.py": "d466262f8a73f8c7f2b989f9ecc658fc300353331643eccf80b812244a38b130",
+  "d2/baseline_tracks.py": "22ce431e566dd5405f2876a982eef32742bdccd583bf3d16011f27c3d1244362",
+  "d2/common.py": "77240af3b292f9885d7ac4493e004c7555a879a57f8f351a9671a4d0ab382b5f",
+  "d2/pin.py": "70d627db838b03c2f06192b4e6f59261d203f89e53b8ed2fc70889605489ef94",
+  "d2/record_run.py": "a13200b13a9b823aba58010bed5ab7cb78734e24e5a81e225aeb569cf09606eb",
+  "d2/recorders.py": "89dc36508b74a2fe4542ebfd4bf1ee8a7337332310bb3851a9227c6edcc9cccc",
+  "d2/stages.py": "593f9809a0202b736afee27d304f7f9878071063135028217d477f8683f18255"
+ },
+ "repos": {
+  "metor": {
+   "head": "5db91d6de3c5481f43bf5396a3326422c45e8d02",
+   "dirty": [
+    "?? studies/d2/logs/box/",
+    "?? studies/d2/logs/d2_analyse_stdout.txt"
+   ]
+  },
+  "code_root": {
+   "path": "/home/totoro/Documents/thesis/source/ov-vidvrd-lab",
+   "head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+   "dirty": [
+    " M pilot_analysis/stage1b/preregistration.md",
+    " M pilot_analysis/stage1b/preregistration.sha256",
+    "?? pilot_analysis/boundary/",
+    "?? pilot_analysis/f1/",
+    "?? pilot_analysis/f2/",
+    "?? pilot_analysis/final/",
+    "?? pilot_analysis/objects/",
+    "?? pilot_analysis/position/",
+    "?? pilot_analysis/span/",
+    "?? pilot_analysis/stage1c/session3_report.md",
+    "?? pilot_analysis/stage1c/task2_report.md",
+    "?? pilot_analysis/stage2/",
+    "?? pilot_analysis/time_check/"
+   ]
+  }
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/pilot_analysis/time_check/data/tc_missed.json": "2e4c53b94597142df4500ab08ed3302e05f25f6b06a19c2c883f6f7a22373df2",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/pilot_analysis/time_check/data/tc_tables.json": "c3cb77f9752e9315a2e3a33f365fed79cd04c76f7cfa2ee448f3ce715926bf80",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/pilot_analysis/time_check/tc_run.py": "fae863dd65ee0c09a2cabfdab7a5f59df2e81832e8113c7c0383f7a5238d5996",
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/data/vidvrd/data/test_relation_gt.json": "b7a8219fa1b00e6d10c8bc5f37a1df7482b316dd401a1c870678817c4a921aeb",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/data/vidvrd/data/test_object_trajectories_gt.json": "94df4451d06f2c3ee7270b2d452d574b466f9d5c79ebb0704f0af277dd15699a",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/data/vidvrd/data/openvoc_obj_class_spilt_info.json": "9ac86fc36f2c7679f76bc19039057b40263796ea9e8536b6294bfb157b186dec",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/data/vidvrd/data/openvoc_pred_class_spilt_info.json": "e6de075e119eb539b134490b1f3d047abf0f340a2d3f467cb7ba8b14c0d77043",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/data/vidvrd/data/VidVRD_ECC_test.json": "6e7842bee9887c85164b673becc1e61040bfa31bc33b921202e4b2d9649faa2b",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/output/ckpt/baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth": "d306952a51e9ca94c201ecf580f75a99221ae658dc187ae0ff38ff8b7dfc0e70",
+  "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/output/ckpt/AFLink_epoch20.pth": "b35cbeddd3acc48fece820bd640640e6bfb1f5fbf570aa79af26c6a38958daa4",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/logs/anno_test_sha256.txt": "c98b1b84a323b0852575bd6488cb0fb8a15ecfe09fc1c11a571ee266ee4d2a85",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/data/baseline_tracks.json": "3d9c5c86b9a80681cb1aa6643bab94f1b6bdea4448ecdb6151797ca63793df56",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/logs/code_pins.json": "95816845ec3a367ed890796f5018421253a6edf0e78b63a891852c2420b09028",
+  "d2/data/rec/manifest.jsonl": "37d26c1c59bb1f3befafde0c4dab5d532a401987933c2748be80245b2adc28c5"
+ },
+ "outputs": {
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/data/d2_relations.json": "90897c6f5077265169d4a252593b68a09722a7c215d63a5d289e61d080a31a72",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/data/d2_funnel.json": "5b170d82c3652377c514e777d27ef5182a223f75176efb26d889734043e95778",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/data/d2_tables.json": "c957eeab76fe45c96b81ba86b82e5a3472e2fd8338a0da10d96d7780fcdb770e",
+  "/home/totoro/Documents/thesis/source/METOR/studies/d2/data/d2_tables.md": "49c11dc2706b36f62343f09c542e916fb304b71845f004c0e7e221bc4e5f8bd5"
+ },
+ "seconds": 66.9,
+ "videos": 200,
+ "u1_rows": 262,
+ "relations": 262,
+ "gt_tracks": 587
+}

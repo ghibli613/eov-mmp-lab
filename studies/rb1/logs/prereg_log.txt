@@ -1,0 +1,6 @@
+2026-10-07T23:33:33+07:00 verified EOV preregistration.md sha256=442623b82cf5392c480e889ab160d5e0606300acc9d588d338e0a806036211f0 size/mtime=98373 2026-10-07 17:49:50.025083430 +0700
+2026-10-07T23:33:57+07:00 prereg/preregistration.md created (header only) sha256=056299d13a77e7f21fcabbcab054b9eed3ba248ab47f961064c27b4706d18f0e bytes=896
+2026-10-07T23:33:57+07:00 A23 appended: before=056299d13a77e7f21fcabbcab054b9eed3ba248ab47f961064c27b4706d18f0e after=30eecc0255f974af9c639aac4ac36c61f6f251a92f7cedbf0f7384ce88717f6d A23-text-alone=0f2c50b4d47949c44b64a6144b5893066ea151735b35a066d73292a7c2d8413c
+2026-10-07T23:48:04+07:00 A23a append starting: before sha256=30eecc0255f974af9c639aac4ac36c61f6f251a92f7cedbf0f7384ce88717f6d bytes=18377
+2026-10-07T23:48:04+07:00 A23a appended: before=30eecc0255f974af9c639aac4ac36c61f6f251a92f7cedbf0f7384ce88717f6d after=bdfe25e62b20d3d82c743c848197d3448aff9d40fe6e98efdac3fd6134af268b A23a-text-alone=c42b8f39c38540d6466da746525af2dbc5d6abf671936d3cfd23df355f313937
+2026-10-07T23:48:04+07:00 housekeeping: deleted rb1/logs/pytest_baseline_3be8147.txt (run while edits were in progress; superseded by the _clean run) and an interim pytest log

@@ -1,0 +1,3 @@
+# 2026-10-10T02:24:29+07:00 python -m d2.record_run --code_root ../ov-vidvrd-lab --out SCRATCH --check_only   (laptop smoke test: pins only; nothing is loaded)
+pins verified: front end, d2 code, baseline tracks, checkpoint, AFLink, ECC, class split
+exit 0

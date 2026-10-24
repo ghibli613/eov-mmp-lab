@@ -1,0 +1,35 @@
+# Values the METOR paper does NOT state. Every one is a choice made by this
+# reconstruction, and every one is a place where a faithful reimplementation
+# could legitimately differ. Reasoning for each is in
+# docs/00_Reconstruction-notes.md.
+#
+# Layered under a dataset config:
+#   python -m cli.train_metor --config configs/metor_defaults.yaml \
+#                             --config configs/metor_vidvrd.yaml
+
+# --- Sec. 3.3, contextual refinement encoding
+n_ctx_obj: 4        # number of learnable object context tokens c_o
+n_ctx_rel: 4        # number of learnable relationship context tokens c_r
+n_prompt_vec: 8     # size of the learnable vectors v_o / v_r in Eq. 9-10
+
+# --- Sec. 3.2 / 3.4, module shapes
+d_model: 256        # Deformable-DETR's hidden dim
+n_heads: 8
+n_dec_layers: 6     # Deformable-DETR's decoder depth
+dropout: 0.1
+st_max_len: 512
+
+# --- pair formation: the paper says only that subject-object pairs are
+# "derived" from the object features, never how many.
+max_pair_objects: 10    # -> 90 ordered pairs per video
+
+# --- Eq. 4 temperature. The paper writes the cosine and the sigmoid but never
+# names a temperature; 0.01 is inherited from MMP / EOV-MMP, without which the
+# logits sit in [-1, 1] and the sigmoid is nearly linear.
+temperature: 0.01
+
+# --- Eq. 11 blend form. False = literally Eq. 11. See
+# metor/modules/iterative_enhancement.py.
+residual_mapping: false
+
+seed: 3407

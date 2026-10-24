@@ -1,0 +1,73 @@
+{
+ "step": "baseline_tracks",
+ "time": "2026-10-10T02:01:36+0700",
+ "command": "/home/totoro/Documents/thesis/source/METOR/d2/baseline_tracks.py",
+ "config": {
+  "source": "/home/totoro/Documents/thesis/source/session3_box_copy/cache_s3_sgdet"
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "executable": "/home/totoro/miniconda3/envs/repro-next/bin/python",
+  "omp_num_threads": null,
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "scipy": "1.18.0",
+  "sklearn": "1.9.0",
+  "cv2": "5.0.0",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce GTX 1650",
+  "cudnn": 91900,
+  "tf32": {
+   "cudnn": true,
+   "matmul": false
+  }
+ },
+ "code": {
+  "d2/__init__.py": "aa4649022474c0e251a8b5666b4f5a4331d6524754f14db3438d919637fa0fd8",
+  "d2/baseline_tracks.py": "22ce431e566dd5405f2876a982eef32742bdccd583bf3d16011f27c3d1244362",
+  "d2/common.py": "728efab9dfd2caff530a85affc884b1ad110854783529c2f42d78e6b59f12181",
+  "d2/recorders.py": "89dc36508b74a2fe4542ebfd4bf1ee8a7337332310bb3851a9227c6edcc9cccc",
+  "d2/stages.py": "feab43dd9f4faf68ee886b6594dc792b9b8ea27327fa000aa3f6a64251d36ecf"
+ },
+ "repos": {
+  "metor": {
+   "head": "3a54d6e944bc1bf772cca479556dcccd59b30092",
+   "dirty": [
+    "?? d2/__init__.py",
+    "?? d2/baseline_tracks.py",
+    "?? d2/common.py",
+    "?? d2/recorders.py",
+    "?? d2/stages.py"
+   ]
+  },
+  "code_root": {
+   "path": "/home/totoro/Documents/thesis/source/ov-vidvrd-lab",
+   "head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+   "dirty": [
+    " M pilot_analysis/stage1b/preregistration.md",
+    " M pilot_analysis/stage1b/preregistration.sha256",
+    "?? pilot_analysis/boundary/",
+    "?? pilot_analysis/f1/",
+    "?? pilot_analysis/f2/",
+    "?? pilot_analysis/final/",
+    "?? pilot_analysis/objects/",
+    "?? pilot_analysis/position/",
+    "?? pilot_analysis/span/",
+    "?? pilot_analysis/stage1c/session3_report.md",
+    "?? pilot_analysis/stage1c/task2_report.md",
+    "?? pilot_analysis/stage2/",
+    "?? pilot_analysis/time_check/"
+   ]
+  }
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b"
+ },
+ "outputs": {
+  "/home/totoro/Documents/thesis/source/METOR/d2/data/baseline_tracks.json": "3d9c5c86b9a80681cb1aa6643bab94f1b6bdea4448ecdb6151797ca63793df56"
+ },
+ "videos": 200,
+ "tracks": 658
+}

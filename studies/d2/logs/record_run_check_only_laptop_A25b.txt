@@ -1,0 +1,3 @@
+# 2026-10-10T09:54:26+07:00 cd METOR/studies; python -m d2.record_run --code_root ../../ov-vidvrd-lab --out SCRATCH --check_only   (A25b layout; pins only; nothing is loaded)
+pins verified: front end, d2 code, baseline tracks, checkpoint, AFLink, ECC, class split
+exit 0

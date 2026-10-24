@@ -1,0 +1,23 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+2026-10-10T04:24:15+00:00 token scan [run first_last, start]: files=0 process_environments=0 token_files=0
+fatal: not a git repository (or any of the parent directories): .git
+pins verified: front end, d2 code, baseline tracks, checkpoint, AFLink, ECC, class split
+/root/ov-vidvrd/vlm/backbones/clip_tagclip/clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+FPN strides: [4.0, 8.0, 16.0, 32.0]
+complete to build text embeddings.
+clip embed distillation is enabled.
+Initializing a generic context
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+Loaded /root/ov-vidvrd/output/ckpt/baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth (epoch 6)
+[D2 1/2] ILSVRC2015_val_00046001 frames=210 dets=45981 tracks=4 42.1s identical | elapsed 0.9 min, ETA 1 min
+[D2 2/2] ILSVRC2015_train_00047020 frames=60 dets=6841 tracks=3 13.1s identical | elapsed 1.1 min, ETA 0 min
+done: every recorded video is identical to the baseline
+RUN first_last EXIT 0 2026-10-10T04:26:33+00:00
+
+real	2m18.978s
+user	3m37.555s
+sys	0m28.223s

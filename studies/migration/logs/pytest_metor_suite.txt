@@ -1,0 +1,46 @@
+# 2026-10-24T10:49:01+07:00 cd ov-vidvrd-lab/studies/metor_code; python -m pytest -p no:cacheprovider tests   (METOR's own suite, RB1's tests); data/ and output/ links from migration/setup_links.sh; ov-vidvrd-lab HEAD 0f97a26a75f9cd58157a2c4ec36a950262f4a1c3 + uncommitted studies/
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/metor_code
+plugins: anyio-4.14.2
+collected 169 items
+
+tests/test_checkpoint_compat.py ..                                       [  1%]
+tests/test_compat_equivalence.py ....                                    [  3%]
+tests/test_config.py ......                                              [  7%]
+tests/test_feature_streams.py ..........                                 [ 13%]
+tests/test_imports.py .............................                      [ 30%]
+tests/test_inference_postprocess.py ........                             [ 34%]
+tests/test_metor_config.py ...................                           [ 46%]
+tests/test_metor_dataset.py ................                             [ 55%]
+tests/test_metor_model.py ........................                       [ 69%]
+tests/test_metor_modules.py ...................                          [ 81%]
+tests/test_rb1_dataset.py ...                                            [ 82%]
+tests/test_rb1_fusion.py ......                                          [ 86%]
+tests/test_rb1_novel_filter.py ...........                               [ 92%]
+tests/test_rb1_train_state.py ............                               [100%]
+
+=============================== warnings summary ===============================
+vlm/backbones/clip_tagclip/clip.py:6
+  /home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/metor_code/vlm/backbones/clip_tagclip/clip.py:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    from pkg_resources import packaging
+
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_object_classifier_checkpoint_loads_cleanly
+  /home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/jit/_serialization.py:176: DeprecationWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+    warnings.warn(
+
+tests/test_metor_model.py: 24 warnings
+  /home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/metor_code/tests/stub_clip.py:40: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+    self.stack = nn.TransformerEncoder(layer, num_layers=layers)
+
+tests/test_rb1_novel_filter.py::test_gen_feats_with_the_flag_off_keeps_novel_labels_and_with_it_on_has_none
+  /home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/metor_code/models/gen_labels.py:586: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+    item[type_] = torch.tensor(pair_feats[type_]).unsqueeze(dim=0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 169 passed, 32 warnings in 70.36s (0:01:10) ==================

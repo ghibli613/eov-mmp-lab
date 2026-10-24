@@ -1,0 +1,27 @@
+{
+ "keys": 206,
+ "consistent_keys": 205,
+ "inconsistent_keys": [
+  [
+   "monkey",
+   "sit_behind",
+   "monkey",
+   [
+    450,
+    690
+   ]
+  ]
+ ],
+ "inconsistent_rows": 1,
+ "matched_in_predcls_bounds": [
+  106,
+  108
+ ],
+ "of": 262,
+ "sgdet_novel_recall_now": 0.2,
+ "sgdet_novel_recall_if_all_recovered": [
+  0.3752066115702479,
+  0.3785123966942149
+ ],
+ "predcls_novel_recall": 0.4033057851239669
+}

@@ -1,0 +1,5 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+2026-10-10T04:24:04+00:00 token scan [run check, start]: files=0 process_environments=0 token_files=0
+fatal: not a git repository (or any of the parent directories): .git
+pins verified: front end, d2 code, baseline tracks, checkpoint, AFLink, ECC, class split
+RUN check EXIT 0 2026-10-10T04:24:07+00:00

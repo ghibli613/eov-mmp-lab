@@ -1,0 +1,4 @@
+2026-10-10T08:32:41+00:00 deleting 203 test annotation files from /root/ov-vidvrd/data/vidvrd
+2026-10-10T08:33:01+00:00 note: cleanup.sh exited after the deletion (pipefail on its ls of the deleted files); the absence check and the token scan are run by hand here
+2026-10-10T08:33:01+00:00 deleted; files left: 0
+2026-10-10T08:33:01+00:00 token scan [cleanup (by hand)]: files=0 process_environments=0 token_files=0

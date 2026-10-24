@@ -1,0 +1,36 @@
+{
+  "train_format_trajectories": [
+    {
+      "track": 0,
+      "category": "bird",
+      "score": 0.9
+    },
+    {
+      "track": 1,
+      "category": "antelope",
+      "score": 0
+    }
+  ],
+  "test_format_trajectories_test": [
+    {
+      "track": 0,
+      "category": "bird",
+      "score": 0.8000000000000002
+    },
+    {
+      "track": 1,
+      "category": "airplane",
+      "score": "nan"
+    }
+  ],
+  "split_of_fallback_classes": {
+    "train fallback (id 1)": [
+      "antelope",
+      "novel"
+    ],
+    "test fallback (id 0)": [
+      "airplane",
+      "base"
+    ]
+  }
+}

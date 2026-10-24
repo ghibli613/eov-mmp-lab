@@ -1,0 +1,28 @@
+# 2026-10-10T10:22:09+07:00 cd METOR; python -m pytest -p no:cacheprovider tests -q   (A25c)
+........................................................................ [ 42%]
+........................................................................ [ 85%]
+.........................                                                [100%]
+=============================== warnings summary ===============================
+vlm/backbones/clip_tagclip/clip.py:6
+  /home/totoro/Documents/thesis/source/METOR/vlm/backbones/clip_tagclip/clip.py:6: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+    from pkg_resources import packaging
+
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_relation_checkpoint_loads_cleanly
+tests/test_checkpoint_compat.py::test_object_classifier_checkpoint_loads_cleanly
+  /home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/jit/_serialization.py:176: DeprecationWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+    warnings.warn(
+
+tests/test_metor_model.py: 24 warnings
+  /home/totoro/Documents/thesis/source/METOR/tests/stub_clip.py:40: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+    self.stack = nn.TransformerEncoder(layer, num_layers=layers)
+
+tests/test_rb1_novel_filter.py::test_gen_feats_with_the_flag_off_keeps_novel_labels_and_with_it_on_has_none
+  /home/totoro/Documents/thesis/source/METOR/models/gen_labels.py:586: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+    item[type_] = torch.tensor(pair_feats[type_]).unsqueeze(dim=0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+169 passed, 32 warnings in 78.65s (0:01:18)

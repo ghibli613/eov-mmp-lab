@@ -1,0 +1,49 @@
+{
+ "u1_relations": 262,
+ "predcls_missed_rows": 361,
+ "novel_gt": 605,
+ "sgdet_hits": 121,
+ "predcls_hits": 244,
+ "exact_keys": 153,
+ "matched_in_predcls_exact": 48,
+ "missed_in_predcls_exact": 105,
+ "ambiguous_keys": 53,
+ "ambiguous_rows": 109,
+ "matched_ambiguous_bounds": [
+  58,
+  56
+ ],
+ "matched_total_bounds": [
+  106,
+  104
+ ],
+ "exact_by_group_matched_missed": {
+  "base-only": [
+   41,
+   58
+  ],
+  "long": [
+   35,
+   56
+  ],
+  "involves novel": [
+   7,
+   47
+  ],
+  "short": [
+   13,
+   49
+  ]
+ },
+ "predcls_bucket_of_missed_exact": {
+  "C1": 83,
+  "U3": 4,
+  "N1": 8,
+  "A1": 10
+ },
+ "sgdet_novel_recall_if_all_recovered": [
+  0.3752066115702479,
+  0.371900826446281
+ ],
+ "sgdet_novel_recall_now": 0.2
+}

@@ -1,0 +1,40 @@
+# METOR on VidVRD -- the paper's stated recipe (arXiv 2505.06663, Sec. 4.2).
+#
+# Every value here is quoted from the paper. Values the paper does NOT state are
+# in configs/metor_defaults.yaml and are marked PAPER-GAP there. Keeping them
+# apart is deliberate: it should be obvious which numbers are theirs and which
+# are this reconstruction's.
+#
+#   python -m cli.train_metor --config configs/metor_vidvrd.yaml
+
+arch: metor
+dataset: vidvrd
+
+# --- Sec. 4.2, Implementation Details
+n_queries: 100            # "The number of object queries N_q is set to 100."
+n_iter: 2                 # "set to two for VidVRD and three for VidOR"
+alpha: 0.9                # "The hyperparameter alpha in Eq. 11 is set to 0.9."
+theta_traj: 1.0           # "theta_traj, theta_ctx and theta_cst ... 1.0, 0.2, 0.1"
+theta_ctx: 0.2
+theta_cst: 0.1
+
+clip_len: 30              # "video segments" of 30 frames
+frame_stride: 30          # "key frames are sampled every 30 video frames"
+
+lr: 1.0e-4                # "initial learning rate of 1e-4"
+max_epoch: 30             # "trained for a total of 30 epochs"
+batch_size: 1             # "batch size is set to 1 ... only one video at a time"
+optimizer: adamw          # "employs the AdamW algorithm"
+lr_milestones: [15, 20, 25]   # "multi-step decay ... at epochs 15, 20 and 25"
+lr_gamma: 0.1             # "reducing the learning rate by a factor of 0.1"
+
+# --- Sec. 4.2, inference thresholds
+traj_score_threshold: 0.2   # "retain object trajectories with an average
+                            #  classification score greater than 0.2"
+box_filter_threshold: 0.35  # "filter bounding boxes using a threshold of 0.35"
+
+# --- frozen backbone
+clip_backbone: "ViT-L/14@336px"   # "the ViT-L/14 variant of CLIP with fixed parameters"
+cre_mode: inject
+
+ps: metor_vidvrd

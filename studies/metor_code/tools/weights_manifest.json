@@ -1,0 +1,63 @@
+{
+  "description": "EOV-MMP pretrained weights and author-supplied data for ov-vidvrd-lab",
+  "source": "supplied directly by the EOV-MMP author, 2026-08-20",
+  "base_url": "<SET THIS TO WHERE YOU HOST THE FILES>",
+  "files": [
+    {
+      "name": "AFLink_epoch20.pth",
+      "dest": "output/ckpt",
+      "needed_for": "always",
+      "bytes": 4348705,
+      "sha256": "b35cbeddd3acc48fece820bd640640e6bfb1f5fbf570aa79af26c6a38958daa4"
+    },
+    {
+      "name": "VidVRD_ECC_test.json",
+      "dest": "data/vidvrd/data",
+      "needed_for": "always",
+      "bytes": 7812897,
+      "sha256": "6e7842bee9887c85164b673becc1e61040bfa31bc33b921202e4b2d9649faa2b"
+    },
+    {
+      "name": "VidVRD_ECC_train.json",
+      "dest": "data/vidvrd/data",
+      "needed_for": "always",
+      "bytes": 35008647,
+      "sha256": "202e7ffed90667c4250bf8a0490f20b22b4c7ec620f0cdabb58e0354795d4646"
+    },
+    {
+      "name": "baseline_fbce_vidvrd_bs1_lr0.0001_drop0.5_dim512_none_rel_mot_clip_bbox_stage2_new_L14_e2e.pth",
+      "dest": "output/ckpt",
+      "needed_for": "train",
+      "bytes": 441358234,
+      "sha256": "d9839ed789134e9acaad7b85106bf93186dc34b0f05b87a2faa9ee32cbbd2f24"
+    },
+    {
+      "name": "baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth",
+      "dest": "output/ckpt",
+      "needed_for": "eval",
+      "bytes": 2579472933,
+      "sha256": "d306952a51e9ca94c201ecf580f75a99221ae658dc187ae0ff38ff8b7dfc0e70"
+    },
+    {
+      "name": "checkpoint_vidvrd0059_new_1e-5.pth",
+      "dest": "output/ckpt",
+      "needed_for": "train",
+      "bytes": 3722038331,
+      "sha256": "93c4457cd4a3e5b2db821753409bc3dc3dc0cd9d2d1bac3646f6efd82e8966da"
+    },
+    {
+      "name": "clip_L14_feat_vidvrd.pkl",
+      "dest": "data/vidvrd/data",
+      "needed_for": "always",
+      "bytes": 290844125,
+      "sha256": "9ed8246ee7b6bf545dcfb5415185ddb19708c00d7156629b6b60e38270dcb812"
+    },
+    {
+      "name": "vidvrd_backboneViT-L_14@336px_lr0.01vision-guided.pth",
+      "dest": "output/ckpt",
+      "needed_for": "train",
+      "bytes": 351516901,
+      "sha256": "3525a173e26f6534f52a275a8d3e22a114a392765b5a1abda80aac5db5eff098"
+    }
+  ]
+}
