@@ -1,0 +1,47 @@
+{
+ "step": "f1_tracks_small",
+ "time": "2026-10-06 22:10:28",
+ "command": "pilot_analysis/f1/f1_tracks.py --small",
+ "config": {
+  "small": true,
+  "max_gap": 30,
+  "iou": 0.3,
+  "centre_distance": 0.5,
+  "gate": 0.1,
+  "post": {
+   "clip_len": 30,
+   "clip_top_n": 20,
+   "use_prior": false,
+   "max_per_video": 200
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/f1/f1_prior.py": "37b5fdff9a6018505b04978f6cd2f2d5ca18212587eaa40858718f7debd4d4d8",
+  "pilot_analysis/f1/f1_tracks.py": "090c54d2abbc6c522fbf977248d8e8d8465e3a19ba5face990635c391623c817"
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b"
+ },
+ "outputs": {
+  "pilot_analysis/f1/data_small/f1_tracks_results.json": "585cf0235d84936291524a36a5f7479f9a7bef87ef188cf0776be6f2dbd79aad"
+ },
+ "seconds": 0.7
+}

@@ -1,0 +1,50 @@
+{
+ "step": "tc_analyse",
+ "time": "2026-10-07 00:40:18",
+ "command": "pilot_analysis/time_check/tc_run.py --analyse",
+ "config": {
+  "small": false,
+  "thr": 0.5,
+  "ks": [
+   20,
+   30,
+   40
+  ],
+  "half": 15,
+  "boot": 1000
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/final/",
+   "?? pilot_analysis/position/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/",
+   "?? pilot_analysis/time_check/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/time_check/tc_run.py": "fae863dd65ee0c09a2cabfdab7a5f59df2e81832e8113c7c0383f7a5238d5996"
+ },
+ "inputs": {
+  "data/vidvrd/data/test_relation_gt.json": "b7a8219fa1b00e6d10c8bc5f37a1df7482b316dd401a1c870678817c4a921aeb",
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b"
+ },
+ "outputs": {
+  "pilot_analysis/time_check/data/tc_missed.json": "2e4c53b94597142df4500ab08ed3302e05f25f6b06a19c2c883f6f7a22373df2",
+  "pilot_analysis/time_check/data/tc_tables.json": "c3cb77f9752e9315a2e3a33f365fed79cd04c76f7cfa2ee448f3ce715926bf80"
+ },
+ "seconds": 57.0
+}

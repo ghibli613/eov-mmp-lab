@@ -1,0 +1,66 @@
+{
+ "step": "s1_run_small",
+ "time": "2026-10-06 21:39:02",
+ "command": "pilot_analysis/span/s1_run.py --small",
+ "config": {
+  "small": true,
+  "pca": 256,
+  "d_model": 128,
+  "heads": 4,
+  "layers": 2,
+  "ff": 256,
+  "dropout": 0.2,
+  "lr": 0.001,
+  "batch": 64,
+  "max_epochs": 100,
+  "patience": 10,
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "gate": {
+   "full_auc": 0.8,
+   "full_ci_low": 0.75,
+   "lo2_auc": 0.75
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/span/s1_run.py": "3cb2a76a7d2d9b059104fa0b7009b10d58af1a75726d9200f959ea01005dbb59",
+  "pilot_analysis/span/span_common.py": "0d74fc2cad510b48260f06e749377a9c78ca0f9b8ae79800751ee5032a2da384"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/slots_meta.json": "01ba90c5933b464e69a540e704f500ed0d4161cfb43623e8cc75c401ce7bc570",
+  "pilot_analysis/stage2/data/emb.npy": "9eb54ebb37317f5a85ab848f40b49df5189fc57f3c0f8928bf04c02fd6561469",
+  "pilot_analysis/stage2/data/learned_full.npy": "435e4cf499fbd69c5107cb149464fe16144b8d3ae56190c079bce29be864fc3c",
+  "pilot_analysis/stage2/data/learned_lo2.npy": "666092b2965609804d3e5cacdcb3456cf34f3cfeb0701547a645c15e09b00b73",
+  "pilot_analysis/stage1c/gt_tracks_train.json": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d",
+  "pilot_analysis/stage2/a2_step0_selection.json": "34f7cdced8f7d22eb18b406d511bac516d9e558f0e3a9285fbdcc2ada768864e"
+ },
+ "outputs": {
+  "pilot_analysis/span/data_small/s1_results.json": "6faaba68d6e2de53cd908d7cc38d968373f5011d539621fb0c2db9e2f1106199",
+  "pilot_analysis/span/data_small/s1_transitions.npz": "8367d723f95d0b454ab08c17bec06979930b586918acb237f3433e504169b9fa",
+  "pilot_analysis/span/data_small/span_full.pt": "0fdac5b48c5619b711587b9062fa131aa6259a0568af7a3ab959e387f794fb63",
+  "pilot_analysis/span/data_small/span_lo2.pt": "7eb4bee3e5a3ede408e875917ccb060ccc842be9f037a33ff6b02389b9e33a95",
+  "pilot_analysis/span/data_small/pca_fit.npz": "82c7d096d7a4e657ce1cd19d017758b66011a538d198315487b88eb373036426"
+ },
+ "seconds": 8.8
+}

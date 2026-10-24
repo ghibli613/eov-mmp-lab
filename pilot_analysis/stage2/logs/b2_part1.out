@@ -1,0 +1,6 @@
+Part 1 (HELD, base predicates compete)
+  EOV-MMP alone                        base   mAP  50.28  R@50  35.46  R@100  42.73  | 8s
+  B2 (key sqrt(EOV x r'))              base   mAP  49.04  R@50  35.03  R@100  42.06  | 11s
+  control (shuffled recipes)           base   mAP  49.04  R@50  35.03  R@100  42.06  | 14s
+Part 1: PASS (B2 49.04 vs EOV 50.28; invariant [('b2', 11147, 11147), ('control', 11147, 11147)])
+done | 14s

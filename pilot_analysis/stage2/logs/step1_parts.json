@@ -1,0 +1,72 @@
+{
+ "step": "step1_parts",
+ "time": "2026-10-05 16:09:31",
+ "command": "pilot_analysis/stage2/step1_parts.py",
+ "config": {
+  "limit": 0,
+  "thresholds": {
+   "motion_w2": 0.004470835939820282,
+   "motion_w0": 0.0044667689670662225,
+   "motion_w3": 0.0041002937030996615,
+   "c_w3": 0.77,
+   "dead_w0": 0.37481383904650384
+  },
+  "windows": {
+   "horizontal": "W0",
+   "vertical": "W0",
+   "depth": "W1",
+   "contained": "W3",
+   "subject_state": "W2",
+   "object_state": "W0",
+   "larger": "W3",
+   "taller": "W3",
+   "faster": "W1",
+   "D2": "W3",
+   "D1": "W0",
+   "gap": "W3"
+  },
+  "eps": 0.01
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/common.py": "3bf11e62d0582cbd150b87657bf708d4918323da683597353eb22e3d9d30a7f5",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "1f62f7dd53f4c3a06c98647aa86502d366c3f6280a4cfed254e8287dcf96444c",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage0e/phi_frozen.json": "2b45efe95f2875ec96f753df5fdfcda450628312e46e2f0fea2db77a0bb0cc2f",
+  "pilot_analysis/stage1/train_split.json": "095dd89ced7260945e76f020a68dcee5793bdd5bca3a6f375f7537dc7c267f1a",
+  "pilot_analysis/stage1b/thresholds_slot.json": "431afc198e8772467176cc9a312c5515c97727ef06f3be93dd241a05af437b45",
+  "pilot_analysis/stage1c/gt_tracks_train.json": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d",
+  "data/vidvrd/data/VidVRD_ECC_train.json": "202e7ffed90667c4250bf8a0490f20b22b4c7ec620f0cdabb58e0354795d4646",
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/emb.npy": "9eb54ebb37317f5a85ab848f40b49df5189fc57f3c0f8928bf04c02fd6561469",
+  "pilot_analysis/stage2/data/slots_meta.json": "01ba90c5933b464e69a540e704f500ed0d4161cfb43623e8cc75c401ce7bc570",
+  "pilot_analysis/stage2/data/held_pairs.json": "8943fb186707a7908090af759d93815894ad654af6af34061ad52e05a5b783ec",
+  "pilot_analysis/stage2/data/held_gt.json": "78d55c69f9aa2473f4584ae998592dcb67d95ce02a67ab0cd9a8bd8446184dee",
+  "pilot_analysis/stage2/data/step1_summary.json": "87e2ed3437cca24ecf09bb734c74c37f1933b56a266b30b32e0231e8d26a7567"
+ },
+ "cache_sums_sha256": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b"
+}

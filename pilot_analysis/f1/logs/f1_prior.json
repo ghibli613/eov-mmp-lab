@@ -1,0 +1,65 @@
+{
+ "step": "f1_prior",
+ "time": "2026-10-06 22:12:49",
+ "command": "pilot_analysis/f1/f1_prior.py",
+ "config": {
+  "small": false,
+  "dim": 64,
+  "hidden": 128,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "batch": 256,
+  "max_epochs": 300,
+  "patience": 20,
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "veto": {
+   "p": 0.005,
+   "min_instances": 100
+  },
+  "gates": {
+   "ratio": 2.0,
+   "margin": 2.0,
+   "false_veto": 0.005
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/f1/f1_prior.py": "37b5fdff9a6018505b04978f6cd2f2d5ca18212587eaa40858718f7debd4d4d8",
+  "pilot_analysis/f1/f1_tracks.py": "090c54d2abbc6c522fbf977248d8e8d8465e3a19ba5face990635c391623c817"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/slots_meta.json": "01ba90c5933b464e69a540e704f500ed0d4161cfb43623e8cc75c401ce7bc570",
+  "pilot_analysis/stage2/data/held_pairs.json": "8943fb186707a7908090af759d93815894ad654af6af34061ad52e05a5b783ec",
+  "pilot_analysis/stage2/data/held_gt.json": "78d55c69f9aa2473f4584ae998592dcb67d95ce02a67ab0cd9a8bd8446184dee",
+  "pilot_analysis/stage1c/gt_tracks_train.json": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d",
+  "/home/totoro/Documents/thesis/source/session3_box_copy/cache_s3/once.pt": "5c57c82ab9dc398c1f6144c7f1a8de5a48ac15175f013ac6d5af2875ddc720f5",
+  "pilot_analysis/span/data/s1_results.json": "182096795a8dfb144fbaa277b4e0e6c9dd8dbbd05c83d7358815ef3625ec6465"
+ },
+ "outputs": {
+  "pilot_analysis/f1/data/f1_prior_results.json": "94dca45e4e24e5b5f94c9eabd4bfb21cc81f9b4b514f9c88378a49000e0e7964",
+  "pilot_analysis/f1/data/f1_prior_models.pt": "ccbc2a17add1f9c51dbdf55441caf316f02f49825ca0f382cccd54f38a007350"
+ },
+ "seconds": 130.0
+}

@@ -1,0 +1,73 @@
+{
+ "step": "e1_step2",
+ "time": "2026-10-07 10:01:30",
+ "command": "pilot_analysis/boundary/e1_run.py --step 2",
+ "config": {
+  "ks": [
+   20,
+   10,
+   5,
+   3,
+   1
+  ],
+  "boot": 1000,
+  "boot_seed": 0,
+  "control_seeds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19
+  ],
+  "tol": 0.05
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/boundary/",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/final/",
+   "?? pilot_analysis/position/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/",
+   "?? pilot_analysis/time_check/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/boundary/e1_run.py": "041e09e13d98999568dc5411f192451cc0cd6db5f488087699913162920b9cbb"
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "pilot_analysis/f2/data/f2_part3.json": "68d454cc7706d5425eaa574181acc35cc14faf49d2d508d1941422af87b6fd40"
+ },
+ "outputs": {
+  "pilot_analysis/boundary/data/e1_step2.json": "7a25f7f0c1be1c69f0227be237876121b5d7f44342f6c0efe1d86ac43bf7f507"
+ },
+ "seconds": 114.9
+}

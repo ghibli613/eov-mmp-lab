@@ -1,0 +1,62 @@
+{
+ "step": "a2_step1_alpha_small",
+ "time": "2026-10-05 16:42:48",
+ "command": "pilot_analysis/stage2/a2_step1_alpha.py --small",
+ "config": {
+  "alphas": [
+   0.0,
+   0.25,
+   0.5,
+   0.75,
+   1.0
+  ],
+  "post": {
+   "clip_len": 30,
+   "clip_top_n": 20,
+   "use_prior": false,
+   "max_per_video": 200
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/a2_es_data.py": "21377252cf3c408edaa0eb0874b97140646d0e8ebb13d820a88a13d6954d1be9",
+  "pilot_analysis/stage2/a2_step0_select.py": "cb295bde5a98dea413567fc669348294c8951dd3dffc546b596638c220dd9a26",
+  "pilot_analysis/stage2/a2_step1_alpha.py": "61d510474347dbd53584945caf5a7140ebf33d988d5eb908e39b2890c4f8318a",
+  "pilot_analysis/stage2/common.py": "fcd028541e0714699a5128fd364390066bc3863b56b332b532de44c1cdbcd550",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "6a1933224f84c963c507c90b16b11a3a1c337ba1ffd39f19b808538573c25667",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/learned_lo2.npy": "666092b2965609804d3e5cacdcb3456cf34f3cfeb0701547a645c15e09b00b73",
+  "pilot_analysis/stage2/data/g1.json": "4507e3f3b7653008501c641857bc8ee64f0d0c0c392523fe616fcb22a8c104df",
+  "pilot_analysis/stage2/data/es_pairs_small.json": "b6f6641916d1dabc06770062f84711cf3d6c71e5e56400a080491e5a1b67dcee",
+  "pilot_analysis/stage2/data/es_gt_small.json": "6fa13c0a3e0c364c48ef367d9ee77b861f276369c93df0b41c23e2983e9e2876",
+  "pilot_analysis/stage2/a2_step0_selection.json": "34f7cdced8f7d22eb18b406d511bac516d9e558f0e3a9285fbdcc2ada768864e"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/a2_coverage_lo2_small.json": "b6fcd97ff085a23a9162c873c5f9bab63c0f014f28ace87aa6843464f46f3356",
+  "pilot_analysis/stage2/data/a2_alpha_small.json": "339bdd92136f5d9356e53718ef764319e4fe7e61f346489ac46d3078d18d5757",
+  "pilot_analysis/stage2/data/split_a2_alpha.json": "55fd4ac36fee38f30aedcc60d6dc50b65fee52b2dd6cbe8a40865bc731a86eae"
+ },
+ "seconds": 3.1
+}

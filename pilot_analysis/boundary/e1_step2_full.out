@@ -1,0 +1,5 @@
+  predcls novel: identity True; extras/video 163.0; extras in top-200 13972 of 28668; b outputs pushed out 7938
+  predcls all: identity True; extras/video 167.9; extras in top-200 14031 of 29479; b outputs pushed out 9097
+  sgdet novel: identity True; extras/video 126.3; extras in top-200 12068 of 28678; b outputs pushed out 7746
+  sgdet all: identity True; extras/video 132.3; extras in top-200 12308 of 29377; b outputs pushed out 8621
+done | 118s

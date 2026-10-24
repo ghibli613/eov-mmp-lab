@@ -1,0 +1,467 @@
+{
+ "rule": {
+  "a6_rule": true,
+  "exclude_a6": [
+   "stand_left",
+   "stand_right",
+   "stand_front",
+   "larger",
+   "taller",
+   "stand_behind",
+   "walk_left",
+   "walk_right",
+   "walk_behind",
+   "walk_front"
+  ],
+  "per_family": 3,
+  "n": 10,
+  "min_learned": 4
+ },
+ "families": {
+  "behind": "no verb",
+  "chase": "chase",
+  "creep_behind": "creep",
+  "creep_beneath": "creep",
+  "creep_front": "creep",
+  "creep_left": "creep",
+  "creep_right": "creep",
+  "fall_off": "fall_off",
+  "faster": "no verb",
+  "fly_above": "fly",
+  "fly_next_to": "fly",
+  "fly_past": "fly",
+  "fly_toward": "fly",
+  "fly_with": "fly",
+  "follow": "follow",
+  "front": "no verb",
+  "jump_beneath": "jump",
+  "jump_front": "jump",
+  "jump_left": "jump",
+  "jump_next_to": "jump",
+  "jump_right": "jump",
+  "jump_toward": "jump",
+  "larger": "no verb",
+  "left": "no verb",
+  "lie_behind": "lie",
+  "lie_front": "lie",
+  "lie_left": "lie",
+  "lie_next_to": "lie",
+  "lie_right": "lie",
+  "move_behind": "move",
+  "move_beneath": "move",
+  "move_front": "move",
+  "move_left": "move",
+  "move_right": "move",
+  "move_with": "move",
+  "next_to": "no verb",
+  "play": "play",
+  "ride": "ride",
+  "right": "no verb",
+  "run_behind": "run",
+  "run_front": "run",
+  "run_left": "run",
+  "run_past": "run",
+  "run_right": "run",
+  "run_with": "run",
+  "sit_above": "sit",
+  "sit_front": "sit",
+  "sit_left": "sit",
+  "sit_right": "sit",
+  "stand_behind": "stand",
+  "stand_front": "stand",
+  "stand_left": "stand",
+  "stand_next_to": "stand",
+  "stand_right": "stand",
+  "stop_behind": "stop",
+  "stop_front": "stop",
+  "stop_left": "stop",
+  "stop_right": "stop",
+  "swim_front": "swim",
+  "swim_left": "swim",
+  "swim_right": "swim",
+  "swim_with": "swim",
+  "taller": "no verb",
+  "touch": "touch",
+  "walk_behind": "walk",
+  "walk_front": "walk",
+  "walk_left": "walk",
+  "walk_next_to": "walk",
+  "walk_right": "walk",
+  "walk_with": "walk",
+  "watch": "watch"
+ },
+ "chosen": [
+  "stand_next_to",
+  "right",
+  "stop_behind",
+  "left",
+  "move_right",
+  "next_to",
+  "stop_left",
+  "fly_with",
+  "move_front",
+  "follow"
+ ],
+ "n_chosen": 10,
+ "rows": [
+  {
+   "predicate": "stand_next_to",
+   "family": "stand",
+   "held_instances": 115,
+   "fit_instances": 353,
+   "recipe": [
+    [
+     "part",
+     "locomotion",
+     "none"
+    ],
+    [
+     "part",
+     "posture",
+     "stand"
+    ],
+    [
+     "part",
+     "proximity",
+     "adjacent"
+    ],
+    [
+     "part",
+     "subject_state",
+     "stationary"
+    ]
+   ],
+   "learned_part": true
+  },
+  {
+   "predicate": "right",
+   "family": "no verb",
+   "held_instances": 105,
+   "fit_instances": 235,
+   "recipe": [
+    [
+     "part",
+     "horizontal",
+     "right"
+    ],
+    [
+     "absent",
+     "locomotion",
+     null
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": false
+  },
+  {
+   "predicate": "stop_behind",
+   "family": "stop",
+   "held_instances": 96,
+   "fit_instances": 365,
+   "recipe": [
+    [
+     "part",
+     "depth",
+     "behind"
+    ],
+    [
+     "part",
+     "locomotion",
+     "none"
+    ],
+    [
+     "part",
+     "subject_kind",
+     "vehicle"
+    ],
+    [
+     "part",
+     "subject_state",
+     "stationary"
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": true
+  },
+  {
+   "predicate": "left",
+   "family": "no verb",
+   "held_instances": 91,
+   "fit_instances": 287,
+   "recipe": [
+    [
+     "part",
+     "horizontal",
+     "left"
+    ],
+    [
+     "absent",
+     "locomotion",
+     null
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": false
+  },
+  {
+   "predicate": "move_right",
+   "family": "move",
+   "held_instances": 87,
+   "fit_instances": 314,
+   "recipe": [
+    [
+     "part",
+     "horizontal",
+     "right"
+    ],
+    [
+     "part",
+     "subject_kind",
+     "vehicle"
+    ],
+    [
+     "part",
+     "subject_state",
+     "moving"
+    ],
+    [
+     "absent",
+     "locomotion",
+     null
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": false
+  },
+  {
+   "predicate": "next_to",
+   "family": "no verb",
+   "held_instances": 82,
+   "fit_instances": 87,
+   "recipe": [
+    [
+     "part",
+     "proximity",
+     "adjacent"
+    ],
+    [
+     "absent",
+     "locomotion",
+     null
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": true
+  },
+  {
+   "predicate": "stop_left",
+   "family": "stop",
+   "held_instances": 76,
+   "fit_instances": 354,
+   "recipe": [
+    [
+     "part",
+     "horizontal",
+     "left"
+    ],
+    [
+     "part",
+     "locomotion",
+     "none"
+    ],
+    [
+     "part",
+     "subject_kind",
+     "vehicle"
+    ],
+    [
+     "part",
+     "subject_state",
+     "stationary"
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": true
+  },
+  {
+   "predicate": "fly_with",
+   "family": "fly",
+   "held_instances": 72,
+   "fit_instances": 602,
+   "recipe": [
+    [
+     "part",
+     "locomotion",
+     "fly"
+    ],
+    [
+     "part",
+     "object_state",
+     "moving"
+    ],
+    [
+     "part",
+     "relative_motion",
+     "co_move"
+    ],
+    [
+     "part",
+     "subject_state",
+     "moving"
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": true
+  },
+  {
+   "predicate": "move_front",
+   "family": "move",
+   "held_instances": 70,
+   "fit_instances": 302,
+   "recipe": [
+    [
+     "part",
+     "depth",
+     "front"
+    ],
+    [
+     "part",
+     "subject_kind",
+     "vehicle"
+    ],
+    [
+     "part",
+     "subject_state",
+     "moving"
+    ],
+    [
+     "absent",
+     "locomotion",
+     null
+    ],
+    [
+     "absent",
+     "posture",
+     null
+    ]
+   ],
+   "learned_part": false
+  },
+  {
+   "predicate": "follow",
+   "family": "follow",
+   "held_instances": 67,
+   "fit_instances": 225,
+   "recipe": [
+    [
+     "part",
+     "subject_state",
+     "moving"
+    ]
+   ],
+   "learned_part": false
+  }
+ ],
+ "n_learned": 5,
+ "consulted_support_after": [
+  [
+   "locomotion=fly",
+   177
+  ],
+  [
+   "locomotion=none",
+   7055
+  ],
+  [
+   "posture=lie",
+   726
+  ],
+  [
+   "posture=sit",
+   1288
+  ],
+  [
+   "posture=stand",
+   3072
+  ],
+  [
+   "proximity=adjacent",
+   597
+  ]
+ ],
+ "selection_log": [
+  [
+   "stand_next_to",
+   "chosen"
+  ],
+  [
+   "right",
+   "chosen"
+  ],
+  [
+   "stop_behind",
+   "chosen"
+  ],
+  [
+   "left",
+   "chosen"
+  ],
+  [
+   "move_right",
+   "chosen"
+  ],
+  [
+   "next_to",
+   "chosen"
+  ],
+  [
+   "stop_left",
+   "chosen"
+  ],
+  [
+   "fly_with",
+   "chosen"
+  ],
+  [
+   "move_front",
+   "chosen"
+  ],
+  [
+   "ride",
+   "support would fall below 50: [('ride', 'contact_action=ride', 0)]"
+  ],
+  [
+   "follow",
+   "chosen"
+  ]
+ ],
+ "novel_instances_dropped_at_parse": 3301
+}

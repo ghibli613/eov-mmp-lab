@@ -1,0 +1,41 @@
+{
+ "step": "step0_select",
+ "time": "2026-10-05 15:53:32",
+ "command": "pilot_analysis/stage2/step0_select.py",
+ "config": {
+  "N_LEAVE": 10,
+  "MIN_LEARNED": 4,
+  "SUPPORT_MIN": 50,
+  "ES_SEED": 20261005,
+  "ES_FRAC": 0.1,
+  "permutation_seed": 0
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/common.py": "b43de5349aad7a1929a2c7ed063bb7aeeb63150d64248068db3d7e08dcc678ce",
+  "pilot_analysis/stage2/step0_select.py": "98f5c7c13f46564128267a0a75ac0d1edef11c924e08b868e523a9e6fdd55c40"
+ },
+ "inputs": {
+  "pilot_analysis/stage0e/phi_frozen.json": "2b45efe95f2875ec96f753df5fdfcda450628312e46e2f0fea2db77a0bb0cc2f",
+  "pilot_analysis/stage1/train_split.json": "095dd89ced7260945e76f020a68dcee5793bdd5bca3a6f375f7537dc7c267f1a",
+  "data/vidvrd/data/VidVRD_ECC_train.json": "202e7ffed90667c4250bf8a0490f20b22b4c7ec620f0cdabb58e0354795d4646",
+  "data/vidvrd/data/openvoc_pred_class_spilt_info.json": "e6de075e119eb539b134490b1f3d047abf0f340a2d3f467cb7ba8b14c0d77043",
+  "pilot_analysis/stage1b/preregistration.md": "43676566c4689cf705f23e3b39a1d3fc424be16183c888432b92abf6cb18a3f7"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/step0_selection.json": "9aa2310b5b2971b082221e0bb727b99c3d94afd19b17c8456c905e1ed170f04c"
+ }
+}

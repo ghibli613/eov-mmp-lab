@@ -1,0 +1,49 @@
+{
+ "false_delete": {
+  "held_instances": 4365,
+  "deleted": 3,
+  "rate": 0.0006872852233676976,
+  "by_subject_predicate": {
+   "motorcycle/lie_right": 3
+  }
+ },
+ "reach_train": {
+  "top20_novel": 760,
+  "deleted": 99,
+  "share": 0.13026315789473683
+ },
+ "reach_test_gt": {
+  "top20_novel": 2160,
+  "deleted": 441,
+  "share": 0.20416666666666666
+ },
+ "reach_test_detected_tracker": {
+  "top20_novel": 2200,
+  "deleted": 387,
+  "share": 0.1759090909090909
+ },
+ "reach_test_detected_fused": {
+  "top20_novel": 2200,
+  "deleted": 439,
+  "share": 0.19954545454545455
+ },
+ "gate3": {
+  "rule": "false-delete <= 0.005 and reach >= 0.03 on (ii) or (iii)",
+  "checks": {
+   "false_delete": true,
+   "reach": true
+  },
+  "verdict": "PASS"
+ },
+ "rules": {
+  "stand": "animate",
+  "run": "animate",
+  "walk": "animate",
+  "sit": "animate",
+  "stop": "vehicle",
+  "lie": "animate",
+  "creep": "animate",
+  "swim": "animate"
+ }
+}
+done | 7s

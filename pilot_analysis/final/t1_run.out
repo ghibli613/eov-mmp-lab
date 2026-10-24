@@ -1,0 +1,22 @@
+run 1: baseline check
+  predcls novel: mAP 21.698 (ref 21.7, diff -0.002) R@50 31.57 R@100 35.54
+  predcls all: mAP 37.201 (ref 37.2, diff +0.001) R@50 28.58 R@100 34.62
+  sgdet novel: mAP 15.786 (ref 15.79, diff -0.004) R@50 16.36 R@100 19.01
+  sgdet all: mAP 27.185 (ref 27.18, diff +0.005) R@50 17.10 R@100 19.46
+run 2: predcls + rules
+  predcls novel + rules: mAP 22.250 (gain +0.552) R@50 31.57 R@100 36.03
+  predcls all + rules: mAP 38.030 (gain +0.829) R@50 28.62 R@100 34.73
+run 3: sgdet + rules
+  sgdet novel + rules: mAP 16.149 (gain +0.363) R@50 16.36 R@100 19.01
+  sgdet all + rules: mAP 27.571 (gain +0.386) R@50 17.08 R@100 19.59
+run 4: control
+  predcls control novel: 14.810 (sd 1.517); rules - control +7.440
+  sgdet control novel: 10.261 (sd 0.880); rules - control +5.887
+run 5: diagnostics
+Computing average precision AP over 136 videos...
+  0%|          | 0/136 [00:00<?, ?it/s] 18%|█▊        | 25/136 [00:00<00:00, 206.61it/s] 45%|████▍     | 61/136 [00:00<00:00, 156.80it/s] 57%|█████▋    | 78/136 [00:00<00:00, 132.92it/s] 75%|███████▌  | 102/136 [00:00<00:00, 155.21it/s] 96%|█████████▋| 131/136 [00:00<00:00, 189.45it/s]100%|██████████| 136/136 [00:00<00:00, 172.12it/s]
+  predcls: baseline outputs breaking a rule 2094, true positives among them 0
+Computing average precision AP over 136 videos...
+  0%|          | 0/136 [00:00<?, ?it/s] 12%|█▏        | 16/136 [00:00<00:00, 159.45it/s] 38%|███▊      | 51/136 [00:00<00:00, 265.89it/s] 57%|█████▋    | 78/136 [00:00<00:00, 99.84it/s]  75%|███████▌  | 102/136 [00:00<00:00, 123.99it/s]100%|██████████| 136/136 [00:00<00:00, 154.30it/s]
+  sgdet: baseline outputs breaking a rule 2129, true positives among them 0
+done | 176s

@@ -1,0 +1,47 @@
+{
+ "step": "o1_step1",
+ "time": "2026-10-07 17:50:07",
+ "command": "o1_step1.py",
+ "config": {},
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/boundary/",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/final/",
+   "?? pilot_analysis/objects/",
+   "?? pilot_analysis/position/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/",
+   "?? pilot_analysis/time_check/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/objects/o1_common.py": "0a5746ba2a59139ccc86b19c91b764de510b2963f073698e827294da646f4b76",
+  "pilot_analysis/objects/o1_dump.py": "ff8b93d112d195797342a6a8d4e6d5b32e0443550fbcd2a3fbe236045a516df9",
+  "pilot_analysis/objects/o1_measure.py": "ee5e8087ba20f9957349c9596e8e341cc2963ac86a2cbb9f534d4cdc670ef34e",
+  "pilot_analysis/objects/o1_step1.py": "af86e5dc55c30eb050af0ee1e0ca8464aafa660ef3f8828301e346dc2dffaf3a",
+  "pilot_analysis/objects/run_o1_full.sh": "9a29bb4feec16cd38304c4f24867e3edaca6cb3852a4f677cbdaa996c9d4e38d",
+  "pilot_analysis/objects/run_o1_small.sh": "2db06bbd96c17a8cbb708056251872f1b5b5e79d5ff0f905e1468bce4ae0d767"
+ },
+ "inputs": {
+  "pilot_analysis/stage1c/gt_tracks_train.json": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d",
+  "data/vidvrd/data/train_object_trajectories_gt.json": "b66ddb51e9550538bb1b3716c7ea9089a823f3654d4d489f8871065a4f852856",
+  "pilot_analysis/time_check/data/tc_missed.json": "2e4c53b94597142df4500ab08ed3302e05f25f6b06a19c2c883f6f7a22373df2",
+  "data/vidvrd/data/openvoc_obj_class_spilt_info.json": "9ac86fc36f2c7679f76bc19039057b40263796ea9e8536b6294bfb157b186dec"
+ },
+ "outputs": {
+  "pilot_analysis/objects/data/o1_step1.json": "00a4f522f9404257685d308d3c3f7d5f99e4120260b2e42aa9168f4db513fae7"
+ }
+}

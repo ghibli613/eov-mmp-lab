@@ -1,0 +1,98 @@
+[25/200] slots 748 | 0.3 min, ETA 1.9 min
+[50/200] slots 1962 | 0.7 min, ETA 2.2 min
+[75/200] slots 2840 | 1.0 min, ETA 1.7 min
+[100/200] slots 3128 | 1.1 min, ETA 1.1 min
+[125/200] slots 4344 | 1.5 min, ETA 0.9 min
+[150/200] slots 5740 | 2.0 min, ETA 0.7 min
+[175/200] slots 6900 | 2.4 min, ETA 0.3 min
+[200/200] slots 8508 | 3.0 min, ETA 0.0 min
+{
+ "split": "test",
+ "videos": 200,
+ "counts": {
+  "pairs": 1392,
+  "split_pairs": 0,
+  "windows": 1392,
+  "slots": 8508
+ },
+ "videos_without_ecc": [
+  "ILSVRC2015_train_00250013"
+ ],
+ "slots_without_ecc": 2,
+ "symmetry": {
+  "swap: faster flips": [
+   34024,
+   34024
+  ],
+  "swap: larger<->smaller, taller<->shorter": [
+   34024,
+   34024
+  ],
+  "swap: left<->right, above<->beneath, front<->behind": [
+   34024,
+   34024
+  ],
+  "time reversal: D2 approach<->recede, co_move/pass/none fixed": [
+   8506,
+   8506
+  ],
+  "time reversal: every per-frame fraction unchanged": [
+   34024,
+   34024
+  ],
+  "time reversal: faster unchanged": [
+   34024,
+   34024
+  ],
+  "time reversal: object_state unchanged": [
+   34024,
+   34024
+  ],
+  "time reversal: subject_state unchanged": [
+   34024,
+   34024
+  ]
+ },
+ "symmetry_exact": true,
+ "shapes": {
+  "meas": [
+   8508,
+   16
+  ],
+  "extra": [
+   8508,
+   14
+  ],
+  "vehicle": [
+   8508
+  ],
+  "logits": [
+   8508,
+   132
+  ],
+  "int_logit": [
+   8508
+  ],
+  "video": [
+   8508
+  ],
+  "pair": [
+   8508
+  ],
+  "slot": [
+   8508
+  ],
+  "has_ecc": [
+   8508
+  ],
+  "emb": [
+   8508,
+   4608
+  ],
+  "learned": [
+   8508,
+   14
+  ]
+ },
+ "seconds": 181.1
+}

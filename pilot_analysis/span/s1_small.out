@@ -1,0 +1,90 @@
+targets: {"fit_train": {"transitions": 28, "known": 24, "change": 3, "continue_": 21, "change_share": 0.125}, "early_stop": {"transitions": 12, "known": 8, "change": 2, "continue_": 6, "change_share": 0.25}, "held": {"transitions": 38, "known": 22, "change": 3, "continue_": 19, "change_share": 0.13636363636363635}, "all": {"transitions": 78, "known": 54, "change": 8, "continue_": 46, "change_share": 0.14814814814814814}}
+/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/transformer.py:531: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. We recommend specifying layout=torch.jagged when constructing a nested tensor, as this layout receives active development, has better operator coverage, and works with torch.compile. (Triggered internally at /pytorch/aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(
+  full seed 0: epochs 5, best 1, early-stop loss 1.5703 | 3s
+  full seed 1: epochs 5, best 1, early-stop loss 1.8509 | 4s
+  full seed 2: epochs 5, best 1, early-stop loss 1.6840 | 4s
+  lo2 seed 0: epochs 5, best 1, early-stop loss 1.6690 | 4s
+  lo2 seed 1: epochs 5, best 1, early-stop loss 2.0611 | 4s
+  lo2 seed 2: epochs 5, best 1, early-stop loss 1.8950 | 4s
+{
+ "theta": 0.48,
+ "evaluation": {
+  "full": {
+   "n": 22,
+   "change": 3,
+   "auc": 0.3157894736842105,
+   "auc_ci95": [
+    0.25,
+    1.0
+   ],
+   "at_theta": {
+    "balanced_accuracy": 0.2631578947368421,
+    "precision": 0.0,
+    "recall": 0.0,
+    "specificity": 0.5263157894736842,
+    "tp": 0,
+    "fp": 9,
+    "fn": 3,
+    "tn": 10
+   }
+  },
+  "lo2": {
+   "n": 13,
+   "change": 1,
+   "auc": 0.33333333333333337,
+   "auc_ci95": [
+    0.2727272727272727,
+    0.33333333333333337
+   ],
+   "full_version_auc_same_transitions": 0.33333333333333337
+  },
+  "baselines": {
+   "sum_abs_change_measured_parts": {
+    "held": 0.19298245614035092,
+    "lo2_transitions": 0.08333333333333337
+   },
+   "cosine_distance_pca": {
+    "held": 0.824561403508772,
+    "lo2_transitions": 0.8333333333333334
+   }
+  },
+  "mechanism": {
+   "continue_transitions": 19,
+   "continuing_predicates": 25,
+   "in_top20_at_t": 25,
+   "share_in_top20_at_t": 1.0,
+   "kept_in_top20_at_t_plus_1": 25,
+   "share_kept": 1.0
+  },
+  "segments_held": {
+   "n": 32,
+   "mean_slots": 1.8125,
+   "median": 2.0,
+   "p90": 3.0,
+   "share_1_slot": 0.46875,
+   "hist": {
+    "1": 15,
+    "2": 8,
+    "3": 9
+   }
+  },
+  "gate": {
+   "rules": {
+    "full_auc": 0.8,
+    "full_ci_low": 0.75,
+    "lo2_auc": 0.75
+   },
+   "checks": {
+    "full_auc": false,
+    "full_ci_low": false,
+    "lo2_auc": false
+   },
+   "verdict": "FAIL"
+  }
+ },
+ "side": {
+  "rules": {},
+  "share": 0.0
+ }
+}

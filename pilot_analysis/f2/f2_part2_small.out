@@ -1,0 +1,5 @@
+2 i_held_gt: {"transitions": 38, "persistence": 0.8789473684210526, "runs": 492, "run_median": 2.0, "run_mean": 2.3577235772357725, "share_single_slot_runs": 0.42276422764227645, "spearman_mean": 0.9540538283837569, "spearman_median": 0.9599947117927021, "videos": 5}
+2 ii_test_gt: {"transitions": 88, "persistence": 0.8647727272727272, "runs": 638, "run_median": 2.0, "run_mean": 3.385579937304075, "share_single_slot_runs": 0.3432601880877743, "spearman_mean": 0.9341467958271236, "spearman_median": 0.9517186673717608, "videos": 5}
+2 iii_test_detected: {"transitions": 86, "persistence": 0.858139534883721, "runs": 724, "run_median": 2.0, "run_mean": 3.0386740331491713, "share_single_slot_runs": 0.4240331491712707, "spearman_mean": 0.9279918340240797, "spearman_median": 0.9502115282919088, "videos": 5}
+gate 2: FAIL
+done | 7s

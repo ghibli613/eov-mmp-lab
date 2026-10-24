@@ -1,0 +1,66 @@
+{
+ "step": "a2_step2_g2_small",
+ "time": "2026-10-05 16:43:49",
+ "command": "pilot_analysis/stage2/a2_step2_g2.py --small",
+ "config": {
+  "alpha": 0.25,
+  "random_seeds": 20,
+  "ratio": 3.0,
+  "margin": 5.0,
+  "post": {
+   "clip_len": 30,
+   "clip_top_n": 20,
+   "use_prior": false,
+   "max_per_video": 200
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/a2_es_data.py": "21377252cf3c408edaa0eb0874b97140646d0e8ebb13d820a88a13d6954d1be9",
+  "pilot_analysis/stage2/a2_step0_select.py": "cb295bde5a98dea413567fc669348294c8951dd3dffc546b596638c220dd9a26",
+  "pilot_analysis/stage2/a2_step1_alpha.py": "61d510474347dbd53584945caf5a7140ebf33d988d5eb908e39b2890c4f8318a",
+  "pilot_analysis/stage2/a2_step2_g2.py": "a2407aff767d915aab30a884846d55bb5fa13c3f26b314334bc2edb7ba13e1cb",
+  "pilot_analysis/stage2/common.py": "fcd028541e0714699a5128fd364390066bc3863b56b332b532de44c1cdbcd550",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "6a1933224f84c963c507c90b16b11a3a1c337ba1ffd39f19b808538573c25667",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/slots_meta.json": "01ba90c5933b464e69a540e704f500ed0d4161cfb43623e8cc75c401ce7bc570",
+  "pilot_analysis/stage2/data/held_pairs.json": "8943fb186707a7908090af759d93815894ad654af6af34061ad52e05a5b783ec",
+  "pilot_analysis/stage2/data/held_gt.json": "78d55c69f9aa2473f4584ae998592dcb67d95ce02a67ab0cd9a8bd8446184dee",
+  "pilot_analysis/stage2/data/learned_lo2.npy": "666092b2965609804d3e5cacdcb3456cf34f3cfeb0701547a645c15e09b00b73",
+  "pilot_analysis/stage2/data/learned_leaveout.npy": "30e78d6d3d663331f2e1564d008539e1dc821dc9af0c8b640f98c9ee95757984",
+  "pilot_analysis/stage2/data/a2_alpha.json": "2fd4b06ed789729ea7d8cd4a259dd659ddadf7bd468c632a8560bad79bf033e2",
+  "pilot_analysis/stage2/data/a2_coverage_lo2.json": "b6fcd97ff085a23a9162c873c5f9bab63c0f014f28ace87aa6843464f46f3356",
+  "pilot_analysis/stage2/data/g1.json": "4507e3f3b7653008501c641857bc8ee64f0d0c0c392523fe616fcb22a8c104df"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/a2_g2_small.json": "4555f215a7e3bbaea644f8cce09097c8161c2e0dde7754723563090750b577ce",
+  "pilot_analysis/stage2/data/a2_recipe_lo2_held_small.npy": "c5534a2a602e6b7a60339c1b342cee33dee93391d4f60520bbf6a1e6bb6734f5",
+  "pilot_analysis/stage2/data/a2_rprime_lo2_held_small.npy": "698a7d276abe3a4d7db64a371261371fdcd1621b623bfc6f3c41570fd6e00284",
+  "pilot_analysis/stage2/data/a2_coverage_a6leaveout_small.json": "1fe943f24b4281b2ba892d13613b4b9fea0d77b1fe7ac0ca2d692e965b7deeb6",
+  "pilot_analysis/stage2/data/split_lo2_small.json": "b435ef3ee905a9ce7e29c5e64230b43d75b5f965df3c782e476b438d0c713ea9",
+  "pilot_analysis/stage2/data/split_a6set_small.json": "1897dcbe6d867d62e6f0620392cc653232d27944b944caac5b3bfbe7b561748a"
+ },
+ "seconds": 3.5
+}

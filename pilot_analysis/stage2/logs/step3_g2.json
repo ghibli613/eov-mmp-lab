@@ -1,0 +1,57 @@
+{
+ "step": "step3_g2",
+ "time": "2026-10-05 16:13:34",
+ "command": "step3_g2.py",
+ "config": {
+  "random_seeds": 20,
+  "ratio": 3.0,
+  "margin": 5.0,
+  "post": {
+   "clip_len": 30,
+   "clip_top_n": 20,
+   "use_prior": false,
+   "max_per_video": 200
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/common.py": "3bf11e62d0582cbd150b87657bf708d4918323da683597353eb22e3d9d30a7f5",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "1f62f7dd53f4c3a06c98647aa86502d366c3f6280a4cfed254e8287dcf96444c",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/held_pairs.json": "8943fb186707a7908090af759d93815894ad654af6af34061ad52e05a5b783ec",
+  "pilot_analysis/stage2/data/held_gt.json": "78d55c69f9aa2473f4584ae998592dcb67d95ce02a67ab0cd9a8bd8446184dee",
+  "pilot_analysis/stage2/data/g1.json": "4507e3f3b7653008501c641857bc8ee64f0d0c0c392523fe616fcb22a8c104df",
+  "pilot_analysis/stage2/data/learned_full.npy": "435e4cf499fbd69c5107cb149464fe16144b8d3ae56190c079bce29be864fc3c",
+  "pilot_analysis/stage2/data/learned_leaveout.npy": "30e78d6d3d663331f2e1564d008539e1dc821dc9af0c8b640f98c9ee95757984"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/g2.json": "eba6841c5283edd8a95d8445ad1959df8620303fbd484d60f275a6ac2fa1e9b3",
+  "pilot_analysis/stage2/data/split_leaveout.json": "bfcc20fbf1cb2134ab3882bb9cd7cee51ce2746f3a91b41873e30dabbf84eb82",
+  "pilot_analysis/stage2/data/recipes_after_g1.json": "f3a4ab84561f60f07ecb38c4d21d697a12a30c49e939cc932298bde8d1c2cc3f",
+  "pilot_analysis/stage2/data/recipe_full_held.npy": "f7ada222ffd11a38cf968dad17b55ca6e4ed44796b9c20de6da213300689f60e",
+  "pilot_analysis/stage2/data/recipe_leaveout_held.npy": "634f3ce3a7c20127dcc6e6440362aa27cf6d9085cdaec9a83c8bdc87573a8430"
+ },
+ "seconds": 57.8
+}

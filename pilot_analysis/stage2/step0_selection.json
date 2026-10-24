@@ -1,0 +1,3514 @@
+{
+ "frozen_check": [
+  {
+   "path": "pilot_analysis/stage1b/preregistration.md",
+   "sha256": "43676566c4689cf705f23e3b39a1d3fc424be16183c888432b92abf6cb18a3f7"
+  },
+  {
+   "path": "pilot_analysis/stage0e/phi_frozen.json",
+   "sha256": "2b45efe95f2875ec96f753df5fdfcda450628312e46e2f0fea2db77a0bb0cc2f"
+  },
+  {
+   "path": "pilot_analysis/stage1/measured_axes.py",
+   "sha256": "cd852c21ab701815e46536bc0a0ab82fd0cf846679e2267402d7e8ca1773f5a0"
+  },
+  {
+   "path": "pilot_analysis/stage1b/slot_axes.py",
+   "sha256": "76aefdea9088b19142262449e2ae51fe2c66b55b06c51bb3ea5926dcd96044f6"
+  },
+  {
+   "path": "pilot_analysis/stage1b/thresholds_slot.json",
+   "sha256": "431afc198e8772467176cc9a312c5515c97727ef06f3be93dd241a05af437b45"
+  },
+  {
+   "path": "pilot_analysis/stage1/train_split.json",
+   "sha256": "095dd89ced7260945e76f020a68dcee5793bdd5bca3a6f375f7537dc7c267f1a"
+  },
+  {
+   "path": "pilot_analysis/stage1b/paraphrases_frozen.json",
+   "sha256": "aa2cd527762d5b66f7aabe2f437a6fb1d08fe22b78de0d7d18e1524685f2dda6"
+  },
+  {
+   "path": "pilot_analysis/stage1c/optionB.py",
+   "sha256": "ee76aaf1be7e9b17fa17d6f25794f08747b4fe3601ae7cf22105d95f176460e9"
+  },
+  {
+   "path": "pilot_analysis/stage1c/gt_tracks.py",
+   "sha256": "a2b631c95c5bcb943962ab0ad5492f696d6dd13dd34221abf676cdd93a1ef006"
+  },
+  {
+   "path": "pilot_analysis/stage1c/gt_tracks_train.json",
+   "sha256": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d"
+  },
+  {
+   "path": "pilot_analysis/stage1c/gt_tracks_test.json",
+   "sha256": "45b8b93e61368ea4409f89ad80399ca7a095a0ccc6c511f571cfa4a11856de18"
+  },
+  {
+   "path": "pilot_analysis/stage1c/VidVRD_ECC_test_supplement.json",
+   "sha256": "22e4c79f3ea881d6c633b52f4c085f1508bbe6e610a91fb4ad51c90f72617057"
+  }
+ ],
+ "novel_instances_dropped_at_parse": 3301,
+ "videos": {
+  "fit": 626,
+  "held": 157,
+  "early_stop": 63,
+  "fit_train": 563,
+  "excluded_no_ecc": [
+   "ILSVRC2015_train_00082000",
+   "ILSVRC2015_train_00100002",
+   "ILSVRC2015_train_00109001",
+   "ILSVRC2015_train_00109003",
+   "ILSVRC2015_train_00161017",
+   "ILSVRC2015_train_00265063",
+   "ILSVRC2015_train_00300012",
+   "ILSVRC2015_train_00345000",
+   "ILSVRC2015_train_00591001",
+   "ILSVRC2015_train_00667004",
+   "ILSVRC2015_train_00679000",
+   "ILSVRC2015_train_00760000",
+   "ILSVRC2015_train_00770001",
+   "ILSVRC2015_train_00911000",
+   "ILSVRC2015_val_00123004",
+   "ILSVRC2015_val_00127005",
+   "ILSVRC2015_val_00133000"
+  ]
+ },
+ "early_stop_videos": [
+  "ILSVRC2015_train_00005005",
+  "ILSVRC2015_train_00026001",
+  "ILSVRC2015_train_00040029",
+  "ILSVRC2015_train_00049003",
+  "ILSVRC2015_train_00058001",
+  "ILSVRC2015_train_00068005",
+  "ILSVRC2015_train_00068013",
+  "ILSVRC2015_train_00069005",
+  "ILSVRC2015_train_00071012",
+  "ILSVRC2015_train_00091007",
+  "ILSVRC2015_train_00103007",
+  "ILSVRC2015_train_00134003",
+  "ILSVRC2015_train_00145004",
+  "ILSVRC2015_train_00153001",
+  "ILSVRC2015_train_00159001",
+  "ILSVRC2015_train_00169002",
+  "ILSVRC2015_train_00185002",
+  "ILSVRC2015_train_00187009",
+  "ILSVRC2015_train_00207002",
+  "ILSVRC2015_train_00211007",
+  "ILSVRC2015_train_00232003",
+  "ILSVRC2015_train_00253029",
+  "ILSVRC2015_train_00265025",
+  "ILSVRC2015_train_00265043",
+  "ILSVRC2015_train_00290005",
+  "ILSVRC2015_train_00300001",
+  "ILSVRC2015_train_00302027",
+  "ILSVRC2015_train_00303005",
+  "ILSVRC2015_train_00308009",
+  "ILSVRC2015_train_00309000",
+  "ILSVRC2015_train_00311001",
+  "ILSVRC2015_train_00317001",
+  "ILSVRC2015_train_00392000",
+  "ILSVRC2015_train_00404001",
+  "ILSVRC2015_train_00404003",
+  "ILSVRC2015_train_00414000",
+  "ILSVRC2015_train_00415002",
+  "ILSVRC2015_train_00418006",
+  "ILSVRC2015_train_00424000",
+  "ILSVRC2015_train_00552000",
+  "ILSVRC2015_train_00569003",
+  "ILSVRC2015_train_00651000",
+  "ILSVRC2015_train_00783000",
+  "ILSVRC2015_train_00837002",
+  "ILSVRC2015_train_00860000",
+  "ILSVRC2015_train_00885000",
+  "ILSVRC2015_train_00904001",
+  "ILSVRC2015_train_00948000",
+  "ILSVRC2015_train_00962001",
+  "ILSVRC2015_train_00962007",
+  "ILSVRC2015_train_00996001",
+  "ILSVRC2015_train_01001001",
+  "ILSVRC2015_train_01108002",
+  "ILSVRC2015_train_01118002",
+  "ILSVRC2015_train_01131000",
+  "ILSVRC2015_train_01141007",
+  "ILSVRC2015_val_00006001",
+  "ILSVRC2015_val_00015001",
+  "ILSVRC2015_val_00020003",
+  "ILSVRC2015_val_00037007",
+  "ILSVRC2015_val_00044010",
+  "ILSVRC2015_val_00046002",
+  "ILSVRC2015_val_00159002"
+ ],
+ "fit_support": [
+  {
+   "output": "locomotion=creep",
+   "fit_instances": 164,
+   "after_leave_out": 164
+  },
+  {
+   "output": "locomotion=fly",
+   "fit_instances": 779,
+   "after_leave_out": 779
+  },
+  {
+   "output": "locomotion=jump",
+   "fit_instances": 178,
+   "after_leave_out": 178
+  },
+  {
+   "output": "locomotion=none",
+   "fit_instances": 9352,
+   "after_leave_out": 6280
+  },
+  {
+   "output": "locomotion=run",
+   "fit_instances": 482,
+   "after_leave_out": 482
+  },
+  {
+   "output": "locomotion=swim",
+   "fit_instances": 146,
+   "after_leave_out": 146
+  },
+  {
+   "output": "locomotion=walk",
+   "fit_instances": 3296,
+   "after_leave_out": 584
+  },
+  {
+   "output": "posture=lie",
+   "fit_instances": 726,
+   "after_leave_out": 726
+  },
+  {
+   "output": "posture=sit",
+   "fit_instances": 1288,
+   "after_leave_out": 1288
+  },
+  {
+   "output": "posture=stand",
+   "fit_instances": 3425,
+   "after_leave_out": 353
+  },
+  {
+   "output": "contact_action=ride",
+   "fit_instances": 348,
+   "after_leave_out": 348
+  },
+  {
+   "output": "contact_action=touch",
+   "fit_instances": 122,
+   "after_leave_out": 122
+  },
+  {
+   "output": "relative_motion=pass",
+   "fit_instances": 39,
+   "after_leave_out": 39
+  },
+  {
+   "output": "proximity=adjacent",
+   "fit_instances": 1037,
+   "after_leave_out": 1037
+  }
+ ],
+ "held_instances": {
+  "behind": 51,
+  "chase": 15,
+  "creep_behind": 5,
+  "creep_beneath": 0,
+  "creep_front": 0,
+  "creep_left": 3,
+  "creep_right": 4,
+  "fall_off": 0,
+  "faster": 21,
+  "fly_above": 6,
+  "fly_next_to": 16,
+  "fly_past": 2,
+  "fly_toward": 0,
+  "fly_with": 72,
+  "follow": 67,
+  "front": 51,
+  "jump_beneath": 21,
+  "jump_front": 11,
+  "jump_left": 6,
+  "jump_next_to": 1,
+  "jump_right": 8,
+  "jump_toward": 1,
+  "larger": 221,
+  "left": 91,
+  "lie_behind": 25,
+  "lie_front": 22,
+  "lie_left": 21,
+  "lie_next_to": 20,
+  "lie_right": 33,
+  "move_behind": 43,
+  "move_beneath": 55,
+  "move_front": 70,
+  "move_left": 52,
+  "move_right": 87,
+  "move_with": 26,
+  "next_to": 82,
+  "play": 109,
+  "ride": 70,
+  "right": 105,
+  "run_behind": 19,
+  "run_front": 22,
+  "run_left": 35,
+  "run_past": 12,
+  "run_right": 43,
+  "run_with": 40,
+  "sit_above": 52,
+  "sit_front": 13,
+  "sit_left": 66,
+  "sit_right": 42,
+  "stand_behind": 179,
+  "stand_front": 227,
+  "stand_left": 339,
+  "stand_next_to": 115,
+  "stand_right": 332,
+  "stop_behind": 96,
+  "stop_front": 46,
+  "stop_left": 76,
+  "stop_right": 59,
+  "swim_front": 7,
+  "swim_left": 7,
+  "swim_right": 9,
+  "swim_with": 6,
+  "taller": 206,
+  "touch": 47,
+  "walk_behind": 127,
+  "walk_front": 113,
+  "walk_left": 173,
+  "walk_next_to": 45,
+  "walk_right": 147,
+  "walk_with": 42,
+  "watch": 130
+ },
+ "fit_instances": {
+  "behind": 215,
+  "chase": 64,
+  "creep_behind": 26,
+  "creep_beneath": 3,
+  "creep_front": 54,
+  "creep_left": 37,
+  "creep_right": 44,
+  "fall_off": 4,
+  "faster": 66,
+  "fly_above": 28,
+  "fly_next_to": 140,
+  "fly_past": 7,
+  "fly_toward": 2,
+  "fly_with": 602,
+  "follow": 225,
+  "front": 236,
+  "jump_beneath": 53,
+  "jump_front": 41,
+  "jump_left": 44,
+  "jump_next_to": 5,
+  "jump_right": 26,
+  "jump_toward": 9,
+  "larger": 927,
+  "left": 287,
+  "lie_behind": 138,
+  "lie_front": 161,
+  "lie_left": 150,
+  "lie_next_to": 120,
+  "lie_right": 157,
+  "move_behind": 308,
+  "move_beneath": 241,
+  "move_front": 302,
+  "move_left": 306,
+  "move_right": 314,
+  "move_with": 126,
+  "next_to": 87,
+  "play": 443,
+  "ride": 348,
+  "right": 235,
+  "run_behind": 85,
+  "run_front": 104,
+  "run_left": 106,
+  "run_past": 32,
+  "run_right": 107,
+  "run_with": 48,
+  "sit_above": 343,
+  "sit_front": 269,
+  "sit_left": 331,
+  "sit_right": 345,
+  "stand_behind": 720,
+  "stand_front": 628,
+  "stand_left": 835,
+  "stand_next_to": 353,
+  "stand_right": 889,
+  "stop_behind": 365,
+  "stop_front": 259,
+  "stop_left": 354,
+  "stop_right": 278,
+  "swim_front": 37,
+  "swim_left": 23,
+  "swim_right": 50,
+  "swim_with": 36,
+  "taller": 881,
+  "touch": 122,
+  "walk_behind": 585,
+  "walk_front": 629,
+  "walk_left": 732,
+  "walk_next_to": 332,
+  "walk_right": 766,
+  "walk_with": 252,
+  "watch": 473
+ },
+ "leave_out": {
+  "chosen": [
+   "stand_left",
+   "stand_right",
+   "stand_front",
+   "larger",
+   "taller",
+   "stand_behind",
+   "walk_left",
+   "walk_right",
+   "walk_behind",
+   "walk_front"
+  ],
+  "rows": [
+   {
+    "predicate": "stand_left",
+    "held_instances": 339,
+    "fit_instances": 835,
+    "recipe": [
+     [
+      "part",
+      "horizontal",
+      "left"
+     ],
+     [
+      "part",
+      "locomotion",
+      "none"
+     ],
+     [
+      "part",
+      "posture",
+      "stand"
+     ],
+     [
+      "part",
+      "subject_state",
+      "stationary"
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "stand_right",
+    "held_instances": 332,
+    "fit_instances": 889,
+    "recipe": [
+     [
+      "part",
+      "horizontal",
+      "right"
+     ],
+     [
+      "part",
+      "locomotion",
+      "none"
+     ],
+     [
+      "part",
+      "posture",
+      "stand"
+     ],
+     [
+      "part",
+      "subject_state",
+      "stationary"
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "stand_front",
+    "held_instances": 227,
+    "fit_instances": 628,
+    "recipe": [
+     [
+      "part",
+      "depth",
+      "front"
+     ],
+     [
+      "part",
+      "locomotion",
+      "none"
+     ],
+     [
+      "part",
+      "posture",
+      "stand"
+     ],
+     [
+      "part",
+      "subject_state",
+      "stationary"
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "larger",
+    "held_instances": 221,
+    "fit_instances": 927,
+    "recipe": [
+     [
+      "part",
+      "comparative",
+      "larger"
+     ]
+    ],
+    "learned_part": false
+   },
+   {
+    "predicate": "taller",
+    "held_instances": 206,
+    "fit_instances": 881,
+    "recipe": [
+     [
+      "part",
+      "comparative",
+      "taller"
+     ]
+    ],
+    "learned_part": false
+   },
+   {
+    "predicate": "stand_behind",
+    "held_instances": 179,
+    "fit_instances": 720,
+    "recipe": [
+     [
+      "part",
+      "depth",
+      "behind"
+     ],
+     [
+      "part",
+      "locomotion",
+      "none"
+     ],
+     [
+      "part",
+      "posture",
+      "stand"
+     ],
+     [
+      "part",
+      "subject_state",
+      "stationary"
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "walk_left",
+    "held_instances": 173,
+    "fit_instances": 732,
+    "recipe": [
+     [
+      "part",
+      "horizontal",
+      "left"
+     ],
+     [
+      "part",
+      "locomotion",
+      "walk"
+     ],
+     [
+      "part",
+      "subject_state",
+      "moving"
+     ],
+     [
+      "absent",
+      "posture",
+      null
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "walk_right",
+    "held_instances": 147,
+    "fit_instances": 766,
+    "recipe": [
+     [
+      "part",
+      "horizontal",
+      "right"
+     ],
+     [
+      "part",
+      "locomotion",
+      "walk"
+     ],
+     [
+      "part",
+      "subject_state",
+      "moving"
+     ],
+     [
+      "absent",
+      "posture",
+      null
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "walk_behind",
+    "held_instances": 127,
+    "fit_instances": 585,
+    "recipe": [
+     [
+      "part",
+      "depth",
+      "behind"
+     ],
+     [
+      "part",
+      "locomotion",
+      "walk"
+     ],
+     [
+      "part",
+      "subject_state",
+      "moving"
+     ],
+     [
+      "absent",
+      "posture",
+      null
+     ]
+    ],
+    "learned_part": true
+   },
+   {
+    "predicate": "walk_front",
+    "held_instances": 113,
+    "fit_instances": 629,
+    "recipe": [
+     [
+      "part",
+      "depth",
+      "front"
+     ],
+     [
+      "part",
+      "locomotion",
+      "walk"
+     ],
+     [
+      "part",
+      "subject_state",
+      "moving"
+     ],
+     [
+      "absent",
+      "posture",
+      null
+     ]
+    ],
+    "learned_part": true
+   }
+  ],
+  "n_learned": 8,
+  "selection_log": [
+   [
+    "stand_left",
+    "chosen"
+   ],
+   [
+    "stand_right",
+    "chosen"
+   ],
+   [
+    "stand_front",
+    "chosen"
+   ],
+   [
+    "larger",
+    "chosen"
+   ],
+   [
+    "taller",
+    "chosen"
+   ],
+   [
+    "stand_behind",
+    "chosen"
+   ],
+   [
+    "walk_left",
+    "chosen"
+   ],
+   [
+    "walk_right",
+    "chosen"
+   ],
+   [
+    "walk_behind",
+    "chosen"
+   ],
+   [
+    "stand_next_to",
+    "support would fall below 50: [('stand_behind', 'posture=stand', 0), ('stand_front', 'posture=stand', 0), ('stand_left', 'posture=stand', 0), ('stand_next_to', 'posture=stand', 0), ('stand_right', 'posture=stand', 0), ('walk_behind', 'posture=stand', 0), ('walk_left', 'posture=stand', 0), ('walk_right', 'posture=stand', 0)]"
+   ],
+   [
+    "walk_front",
+    "chosen"
+   ]
+  ]
+ },
+ "shuffled_recipes": {
+  "seed": 0,
+  "groups": {
+   "0": [
+    "fight"
+   ],
+   "1": [
+    "above",
+    "away",
+    "beneath",
+    "past",
+    "toward"
+   ],
+   "2": [
+    "bite",
+    "feed",
+    "hold",
+    "kick"
+   ],
+   "3": [
+    "creep_above",
+    "creep_away",
+    "creep_next_to",
+    "creep_past",
+    "creep_toward",
+    "fly_away",
+    "fly_behind",
+    "fly_front",
+    "fly_left",
+    "fly_right",
+    "jump_above",
+    "jump_away",
+    "jump_behind",
+    "jump_past",
+    "lie_with",
+    "move_above",
+    "move_away",
+    "move_next_to",
+    "move_past",
+    "move_toward",
+    "pull",
+    "run_above",
+    "run_away",
+    "run_beneath",
+    "run_next_to",
+    "run_toward",
+    "stand_with",
+    "stop_with",
+    "swim_behind",
+    "swim_beneath",
+    "swim_next_to",
+    "walk_above",
+    "walk_away",
+    "walk_beneath",
+    "walk_past",
+    "walk_toward"
+   ],
+   "4": [
+    "drive",
+    "jump_with",
+    "lie_above",
+    "lie_beneath",
+    "sit_behind",
+    "sit_beneath",
+    "sit_next_to",
+    "stand_above",
+    "stand_beneath",
+    "stop_above",
+    "stop_beneath",
+    "stop_next_to"
+   ],
+   "5": [
+    "lie_inside",
+    "sit_inside",
+    "stand_inside"
+   ]
+  },
+  "receives_recipe_of": {
+   "fight": "fight",
+   "above": "beneath",
+   "away": "toward",
+   "beneath": "past",
+   "past": "above",
+   "toward": "away",
+   "bite": "hold",
+   "feed": "kick",
+   "hold": "feed",
+   "kick": "bite",
+   "creep_above": "swim_next_to",
+   "creep_away": "move_next_to",
+   "creep_next_to": "run_next_to",
+   "creep_past": "walk_past",
+   "creep_toward": "walk_beneath",
+   "fly_away": "stand_with",
+   "fly_behind": "walk_toward",
+   "fly_front": "jump_past",
+   "fly_left": "run_above",
+   "fly_right": "move_toward",
+   "jump_above": "walk_above",
+   "jump_away": "run_away",
+   "jump_behind": "creep_away",
+   "jump_past": "creep_above",
+   "lie_with": "jump_away",
+   "move_above": "creep_past",
+   "move_away": "swim_behind",
+   "move_next_to": "move_away",
+   "move_past": "fly_away",
+   "move_toward": "move_above",
+   "pull": "fly_front",
+   "run_above": "jump_behind",
+   "run_away": "fly_left",
+   "run_beneath": "swim_beneath",
+   "run_next_to": "fly_behind",
+   "run_toward": "creep_toward",
+   "stand_with": "move_past",
+   "stop_with": "lie_with",
+   "swim_behind": "run_beneath",
+   "swim_beneath": "pull",
+   "swim_next_to": "fly_right",
+   "walk_above": "creep_next_to",
+   "walk_away": "jump_above",
+   "walk_beneath": "stop_with",
+   "walk_past": "walk_away",
+   "walk_toward": "run_toward",
+   "drive": "stop_beneath",
+   "jump_with": "sit_next_to",
+   "lie_above": "stand_above",
+   "lie_beneath": "stand_beneath",
+   "sit_behind": "stop_next_to",
+   "sit_beneath": "lie_beneath",
+   "sit_next_to": "sit_behind",
+   "stand_above": "stop_above",
+   "stand_beneath": "sit_beneath",
+   "stop_above": "drive",
+   "stop_beneath": "lie_above",
+   "stop_next_to": "jump_with",
+   "lie_inside": "stand_inside",
+   "sit_inside": "lie_inside",
+   "stand_inside": "sit_inside"
+  },
+  "fixed_points": [
+   "fight"
+  ]
+ },
+ "recipes_before_g1": {
+  "above": [
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "away": [
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "beneath": [
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "bite": [],
+  "chase": [
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ]
+  ],
+  "creep_above": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_away": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_beneath": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_next_to": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_past": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "creep_toward": [
+   [
+    "part",
+    "locomotion",
+    "creep"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "drive": [
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "proximity",
+    "contained"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ]
+  ],
+  "fall_off": [
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ]
+  ],
+  "faster": [
+   [
+    "part",
+    "comparative",
+    "faster"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ]
+  ],
+  "feed": [],
+  "fight": [],
+  "fly_above": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_away": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_next_to": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_past": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_toward": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "fly_with": [
+   [
+    "part",
+    "locomotion",
+    "fly"
+   ],
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "follow": [
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ]
+  ],
+  "front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "hold": [],
+  "jump_above": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_away": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_beneath": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_next_to": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_past": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_toward": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "jump_with": [
+   [
+    "part",
+    "locomotion",
+    "jump"
+   ],
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "kick": [],
+  "larger": [
+   [
+    "part",
+    "comparative",
+    "larger"
+   ]
+  ],
+  "left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "lie_above": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ]
+  ],
+  "lie_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_beneath": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ]
+  ],
+  "lie_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_inside": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "proximity",
+    "contained"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_next_to": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "lie_with": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "lie"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "move_above": [
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_away": [
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_beneath": [
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_next_to": [
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_past": [
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_toward": [
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "move_with": [
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "next_to": [
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "past": [
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "play": [],
+  "pull": [
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ]
+  ],
+  "ride": [
+   [
+    "part",
+    "contact_action",
+    "ride"
+   ]
+  ],
+  "right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_above": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_away": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_beneath": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_next_to": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_past": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_toward": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "run_with": [
+   [
+    "part",
+    "locomotion",
+    "run"
+   ],
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "sit_above": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ]
+  ],
+  "sit_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "sit_beneath": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ]
+  ],
+  "sit_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "sit_inside": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "proximity",
+    "contained"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "sit_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "sit_next_to": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "sit_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "sit"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_above": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ]
+  ],
+  "stand_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_beneath": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ]
+  ],
+  "stand_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_inside": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "proximity",
+    "contained"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_next_to": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stand_with": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "posture",
+    "stand"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ]
+  ],
+  "stop_above": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_beneath": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_next_to": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "stop_with": [
+   [
+    "part",
+    "locomotion",
+    "none"
+   ],
+   [
+    "part",
+    "subject_kind",
+    "vehicle"
+   ],
+   [
+    "part",
+    "subject_state",
+    "stationary"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_beneath": [
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_next_to": [
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "swim_with": [
+   [
+    "part",
+    "locomotion",
+    "swim"
+   ],
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "taller": [
+   [
+    "part",
+    "comparative",
+    "taller"
+   ]
+  ],
+  "touch": [
+   [
+    "part",
+    "contact_action",
+    "touch"
+   ]
+  ],
+  "toward": [
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "absent",
+    "locomotion",
+    null
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_above": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "above"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_away": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "recede"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_behind": [
+   [
+    "part",
+    "depth",
+    "behind"
+   ],
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_beneath": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "part",
+    "vertical",
+    "beneath"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_front": [
+   [
+    "part",
+    "depth",
+    "front"
+   ],
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_left": [
+   [
+    "part",
+    "horizontal",
+    "left"
+   ],
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_next_to": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "proximity",
+    "adjacent"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_past": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "pass"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_right": [
+   [
+    "part",
+    "horizontal",
+    "right"
+   ],
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_toward": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "approach"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "walk_with": [
+   [
+    "part",
+    "locomotion",
+    "walk"
+   ],
+   [
+    "part",
+    "object_state",
+    "moving"
+   ],
+   [
+    "part",
+    "relative_motion",
+    "co_move"
+   ],
+   [
+    "part",
+    "subject_state",
+    "moving"
+   ],
+   [
+    "absent",
+    "posture",
+    null
+   ]
+  ],
+  "watch": []
+ },
+ "collisions_before_g1": [
+  [
+   "chase",
+   "fall_off",
+   "follow"
+  ]
+ ]
+}

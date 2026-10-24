@@ -1,0 +1,7 @@
+Initializing a generic context
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+1-0: {"videos": ["ILSVRC2015_train_00005003"], "pairs": 2, "object_text_vs_model_max_abs": 1.7881393432617188e-07, "max_abs_prob_diff_head_on_fp32_embedding": 1.4973448370092513e-07, "max_abs_prob_diff_from_cached_fp16_embedding": 1.2058463549902143e-07, "top1_same_from_cache": 1.0, "temperature": 0.01, "passed": true}
+1a: HELD tracks 17, top-1 0.294, top-3 0.471
+1b: tracks 13 (in a pair 13), disagreeing 1 (0.077); predictions with a disagreeing track 69/497; gate 1 FAIL
+done | 115s

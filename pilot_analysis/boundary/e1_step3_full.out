@@ -1,0 +1,27 @@
+  predcls D1 over-long: {'n': 237, 'expected': 237, 'matched_in_a': 1, 'matched_in_b': 1, 'matched_in_c': 36, 'matched_in_d': 35}
+  predcls novel: a 21.70 | b 22.25 | c 17.36 | d 15.51 | e_k10 21.60 | e_k5 21.17 | e_k3 19.25 | e_k1 18.46 | f_control 16.67 | b == T1 path: True
+  predcls all: a 37.20 | b 38.03 | c 30.97 | d 29.83 | e_k10 37.27 | e_k5 35.92 | e_k3 33.84 | e_k1 33.17 | f_control 29.78 | b == T1 path: True
+  sgdet D1 over-long: {'n': 129, 'expected': 129, 'matched_in_a': 0, 'matched_in_b': 0, 'matched_in_c': 15, 'matched_in_d': 15}
+  sgdet novel: a 15.79 | b 16.15 | c 13.84 | d 12.46 | e_k10 15.91 | e_k5 15.42 | e_k3 13.96 | e_k1 15.50 | f_control 13.01 | b == T1 path: True
+  sgdet all: a 27.18 | b 27.57 | c 23.35 | d 22.87 | e_k10 27.33 | e_k5 26.48 | e_k3 25.16 | e_k1 24.71 | f_control 22.74 | b == T1 path: True
+{
+ "reproduced": true,
+ "metor": {
+  "novel": 16.75,
+  "all": 27.53
+ },
+ "c_sgdet": {
+  "novel": 13.8428156692393,
+  "all": 23.35435872939815
+ },
+ "margins": {
+  "novel": -2.9071843307606997,
+  "all": -4.175641270601851
+ },
+ "metor_inside_c_ci": {
+  "novel": true,
+  "all": false
+ },
+ "primary": "FAIL"
+}
+done | 971s

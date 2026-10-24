@@ -1,0 +1,128 @@
+  final seed 0: epochs 5, best 1, es loss 3.1347
+  final seed 1: epochs 5, best 1, es loss 3.5085
+  final seed 2: epochs 5, best 1, es loss 3.2537
+  fold 0: train 85 slots, predict 8 | 5s
+  fold 1: train 63 slots, predict 24 | 5s
+  fold 2: train 73 slots, predict 20 | 5s
+  fold 3: train 52 slots, predict 40 | 5s
+  fold 4: train 75 slots, predict 12 | 5s
+{
+ "symmetry": {
+  "slots": 162,
+  "max_antisymmetry_error": 0.0,
+  "max_symmetry_error_proximity": 0.0,
+  "passed": true
+ },
+ "per_value": {
+  "network": {
+   "left": {
+    "tau": 0.49183860421180725,
+    "fit_instances": 23,
+    "held_instances": 13,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 0.46938775510204084
+   },
+   "right": {
+    "tau": 0.49183863401412964,
+    "fit_instances": 23,
+    "held_instances": 13,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 0.46938775510204084
+   },
+   "above": {
+    "tau": 0.4960833489894867,
+    "fit_instances": 4,
+    "held_instances": 0,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": null
+   },
+   "beneath": {
+    "tau": 0.4960833787918091,
+    "fit_instances": 9,
+    "held_instances": 3,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": null
+   },
+   "front": {
+    "tau": 0.49076488614082336,
+    "fit_instances": 38,
+    "held_instances": 19,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 0.4524793388429752
+   },
+   "behind": {
+    "tau": 0.490764856338501,
+    "fit_instances": 38,
+    "held_instances": 19,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 0.4524793388429752
+   },
+   "adjacent": {
+    "tau": 0.4623839557170868,
+    "fit_instances": 8,
+    "held_instances": 1,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 0.09574468085106386
+   }
+  },
+  "untrained": {
+   "left": {
+    "tau": 0.0,
+    "fit_instances": 23,
+    "held_instances": 13,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "right": {
+    "tau": 0.0,
+    "fit_instances": 23,
+    "held_instances": 13,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "above": {
+    "tau": 1.0,
+    "fit_instances": 4,
+    "held_instances": 0,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "beneath": {
+    "tau": 1.0,
+    "fit_instances": 9,
+    "held_instances": 3,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "front": {
+    "tau": 0.0,
+    "fit_instances": 38,
+    "held_instances": 19,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "behind": {
+    "tau": 0.0,
+    "fit_instances": 38,
+    "held_instances": 19,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "adjacent": {
+    "tau": 0.03333333333333333,
+    "fit_instances": 8,
+    "held_instances": 1,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   }
+  }
+ }
+}
+done | 7s

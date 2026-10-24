@@ -1,0 +1,53 @@
+{
+ "step": "step4_mix",
+ "time": "2026-10-05 16:02:16",
+ "command": "step4_mix.py --data data_small --force-small",
+ "config": {
+  "weights": [
+   0.25,
+   0.5,
+   0.75
+  ],
+  "post": {
+   "clip_len": 30,
+   "clip_top_n": 20,
+   "use_prior": false,
+   "max_per_video": 200
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/common.py": "3bf11e62d0582cbd150b87657bf708d4918323da683597353eb22e3d9d30a7f5",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "b97ca2aa0607cf8265fdfb6e3d5ffbe36a9796b83eff8ea51d05df8b8cfbcded",
+  "pilot_analysis/stage2/step2_train.py": "1f62f7dd53f4c3a06c98647aa86502d366c3f6280a4cfed254e8287dcf96444c",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "data_small/slots.npz": "955888936236c4695069c41cb2aa5a34161dc1ada63d493a11d47a7680acd89f",
+  "data_small/held_pairs.json": "190ed74d13070234a1e319c435fe16b52ea5c4bdb55e6c02a4fa2a39ca26cde8",
+  "data_small/held_gt.json": "8e85976cf4f0439020e99bac22d118c0212f3bc0a53a8762dcebd5841b65070a",
+  "data_small/recipe_full_held.npy": "c47c8373471bdf389689a71e08f59db0ad3671ce1683bfd81c0a825907106750"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data_small/step4.json": "41548eb0c55eb37419a7d70d9915972e99932281cdb1207785f86fd73dbf2940"
+ },
+ "seconds": 2.9
+}

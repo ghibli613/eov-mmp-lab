@@ -1,0 +1,11 @@
+  sgdet network: deleted 792/141320, incremental 0.0046; outputs affected 134/24356
+  sgdet untrained: deleted 0/141320, incremental 0.0000; outputs affected 0/24356
+  predcls network: deleted 1426/170160, incremental 0.0073; outputs affected 182/22634
+  predcls untrained: deleted 0/170160, incremental 0.0000; outputs affected 0/22634
+{
+ "rule": "SGDet incremental reach >= 3%",
+ "incremental": 0.004585338239456552,
+ "verdict": "FAIL",
+ "projection_rough_guide": 0.02172002323953104
+}
+done | 56s

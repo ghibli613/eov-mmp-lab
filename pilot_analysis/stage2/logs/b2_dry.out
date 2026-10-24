@@ -1,0 +1,16 @@
+run 1: baseline (EOV-MMP alone)
+  EOV-MMP alone                        base   mAP  50.28  R@50  35.46  R@100  42.73  | 7s
+  EOV-MMP alone                        all    mAP  45.66  R@50  34.18  R@100  41.95  | 10s
+run 2: B2, novel split -- the gate
+  B2 (key sqrt(EOV x r'))              base   mAP  49.04  R@50  35.03  R@100  42.06  | 14s
+  GATE: 49.04 vs 24.7 (baseline 21.7) -> PASS: gate reached
+run 3: B2, all split
+  B2 (key sqrt(EOV x r'))              all    mAP  44.40  R@50  33.36  R@100  41.15  | 18s
+run 4: control (shuffled recipes, same reordering)
+  control                              base   mAP  49.04  R@50  35.03  R@100  42.06  | 21s
+  control                              all    mAP  44.60  R@50  33.52  R@100  41.19  | 24s
+run 5: reordering keyed by r' alone (descriptive)
+  key r' alone                         base   mAP  44.68  R@50  32.03  R@100  38.30  | 27s
+  key r' alone                         all    mAP  39.97  R@50  30.65  R@100  37.27  | 31s
+per-predicate AP
+done | 61s

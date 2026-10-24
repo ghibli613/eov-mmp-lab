@@ -1,0 +1,78 @@
+{
+ "step": "b_plumb_step1_parts",
+ "time": "2026-10-05 17:45:15",
+ "command": "pilot_analysis/stage2/b_step1_test_parts.py --plumb-train 5",
+ "config": {
+  "split": "train",
+  "plumb": 5,
+  "thresholds": {
+   "motion_w2": 0.004470835939820282,
+   "motion_w0": 0.0044667689670662225,
+   "motion_w3": 0.0041002937030996615,
+   "c_w3": 0.77,
+   "dead_w0": 0.37481383904650384
+  },
+  "windows": {
+   "horizontal": "W0",
+   "vertical": "W0",
+   "depth": "W1",
+   "contained": "W3",
+   "subject_state": "W2",
+   "object_state": "W0",
+   "larger": "W3",
+   "taller": "W3",
+   "faster": "W1",
+   "D2": "W3",
+   "D1": "W0",
+   "gap": "W3"
+  },
+  "eps": 0.01
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/a2_es_data.py": "21377252cf3c408edaa0eb0874b97140646d0e8ebb13d820a88a13d6954d1be9",
+  "pilot_analysis/stage2/a2_step0_select.py": "cb295bde5a98dea413567fc669348294c8951dd3dffc546b596638c220dd9a26",
+  "pilot_analysis/stage2/a2_step1_alpha.py": "61d510474347dbd53584945caf5a7140ebf33d988d5eb908e39b2890c4f8318a",
+  "pilot_analysis/stage2/a2_step2_g2.py": "a2407aff767d915aab30a884846d55bb5fa13c3f26b314334bc2edb7ba13e1cb",
+  "pilot_analysis/stage2/a2_step3_mix.py": "478d071858788bfaa2eecb11bf06a14b4468b5621bbdfbd5c71d572587248ab6",
+  "pilot_analysis/stage2/b_run7_rewording.py": "1a34dc0b1ddce59ef2d4bd7127753c8907e233cc4221d64895f12bcffb0d9241",
+  "pilot_analysis/stage2/b_step0.py": "3a4e44f1b03dd316350ada3d1d24bf119a0bdce6d37cb72dc8f40092c03ac1e1",
+  "pilot_analysis/stage2/b_step1_test_parts.py": "8a75878275dceaf97bda1fe05284dddcf3de981d38a92cf5a1145f5a6c2a49c9",
+  "pilot_analysis/stage2/common.py": "8a48e7a2a75b22cc9835bb31329e452b35b0d52c8747ddd60e334bce3cdac0bd",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/learned_part.py": "f82532d7ff0701f502c41460b842b723beb7730dd5db40925d3982a452af2551",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "6a1933224f84c963c507c90b16b11a3a1c337ba1ffd39f19b808538573c25667",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage1c/gt_tracks_train.json": "87b40fff514178f77a57d9e142bbbb9363eef34f6b4c22d8eaa88d4c7612636d",
+  "data/vidvrd/data/VidVRD_ECC_train.json": "202e7ffed90667c4250bf8a0490f20b22b4c7ec620f0cdabb58e0354795d4646",
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "pilot_analysis/stage2/data/model_full.pt": "3feb73909b3812384395bc2981ecf4dbb28440ff1d2ea394a7797e742ccd9e4b"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/b_plumb_slots.npz": "a0372244fcb02ce728fddf143d68ae083af1104e9f8e5a109cbcde3dac1c2bf3",
+  "pilot_analysis/stage2/data/b_plumb_emb.npy": "7fc61441d8d6b96d7c26c329baff2c6f0918fa0b1e6adf499ce31a55919d66c3",
+  "pilot_analysis/stage2/data/b_plumb_learned_full.npy": "034763644f286986e25f2636f18f5152c86ef2e114c80d9663fc9d933498a7fb",
+  "pilot_analysis/stage2/data/b_plumb_pairs.json": "60a93f5d9587c748c93b5d7704e681d0822adb2d66c72c17c2f277008ba6967b",
+  "pilot_analysis/stage2/data/b_plumb_parts_summary.json": "0cdb36c913f5a973cf600644113bf558a93f966ac17cdf87e3c8d8c2c92b67d4"
+ }
+}

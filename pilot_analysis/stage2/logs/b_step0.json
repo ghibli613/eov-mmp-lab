@@ -1,0 +1,53 @@
+{
+ "step": "b_step0",
+ "time": "2026-10-05 17:43:12",
+ "command": "pilot_analysis/stage2/b_step0.py",
+ "config": {
+  "alpha": 0.25
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/a2_es_data.py": "21377252cf3c408edaa0eb0874b97140646d0e8ebb13d820a88a13d6954d1be9",
+  "pilot_analysis/stage2/a2_step0_select.py": "cb295bde5a98dea413567fc669348294c8951dd3dffc546b596638c220dd9a26",
+  "pilot_analysis/stage2/a2_step1_alpha.py": "61d510474347dbd53584945caf5a7140ebf33d988d5eb908e39b2890c4f8318a",
+  "pilot_analysis/stage2/a2_step2_g2.py": "a2407aff767d915aab30a884846d55bb5fa13c3f26b314334bc2edb7ba13e1cb",
+  "pilot_analysis/stage2/a2_step3_mix.py": "478d071858788bfaa2eecb11bf06a14b4468b5621bbdfbd5c71d572587248ab6",
+  "pilot_analysis/stage2/b_run7_rewording.py": "1a34dc0b1ddce59ef2d4bd7127753c8907e233cc4221d64895f12bcffb0d9241",
+  "pilot_analysis/stage2/b_step0.py": "3a4e44f1b03dd316350ada3d1d24bf119a0bdce6d37cb72dc8f40092c03ac1e1",
+  "pilot_analysis/stage2/common.py": "8a48e7a2a75b22cc9835bb31329e452b35b0d52c8747ddd60e334bce3cdac0bd",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/learned_part.py": "f82532d7ff0701f502c41460b842b723beb7730dd5db40925d3982a452af2551",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "6a1933224f84c963c507c90b16b11a3a1c337ba1ffd39f19b808538573c25667",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/learned_full.npy": "435e4cf499fbd69c5107cb149464fe16144b8d3ae56190c079bce29be864fc3c",
+  "pilot_analysis/stage2/data/recipes_after_g1.json": "f3a4ab84561f60f07ecb38c4d21d697a12a30c49e939cc932298bde8d1c2cc3f",
+  "pilot_analysis/stage2/data/a2_coverage_full.json": "713e057c40311718dda71b54bb234b44953db07ee548fdc18f3148c2aefa9ef3",
+  "pilot_analysis/stage2/data/b_run7_timing_cpu.json": "7dbaed4077ccd6ae8257d4d017e5585db4270c9a1667e1b25722497ceb187654",
+  "data/vidvrd/data/VidVRD_ECC_test.json": "6e7842bee9887c85164b673becc1e61040bfa31bc33b921202e4b2d9649faa2b"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/b_step0.json": "6d659345546da778eff705339cc9fdc571e608759735dd258c655a64255dd499",
+  "pilot_analysis/stage2/data/b_coverage_full.json": "4d3168190da71f80f794c428908c6d005567403877441187e677ad3a5c447f88"
+ }
+}

@@ -1,0 +1,105 @@
+targets: {"fit_train": {"transitions": 3184, "known": 2263, "change": 669, "continue_": 1594, "change_share": 0.2956252761820592}, "early_stop": {"transitions": 372, "known": 258, "change": 56, "continue_": 202, "change_share": 0.21705426356589147}, "held": {"transitions": 982, "known": 771, "change": 213, "continue_": 558, "change_share": 0.27626459143968873}, "all": {"transitions": 4538, "known": 3292, "change": 938, "continue_": 2354, "change_share": 0.28493317132442286}}
+/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/transformer.py:531: UserWarning: The PyTorch API of nested tensors is in prototype stage and will change in the near future. We recommend specifying layout=torch.jagged when constructing a nested tensor, as this layout receives active development, has better operator coverage, and works with torch.compile. (Triggered internally at /pytorch/aten/src/ATen/NestedTensorImpl.cpp:178.)
+  output = torch._nested_tensor_from_mask(
+  full seed 0: epochs 11, best 1, early-stop loss 0.7013 | 144s
+  full seed 1: epochs 12, best 2, early-stop loss 0.7206 | 158s
+  full seed 2: epochs 12, best 2, early-stop loss 0.6967 | 174s
+  lo2 seed 0: epochs 11, best 1, early-stop loss 0.7153 | 187s
+  lo2 seed 1: epochs 11, best 1, early-stop loss 0.7466 | 199s
+  lo2 seed 2: epochs 11, best 1, early-stop loss 0.7009 | 211s
+{
+ "theta": 0.51,
+ "evaluation": {
+  "full": {
+   "n": 771,
+   "change": 213,
+   "auc": 0.695491948104397,
+   "auc_ci95": [
+    0.6251060589381925,
+    0.7690410682544239
+   ],
+   "at_theta": {
+    "balanced_accuracy": 0.6431420061588167,
+    "precision": 0.43911439114391143,
+    "recall": 0.5586854460093896,
+    "specificity": 0.7275985663082437,
+    "tp": 119,
+    "fp": 152,
+    "fn": 94,
+    "tn": 406
+   }
+  },
+  "lo2": {
+   "n": 291,
+   "change": 115,
+   "auc": 0.6700592885375494,
+   "auc_ci95": [
+    0.5760943022584484,
+    0.7673794664286757
+   ],
+   "full_version_auc_same_transitions": 0.7461462450592885
+  },
+  "baselines": {
+   "sum_abs_change_measured_parts": {
+    "held": 0.6062900701701247,
+    "lo2_transitions": 0.6357460474308301
+   },
+   "cosine_distance_pca": {
+    "held": 0.6939606576135428,
+    "lo2_transitions": 0.7325592885375494
+   }
+  },
+  "mechanism": {
+   "continue_transitions": 558,
+   "continuing_predicates": 931,
+   "in_top20_at_t": 930,
+   "share_in_top20_at_t": 0.9989258861439313,
+   "kept_in_top20_at_t_plus_1": 930,
+   "share_kept": 1.0
+  },
+  "segments_held": {
+   "n": 1842,
+   "mean_slots": 1.3539630836047774,
+   "median": 1.0,
+   "p90": 2.0,
+   "share_1_slot": 0.8078175895765473,
+   "hist": {
+    "1": 1488,
+    "2": 202,
+    "3": 83,
+    "4": 34,
+    "5": 21,
+    "6": 6,
+    "7": 4,
+    "8": 1,
+    "10": 3
+   }
+  },
+  "gate": {
+   "rules": {
+    "full_auc": 0.8,
+    "full_ci_low": 0.75,
+    "lo2_auc": 0.75
+   },
+   "checks": {
+    "full_auc": false,
+    "full_ci_low": false,
+    "lo2_auc": false
+   },
+   "verdict": "FAIL"
+  }
+ },
+ "side": {
+  "rules": {
+   "stand": "animate",
+   "run": "animate",
+   "walk": "animate",
+   "sit": "animate",
+   "stop": "vehicle",
+   "creep": "animate",
+   "swim": "animate"
+  },
+  "share": 0.17521816926167755
+ }
+}
+exit 0

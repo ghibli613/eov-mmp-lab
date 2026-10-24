@@ -1,0 +1,20 @@
+run 1: baseline (EOV-MMP alone)
+  EOV-MMP alone                      novel  mAP  21.70  R@50  31.57  R@100  35.54  | 6s
+  EOV-MMP alone                      all    mAP  37.20  R@50  28.58  R@100  34.62  | 14s
+run 2: method, novel split -- the gate
+  method sqrt(EOV x r')              novel  mAP  15.37  R@50  31.24  R@100  36.86  | 29s
+  GATE: 15.37 vs 24.7 -> FAIL
+run 3: method, all split
+  method sqrt(EOV x r')              all    mAP  38.75  R@50  29.18  R@100  35.78  | 35s
+run 4: control (shuffled recipes)
+  control sqrt(EOV x r'_shuffled)    novel  mAP  10.72  R@50  26.61  R@100  33.39  | 38s
+  control sqrt(EOV x r'_shuffled)    all    mAP  38.93  R@50  29.80  R@100  35.78  | 44s
+run 5: recipe alone
+  r' alone                           novel  mAP   7.69  R@50  21.65  R@100  27.44  | 47s
+run 6: mix weights
+  EOV^0.75 r'^0.25                   novel  mAP  18.06  R@50  32.23  R@100  37.36  | 50s
+  EOV^0.75 r'^0.25                   all    mAP  40.30  R@50  29.49  R@100  35.70  | 56s
+  EOV^0.25 r'^0.75                   novel  mAP  12.89  R@50  28.26  R@100  35.21  | 59s
+  EOV^0.25 r'^0.75                   all    mAP  34.01  R@50  26.23  R@100  32.60  | 65s
+per-predicate AP
+done | 140s

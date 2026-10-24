@@ -1,0 +1,59 @@
+{
+ "step": "step2_train_full",
+ "time": "2026-10-05 16:11:36",
+ "command": "pilot_analysis/stage2/step2_train.py --version full",
+ "config": {
+  "version": "full",
+  "hidden": 512,
+  "dropout": 0.3,
+  "lr": 0.001,
+  "batch": 256,
+  "max_epochs": 200,
+  "patience": 10,
+  "seeds": [
+   0,
+   1,
+   2
+  ],
+  "torch_threads": 6
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/stage2/common.py": "3bf11e62d0582cbd150b87657bf708d4918323da683597353eb22e3d9d30a7f5",
+  "pilot_analysis/stage2/evaluation.py": "7458afb4a8b78f28b89c8166db568ccc97aabeef923b8b56f61d6b1c95d8dbf3",
+  "pilot_analysis/stage2/step0_select.py": "c6ee57da73e3bc06fcce8a0cfd2a91d8643d7d03793a04757e4a9b4845739729",
+  "pilot_analysis/stage2/step1_parts.py": "12a1b8fec3e185261f2bb56258782f6599af9aa995ec8a0028ea03a266de6bec",
+  "pilot_analysis/stage2/step2_train.py": "1f62f7dd53f4c3a06c98647aa86502d366c3f6280a4cfed254e8287dcf96444c",
+  "pilot_analysis/stage2/step3_g2.py": "a31aff64050b65a9342191331eb5bf512c85e0456d12aec29fd616b722965348",
+  "pilot_analysis/stage2/step4_mix.py": "d60d2dd1038b247dd80d92ab038ac3fdfc362d631dddb817cd47cb5684275ba7"
+ },
+ "inputs": {
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/emb.npy": "9eb54ebb37317f5a85ab848f40b49df5189fc57f3c0f8928bf04c02fd6561469",
+  "pilot_analysis/stage2/data/slots_meta.json": "01ba90c5933b464e69a540e704f500ed0d4161cfb43623e8cc75c401ce7bc570",
+  "pilot_analysis/stage2/step0_selection.json": "9aa2310b5b2971b082221e0bb727b99c3d94afd19b17c8456c905e1ed170f04c",
+  "pilot_analysis/stage0e/phi_frozen.json": "2b45efe95f2875ec96f753df5fdfcda450628312e46e2f0fea2db77a0bb0cc2f"
+ },
+ "outputs": {
+  "pilot_analysis/stage2/data/learned_full.npy": "435e4cf499fbd69c5107cb149464fe16144b8d3ae56190c079bce29be864fc3c",
+  "pilot_analysis/stage2/data/model_full.pt": "3feb73909b3812384395bc2981ecf4dbb28440ff1d2ea394a7797e742ccd9e4b",
+  "pilot_analysis/stage2/data/train_full.json": "f61b3de24002e64134731521f2ae8e124809ee8f30f9b32810283c759df82284",
+  "pilot_analysis/stage2/data/g1.json": "4507e3f3b7653008501c641857bc8ee64f0d0c0c392523fe616fcb22a8c104df"
+ },
+ "seconds": 99.9
+}

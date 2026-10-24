@@ -1,0 +1,128 @@
+  final seed 0: epochs 17, best 7, es loss 0.4320
+  final seed 1: epochs 21, best 11, es loss 0.4396
+  final seed 2: epochs 19, best 9, es loss 0.4331
+  fold 0: train 7437 slots, predict 2224 | 52s
+  fold 1: train 7495 slots, predict 2114 | 66s
+  fold 2: train 7319 slots, predict 2420 | 78s
+  fold 3: train 7572 slots, predict 2090 | 90s
+  fold 4: train 7389 slots, predict 2198 | 102s
+{
+ "symmetry": {
+  "slots": 1000,
+  "max_antisymmetry_error": 0.0,
+  "max_symmetry_error_proximity": 0.0,
+  "passed": true
+ },
+ "per_value": {
+  "network": {
+   "left": {
+    "tau": 9.811188647290692e-05,
+    "fit_instances": 3252,
+    "held_instances": 872,
+    "fit_oof_false_delete": 7,
+    "fit_oof_rate": 0.002152521525215252,
+    "held_slot_auc": 0.97604025666389
+   },
+   "right": {
+    "tau": 9.804964065551758e-05,
+    "fit_instances": 3258,
+    "held_instances": 872,
+    "fit_oof_false_delete": 7,
+    "fit_oof_rate": 0.002148557397176182,
+    "held_slot_auc": 0.97604025666389
+   },
+   "above": {
+    "tau": 0.572484016418457,
+    "fit_instances": 373,
+    "held_instances": 61,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 1.0
+   },
+   "beneath": {
+    "tau": 0.3824736475944519,
+    "fit_instances": 301,
+    "held_instances": 78,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0,
+    "held_slot_auc": 1.0
+   },
+   "front": {
+    "tau": 0.018668027594685555,
+    "fit_instances": 2782,
+    "held_instances": 587,
+    "fit_oof_false_delete": 6,
+    "fit_oof_rate": 0.002156721782890007,
+    "held_slot_auc": 0.9473577869782215
+   },
+   "behind": {
+    "tau": 0.018667995929718018,
+    "fit_instances": 2477,
+    "held_instances": 545,
+    "fit_oof_false_delete": 6,
+    "fit_oof_rate": 0.0024222850222042794,
+    "held_slot_auc": 0.9473577869782215
+   },
+   "adjacent": {
+    "tau": 0.03983496129512787,
+    "fit_instances": 1063,
+    "held_instances": 279,
+    "fit_oof_false_delete": 1,
+    "fit_oof_rate": 0.0009407337723424271,
+    "held_slot_auc": 0.8071873550936473
+   }
+  },
+  "untrained": {
+   "left": {
+    "tau": 0.0,
+    "fit_instances": 3252,
+    "held_instances": 872,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "right": {
+    "tau": 0.0,
+    "fit_instances": 3258,
+    "held_instances": 872,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "above": {
+    "tau": 0.0,
+    "fit_instances": 373,
+    "held_instances": 61,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "beneath": {
+    "tau": 0.7,
+    "fit_instances": 301,
+    "held_instances": 78,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "front": {
+    "tau": 0.0,
+    "fit_instances": 2782,
+    "held_instances": 587,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "behind": {
+    "tau": 0.0,
+    "fit_instances": 2477,
+    "held_instances": 545,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   },
+   "adjacent": {
+    "tau": 0.0,
+    "fit_instances": 1063,
+    "held_instances": 279,
+    "fit_oof_false_delete": 0,
+    "fit_oof_rate": 0.0
+   }
+  }
+ }
+}
+done | 103s

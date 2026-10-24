@@ -1,0 +1,50 @@
+{
+ "step": "tc_reproduce",
+ "time": "2026-10-07 00:38:41",
+ "command": "pilot_analysis/time_check/tc_run.py --reproduce",
+ "config": {
+  "ref": {
+   "predcls": {
+    "novel": 21.7,
+    "all": 37.2
+   },
+   "sgdet": {
+    "novel": 15.79,
+    "all": 27.18
+   }
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/final/",
+   "?? pilot_analysis/position/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/",
+   "?? pilot_analysis/time_check/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/time_check/tc_run.py": "fae863dd65ee0c09a2cabfdab7a5f59df2e81832e8113c7c0383f7a5238d5996"
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "pilot_analysis/preds_from_pod/full/final_merged_novel.json": "b89cba88111e3bf37c1cd6f4f2ddd15be06eb4209a81d6af8ecea94de4c52124",
+  "pilot_analysis/preds_from_pod/full/final_merged_all.json": "91bb70e84404bf31dcb77daa6c7205c82d876b0757f780e17e6325059fdd45ea"
+ },
+ "outputs": {
+  "pilot_analysis/time_check/data/tc_reproduction.json": "39a47d29806ff3374a303008768437d54e9a598c7028c4407ce5b9dcb30b6d2a"
+ }
+}

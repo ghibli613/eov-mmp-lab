@@ -1,0 +1,43 @@
+{
+ "step": "p_step4_small",
+ "time": "2026-10-06 23:52:57",
+ "command": "pilot_analysis/position/p_run.py --step 4 --small",
+ "config": {
+  "step": 4,
+  "small": true
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/final/",
+   "?? pilot_analysis/position/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/position/p_run.py": "507afb8acbb831283b58f2bb1b1ca30ee7095aa4622ae06024ba955292d78bc2",
+  "pilot_analysis/position/pos_common.py": "d39b2484ac5db90154940588dd950e05e30ebff398543fa948efa3083589111c"
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "pilot_analysis/stage1/train_split.json": "095dd89ced7260945e76f020a68dcee5793bdd5bca3a6f375f7537dc7c267f1a",
+  "pilot_analysis/stage0e/phi_frozen.json": "2b45efe95f2875ec96f753df5fdfcda450628312e46e2f0fea2db77a0bb0cc2f"
+ },
+ "outputs": {
+  "pilot_analysis/position/data_small/step4.json": "589361fa74e466a20bed88c87ac5d17aeea61e3633414c5f657295b43f025939"
+ },
+ "seconds": 3.0
+}

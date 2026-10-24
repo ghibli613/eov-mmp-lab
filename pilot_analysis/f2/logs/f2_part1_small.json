@@ -1,0 +1,53 @@
+{
+ "step": "f2_part1_small",
+ "time": "2026-10-06 22:51:48",
+ "command": "pilot_analysis/f2/f2_run.py --part 1 --small",
+ "config": {
+  "part": 1,
+  "small": true,
+  "temperature": 0.01,
+  "gates": {
+   "top1": 0.7,
+   "disagree": 0.1,
+   "persistence": 0.75,
+   "false_delete": 0.005,
+   "reach": 0.03
+  },
+  "rule": {
+   "share": 0.995,
+   "min": 100
+  }
+ },
+ "env": {
+  "python": "3.12.13",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "host": "DESKTOP-7SR041S",
+  "numpy": "2.5.2",
+  "torch": "2.11.0+cu128",
+  "sklearn": "1.9.0",
+  "git_head": "fdeeeb4d20145abde48d2f64f9e39f85dcd1fca6",
+  "git_dirty_files": [
+   " M pilot_analysis/stage1b/preregistration.md",
+   " M pilot_analysis/stage1b/preregistration.sha256",
+   "?? pilot_analysis/f1/",
+   "?? pilot_analysis/f2/",
+   "?? pilot_analysis/span/",
+   "?? pilot_analysis/stage1c/session3_report.md",
+   "?? pilot_analysis/stage1c/task2_report.md",
+   "?? pilot_analysis/stage2/"
+  ]
+ },
+ "code": {
+  "pilot_analysis/f2/f2_run.py": "56db8776d66e2c366977cdc82c1671105e72ac23e0a4786a80a767673a3ca0c9"
+ },
+ "inputs": {
+  "/home/totoro/Documents/thesis/source/session3_box_copy/SHA256SUMS_session3.txt": "2cc2d0710f6a92d68ae27ecf74973a9dd122dc1594b9788cff4b0c560567954b",
+  "pilot_analysis/stage2/data/slots.npz": "8c9e9c48eb94888eb4f2ff9cbac4075087330e329445f59eb3f693a15e5332ed",
+  "pilot_analysis/stage2/data/held_gt.json": "78d55c69f9aa2473f4584ae998592dcb67d95ce02a67ab0cd9a8bd8446184dee"
+ },
+ "outputs": {
+  "pilot_analysis/f2/data_small/f2_part1.json": "80e4536a4ce7e1f9eb4d7c4503523275f95f4a9998cf228009d72cfb65aea31c",
+  "pilot_analysis/f2/data_small/f2_fused_classes.json": "fb9fdcafaa27733cd3691c06746bf39f154baf1ee773245e43139ebc62eeade2"
+ },
+ "seconds": 112.4
+}

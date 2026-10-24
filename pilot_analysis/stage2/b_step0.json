@@ -1,0 +1,34 @@
+{
+ "coverage_file": "pilot_analysis/stage2/data/b_coverage_full.json",
+ "no_recipe": [
+  "bite",
+  "feed",
+  "fight",
+  "hold",
+  "kick",
+  "play",
+  "watch"
+ ],
+ "test_videos": 200,
+ "test_videos_without_ecc": [
+  "ILSVRC2015_train_00250013"
+ ],
+ "run7": {
+  "session3_task5_files": [
+   "task5_paraphrase.json"
+  ],
+  "reworded_per_slot_scores_saved": false,
+  "cpu_timing": {
+   "device": "cpu",
+   "videos": 5,
+   "windows": 12,
+   "seconds_recompute": 114.83747053146362,
+   "seconds_per_window": 9.569789210955301,
+   "seconds_set_strings": 58.70159578323364,
+   "max_abs_logit_diff_vs_cache": 0.001476287841796875
+  },
+  "test_pairs_task4": 1392,
+  "cpu_estimate_hours": 18.6,
+  "deferred": true
+ }
+}

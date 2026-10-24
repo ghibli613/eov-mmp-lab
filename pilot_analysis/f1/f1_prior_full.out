@@ -1,0 +1,17 @@
+  full seed 0: epochs 38, best 18, early-stop CE 3.0678 | 13s
+  full seed 1: epochs 35, best 15, early-stop CE 3.0691 | 20s
+  full seed 2: epochs 36, best 16, early-stop CE 3.0755 | 28s
+  minus_A6 seed 0: epochs 42, best 22, early-stop CE 2.7907 | 34s
+  minus_A6 seed 1: epochs 44, best 24, early-stop CE 2.7838 | 40s
+  minus_A6 seed 2: epochs 41, best 21, early-stop CE 2.7946 | 46s
+  minus_LO2 seed 0: epochs 38, best 18, early-stop CE 2.9344 | 52s
+  minus_LO2 seed 1: epochs 36, best 16, early-stop CE 2.9373 | 59s
+  minus_LO2 seed 2: epochs 35, best 15, early-stop CE 2.9290 | 65s
+Gate A1 A6: prior 12.54 | random 10.25 | verb-freq 7.67 -> fail
+Gate A1 LO2: prior 17.06 | random 6.25 | verb-freq 13.56 -> pass
+Gate A2: false-veto rate 268/4365 = 0.0614; vetoed top-20 novel 51079/266360 = 0.1918
+{
+ "gate_A1": "FAIL",
+ "gate_A2": "FAIL",
+ "seconds": 130.0
+}

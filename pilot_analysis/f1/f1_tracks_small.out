@@ -1,0 +1,31 @@
+{
+ "small": true,
+ "videos": 5,
+ "tracks": 13,
+ "non_dense_tracks": 0,
+ "track_length": {
+  "min": 13,
+  "p25": 45.0,
+  "median": 105.0,
+  "p75": 201.0,
+  "p95": 210.0,
+  "max": 210,
+  "share_under_30": 0.07692307692307693,
+  "share_under_90": 0.38461538461538464
+ },
+ "candidates": 0,
+ "tracks_involved": 0,
+ "share_tracks_involved": 0.0,
+ "predictions": 497,
+ "predictions_involving_candidate_track": 0,
+ "share_predictions_involving": 0.0,
+ "predictions_unmatched": 0,
+ "rule": {
+  "max_gap": 30,
+  "iou": 0.3,
+  "centre_distance": 0.5,
+  "gate": 0.1
+ },
+ "verdict": "FAIL: Idea B dropped",
+ "seconds": 0.7
+}

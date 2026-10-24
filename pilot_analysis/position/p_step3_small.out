@@ -1,0 +1,5 @@
+  jitter IoU 0.85: scale 0.0487
+  jitter IoU 0.7: scale 0.1101
+  network: G-P1 pooled 0.0000; per axis [('horizontal', np.float64(0.0), np.float64(0.0)), ('vertical', np.float64(0.0), np.float64(0.0)), ('depth', np.float64(0.0), np.float64(0.0)), ('proximity', np.float64(0.0), np.float64(0.0))] -> survivors ['horizontal', 'vertical', 'depth', 'proximity']
+  untrained: G-P1 pooled 0.0000; per axis [('horizontal', np.float64(0.0), np.float64(0.0)), ('vertical', np.float64(0.0), np.float64(0.0)), ('depth', np.float64(0.0), np.float64(0.0)), ('proximity', np.float64(0.0), np.float64(0.0))] -> survivors ['horizontal', 'vertical', 'depth', 'proximity']
+done | 5s

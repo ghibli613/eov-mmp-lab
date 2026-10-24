@@ -1,0 +1,34 @@
+{
+ "videos": 15,
+ "slots": 162,
+ "instances_covered_value": 211,
+ "instances_without_covering_slot": 0,
+ "targets": {
+  "horizontal": {
+   "observed": 64,
+   "positive": 32
+  },
+  "vertical": {
+   "observed": 13,
+   "positive": 3
+  },
+  "depth": {
+   "observed": 106,
+   "positive": 53
+  },
+  "proximity": {
+   "observed": 135,
+   "positive": 9
+  }
+ },
+ "symmetry": {
+  "feature_swap_n": 162,
+  "feature_swap_exact": 162,
+  "rule_swap_n": 162,
+  "rule_swap_exact": 162
+ },
+ "symmetry_exact": true,
+ "novel_dropped_at_parse": 48,
+ "novel_labels_used": 0
+}
+done | 5s
