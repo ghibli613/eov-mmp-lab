@@ -1,0 +1,65 @@
+{
+ "env": {
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce GTX 1650",
+  "omp_num_threads": "8",
+  "modelC_load": {
+   "missing": [],
+   "unexpected": [],
+   "loaded": 196
+  }
+ },
+ "videos": [
+  {
+   "video": "ILSVRC2015_train_00008005",
+   "pairs": 6,
+   "clips": 18,
+   "frames_encoded": 3,
+   "seconds": 174.78,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00008005.pt",
+   "sha256": "75674846c4cf8aa237464591b357cc19e8cdbf4ed635c1939afb6fca18477f59"
+  },
+  {
+   "video": "ILSVRC2015_train_00010024",
+   "pairs": 2,
+   "clips": 4,
+   "frames_encoded": 2,
+   "seconds": 45.68,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00010024.pt",
+   "sha256": "3eb89f21d026fe1d48a539d5bc5a88b2e53adfe85af90bd67dd16d5a3b340998"
+  },
+  {
+   "video": "ILSVRC2015_train_00024005",
+   "pairs": 8,
+   "clips": 30,
+   "frames_encoded": 15,
+   "seconds": 191.99,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00024005.pt",
+   "sha256": "d4e3f8c9e9fe7adaabc39e5f5448c45d7decbdfadfe9201498c65ef940aca5c6"
+  },
+  {
+   "video": "ILSVRC2015_train_00025029",
+   "pairs": 2,
+   "clips": 2,
+   "frames_encoded": 1,
+   "seconds": 44.07,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00025029.pt",
+   "sha256": "a6d2f6773a86b66f9f4b2ec5da441ebceb98fa6654bfd9295a4b2b2b07dc24a5"
+  },
+  {
+   "video": "ILSVRC2015_train_00027003",
+   "pairs": 2,
+   "clips": 4,
+   "frames_encoded": 2,
+   "seconds": 45.64,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00027003.pt",
+   "sha256": "23d0486f6ad59a75c495e551b38d104fe2bf381137b5e5f1b97fec224c0c83ea"
+  }
+ ]
+}

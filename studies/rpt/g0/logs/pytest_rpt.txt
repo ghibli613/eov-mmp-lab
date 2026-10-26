@@ -1,0 +1,51 @@
+# 2026-10-26T19:25:12+07:00 cd ov-vidvrd-lab/studies; python -m pytest rpt/tests -v -p no:cacheprovider   (repo HEAD 5dea6bd; after A28)
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-9.1.1, pluggy-1.6.0 -- /home/totoro/miniconda3/envs/repro-next/bin/python
+rootdir: /home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies
+plugins: anyio-4.14.2
+collecting ... collected 35 items
+
+rpt/tests/test_adapter.py::test_internal_gap_is_filled_as_the_released_code_fills_it PASSED [  2%]
+rpt/tests/test_adapter.py::test_gap_filling_drops_nothing PASSED         [  5%]
+rpt/tests/test_adapter.py::test_leading_and_trailing_absence_are_not_filled PASSED [  8%]
+rpt/tests/test_adapter.py::test_a_new_id_is_a_new_track PASSED           [ 11%]
+rpt/tests/test_adapter.py::test_names_map_underscores_to_spaces_and_back PASSED [ 14%]
+rpt/tests/test_adapter.py::test_an_unknown_name_raises[panda] PASSED     [ 17%]
+rpt/tests/test_adapter.py::test_an_unknown_name_raises[Giant Panda] PASSED [ 20%]
+rpt/tests/test_adapter.py::test_an_unknown_name_raises[cat] PASSED       [ 22%]
+rpt/tests/test_adapter.py::test_an_unknown_category_fails_the_track_check PASSED [ 25%]
+rpt/tests/test_adapter.py::test_duplicate_merge_just_above_and_below_0_7[17-True] PASSED [ 28%]
+rpt/tests/test_adapter.py::test_duplicate_merge_just_above_and_below_0_7[18-False] PASSED [ 31%]
+rpt/tests/test_adapter.py::test_the_score_averages_detected_frames_only PASSED [ 34%]
+rpt/tests/test_adapter.py::test_a_masklet_without_a_detected_frame_has_no_score_and_is_not_paired PASSED [ 37%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[1.0-confident] PASSED [ 40%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[0.5-confident] PASSED [ 42%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[0.4999-candidate] PASSED [ 45%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[0.1-candidate] PASSED [ 48%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[0.0999-dropped] PASSED [ 51%]
+rpt/tests/test_adapter.py::test_tiers_at_the_cut_and_at_0_1[0.0-dropped] PASSED [ 54%]
+rpt/tests/test_adapter.py::test_a_95_clip_pair_is_windowed_40_40_15_and_joined_before_merging PASSED [ 57%]
+rpt/tests/test_adapter.py::test_a_gap_on_a_clip_middle_frame_is_flagged PASSED [ 60%]
+rpt/tests/test_adapter.py::test_frame_features_answers_only_one_frame_reads PASSED [ 62%]
+rpt/tests/test_adapter.py::test_recorder_passes_through_and_records_starts_and_matches PASSED [ 65%]
+rpt/tests/test_adapter.py::test_recorder_keeps_the_raw_detections_in_0_1_to_0_5_from_before_nms PASSED [ 68%]
+rpt/tests/test_adapter.py::test_backbone_cache_returns_copies_with_the_same_sharing PASSED [ 71%]
+rpt/tests/test_adapter.py::test_sam3_compare_finds_identical_and_different_runs PASSED [ 74%]
+rpt/tests/test_adapter.py::test_frame_records_keep_non_empty_masks_with_their_tight_box PASSED [ 77%]
+rpt/tests/test_adapter.py::test_no_test_labels_guard PASSED              [ 80%]
+rpt/tests/test_chain_checker.py::test_present_and_matching PASSED        [ 82%]
+rpt/tests/test_chain_checker.py::test_the_real_bundle_matches_the_chain PASSED [ 85%]
+rpt/tests/test_chain_checker.py::test_bundle_missing PASSED              [ 88%]
+rpt/tests/test_chain_checker.py::test_content_altered PASSED             [ 91%]
+rpt/tests/test_chain_checker.py::test_unreadable_bundle_fails[not a bundle] PASSED [ 94%]
+rpt/tests/test_chain_checker.py::test_unreadable_bundle_fails[a bundle without a820a0e] PASSED [ 97%]
+rpt/tests/test_chain_checker.py::test_main_exits_nonzero_without_the_bundle PASSED [100%]
+
+=============================== warnings summary ===============================
+rpt/tests/test_adapter.py::test_a_gap_on_a_clip_middle_frame_is_flagged
+  /home/totoro/Documents/thesis/source/ov-vidvrd-lab/models/gen_labels.py:713: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+    item[type_] = torch.tensor(pair_feats[type_]).unsqueeze(dim=0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 35 passed, 1 warning in 13.59s ========================
+exit=0
