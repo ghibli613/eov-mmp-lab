@@ -12,18 +12,51 @@ This runs the same checks with those two adjusted:
 - the closure is followed through the moved files only, as METOR's chain was.
 It adds one check: A26m cites MIGRATION.md's SHA256.
 
+The ov-pairtime folder is gone since A26m. Its prereg file (M1, A24-A24i) is read from the archive
+bundle instead (~/Documents/thesis/archive/ov-pairtime-2026-10-24-a820a0e.bundle, commit a820a0e)
+and must hash to 981bf067…5ce5. A missing bundle, one git cannot read, or a different hash fails;
+the check is never skipped (RPT G0, step 3).
+
     cd ov-vidvrd-lab/studies && python3 migration/verify_after_A26m.py
 """
 from __future__ import annotations
 
 import os
+import subprocess
 import sys
+import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import verify_chain as V  # noqa: E402
 
 BACKUPS = {"studies/prereg/preregistration.md": "studies/migration/logs/preregistration.after-A26.bak",
            "studies/prereg/preregistration.sha256": "studies/migration/logs/preregistration.sha256.before-A26m.bak"}
+PAIRTIME_BUNDLE = os.path.join(os.path.dirname(V.THESIS), "archive", "ov-pairtime-2026-10-24-a820a0e.bundle")
+PAIRTIME_COMMIT = "a820a0eb2a3767c3b3b62bc94f82e768db158576"       # the bundle's master, ov-pairtime's last commit
+
+
+def pairtime_from_bundle(bundle: str, commit: str) -> bytes:
+    """prereg/preregistration.md at `commit`, read from a git bundle through a throwaway bare repo."""
+    with tempfile.TemporaryDirectory() as tmp:
+        def git(*a):
+            return subprocess.run(["git", "-C", tmp, *a], check=True, capture_output=True).stdout
+        git("init", "-q", "--bare")
+        git("fetch", "-q", bundle, "+refs/*:refs/*")
+        return git("show", f"{commit}:prereg/preregistration.md")
+
+
+def check_pairtime(bundle: str | None = None) -> bool:
+    """A25 cites ov-pairtime's final hash; the file now lives only in the archive bundle."""
+    bundle = bundle or PAIRTIME_BUNDLE
+    msg = (f"ov-pairtime prereg (M1, A24-A24i) at {PAIRTIME_COMMIT[:7]} hashes to {V.short(V.PAIRTIME_FINAL)} "
+           f"(read only, from {bundle})")
+    if not os.path.isfile(bundle):
+        return V.check(False, f"{msg}: the bundle is missing")
+    try:
+        got = V.sha(pairtime_from_bundle(bundle, PAIRTIME_COMMIT))
+    except subprocess.CalledProcessError as e:
+        return V.check(False, f"{msg}: git cannot read it ({e.stderr.decode(errors='replace').strip()})")
+    return V.check(got == V.PAIRTIME_FINAL, msg + ("" if got == V.PAIRTIME_FINAL else f": it hashes to {got}"))
 
 
 def closure_through_moved(rows: list[dict]) -> None:
@@ -63,8 +96,7 @@ def main():
     a25 = md[md.find(b"\n#### A25 ("):md.find(b"\n#### A25a (")]
     V.check(states.get("after-A23a") == V.AFTER_A23A and V.AFTER_A23A.encode() in a25 and V.PAIRTIME_FINAL.encode() in a25,
             f"A25 cites ov-pairtime's final {V.short(V.PAIRTIME_FINAL)} and its base {V.short(V.AFTER_A23A)} (= after-A23a)")
-    if os.path.isfile(V.PAIRTIME):
-        V.check(V.fsha(V.PAIRTIME) == V.PAIRTIME_FINAL, f"ov-pairtime prereg (M1, A24-A24i) hashes to {V.short(V.PAIRTIME_FINAL)} (read only)")
+    check_pairtime()
     V.check(states.get("after-A26") == V.A26_FINAL, f"the chain through A26 recomputes to {V.short(V.A26_FINAL)} (METOR's head)")
     a26m = md[md.find(b"\n#### A26m ("):]
     mig = V.fsha(os.path.join(V.STUDIES, "MIGRATION.md"))

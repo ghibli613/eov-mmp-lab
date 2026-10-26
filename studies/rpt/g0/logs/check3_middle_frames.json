@@ -1,0 +1,1467 @@
+{
+ "videos": 160,
+ "frames_total": 47038,
+ "frames_median": 171.5,
+ "frames_max": 2947,
+ "mid_frames_total": 628,
+ "mid_frames_median": 3.0,
+ "mid_frames_max": 21,
+ "share_of_frames_read": 0.013350907776691186,
+ "reduction_factor": 74.90127388535032,
+ "cache_mb_per_video_all_frames": {
+  "median": 144.954345703125,
+  "max": 2490.84814453125
+ },
+ "cache_mb_per_video_mid_frames": {
+  "median": 2.53564453125,
+  "max": 17.74951171875
+ },
+ "pairs_total": 1526,
+ "clips_total": 2512,
+ "pairs_over_40_clips": 0,
+ "videos_without_pairs": 0,
+ "clips_per_mid_frame": 4.0,
+ "bytes_per_frame_fp16": 886272,
+ "per_video": [
+  {
+   "video": "ILSVRC2015_train_00008005",
+   "frames": 130,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00010024",
+   "frames": 64,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00024005",
+   "frames": 981,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 30,
+   "mid_frames": 15,
+   "max_pair_clips": 7
+  },
+  {
+   "video": "ILSVRC2015_train_00025029",
+   "frames": 34,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00027003",
+   "frames": 91,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00032000",
+   "frames": 145,
+   "tracks": 9,
+   "pairs": 32,
+   "clips": 32,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00040000",
+   "frames": 41,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00040005",
+   "frames": 45,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00040030",
+   "frames": 85,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00050006",
+   "frames": 475,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 64,
+   "mid_frames": 12,
+   "max_pair_clips": 12
+  },
+  {
+   "video": "ILSVRC2015_train_00051015",
+   "frames": 44,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00051016",
+   "frames": 33,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00052001",
+   "frames": 329,
+   "tracks": 9,
+   "pairs": 18,
+   "clips": 42,
+   "mid_frames": 7,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00055002",
+   "frames": 381,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00058003",
+   "frames": 91,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00060001",
+   "frames": 36,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00060005",
+   "frames": 81,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00065002",
+   "frames": 72,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00065003",
+   "frames": 108,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00069006",
+   "frames": 105,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00071013",
+   "frames": 85,
+   "tracks": 8,
+   "pairs": 56,
+   "clips": 56,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00071014",
+   "frames": 175,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00071019",
+   "frames": 162,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00073037",
+   "frames": 94,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00074010",
+   "frames": 298,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00077006",
+   "frames": 97,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00078000",
+   "frames": 195,
+   "tracks": 5,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00097003",
+   "frames": 550,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00112000",
+   "frames": 112,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00116002",
+   "frames": 375,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00119013",
+   "frames": 33,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00119025",
+   "frames": 73,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00125006",
+   "frames": 212,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00125007",
+   "frames": 112,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 24,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00125013",
+   "frames": 225,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 16,
+   "mid_frames": 8,
+   "max_pair_clips": 8
+  },
+  {
+   "video": "ILSVRC2015_train_00125014",
+   "frames": 86,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00135004",
+   "frames": 124,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 16,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00139004",
+   "frames": 179,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 12,
+   "mid_frames": 6,
+   "max_pair_clips": 6
+  },
+  {
+   "video": "ILSVRC2015_train_00146005",
+   "frames": 183,
+   "tracks": 17,
+   "pairs": 128,
+   "clips": 128,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00149004",
+   "frames": 113,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00154002",
+   "frames": 143,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00159010",
+   "frames": 75,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00161016",
+   "frames": 134,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00165000",
+   "frames": 278,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 18,
+   "mid_frames": 9,
+   "max_pair_clips": 9
+  },
+  {
+   "video": "ILSVRC2015_train_00171001",
+   "frames": 113,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00171004",
+   "frames": 156,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00172007",
+   "frames": 300,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00175001",
+   "frames": 41,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00181011",
+   "frames": 48,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00185000",
+   "frames": 89,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 36,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00209003",
+   "frames": 285,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00209005",
+   "frames": 438,
+   "tracks": 17,
+   "pairs": 64,
+   "clips": 68,
+   "mid_frames": 6,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00215000",
+   "frames": 370,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00215006",
+   "frames": 191,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00215010",
+   "frames": 220,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 24,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00218002",
+   "frames": 464,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 20,
+   "mid_frames": 10,
+   "max_pair_clips": 10
+  },
+  {
+   "video": "ILSVRC2015_train_00225001",
+   "frames": 836,
+   "tracks": 22,
+   "pairs": 46,
+   "clips": 68,
+   "mid_frames": 20,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00227012",
+   "frames": 45,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00228000",
+   "frames": 651,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00234001",
+   "frames": 60,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00234007",
+   "frames": 110,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00235006",
+   "frames": 110,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00235007",
+   "frames": 135,
+   "tracks": 5,
+   "pairs": 20,
+   "clips": 84,
+   "mid_frames": 8,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00237001",
+   "frames": 1470,
+   "tracks": 11,
+   "pairs": 14,
+   "clips": 18,
+   "mid_frames": 7,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00246002",
+   "frames": 300,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00253025",
+   "frames": 136,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00265004",
+   "frames": 52,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 12,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00265042",
+   "frames": 42,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00265063",
+   "frames": 117,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00265066",
+   "frames": 44,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00265068",
+   "frames": 49,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00265074",
+   "frames": 130,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00270000",
+   "frames": 783,
+   "tracks": 7,
+   "pairs": 18,
+   "clips": 18,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00272005",
+   "frames": 47,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00272034",
+   "frames": 74,
+   "tracks": 4,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00280000",
+   "frames": 2947,
+   "tracks": 14,
+   "pairs": 20,
+   "clips": 28,
+   "mid_frames": 11,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00284001",
+   "frames": 402,
+   "tracks": 8,
+   "pairs": 14,
+   "clips": 14,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00290008",
+   "frames": 92,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 10,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00290019",
+   "frames": 124,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00293004",
+   "frames": 448,
+   "tracks": 8,
+   "pairs": 22,
+   "clips": 64,
+   "mid_frames": 21,
+   "max_pair_clips": 7
+  },
+  {
+   "video": "ILSVRC2015_train_00293005",
+   "frames": 629,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00300008",
+   "frames": 240,
+   "tracks": 5,
+   "pairs": 8,
+   "clips": 24,
+   "mid_frames": 6,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00302021",
+   "frames": 56,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 8,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00303008",
+   "frames": 60,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00308017",
+   "frames": 74,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00309001",
+   "frames": 240,
+   "tracks": 5,
+   "pairs": 10,
+   "clips": 16,
+   "mid_frames": 7,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00311002",
+   "frames": 63,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00339001",
+   "frames": 70,
+   "tracks": 5,
+   "pairs": 20,
+   "clips": 30,
+   "mid_frames": 5,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00339003",
+   "frames": 124,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00349000",
+   "frames": 600,
+   "tracks": 14,
+   "pairs": 36,
+   "clips": 64,
+   "mid_frames": 13,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00353000",
+   "frames": 450,
+   "tracks": 5,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00354000",
+   "frames": 345,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00356001",
+   "frames": 165,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00371013",
+   "frames": 60,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00374000",
+   "frames": 525,
+   "tracks": 13,
+   "pairs": 22,
+   "clips": 22,
+   "mid_frames": 5,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00398004",
+   "frames": 150,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00407001",
+   "frames": 841,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00415007",
+   "frames": 118,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00415008",
+   "frames": 49,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00435001",
+   "frames": 146,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00467000",
+   "frames": 539,
+   "tracks": 7,
+   "pairs": 10,
+   "clips": 16,
+   "mid_frames": 6,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00476002",
+   "frames": 899,
+   "tracks": 10,
+   "pairs": 10,
+   "clips": 26,
+   "mid_frames": 13,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00477000",
+   "frames": 347,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00480000",
+   "frames": 600,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00494000",
+   "frames": 157,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00532000",
+   "frames": 710,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00533003",
+   "frames": 122,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00572000",
+   "frames": 180,
+   "tracks": 9,
+   "pairs": 18,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00588000",
+   "frames": 232,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00596000",
+   "frames": 39,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00632001",
+   "frames": 325,
+   "tracks": 7,
+   "pairs": 10,
+   "clips": 12,
+   "mid_frames": 4,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00636001",
+   "frames": 325,
+   "tracks": 5,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00667002",
+   "frames": 190,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00679000",
+   "frames": 401,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00683000",
+   "frames": 375,
+   "tracks": 8,
+   "pairs": 14,
+   "clips": 14,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00691000",
+   "frames": 145,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00721000",
+   "frames": 158,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 10,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00750000",
+   "frames": 195,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00756000",
+   "frames": 89,
+   "tracks": 6,
+   "pairs": 30,
+   "clips": 50,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00759000",
+   "frames": 450,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00760001",
+   "frames": 325,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00766000",
+   "frames": 450,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 30,
+   "mid_frames": 15,
+   "max_pair_clips": 15
+  },
+  {
+   "video": "ILSVRC2015_train_00772004",
+   "frames": 348,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 18,
+   "mid_frames": 9,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00780000",
+   "frames": 689,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 8,
+   "mid_frames": 3,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_00796000",
+   "frames": 856,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 24,
+   "mid_frames": 12,
+   "max_pair_clips": 7
+  },
+  {
+   "video": "ILSVRC2015_train_00873000",
+   "frames": 160,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_00882000",
+   "frames": 550,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00896000",
+   "frames": 1080,
+   "tracks": 16,
+   "pairs": 16,
+   "clips": 32,
+   "mid_frames": 16,
+   "max_pair_clips": 7
+  },
+  {
+   "video": "ILSVRC2015_train_00897005",
+   "frames": 90,
+   "tracks": 6,
+   "pairs": 30,
+   "clips": 80,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00912002",
+   "frames": 310,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_train_00917000",
+   "frames": 370,
+   "tracks": 7,
+   "pairs": 42,
+   "clips": 42,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00971000",
+   "frames": 521,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 12,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_train_00978000",
+   "frames": 127,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00987000",
+   "frames": 710,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 12,
+   "mid_frames": 6,
+   "max_pair_clips": 6
+  },
+  {
+   "video": "ILSVRC2015_train_00988001",
+   "frames": 377,
+   "tracks": 10,
+   "pairs": 10,
+   "clips": 10,
+   "mid_frames": 5,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_00989000",
+   "frames": 561,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_01014000",
+   "frames": 480,
+   "tracks": 10,
+   "pairs": 40,
+   "clips": 84,
+   "mid_frames": 18,
+   "max_pair_clips": 6
+  },
+  {
+   "video": "ILSVRC2015_train_01020000",
+   "frames": 263,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_train_01025001",
+   "frames": 435,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_01034001",
+   "frames": 203,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_train_01079000",
+   "frames": 382,
+   "tracks": 12,
+   "pairs": 34,
+   "clips": 46,
+   "mid_frames": 10,
+   "max_pair_clips": 5
+  },
+  {
+   "video": "ILSVRC2015_train_01108001",
+   "frames": 350,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 16,
+   "mid_frames": 8,
+   "max_pair_clips": 8
+  },
+  {
+   "video": "ILSVRC2015_val_00007022",
+   "frames": 46,
+   "tracks": 9,
+   "pairs": 72,
+   "clips": 72,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00008001",
+   "frames": 749,
+   "tracks": 8,
+   "pairs": 8,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00020001",
+   "frames": 115,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_val_00026003",
+   "frames": 168,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 8,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_val_00027000",
+   "frames": 953,
+   "tracks": 13,
+   "pairs": 22,
+   "clips": 34,
+   "mid_frames": 7,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_val_00028003",
+   "frames": 114,
+   "tracks": 5,
+   "pairs": 20,
+   "clips": 80,
+   "mid_frames": 4,
+   "max_pair_clips": 4
+  },
+  {
+   "video": "ILSVRC2015_val_00035000",
+   "frames": 546,
+   "tracks": 10,
+   "pairs": 16,
+   "clips": 16,
+   "mid_frames": 4,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00035008",
+   "frames": 208,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 14,
+   "mid_frames": 7,
+   "max_pair_clips": 7
+  },
+  {
+   "video": "ILSVRC2015_val_00035013",
+   "frames": 140,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 12,
+   "mid_frames": 2,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00037004",
+   "frames": 78,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 4,
+   "mid_frames": 2,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_val_00046000",
+   "frames": 492,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00078000",
+   "frames": 123,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 2,
+   "mid_frames": 1,
+   "max_pair_clips": 1
+  },
+  {
+   "video": "ILSVRC2015_val_00082000",
+   "frames": 720,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_val_00103000",
+   "frames": 595,
+   "tracks": 6,
+   "pairs": 12,
+   "clips": 16,
+   "mid_frames": 7,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_val_00123004",
+   "frames": 246,
+   "tracks": 2,
+   "pairs": 2,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_val_00135000",
+   "frames": 129,
+   "tracks": 3,
+   "pairs": 6,
+   "clips": 18,
+   "mid_frames": 3,
+   "max_pair_clips": 3
+  },
+  {
+   "video": "ILSVRC2015_val_00150003",
+   "frames": 200,
+   "tracks": 4,
+   "pairs": 4,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 2
+  },
+  {
+   "video": "ILSVRC2015_val_00169000",
+   "frames": 893,
+   "tracks": 6,
+   "pairs": 6,
+   "clips": 6,
+   "mid_frames": 3,
+   "max_pair_clips": 1
+  }
+ ]
+}

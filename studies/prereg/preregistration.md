@@ -1422,3 +1422,312 @@ It also records that the pilot file's A6–A22 were committed late, on 2026-10-2
 
 **Not changed:** any definition, threshold, reading rule, stop rule, pin or order of A23–A26.
 A26 stays stopped before any GPU use.
+
+#### A28 (2026-10-26): RPT G0 — SAM 3 set up, the five code checks fixed as adapter rules, a reproduction of session 3 and a 3-video smoke test on HELD; no gate result, no test data
+
+Written before any SAM 3 output on a VidVRD video, any adapter run, the reproduction or the smoke
+test exists. No model has been trained or evaluated, no test annotation has been opened, and the
+only GPU use so far is a memory probe of SAM 3 with random weights and no data
+(`studies/rpt/g0/logs/laptop_memory_probe.txt`). A27 stays reserved for the tracklet-keeping
+design (`studies/design_review/agreed_plan.md`); this is the next free label.
+
+**What G0 is.** The first gate of the RPT proposal (`studies/rpt/rpt-proposal.md`, version 5,
+SHA256 `1f9f648262c460ccd181e7e60a79ada9b67d5293f7ef8cff2ef746958959cf83`): a frozen SAM 3 replaces
+EOV-MMP's detector, tracker and track filter, and its tracks enter the released relation head
+unchanged, through `gen_feats_test` + `modelC`, the path session 3 used for GT tracks. G0 sets SAM 3
+up, settles the proposal's five code checks, builds the adapter and runs a small smoke test. **It
+measures no gate result and makes no design choice.** Where the proposal could not be followed as
+written, G0 stopped and reported (`studies/rpt/g0/interim_report_1.md`, SHA256
+`786c2c148d38da76b30ca16fa3dd2fa90a48143a64e28953df6f6b1f9557f01e`); the rules below that settle
+those points are the plan author's answers to that report. G0 ends with `studies/rpt/g0_report.md`,
+a draft G1 amendment (not hashed) and a stop.
+
+##### The chain checker (G0 step 3)
+
+`studies/migration/verify_after_A26m.py` skipped its ov-pairtime check without a word once the
+ov-pairtime folder was gone. Only that check changed: the file is now read from the archive bundle
+`~/Documents/thesis/archive/ov-pairtime-2026-10-24-a820a0e.bundle` (commit `a820a0e`, through a
+throwaway bare repository) and must hash to `981bf067…5ce5`. A missing bundle, one git cannot read,
+or a different hash is a FAIL with a non-zero exit; the check is never skipped.
+
+| | SHA256 |
+|---|---|
+| `studies/migration/verify_after_A26m.py` (fixed) | `3af183caad77d61ea4aca7e7fa04d2da74c354b0d4335797ede98409d0eda1e7` |
+| `studies/rpt/tests/test_chain_checker.py` (7 tests: present and matching, synthetic and real; missing; altered; two unreadable bundles; `main()` exits 1 without the bundle) | `8fc440011d2d60750e17b4ee7a3d830ce95791251ac1749882a3b394f33ea13b` |
+| `studies/rpt/g0/logs/verify_after_A26m_fixed.txt` (the real chain: 66 checks, all passed, head `ac77e243…a591`) | `26154ba93572ae25bdc36ed502a13902a962d5c95d427dd54efca61838378677` |
+
+##### SAM 3, frozen
+
+- **Code:** `github.com/facebookresearch/sam3` at `f1647e8d0c1d280991f4d1b7d974c2704537fe66`
+  (2026-10-23), cloned outside this repo to `~/Documents/thesis/source/sam3`. Never edited.
+- **Checkpoint:** `facebook/sam3`, file `sam3.pt`, Hugging Face revision
+  `3c879f39826c281e95690f02c7821c4de09afae7`, 3,450,062,241 bytes; its Git LFS pointer is the git
+  blob `5b7c2eaba7c1e2a81f26bc7476bfe80e43e979e4` (135 bytes), and `config.json` is the blob
+  `3e600e765b0f1b4c52680aed9ad242c9a90f7ed1`. The repository is gated and the author's access is
+  pending; without access Hugging Face exposes no SHA256 (the file's HEAD request, its raw LFS
+  pointer and `paths-info` all answer 401; the tree API masks the LFS oid). **The SHA256 is pinned
+  in a pin addendum, A28a, written after the download and before any SAM 3 code touches data.**
+  A28a also checks that the LFS pointer rebuilt from that SHA256 and the size hashes to the blob
+  above, so the file is the one this revision named. It is loaded only from a local path after its
+  SHA256 is checked; SAM 3's own download code is never reached.
+- **Model:** `build_sam3_video_predictor()` (`sam3/model_builder.py:818`) with every default: SAM 3,
+  the November 2025 release. **Not SAM 3.1**, which the repo added on 2026-03-27 (`facebook/sam3.1`;
+  `build_sam3_predictor()` defaults to it); the proposal names SAM 3.
+- **Licence:** the SAM License (last updated 2025-11-19; `LICENSE` SHA256
+  `4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be`, unchanged since the initial
+  commit; the Hugging Face repo's `LICENSE` is the same text without its final newline). §1.a grants
+  use; §1.b.ii requires that a publication acknowledge the use of SAM Materials. Outputs are not SAM
+  Materials; no clause restricts them.
+- **Environment:** its own conda env `sam3` (conda-forge Python 3.12.15; the default Anaconda
+  channels were not used, since they need a Terms-of-Service acceptance that is the author's to
+  give), torch 2.10.0+cu128 as SAM 3's README installs it, `pip install -e ".[notebooks]"`, psutil,
+  and setuptools 78.1.0 (`model_builder.py:8` imports `pkg_resources`, which setuptools 84 no longer
+  ships). `pip freeze`: `studies/rpt/g0/logs/env/pip_freeze_sam3_laptop.txt`, SHA256
+  `7831e667dcbe4decdd0d970c25338efd3e3c62606f31bade73d01d165db7fe7e`. The two sides talk only through
+  files.
+
+##### The five code checks, and the rules they fix (G0 step 4)
+
+1. **Gap filling.** The released track code (`models/gen_labels.py`, called by
+   `format_trajectories`, `:446-451`, and `format_trajectories_test`, `:605-610`):
+   - adds two frames before the first box, copies of it (`add_initial_frames`, `:363-371`);
+   - drops a track with boxes on < 65% of its span (`:380-382`), and, while a gap is longer than 15%
+     of the span, drops the shorter side of the largest gap (`:385-413`);
+   - fills every remaining internal gap by **linear interpolation** of each coordinate between the
+     boxes on either side (`np.interp` over the present frames, `:416-419`), then rounds every box of
+     the span to integers and clamps it at 0 (`round_and_positive`, `:422-423`, `:426-428`);
+   - adds nothing after the last box (`end_fid` = last frame + 1, `:480`, `:635`); keeps a track
+     only with ≥ 12 frames, pre-roll included (`:471`, `:626`).
+
+   **Rule.** Internal gaps of a SAM 3 ID are filled by `:416-423` exactly: `np.interp` over the
+   frames where SAM 3 output the ID, then the repo's own `round_and_positive` on every frame of
+   [first, last]. The coverage rule, the gap trim and the length filter are rule 8, which RPT
+   replaces. **No pre-roll** (settled: interim report 1, D4).
+
+2. **Score field.**
+   - SAM 3 thresholds the **detection probability** `sigmoid(pred_logits)`
+     (`sam3/model/sam3_video_base.py:602`): a detection is kept if it is > 0.5
+     (`score_threshold_detection`, `:608`, with mask NMS at the same threshold,
+     `sam3_image.py:846-861`), and a masklet is started only by a kept detection ≥ 0.7
+     (`new_det_thresh`) that matches no existing masklet (`:210-213`). The video post-processing
+     (`_postprocess_output`, `sam3_video_inference.py:432-524`) thresholds no score.
+   - **Presence × object: yes, already.** With the presence token (on by default:
+     `has_presence_token=True` → `supervise_joint_box_scores`, `model_builder.py:680`, `:739`),
+     `pred_logits` = logit(σ(class logit) × σ(presence logit)), clamped to ±10
+     (`sam3_image.py:345-353`).
+   - **The output field** is `out_probs` (`sam3_video_inference.py:450-452`, `:519`) =
+     `obj_id_to_score`, set once, to the probability of the detection that started the masklet
+     (`sam3_video_base.py:1059-1064`; the code's own comment: "first frame detection score",
+     `sam3_video_inference.py:409`), and never updated (`:1079-1080` only marks removals). SAM 3's
+     own multi-prompt video evaluation scores each masklet with this one value, on every frame
+     (`sam3_video_inference.py:946-950`; `sam3_video_base.py:2049-2075`, `per_frame_scores = scores`).
+   - **Detected / propagated / absent:** not in the output, but identifiable from SAM 3's own
+     per-frame association: a masklet is *detected* on frame t if it was started by a detection on
+     t, or a kept detection was matched to it on t (mask IoU ≥ `assoc_iou_thresh` 0.1); this is the
+     definition SAM 3's masklet confirmation uses (`sam3_video_base.py:1968-1970`, `:2011-2017`). It
+     is read through a read-only wrapper around `run_tracker_update_planning_phase`; SAM 3's code is
+     not edited and its outputs do not change.
+   - Per-frame detection probabilities exist inside SAM 3, but are not attached to masklets; when
+     several kept detections match one masklet on a frame (allowed: `im_mask`, `:251`, feeds
+     `det_to_matched_trk_obj_ids`, `:150`), SAM 3 defines no single value.
+
+   **Rule (settled: interim report 1, D2).** The per-frame value is the masklet's `out_probs` in that
+   frame's output; the track score is its mean over detected frames, which equals the probability of
+   the masklet's starting detection (≥ 0.7). Also recorded per frame, **not used**: the
+   probabilities of the matched detections (with a count of frames with more than one) and SAM 3's
+   tracker score. A masklet with no detected frame has no score; it is reported and not paired.
+
+3. **Clip grid.** Clips are not on a video grid. For each ordered pair, clips start at the pair's
+   overlap start, `begin_fid = max` of the two tracks' starts (`gen_labels.py:657`), in steps of 30
+   (`:13`, `:693`); a tail ≥ 10 frames is the last clip and a tail < 10 is cut (`:661-666`,
+   `:694-697`). A clip's features are read at its middle frame, `begin_fid + len(clip)//2`
+   (`:81-82`, `:106`, `:117`). Middle frames are shared only by pairs whose overlap starts agree
+   modulo 30, always by (s, o) and (o, s). On HELD with session 3's GT tracks
+   (`studies/rpt/g0/check3_middle_frames.py`, SHA256 `6843dbff…cede9`; output
+   `logs/check3_middle_frames.json`, `44911fb2…f9cd`): 628 of 47,038 frames are read (1.3%, 4.0
+   clips per frame read); a cache of only those frames is 2.5 MB per video at the median (max 17.7
+   MB) against 145 MB (max 2.49 GB) for every frame, at fp16.
+   **Rule.** Features are computed on demand for exactly the frames `gen_feats_test` requests, and
+   memoized per (video, frame); never for every frame.
+
+4. **Window joining.** Session 3's `run_pair` (`pilot_analysis/stage1c/cache_wrapper.py:166-180`)
+   splits a pair's clip sequence into consecutive windows of ≤ 40 (`:46`, `:171`), runs `modelC`
+   once per window (`:173-175`) and concatenates the per-clip outputs in order (`:176`, `:179`);
+   `eval_from_cache.predict` then runs `process_pred` → `association` on each pair's whole joined
+   sequence (`eval_from_cache.py:72-77`). So per-clip predictions are joined **before** the greedy
+   merge. No pair in session 3 had more than 40 clips, so the join ran only in its random-tensor
+   check; the released SGDet path does not window at all (`models/end2end_model.py:326-337`).
+   **Rule.** `run_pair` is called, not reimplemented; its joined output goes to `process_pred` →
+   `association` → `format_`.
+
+5. **Confident cut: 0.5.** SAM 3 keeps a detection if its probability is > 0.5: the video model's
+   `score_threshold_detection` ("prob threshold for detection outputs -- only keep detections above
+   this threshold", `sam3_video_base.py:270-272`, `:608`; 0.5 in `model_builder.py:747`), the image
+   API's `confidence_threshold=0.5` (`sam3_image_processor.py:17`, `:199`; SAM 3's example notebooks
+   use `Sam3Processor(model, confidence_threshold=0.5)`), and the predictor API's default
+   `output_prob_thresh` 0.5 (`sam3_base_predictor.py:76-79`; passed only to SAM 3.1 models).
+   `new_det_thresh` = 0.7 (`model_builder.py:750`) starts a masklet; it does not keep a detection.
+   **Consequence:** at SAM 3's defaults every masklet starts from a detection ≥ 0.7, so every
+   masklet is confident and **the candidate tier [0.1, 0.5) is empty by construction.**
+   **Rule (settled: interim report 1, D1).** No second SAM 3 pass and no SAM 3 setting is changed.
+   In the same default pass, SAM 3's raw detections with probability in [0.1, 0.5) are recorded
+   per frame, read-only: box, probability, prompt. They are read from the detector's
+   `forward_grounding` output as it returns, before NMS lowers the logits of every detection ≤ 0.5
+   in place (`sam3_image.py:846-861`), through the same kind of wrapper as the status; the frame
+   comes from a wrapper on `_build_multigpu_buffer_next_chunk` (`sam3_image.py:822`), with no GPU
+   sync. They are pre-NMS, as SAM 3 never runs NMS on them. The smoke test reports their counts;
+   G1 will report how many GT objects missed by confident tracks have one. The candidate tier and
+   Verify are decided in the G2 amendment.
+
+##### The adapter (`studies/rpt/`; G0 step 7)
+
+SAM 3 side (its own environment):
+- **Prompts:** the 35 names of `data/vidvrd/data/object2id.json` (SHA256 `350c554c…2b37`), in id
+  order, `_` replaced by a space; nothing else, no synonym. Each masklet carries its prompt's name.
+- **Protocol:** SAM 3's own multi-prompt video protocol (`Sam3VideoInference.forward`,
+  `sam3_video_inference.py:928-952`), through the predictor API: one session per video on its JPEG
+  folder; per prompt, `add_prompt` at frame 0, then `propagate_in_video` forward from frame 0 over
+  every frame, then `reset_session`. Default settings throughout (thresholds 0.5 / 0.7, hotstart
+  15 / 8 / 8, image size 1008, frames held on the GPU, bf16 autocast as the predictor sets it, no
+  `torch.compile`). `torch.manual_seed(0)`; SAM 3 inference draws no random numbers.
+- **Written per video:** `studies/rpt/g0/sam3_out/<video>.json.gz`: per prompt and masklet, per
+  output frame the RLE mask, the tight box of the returned mask, SAM 3's own box, `out_probs`, the
+  frame status and the recorded detection and tracker scores; per prompt its time and its raw
+  [0.1, 0.5) detections; per video the peak GPU memory.
+
+EOV-MMP side (unchanged repo code):
+- **Identity:** one (prompt, SAM 3 ID) is one track; a new ID is a new track; nothing is split.
+- **Boxes:** on every frame where SAM 3 returns a non-empty mask for the ID, the tight box of that
+  mask, `[x1, y1, x2, y2]` in pixels with `torchvision.ops.masks_to_boxes`' convention (the function
+  SAM 3 uses for its own box). SAM 3's own box (from the mask before its non-overlap step,
+  `sam3_video_inference.py:492-515`) is recorded beside it. A frame with an empty returned mask is
+  not an output frame.
+- **Gaps:** rule 1. Frames before the first or after the last output frame are not part of the
+  track.
+- **Status per frame:** *detected* or *propagated* (output frames, rule 2) or *filled* (gap frames).
+- **Score and tiers:** rule 2; confident if score ≥ 0.5 (rule 5), candidate if 0.1 ≤ score < 0.5,
+  dropped if < 0.1. With no loop in G0, only confident tracks are paired (proposal §3.1: candidates
+  are for the loop).
+- **Duplicates across prompts (settled: interim report 1, D3):** two masklets from different
+  prompts whose per-frame mask IoU, averaged over the frames where both have an output mask, is
+  > 0.7 are duplicates. The higher-scoring masklet is kept unchanged (frames, boxes, score, class)
+  and the other is removed, greedily in descending score (ties: prompt id, then SAM 3 ID); each kept
+  track is still exactly one SAM 3 ID. G0 reports both masklets of every duplicate and the frames the
+  removed one had outside the shared frames.
+- **Pairs:** `gen_feats_test` (`gen_labels.py:642`) on the confident tracks, split `train` (the HELD
+  annotation is read for width, height and the frame count only); its own overlap ≥ 10 and tail
+  rules, in its own order.
+- **Windows:** rule 4.
+- **Features:** CLIP-L and TagCLIP-L through the repo's own encoders, `_shared_encoder` and
+  `_transform_resize(336, 336)` (`data_loading/dataset.py`), exactly as session 3's
+  `encode_frames` per frame (`cache_wrapper.py:78-98`): batch 1, fp16 on CUDA, frame `f` = the f-th
+  file in sorted order; whole video, the GT range of `dataset.py:120-135` bypassed; on demand and
+  memoized (rule 3).
+- **Gap exposure:** a clip whose middle frame is a *filled* frame of its subject or object is
+  flagged and counted.
+- **No test labels:** every G0 runner installs an audit hook that raises on opening any path under
+  `anno/test`, any `test_relation_gt*` or `test_object_trajectories*` file, or anything of session
+  3's test caches.
+
+##### The reproduction of session 3 (G0 step 8)
+
+- **Videos:** the first 5 HELD IDs in sorted order (`pilot_analysis/stage1/train_split.json`,
+  SHA256 `095dd89c…1f1a`): `ILSVRC2015_train_00008005`, `…00010024`, `…00024005`, `…00025029`,
+  `…00027003`.
+- **Input:** their GT tracks from `gt_tracks.load_tracks("train")` (option B,
+  `gt_tracks_train.json`, SHA256 `87b40fff…636d`), through the adapter's track check and feature
+  wrapper into `gen_feats_test` + `modelC` (session 3's `build_modelC`, from the end-to-end
+  checkpoint `d306952a…0e70`, `tgt_split all`, `--frame_stride 1`). No SAM 3 step applies to GT
+  tracks.
+- **Compared with** `cache_s3/train/<video>.pt` (each matching `SHA256SUMS_session3.txt`, SHA256
+  `2cc2d071…954b`, as checked on 2026-10-26), pair by pair in `gen_feats_test` order.
+- **Bar:** max |logit − cached logit| ≤ 1e-4 over every pair, clip and predicate column.
+  Reported, not bars: the interactiveness-logit residual, the slot-input residuals, and whether
+  each requested frame's `global_proj` equals the cached one (frame provenance).
+- **Where:** session 3's stack: an RTX 4090, torch 2.11.0+cu128, `OMP_NUM_THREADS=8`. The frames are
+  the laptop's JPEGs, which today's cv2 5.0.0 re-decodes from the laptop's mp4 files byte for byte
+  (all 1,300 frames of the 5 videos), as session 3 decoded on its box. A run on the laptop's GTX
+  1650 (sm_75), made first to test the code path, is labelled a dry run; its residual is reported
+  and does not count.
+- **On a fail:** find where the paths diverge (frames, features, windows, ordering) and report.
+  Nothing is adjusted to make it pass.
+
+##### The smoke test (G0 step 9)
+
+- **Videos:** the first 3 of the 5: `…00008005` (130 frames), `…00010024` (64), `…00024005` (981).
+- **Pipeline:** SAM 3 (35 prompts, every frame of the whole video) → adapter → `gen_feats_test` +
+  `modelC` → `process_pred` (top 20 per clip, no prior) → `association` → `format_` (top 200) →
+  `eval_relation_detection_openvoc(target_split_pred="base")` with `gt_json` = the HELD GT of these
+  3 videos from `pilot_analysis/stage2/data/held_gt.json` (SHA256 `78d55c69…4dee`; built from the
+  training annotations, base relations only, so the novel-predicate instances of the training
+  videos stay unused). No T1 rules, no loop.
+- **Reported per video:** frames; SAM 3 time per prompt and in total; confident, candidate and
+  dropped by class; the raw [0.1, 0.5) detections, by class; SAM 3's own removals; duplicates;
+  ordered pairs and clips; middle frames inside filled gaps; frames with several matched detections;
+  peak GPU memory. Then the G1 cost extrapolated to the 160 HELD videos (47,038 frames) against G1's
+  runtime bar, and 18 images (6 evenly spaced frames per video, GT and SAM 3 boxes) in
+  `studies/rpt/g0/viz/`.
+- **The evaluator's numbers are labelled "smoke test, in-sample, not a result"**: EOV-MMP was trained
+  on HELD. They are not read, compared or used for anything.
+
+##### A runtime measurement, to inform G1 only (not a design change)
+
+SAM 3 recomputes the image backbone for every frame of every prompt: its `forward_image`
+(`vl_combiner.py:81`) depends on the image alone and runs on a `backbone_out` rebuilt per frame
+(`sam3_video_base.py:580-590`; `sam3_image.py:136-166`). On smoke video 1 only, after the default
+runs and the relation side:
+1. **A determinism control:** the default run again, on its first 3 prompts.
+2. **A reuse run:** all 35 prompts, with a read-only wrapper on `forward_image` that keeps the
+   output SAM 3 computed for a frame (a CPU copy; position encodings bitwise equal to an earlier
+   frame's are kept once) and gives later prompts a GPU copy with the same tensor sharing. On
+   random weights the output is 212.6 MiB per frame in bf16, about half of it position encodings.
+3. **Reported:** whether masks, boxes, scores, statuses and the raw detections are bitwise
+   identical to the default run (`studies/rpt/g0/sam3_compare.py`), the differences if not, and
+   the speedup. If they are not identical, the reuse is not used. The control separates a change
+   from GPU non-determinism. G0 uses the default run for everything else.
+4. **Budget:** this runs last and only if fewer than 95 minutes have passed since the machine's
+   setup began.
+
+##### The laptop check (G0 step 6)
+
+SAM 3 at its default settings on `…00010024` (the shortest smoke video, 64 frames) with one prompt,
+"bicycle" (the class of its GT track 0), on the GTX 1650 (4 GB), after A28a. Reported: whether it
+runs, peak GPU memory, time per frame. Nothing is lowered or changed to make it fit. It is stopped
+after 30 minutes of wall time if unfinished, and reported as such.
+
+##### The rented machine (approved by the author)
+
+An RTX 4090 (session 3's GPU), ≥ 32 GB RAM, a Vast.ai PyTorch image with torch 2.11.0+cu128 for the
+EOV-MMP side, SAM 3 in its own virtual environment as above, `OMP_NUM_THREADS=8`,
+`--frame_stride 1`. Approved under 2 GPU-hours. The run stops and the author is asked if the
+measured SAM 3 time on the first smoke video projects the 3 videos beyond 1.25 GPU-hours (with
+about 35 minutes of set-up, fetch, reproduction and copy-back, the machine stays under 2 hours).
+To cover steps 8 and 9 with one machine, G0 waits up to 2 days for SAM 3 access; if access takes
+longer, the plan author is asked about a machine for step 8 alone. The token, as in A25c and A26:
+a read-only Hugging Face token, held only as `HF_TOKEN` in the author's interactive fetch (with a
+throwaway `HF_HOME`), never written to a file, log or report, unset after use, with token scans
+before and after. No test file is copied to the machine. Nothing is pushed.
+
+##### G0 pass bars
+
+1. The reproduction: max absolute logit residual ≤ 1e-4 against `cache_s3`, on all 5 videos.
+2. All adapter unit tests pass (`studies/rpt/tests/`).
+3. The 3 smoke videos run end to end, SAM 3 to the evaluator, without an error.
+
+A pass allows the G1 amendment to be written; it is not evidence for the method.
+
+##### OPEN (not decided here)
+
+1. The candidate tier and the Verify action: the G2 amendment (rule 5).
+2. The runtime fallback's *k*, if G1's runtime bar cannot be met (proposal §3.1): the G1 amendment.
+
+**Order.**
+1. This amendment; the checker is run; a commit.
+2. Laptop: the adapter's unit tests; the dry run of step 8 on the GTX 1650.
+3. SAM 3 access; the author's fetch on the laptop; A28a pins the SHA256; the laptop check.
+4. The machine: steps 8 and 9, then the measurement; copy-back; the author destroys it.
+5. Laptop: the comparisons, the evaluation, the images, `studies/rpt/g0_report.md`, and
+   `studies/rpt/g1_amendment_draft.md` (not hashed). Stop.
+
+The adapter, its tests and the machine scripts exist as this is appended; none of them has run.
+Any change to the above is a new amendment, written before the result it affects.

@@ -1,0 +1,26 @@
+# RPT G0 step 1, 2026-10-26T17:41:08+07:00, repo HEAD bc9a87b00974c4e861c182fcd15ccae77457308a
+## the authors' files (fdeeeb4's top level minus pilot_analysis): .gitignore README.md REFACTOR_NOTES.md cli configs data_loading docs eov-mmp-pilot-prompt.md inference models ops requirements.txt tests third_party tools utils vlm 
+git diff fdeeeb4 -- <those>          : 0 lines (working tree)
+git diff fdeeeb4 HEAD -- <those>     : 0 lines
+## session 3's files
+24780 pilot_analysis/stage1/train_split.json
+16795 pilot_analysis/stage1c/cache_wrapper.py
+8651 pilot_analysis/stage1c/gt_tracks.py
+cache_s3 (outside the repo): 800 train tensors, 200 test tensors (names only listed, never opened)
+## the chain
+python3 migration/verify_after_A26m.py (from studies/), before the step-3 fix:
+    == 1. hash chains
+    == 2. links
+          current head: ac77e243117266cbeb3b0c61016fe710a5c33828405f3e38c81449a258e1a591
+    == 3. moved files
+    == 4. pins
+    == ALL CHECKS PASSED
+    (65 checks ok; the ov-pairtime check printed nothing: skipped silently)
+## A26's tests: run from studies/ (where -p paths resolves): python -m pytest -p paths a26/tests
+    ..............................                                           [100%]
+    30 passed in 43.04s
+## the archive bundle
+2817646 /home/totoro/Documents/thesis/archive/ov-pairtime-2026-10-24-a820a0e.bundle
+eb7417dfb449bd60608d510483dfe3339ad60bbd18130ea7c2b8e3678edd85a7  /home/totoro/Documents/thesis/archive/ov-pairtime-2026-10-24-a820a0e.bundle
+a820a0eb2a3767c3b3b62bc94f82e768db158576 refs/heads/master
+a820a0eb2a3767c3b3b62bc94f82e768db158576 HEAD

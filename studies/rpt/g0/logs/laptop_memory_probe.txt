@@ -1,0 +1,24 @@
+# 2026-10-26T17:22:38+07:00 ~/miniconda3/envs/sam3/bin/python studies/rpt/g0/laptop_memory_probe.py  (random weights, no data)
+NVIDIA GeForce GTX 1650, 1991 MiB, 4096 MiB, 617.14
+[0m[32mINFO 2026-10-26 17:22:56,145 28713 sam3_video_base.py: 354:[0m setting max_num_objects=10000 and num_obj_for_compile=16
+{
+ "gpu": "NVIDIA GeForce GTX 1650",
+ "capability": [
+  7,
+  5
+ ],
+ "torch": "2.10.0+cu128",
+ "gpu_total_gib": 3.99969482421875,
+ "gpu_free_before_gib": 3.211669921875,
+ "build_seconds": 13.8,
+ "parameters": 860055224,
+ "param_dtypes": [
+  "torch.float32"
+ ],
+ "weights_and_buffers_gib": 3.2127492129802704,
+ "to_cuda": "ok",
+ "allocated_gib": 3.491072654724121,
+ "free_after_gib": 0.0
+}
+elapsed 31.92 s, maxrss 4503476 KB
+exit=0
