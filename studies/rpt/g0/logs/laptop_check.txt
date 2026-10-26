@@ -1,0 +1,18 @@
+# 2026-10-26T19:44:40+07:00 G0 laptop check (A28): SAM 3 defaults, ILSVRC2015_train_00010024 (64 frames), prompt bicycle, GTX 1650, 30-minute cap; repo 829e7bd, SAM 3 f1647e8
+Mem:            7864        1942         190           4        5907        5922
+NVIDIA GeForce GTX 1650, 720 MiB, 4096 MiB, 617.14
+[0m[32mINFO 2026-10-26 19:44:59,170 58258 sam3_video_predictor.py: 120:[0m using the following GPU IDs: [0]
+[0m[32mINFO 2026-10-26 19:44:59,171 58258 sam3_video_predictor.py: 136:[0m 
+
+
+	*** START loading model on all ranks ***
+
+
+[0m[32mINFO 2026-10-26 19:44:59,171 58258 sam3_video_predictor.py: 138:[0m loading model on rank=0 with world_size=1 -- this could take a while ...
+# 2026-10-26T19:56:08+07:00 OUTCOME (recorded afterwards): the run never finished loading the model. The log
+# ends at "loading model on rank=0" (19:44:59); no output file was written. Around then the author's
+# WSL session went down (memory: sam3.pt 3.4 GB is read into RAM while the 860M-parameter fp32 model,
+# 3.2 GiB, is built, on a 7.7 GiB machine whose 4 GB GPU already cannot hold the model without
+# spilling into shared memory; see laptop_memory_probe.txt). Not retried: it takes the session down.
+# Result for A28's laptop check: SAM 3 at its default settings does NOT run on this laptop.
+# Peak GPU memory and time per frame: not measurable (no frame was processed).
