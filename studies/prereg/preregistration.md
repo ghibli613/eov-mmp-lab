@@ -1731,3 +1731,25 @@ A pass allows the G1 amendment to be written; it is not evidence for the method.
 
 The adapter, its tests and the machine scripts exist as this is appended; none of them has run.
 Any change to the above is a new amendment, written before the result it affects.
+
+#### A28a (2026-10-26): pin addendum to A28 — SAM 3's checkpoint SHA256
+
+Written after the author's access to `facebook/sam3` was granted and the checkpoint was fetched,
+before any SAM 3 code has touched data. The author ran `studies/rpt/g0/fetch_sam3_ckpt.sh`
+(token typed hidden, held only in `HF_TOKEN` with a throwaway `HF_HOME`); the file is at
+`~/Documents/thesis/source/sam3_ckpt/`, outside the repo, and holds no token-shaped string.
+
+| | pinned |
+|---|---|
+| `sam3.pt`, `facebook/sam3` revision `3c879f39826c281e95690f02c7821c4de09afae7` | SHA256 `9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e`, 3,450,062,241 bytes |
+| `config.json`, same revision | SHA256 `4616385e4b21f2e5e22c875b65679185cbccfa95de42542b9166f7dc3d57160f` |
+
+**Checked against A28's pins:** the size equals A28's; the Git LFS pointer rebuilt from this SHA256
+and size (135 bytes) hashes to the git blob `5b7c2eaba7c1e2a81f26bc7476bfe80e43e979e4` that A28
+pinned, and `config.json` hashes to its pinned blob `3e600e765b0f1b4c52680aed9ad242c9a90f7ed1`. So
+the file is the one the pinned revision named.
+
+**Use:** every SAM 3 run (the laptop check, steps 9, the measurement) checks this SHA256 before
+loading; the machine's own fetch is checked against it too.
+
+Nothing else in A28 changes.
