@@ -1,0 +1,126 @@
+# DRAFT — not hashed, not in the chain — for review
+
+#### A29 (draft): RPT G1 — SAM 3's tracks against EOV-MMP's on the 160 HELD videos
+
+Label: A29 would be the next free one. A27 is reserved; A28 and A28a are G0's.
+
+Written after G0 (`studies/rpt/g0_report.md`), before any G1 run. G1 measures the tracker only: no relation score on HELD is read, because EOV-MMP was trained on HELD. **Items marked OPEN are not settled by the proposal; each carries a recommendation for the reviewer.**
+
+##### Fixed from the proposal (§6, version 5), verbatim in substance
+
+| bar | rule |
+|---|---|
+| **Recall** | GT track recall at vIoU 0.5 is at least **10 points** above EOV-MMP's, overall and on novel object classes (when ≥ 30 instances; OPEN 6). Reported for the confident tier alone, and for confident plus candidates separately (the candidate tier is empty at SAM 3's defaults; G0 §10.1). |
+| **Pair recall** | Recall of GT relation pairs is at least **10 points** above EOV-MMP's. |
+| **False-track burden** | Unmatched confident tracks per video are at most **1.5×** EOV-MMP's. Also reported: tracks, unmatched tracks and candidate pairs per video, for SAM 3's confident tier and for EOV-MMP. |
+| **Box style** | Median box IoU of matched tracks ≥ **0.70**, plus GT and SAM 3 boxes drawn on about 20 HELD frames for a visual check. |
+| **Box sensitivity** (secondary) | On HELD base-predicate GT relations that both trackers match, the GT predicate's **top-5** hit rate under three box sources: GT, SAM 3, and EOV-MMP's detector boxes. Pass if SAM 3's boxes are no worse than the detector's by more than **5 points**. |
+| **Gap exposure** | Reported: how often a clip's middle frame falls inside a filled gap. |
+| **Track counts by *N*** | Reported: tracks per video, binned by the confident track count *N*. |
+| **Runtime** | At most **1 GPU-hour per 20 videos**; otherwise the pre-registered every-*k*-frames fallback. **G0 measured 5.4× over (OPEN 1).** |
+
+A G1 fail stops the line (proposal §6, fallback 2). A pass only allows G2.
+
+##### Values G0 found (fixed; A28, A28a, G0 report)
+
+- **SAM 3:**
+  - code `f1647e8d0c1d280991f4d1b7d974c2704537fe66`;
+  - `sam3.pt` `9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e` (`facebook/sam3` revision `3c879f39…`, not SAM 3.1);
+  - `build_sam3_video_predictor()`, every default;
+  - SAM 3's own multi-prompt protocol; 35 prompts, `_` replaced by a space.
+- **Tiers:** confident cut **0.5** (SAM 3's `score_threshold_detection`); candidate floor **0.1**.
+- **Track score:** the mean of `out_probs` over detected frames, which equals the starting detection's probability.
+  - **Correction to A28:** that probability is **> 0.5**, not ≥ 0.7. On a frame with no existing masklet, SAM 3 starts one for every kept detection (`sam3_video_base.py:1522-1535`). G0 observed 0.594 and 0.668.
+  - No rule changes.
+- **Gaps and duplicates:**
+  - one SAM 3 ID is one track;
+  - internal gaps are filled by `gen_labels.py:416-423`; no pre-roll;
+  - cross-prompt duplicates at mean mask IoU > 0.7 keep the higher-scoring masklet unchanged.
+- **Relation side and recording:**
+  - pairs, windows and features as A28, the adapter as committed (`studies/rpt/adapter.py`, `relation.py`, `sam3_runner.py` at `b249c1d`);
+  - raw [0.1, 0.5) detections are recorded read-only.
+- **Measured on a 4090:**
+  - **Speed:** 0.094 s per frame per prompt at defaults (0.09 when a prompt finds nothing, 0.12–0.18 when it does).
+  - **Memory:** about 6.3 MiB of GPU per frame, on top of about 6.5 GiB.
+  - **Backbone reuse:** bitwise identical, 1.36× faster.
+  - **Determinism:** a rerun is bitwise identical.
+- **HELD:** 160 videos, 47,038 frames; 472 GT objects, 348 base and 124 novel. The novel ones by class: antelope 29, cattle 23, horse 20, bear 13, watercraft 11, giant panda 10, motorcycle 7, fox 7, lizard 2, red panda 2. Base GT relations in `held_gt.json`: 4,365 (157 videos).
+
+##### Videos
+
+The 160 HELD videos of `pilot_analysis/stage1/train_split.json` (SHA256 `095dd89c…1f1a`; seed 20260928), sorted. All 160 are used: RPT needs no ECC, unlike stage 2's 157. Each ID below is `ILSVRC2015_train_` + the number:
+
+```
+00008005 00010024 00024005 00025029 00027003 00032000 00040000 00040005
+00040030 00050006 00051015 00051016 00052001 00055002 00058003 00060001
+00060005 00065002 00065003 00069006 00071013 00071014 00071019 00073037
+00074010 00077006 00078000 00097003 00112000 00116002 00119013 00119025
+00125006 00125007 00125013 00125014 00135004 00139004 00146005 00149004
+00154002 00159010 00161016 00165000 00171001 00171004 00172007 00175001
+00181011 00185000 00209003 00209005 00215000 00215006 00215010 00218002
+00225001 00227012 00228000 00234001 00234007 00235006 00235007 00237001
+00246002 00253025 00265004 00265042 00265063 00265066 00265068 00265074
+00270000 00272005 00272034 00280000 00284001 00290008 00290019 00293004
+00293005 00300008 00302021 00303008 00308017 00309001 00311002 00339001
+00339003 00349000 00353000 00354000 00356001 00371013 00374000 00398004
+00407001 00415007 00415008 00435001 00467000 00476002 00477000 00480000
+00494000 00532000 00533003 00572000 00588000 00596000 00632001 00636001
+00667002 00679000 00683000 00691000 00721000 00750000 00756000 00759000
+00760001 00766000 00772004 00780000 00796000 00873000 00882000 00896000
+00897005 00912002 00917000 00971000 00978000 00987000 00988001 00989000
+01014000 01020000 01025001 01034001 01079000 01108001 ILSVRC2015_val_00007022 ILSVRC2015_val_00008001
+ILSVRC2015_val_00020001 ILSVRC2015_val_00026003 ILSVRC2015_val_00027000 ILSVRC2015_val_00028003 ILSVRC2015_val_00035000 ILSVRC2015_val_00035008 ILSVRC2015_val_00035013 ILSVRC2015_val_00037004
+ILSVRC2015_val_00046000 ILSVRC2015_val_00078000 ILSVRC2015_val_00082000 ILSVRC2015_val_00103000 ILSVRC2015_val_00123004 ILSVRC2015_val_00135000 ILSVRC2015_val_00150003 ILSVRC2015_val_00169000
+```
+
+The "first 20" of the plan are the first 20 IDs above (OPEN 9).
+
+##### Seeds
+
+- SAM 3: `torch.manual_seed(0)`; its inference draws no random numbers, and G0's rerun was bitwise identical.
+- The HELD split: seed 20260928 (fixed, stage 1).
+- Bootstrap CIs, descriptive only, never a bar: `numpy.random.default_rng(0)`, 1,000 resamples over the 160 videos, the same draws for SAM 3 and EOV-MMP.
+- No other randomness.
+
+##### OPEN, each with a recommendation
+
+1. **Runtime.** G1's bar is 8 GPU-hours for 160 videos, but at defaults G0 projects **43 GPU-hours** (about $15 at $0.35/h). With backbone reuse, which G0 showed bitwise identical, it is **about 32 GPU-hours** (about $11). The bar needs 0.017 s per frame per prompt; G0 measured 0.069–0.094 s.
+   - **Recommendation:**
+     1. Adopt backbone reuse. It is an implementation detail with identical output, verified bitwise again on the first G1 video before use.
+     2. Replace the runtime bar for G1 with a cost cap of **35 GPU-hours**, keeping SAM 3 at full fidelity. The 1 GPU-hour-per-20-videos bar was a budget proxy; the every-*k*-frames fallback would change what SAM 3 sees and would need its own validation.
+     3. Raise G1's budget from the proposal's $3–5 to about $15, and the author approves it.
+   - If the reviewer keeps the bar instead, *k* must be fixed here, before any run, and never tuned. I make no recommendation for *k*: G0 did not measure the fallback.
+2. **GPU memory.** SAM 3 holds every frame on the GPU (1008², fp16). The longest HELD video, `…00280000` (2,947 frames), would need about 25 GiB, more than a 24 GB 4090. The next longest (1,470 frames) needs about 16 GiB.
+   - **Recommendation:** use SAM 3's own session option `offload_video_to_cpu=True` for all 160 videos. It keeps frames in CPU RAM and changes no computation. First verify on smoke video 1 that it is bitwise identical to G0's default run, like the reuse check; if not, use a 48 GB GPU for that one video only.
+3. **EOV-MMP's tracks on HELD** (every comparison needs them).
+   - **Recommendation:** the released front end over the **whole video** (A26's R0w setting, `studies/a26/wrappers.py::whole_video`) as the matched comparison, since SAM 3 searches the whole video. The GT-range front end (R0) is reported beside it.
+   - **Note:** EOV-MMP's detector was trained on HELD, so its HELD recall is inflated. That makes G1 conservative for SAM 3; it is disclosed.
+   - **Cost:** about 3 GPU-hours (session 3's SGDet ran 200 videos in 3.5 h).
+4. **Matching a track to a GT object.**
+   - **Recommendation:**
+     - GT objects are the annotated tids, whole, over their annotated frames; not session 3's option-B runs.
+     - vIoU is the official `viou` (`inference/video_relation_detection_openvoc.py:73`).
+     - The match is **class-aware for the bars** (a wrongly named track cannot give the right triplet; U2); class-agnostic recall is reported beside it.
+     - Each GT object is matched by at most one track, greedily in descending vIoU.
+5. **Pair recall.**
+   - **Recommendation:**
+     - The unit is a HELD **base** relation instance (`held_gt.json`; novel-predicate instances stay unused).
+     - It is recalled if some ordered pair of confident tracks has a subject matching its subject and an object matching its object (class-aware, vIoU ≥ 0.5 over the relation's duration), and the two tracks overlap ≥ 10 frames: the pair rule, so the pair would actually be scored.
+6. **"When ≥ 30 instances".**
+   - **Recommendation:** the novel group as a whole (124 GT objects) carries the novel bar; per-class recall is reported descriptively. No single novel class reaches 30 (antelope 29).
+7. **Unmatched confident track.**
+   - **Recommendation:** a confident track matched to no GT object (class-aware, vIoU ≥ 0.5). Real but unannotated objects, such as the distant person G0 saw, count as unmatched for both trackers, so the 1.5× bar stays relative.
+8. **Box style, box sensitivity, drawn frames.**
+   - **Recommendation:**
+     - Box IoU per matched pair is the mean per-frame IoU over shared annotated frames; the bar is the median over pairs.
+     - The "about 20 frames" are the middle annotated frame of each of the first 20 HELD videos.
+     - Box sensitivity: per clip of each base GT relation that both trackers match, the GT predicate is a hit if it is among the top 5 **base** predicates of modelC's clip scores, with GT, SAM 3 and EOV-MMP boxes in turn on the same clips. This uses a modelC run per box source on HELD, with no score read beyond the hit.
+9. **"First 20, then all".**
+   - **Recommendation:** run the first 20 and check the runtime or cost cap (OPEN 1) and that nothing crashes; stop and ask on a breach. Then run all 160; every bar is judged on all 160.
+10. **Raw [0.1, 0.5) detections for missed GT objects** (D1).
+    - G0 found them dense: about 26 per frame on average, pre-NMS, mostly around objects SAM 3 already found.
+    - **Recommendation:** for each GT object that no confident track matches, report whether a raw detection **of its class** has box IoU ≥ 0.5 with its GT box on at least one annotated frame, and on what fraction of its frames. Descriptive only, for the G2 amendment; no bar.
+11. **Budget and machine.**
+    - **Recommendation:** with OPEN 1–3 as recommended, about 32 + 3 GPU-hours, roughly $12–15 on one 4090, to be approved by the author. No test file on the machine; the token as in A28.
+
+**Not changed by this amendment:** anything in A28 and A28a other than the correction above. Any change to the above is a new amendment, written before the result it affects.
