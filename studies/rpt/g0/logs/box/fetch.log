@@ -1,0 +1,23 @@
+2026-10-26T14:31:45+00:00 token scan [fetch, before the token]: files=0 process_environments=0 token_files=0
+2026-10-26T14:31:53+00:00 token held in this process's environment only
+  5 file(s), 2.92 GB
+
+  GET  AFLink_epoch20.pth                                    
+/venv/main/lib/python3.12/site-packages/huggingface_hub/constants.py:302: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+  GET  VidVRD_ECC_test.json                                  
+  GET  VidVRD_ECC_train.json                                 
+  GET  baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_c
+  GET  clip_L14_feat_vidvrd.pkl                              
+
+  All files present and verified.
+/venv/main/lib/python3.12/site-packages/huggingface_hub/constants.py:302: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+/root/sam3_ckpt/sam3.pt
+/root/sam3_ckpt/config.json
+2026-10-26T14:34:09+00:00 token unset; temporary HF_HOME and any token file removed
+2026-10-26T14:34:09+00:00 token scan [fetch, after the token]: files=0 process_environments=0 token_files=0
+/root/ov-vidvrd-lab/output/ckpt/baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth: OK
+/root/.cache/clip/ViT-L-14-336px.pt: OK
+/root/sam3_ckpt/sam3.pt: OK
+/root/sam3_ckpt/config.json: OK

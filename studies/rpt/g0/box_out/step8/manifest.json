@@ -1,0 +1,65 @@
+{
+ "env": {
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "omp_num_threads": "8",
+  "modelC_load": {
+   "missing": [],
+   "unexpected": [],
+   "loaded": 196
+  }
+ },
+ "videos": [
+  {
+   "video": "ILSVRC2015_train_00008005",
+   "pairs": 6,
+   "clips": 18,
+   "frames_encoded": 3,
+   "seconds": 10.2,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00008005.pt",
+   "sha256": "ce5161c925b6d3d0cc18506521b516453d19e45368fa9fb63e064dbfcf8bf679"
+  },
+  {
+   "video": "ILSVRC2015_train_00010024",
+   "pairs": 2,
+   "clips": 4,
+   "frames_encoded": 2,
+   "seconds": 0.25,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00010024.pt",
+   "sha256": "a91987053dd7ebb23193295844eb9b75c91cee59172e3ebc09f9efb234746b0e"
+  },
+  {
+   "video": "ILSVRC2015_train_00024005",
+   "pairs": 8,
+   "clips": 30,
+   "frames_encoded": 15,
+   "seconds": 1.22,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00024005.pt",
+   "sha256": "8d1c7bfa51af720278c0cc3fe6b81e161d0b2a66da461a1ddfd8c24634f4038f"
+  },
+  {
+   "video": "ILSVRC2015_train_00025029",
+   "pairs": 2,
+   "clips": 2,
+   "frames_encoded": 1,
+   "seconds": 0.17,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00025029.pt",
+   "sha256": "c7ce51c5fc647fc5a38bf534d81763fc996c4d4bfec69ee969bdef66ea3a17f4"
+  },
+  {
+   "video": "ILSVRC2015_train_00027003",
+   "pairs": 2,
+   "clips": 4,
+   "frames_encoded": 2,
+   "seconds": 0.21,
+   "max_fidelity_residual": 0.0,
+   "file": "step8/ILSVRC2015_train_00027003.pt",
+   "sha256": "dbcd20d14f0a98620a8fe6403ea0afde5421cd6a43342e332776e1aa2d138a20"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+2026-10-26T15:43:05+00:00 token scan [run relations, start]: files=0 process_environments=0 token_files=0
+NVIDIA GeForce RTX 4090, 0 MiB, 24564 MiB
+Initializing a generic context
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+/root/ov-vidvrd-lab/vlm/backbones/clip_tagclip/clip.py:6: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging
+/root/ov-vidvrd-lab/models/gen_labels.py:713: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+  item[type_] = torch.tensor(pair_feats[type_]).unsqueeze(dim=0)
+{"video": "ILSVRC2015_train_00008005", "tracks": 3, "confident": 3, "duplicates": 0, "pairs": 6, "clips": 30, "frames_encoded": 5, "clips_with_filled_middle_frame": 0, "seconds": 10.51, "file": "step9/ILSVRC2015_train_00008005.pt", "sha256": "87f8691dd66e0f3d13410a56416822b14746518e4d76d5a1a981c4554d3ebdee"}
+{"video": "ILSVRC2015_train_00010024", "tracks": 4, "confident": 4, "duplicates": 0, "pairs": 12, "clips": 18, "frames_encoded": 3, "clips_with_filled_middle_frame": 0, "seconds": 0.99, "file": "step9/ILSVRC2015_train_00010024.pt", "sha256": "4318fff4650766b100382a2b7ff5d7753b30e0dbb27e9751a7c04973eb0f05d9"}
+{"video": "ILSVRC2015_train_00024005", "tracks": 1, "confident": 1, "duplicates": 0, "pairs": 0, "clips": 0, "frames_encoded": 0, "clips_with_filled_middle_frame": 0, "seconds": 0.03, "file": "step9/ILSVRC2015_train_00024005.pt", "sha256": "13835192f192378bbd5045e8f32f13727e1b34be4765b392404a99a4f2d79044"}
+RUN relations EXIT 0 2026-10-26T15:43:48+00:00

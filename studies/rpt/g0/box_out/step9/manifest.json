@@ -1,0 +1,45 @@
+{
+ "torch": "2.11.0+cu128",
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "videos": [
+  {
+   "video": "ILSVRC2015_train_00008005",
+   "tracks": 3,
+   "confident": 3,
+   "duplicates": 0,
+   "pairs": 6,
+   "clips": 30,
+   "frames_encoded": 5,
+   "clips_with_filled_middle_frame": 0,
+   "seconds": 10.51,
+   "file": "step9/ILSVRC2015_train_00008005.pt",
+   "sha256": "87f8691dd66e0f3d13410a56416822b14746518e4d76d5a1a981c4554d3ebdee"
+  },
+  {
+   "video": "ILSVRC2015_train_00010024",
+   "tracks": 4,
+   "confident": 4,
+   "duplicates": 0,
+   "pairs": 12,
+   "clips": 18,
+   "frames_encoded": 3,
+   "clips_with_filled_middle_frame": 0,
+   "seconds": 0.99,
+   "file": "step9/ILSVRC2015_train_00010024.pt",
+   "sha256": "4318fff4650766b100382a2b7ff5d7753b30e0dbb27e9751a7c04973eb0f05d9"
+  },
+  {
+   "video": "ILSVRC2015_train_00024005",
+   "tracks": 1,
+   "confident": 1,
+   "duplicates": 0,
+   "pairs": 0,
+   "clips": 0,
+   "frames_encoded": 0,
+   "clips_with_filled_middle_frame": 0,
+   "seconds": 0.03,
+   "file": "step9/ILSVRC2015_train_00024005.pt",
+   "sha256": "13835192f192378bbd5045e8f32f13727e1b34be4765b392404a99a4f2d79044"
+  }
+ ]
+}

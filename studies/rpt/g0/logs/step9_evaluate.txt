@@ -1,0 +1,67 @@
+# 2026-10-26T22:50:56+07:00 G0 step 9 on the laptop (A28): post-processing, evaluator (smoke test, in-sample, not a result), tables, G1 cost, images
+{
+ "evaluator": {
+  "label": "smoke test, in-sample, not a result",
+  "split": "base",
+  "gt_file": "studies/rpt/g0/held_gt_smoke3.json",
+  "gt_sha256": "8dab2c87a179c82fffade37b57bd6dd9df37fb6d8e2233c3160e0e85a1a85f49",
+  "gt_relations": {
+   "ILSVRC2015_train_00008005": 28,
+   "ILSVRC2015_train_00010024": 6,
+   "ILSVRC2015_train_00024005": 34
+  },
+  "mAP": 11.111111442248028,
+  "R50": 2.9411764815449715,
+  "R100": 2.9411764815449715
+ },
+ "g1_cost": {
+  "sam3_seconds_per_frame_step": 0.0942232462006079,
+  "held_frames": 47038,
+  "prompts": 35,
+  "sam3_gpu_hours_160": 43.08959914373523,
+  "relation_side_gpu_hours_160": 0.1708148148148148,
+  "total_gpu_hours_160": 43.260413958550046,
+  "bar_gpu_hours_160": 8.0,
+  "ratio_to_bar": 5.407551744818756,
+  "per_frame_step_needed_for_bar_seconds": 0.017119937477095518
+ },
+ "per_video": [
+  {
+   "video": "ILSVRC2015_train_00008005",
+   "frames": 130,
+   "sam3_seconds_total": 422.859,
+   "confident": 3,
+   "candidate": 0,
+   "dropped": 0,
+   "raw_low_detections": 3321,
+   "ordered_pairs": 6,
+   "clips": 30,
+   "clips_with_filled_middle_frame": 0
+  },
+  {
+   "video": "ILSVRC2015_train_00010024",
+   "frames": 64,
+   "sam3_seconds_total": 208.891,
+   "confident": 4,
+   "candidate": 0,
+   "dropped": 0,
+   "raw_low_detections": 1133,
+   "ordered_pairs": 12,
+   "clips": 18,
+   "clips_with_filled_middle_frame": 0
+  },
+  {
+   "video": "ILSVRC2015_train_00024005",
+   "frames": 981,
+   "sam3_seconds_total": 3243.181,
+   "confident": 1,
+   "candidate": 0,
+   "dropped": 0,
+   "raw_low_detections": 3019,
+   "ordered_pairs": 0,
+   "clips": 0,
+   "clips_with_filled_middle_frame": 0
+  }
+ ]
+}
+exit=0

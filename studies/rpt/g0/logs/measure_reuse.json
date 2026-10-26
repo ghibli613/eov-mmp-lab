@@ -1,0 +1,22 @@
+{
+ "video": "ILSVRC2015_train_00008005",
+ "prompts_compared": 35,
+ "prompts_identical": 35,
+ "bitwise_identical": true,
+ "differences": {},
+ "seconds_a": 422.86,
+ "seconds_b": 310.84,
+ "speedup_a_over_b": 1.36,
+ "reuse_backbone": [
+  false,
+  true
+ ],
+ "backbone_cache": {
+  "hits": 4420,
+  "misses": 130,
+  "passthrough": 0,
+  "stored_gib": 13.60052490234375
+ },
+ "a": "sam3_out/ILSVRC2015_train_00008005.json.gz",
+ "b": "box_out/sam3_out_reuse/ILSVRC2015_train_00008005.json.gz"
+}

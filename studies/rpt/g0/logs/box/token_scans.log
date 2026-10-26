@@ -1,0 +1,5 @@
+2026-10-26T14:35:02+00:00 token scan [run step8, start]: files=0 process_environments=0 token_files=0
+2026-10-26T14:37:25+00:00 token scan [run sam3-first, start]: files=0 process_environments=0 token_files=0
+2026-10-26T14:44:51+00:00 token scan [run sam3-rest, start]: files=0 process_environments=0 token_files=0
+2026-10-26T15:43:05+00:00 token scan [run relations, start]: files=0 process_environments=0 token_files=0
+2026-10-26T15:43:49+00:00 token scan [run measure, start]: files=0 process_environments=0 token_files=0
