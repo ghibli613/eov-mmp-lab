@@ -57,11 +57,13 @@ say "2. EOV-MMP side: /venv/main made equal to G0's freeze"
 # exact versions, each from the freeze without dependencies; packages G0 did not have are removed.
 pip freeze > "$BOX/pip_freeze_main_image.txt"
 grep -vE '^-e |^#| @ ' "$EXP/pip_freeze_main.txt" > "$BOX/constraints_main.txt"
-if ! diff -q "$EXP/pip_freeze_main.txt" "$BOX/pip_freeze_main_image.txt" >/dev/null; then
-  pip install -q --no-deps -r "$BOX/constraints_main.txt" --extra-index-url https://download.pytorch.org/whl/cu128
+# Extras are removed FIRST: the image's CUDA 13 wheels share folders with G0's CUDA 12 ones (e.g.
+# nvidia/cusparselt), so removing them afterwards deletes files G0's packages need.
+if ! diff -q "$EXP/pip_freeze_main.txt" "$BOX/pip_freeze_main_image.txt" >/dev/null || ! python -c "import torch" 2>/dev/null; then
   extra=$(comm -13 <(sed -E 's/[ =@].*//' "$EXP/pip_freeze_main.txt" | tr 'A-Z_' 'a-z-' | sort -u) \
                    <(pip freeze | sed -E 's/[ =@].*//' | tr 'A-Z_' 'a-z-' | sort -u))
   [ -z "$extra" ] || pip uninstall -q -y $extra
+  pip install -q --no-deps --force-reinstall -r "$BOX/constraints_main.txt" --extra-index-url https://download.pytorch.org/whl/cu128
 fi
 pip freeze > "$BOX/pip_freeze_main.txt"
 diff "$EXP/pip_freeze_main.txt" "$BOX/pip_freeze_main.txt" || stop "/venv/main's packages differ from G0's freeze (diff above)"
