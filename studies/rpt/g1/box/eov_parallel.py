@@ -106,7 +106,8 @@ def main():
     json.dump(dict(gpus=n, parts=parts, frames=[sum(frames[v] for v in p) for p in parts]),
               open(os.path.join(BOX, "eov_split.json"), "w"), indent=1)
     omp = max(1, min(8, cores // n))
-    excluded = json.load(open(os.path.join(BOX, "sam3_done.json"))).get("excluded", [])
+    done = json.load(open(os.path.join(BOX, "sam3_done.json")))
+    excluded = done.get("excluded", []) + done.get("moved_to_l40", [])
     print(f"EOV side: all 160 videos for R0w and R0; no box sensitivity for {excluded} (no SAM 3 file)", flush=True)
     ps = [launch(g, parts[g], os.path.join(OUT, "sam3"), os.path.join(OUT, "eov"), omp, f"g{g}", excluded)
           for g in range(n) if parts[g]]

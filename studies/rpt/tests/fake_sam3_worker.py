@@ -39,6 +39,16 @@ for line in sys.stdin:
     path = os.path.join(out, f"{v}.json.gz")
     n = len(os.listdir(os.path.join(a.frames, v)))
     time.sleep(n * nap)
+    if v in os.environ.get("FAKE_OOM", "").split(","):
+        print("RESULT " + json.dumps(dict(video=v, ok=False, error="CUDA out of memory")), flush=True)
+        continue
+    if v in os.environ.get("FAKE_KILL", "").split(","):          # a kernel oom_kill: the cgroup count rises
+        ev = os.environ["G1_OOM_EVENTS"]
+        n = int(open(ev).read().split()[1]) if os.path.exists(ev) else 0
+        open(ev, "w").write(f"oom_kill {n + 1}\n")
+        os._exit(137)
+    if v in os.environ.get("FAKE_DIE", "").split(","):
+        os._exit(1)
     if v in fail:
         print("RESULT " + json.dumps(dict(video=v, ok=False, error="fake failure")), flush=True)
         continue

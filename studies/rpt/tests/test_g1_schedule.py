@@ -290,3 +290,68 @@ def test_eov_full_skips_sensitivity_only_for_the_excluded(tmp_path):
     assert p.returncode == 0, p.stdout + p.stderr
     rows = [json.loads(line) for f in sorted((tmp_path / "out" / "eov").glob("manifest_*.jsonl")) for line in open(f)]
     assert len(rows) == 160 and [r["video"] for r in rows if not r["sensitivity"]] == [S.OFFLOAD_VIDEO]
+
+
+# ---------------------------------------------------------------- stop 2, A29c
+def test_a29c_limit_and_live_guard():
+    assert S.a1_limit_gb_a29c(518.9, 8) == pytest.approx(390.9)
+    assert S.a1_ram_gb(1000, S.A1_MB_PER_FRAME_A29C) == pytest.approx(112.0)
+    gpus = [[job(500)], []]
+    assert S.use_a1(job(500), gpus, 200, 112.0)                        # 56 + 56 <= 200
+    assert not S.use_a1(job(500), gpus, 100, 112.0)
+    assert S.use_a1(job(500), gpus, 200, 112.0, available_gb=120.0)    # 120 - 56 = 64 >= 64
+    assert not S.use_a1(job(500), gpus, 200, 112.0, available_gb=119.0)
+
+
+def drive_a29c(tmp_path, ram=512, **env):
+    p, box, out = drive(tmp_path, 8, "checks", ram=ram)
+    assert p.returncode == 0, p.stdout[-2000:]
+    e = dict(os.environ, G1_BOX=str(box), G1_OUT=str(out), G1_SAM3PY=sys.executable, G1_GPUS="8",
+             G1_RAM_GB=str(ram), G1_CORES="96", G1_WORKER=os.path.join(TESTS, "fake_sam3_worker.py"),
+             G1_OOM_EVENTS=str(tmp_path / "memory.events"), **env)
+    p = subprocess.run([sys.executable, DRIVER, "videos", "--exclude", S.OFFLOAD_VIDEO, "--a29c"], env=e,
+                       capture_output=True, text=True, timeout=1200)
+    return p, box
+
+
+@needs_frames
+def test_a29c_a2_off_and_ram_rule(tmp_path):
+    p, box = drive_a29c(tmp_path, ram=64 + 64 + 150, G1_AVAIL_GB="1000")   # limit 278 - 64 - 64 = 150 GB
+    assert p.returncode == 0, p.stdout[-2000:]
+    cfg = json.load(open(box / "a29c_config.json"))
+    assert cfg["A2"] == 1 and cfg["a1_limit_gb"] == pytest.approx(150)
+    ev = events(box)
+    assert all(len(e["gpu_frames_running"]) == 1 for e in ev)                # one process per GPU
+    assert all(e["a1_total_gb"] <= 150 for e in ev) and any(e["a1"] for e in ev)
+    assert json.load(open(box / "sam3_done.json"))["videos"] == 159
+
+
+@needs_frames
+def test_a29c_live_guard_limits_a1(tmp_path):
+    p, box = drive_a29c(tmp_path, G1_AVAIL_GB="70")                         # only caches <= 6 GB fit
+    assert p.returncode == 0, p.stdout[-2000:]
+    assert all(e["frames"] * 0.112 <= 6 for e in events(box) if e["a1"])
+
+
+@needs_frames
+def test_a29c_oom_failures_move_to_l40_and_continue(tmp_path):
+    p, box = drive_a29c(tmp_path, FAKE_OOM="ILSVRC2015_train_00125006", FAKE_KILL="ILSVRC2015_train_00135004")
+    assert p.returncode == 0, p.stdout[-3000:] + p.stderr[-2000:]
+    moved = json.load(open(box / "moved_to_l40.json"))
+    assert [m["video"] for m in moved] == ["ILSVRC2015_train_00125006", "ILSVRC2015_train_00135004"] or \
+        sorted(m["video"] for m in moved) == ["ILSVRC2015_train_00125006", "ILSVRC2015_train_00135004"]
+    done = json.load(open(box / "sam3_done.json"))
+    assert done["videos"] == 157 and sorted(done["moved_to_l40"]) == sorted(m["video"] for m in moved)
+
+
+@needs_frames
+def test_a29c_more_than_3_ooms_stop(tmp_path):
+    four = "ILSVRC2015_train_00125006,ILSVRC2015_train_00135004,ILSVRC2015_train_00139004,ILSVRC2015_train_00146005"
+    p, box = drive_a29c(tmp_path, FAKE_OOM=four)
+    assert p.returncode == 5 and (box / "STOP_oom_count.json").exists()
+
+
+@needs_frames
+def test_a29c_other_death_still_stops(tmp_path):
+    p, box = drive_a29c(tmp_path, FAKE_DIE="ILSVRC2015_train_00125006")
+    assert p.returncode == 5 and json.load(open(box / "STOP_video.json"))["error"] == "worker died"

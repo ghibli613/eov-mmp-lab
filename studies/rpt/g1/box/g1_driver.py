@@ -94,6 +94,35 @@ def cores():
     return int(ENV("G1_CORES") or len(os.sched_getaffinity(0)))
 
 
+def available_gb():
+    """A29c's live guard: the lower of /proc/meminfo's MemAvailable and the memory cgroup's limit minus
+    its usage, inactive file cache counted as free. GB = 1e9 bytes."""
+    if ENV("G1_AVAIL_GB"):
+        return float(ENV("G1_AVAIL_GB"))
+    avail = int(open("/proc/meminfo").read().split("MemAvailable:")[1].split()[0]) * 1024
+    try:
+        mx = open("/sys/fs/cgroup/memory.max").read().strip()
+        if mx.isdigit():
+            cur = int(open("/sys/fs/cgroup/memory.current").read())
+            stat = dict(line.split() for line in open("/sys/fs/cgroup/memory.stat"))
+            avail = min(avail, int(mx) - cur + int(stat.get("inactive_file", 0)))
+    except OSError:
+        pass
+    return avail / 1e9
+
+
+def oom_kills():
+    """The memory cgroup's oom_kill count (A29c: a kernel oom_kill of a SAM 3 process)."""
+    try:
+        for line in open(ENV("G1_OOM_EVENTS") or "/sys/fs/cgroup/memory.events"):
+            k, v = line.split()
+            if k == "oom_kill":
+                return int(v)
+    except OSError:
+        pass
+    return 0
+
+
 NGPU = None                                      # set in main()
 
 
@@ -364,11 +393,31 @@ class Pool:
                 w.close()
 
 
+def move_to_l40(v, reason, detail, moved):
+    """A29c: a video failing only from out-of-memory goes to the 48 GB run (A29b); partial output
+    discarded; more than 3 such videos stop G1."""
+    moved.append(dict(video=v, reason=reason, detail=detail, t=round(time.time(), 2)))
+    save("moved_to_l40.json", moved)
+    os.makedirs(os.path.join(BOX, "oom_failed"), exist_ok=True)
+    for suffix in (".json.gz.part", ".error.json"):
+        p = os.path.join(OUT, "sam3", v + suffix)
+        if os.path.exists(p):
+            os.replace(p, os.path.join(BOX, "oom_failed", v + suffix))
+    log(f"!! {v}: {reason}; moved to the 48 GB run (A29c), {len(moved)} so far")
+    if len(moved) > 3:
+        stop(5, "oom_count", dict(moved=moved, error="more than 3 videos failed from out-of-memory (A29c)"))
+
+
 def run_videos(cfg, held, frames, groups, done):
+    a29c = cfg.get("a29c", False)
+    moved = json.load(open(os.path.join(BOX, "moved_to_l40.json"))) if os.path.exists(
+        os.path.join(BOX, "moved_to_l40.json")) else []
+    oom_base = oom_kills()
     pool = Pool(cfg, long_gpus=set(range(min(len(groups["long"]), NGPU))))
     running = {}                                      # worker name -> (video, job, gpu, start time, worker)
-    queued = [v for v in groups["long"] + groups["first20"] if v not in done]
-    rest = [v for v in groups["rest"] if v not in done]
+    gone = set(done) | {m["video"] for m in moved}
+    queued = [v for v in groups["long"] + groups["first20"] if v not in gone]
+    rest = [v for v in groups["rest"] if v not in gone]
     first20 = set(groups["first20"])
     completed = set(done)
     seq = sum(1 for _ in open(EVENTS)) if os.path.exists(EVENTS) else 0
@@ -391,7 +440,11 @@ def run_videos(cfg, held, frames, groups, done):
             if not ok:
                 continue
             g = min(ok, key=lambda x: (len(on_gpu[x]), x))
-            cand["reuse_backbone"] = S.use_a1(cand, on_gpu, cfg["a1_limit_gb"])
+            if a29c:
+                cand["reuse_backbone"] = S.use_a1(cand, on_gpu, cfg["a1_limit_gb"], S.A1_MB_PER_FRAME_A29C,
+                                                  available_gb())
+            else:
+                cand["reuse_backbone"] = S.use_a1(cand, on_gpu, cfg["a1_limit_gb"])
             w = pool.idle(g)[0]
             w.send(dict(video=v, out=os.path.join(OUT, "sam3"), reuse_backbone=cand["reuse_backbone"],
                         offload_video_to_cpu=cand["offload_video_to_cpu"]))
@@ -404,23 +457,34 @@ def run_videos(cfg, held, frames, groups, done):
                                 alone=cand["alone"], a1=cand["reuse_backbone"], offload=cand["offload_video_to_cpu"],
                                 gpu_frames_running=[j["frames"] for j in on_gpu[g]],
                                 gpu_predicted_gib=round(sum(S.predicted_peak_gib(j["frames"]) for j in on_gpu[g]), 4),
-                                a1_total_gb=round(sum(S.a1_ram_gb(j["frames"]) for jj in on_gpu for j in jj
-                                                      if j["reuse_backbone"]), 1),
+                                a1_total_gb=round(sum(S.a1_ram_gb(j["frames"], cfg.get("a1_mb_per_frame", S.A1_MB_PER_FRAME))
+                                                      for jj in on_gpu for j in jj if j["reuse_backbone"]), 1),
                                 a1_limit_gb=cfg["a1_limit_gb"], group="first20" if v in first20 else
                                 ("long" if v in groups["long"] else "rest")))
             queued.remove(v)
             log(f"start {v} ({frames[v]} frames) on GPU {g} ({w.name}) a1={cand['reuse_backbone']} "
                 f"offload={cand['offload_video_to_cpu']}")
+        for name, (v, cand, g, ts, ww) in list(running.items()):
+            if ww.dead() and pool.results.empty():
+                kills = oom_kills()
+                if a29c and kills > oom_base:
+                    oom_base = kills
+                    running.pop(name)
+                    pool.workers[g].remove(ww)
+                    pool.add(g)                         # a replacement process on that GPU
+                    move_to_l40(v, "kernel oom_kill of its SAM 3 process", dict(oom_kill=kills), moved)
+                else:
+                    stop(5, "video", dict(video=v, error="worker died"))
         try:
             w, r = pool.results.get(timeout=5)
         except queue.Empty:
-            for name, (v, *_rest_, ww) in list(running.items()):
-                if ww.dead():
-                    stop(5, "video", dict(video=v, error="worker died"))
             continue
         v, cand, g, ts, _ = running.pop(w.name)
         w.job = None
         if not r.get("ok"):
+            if a29c and r.get("error") == "CUDA out of memory":
+                move_to_l40(v, "CUDA out of memory", r, moved)
+                continue
             stop(5, "video", dict(video=v, result=r))
         completed.add(v)
         append(MANIFEST, dict(r, gpu=g, omp_num_threads=pool.omp, options=cand, group="first20" if v in first20 else
@@ -451,7 +515,7 @@ def make_projection(cfg, frames, running, rest):
     return proj
 
 
-def videos(cfg, exclude=()):
+def videos(cfg, exclude=(), a29c=False):
     """`exclude`: videos the plan author has taken off this machine (stop 1: `...00280000`, decision D1),
     logged and recorded in plan.json and sam3_done.json. The first 20 are A29's, from all 160."""
     held, frames = held_frames()
@@ -459,6 +523,12 @@ def videos(cfg, exclude=()):
     assert set(exclude) <= set(held), sorted(set(exclude) - set(held))
     if exclude:
         log(f"excluded by the plan author's decision: {exclude}")
+    if a29c:                                         # A29c: A2 off; A1 at 112 MB/frame, RAM rule, live guard
+        cfg = dict(cfg, A2=1, a29c=True, a1_mb_per_frame=S.A1_MB_PER_FRAME_A29C,
+                   a1_limit_gb=S.a1_limit_gb_a29c(cfg["ram_gb"], NGPU))
+        save("a29c_config.json", cfg)
+        log(f"A29c: A2 off (8 processes), A1 limit {cfg['a1_limit_gb']:.1f} GB at 112 MB/frame, live guard on, "
+            f"out-of-memory failures move to the 48 GB run")
     groups = {k: [v for v in vs if v not in exclude] for k, vs in S.plan(held, frames, cfg).items()}
     save("plan.json", dict(groups, excluded=exclude))
     run_videos(cfg, held, frames, groups, done_videos())
@@ -466,11 +536,15 @@ def videos(cfg, exclude=()):
     if not cfg["offload"]:
         stop(7, "offload", dict(error="offload did not pass; ...00280000 is not run on this GPU",
                                 done=len(d)))
-    want = [v for v in held if v not in exclude]
+    moved = [m["video"] for m in json.load(open(os.path.join(BOX, "moved_to_l40.json")))] if os.path.exists(
+        os.path.join(BOX, "moved_to_l40.json")) else []
+    want = [v for v in held if v not in exclude and v not in moved]
     assert sorted(d) == want, sorted(set(want) - set(d))
-    save("sam3_done.json", dict(videos=len(d), excluded=exclude, billed_gpu_hours=round(gpu_hours(), 3), gpus=NGPU,
+    save("sam3_done.json", dict(videos=len(d), excluded=exclude, moved_to_l40=moved,
+                                billed_gpu_hours=round(gpu_hours(), 3), gpus=NGPU,
                                 files={v: d[v]["sha256"] for v in sorted(d)}))
-    log(f"all {len(d)} SAM 3 files written (excluded: {exclude}); billed SAM 3 GPU-hours {gpu_hours():.2f}")
+    log(f"all {len(d)} SAM 3 files written (excluded: {exclude}; moved to the 48 GB run: {moved}); "
+        f"billed SAM 3 GPU-hours {gpu_hours():.2f}")
 
 
 def gpu_monitor():
@@ -492,6 +566,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("what", choices=["checks", "videos", "all"])
     ap.add_argument("--exclude", default="", help="comma-separated videos taken off this machine by a decision")
+    ap.add_argument("--a29c", action="store_true", help="A29c's rules for the rest of D1")
     a = ap.parse_args()
     os.makedirs(BOX, exist_ok=True)
     NGPU = n_gpus()
@@ -500,7 +575,7 @@ def main():
     if cfg["gpus"] != NGPU:
         raise SystemExit(f"!! the config was made on {cfg['gpus']} GPUs, this machine has {NGPU}")
     if a.what in ("videos", "all"):
-        videos(cfg, [v for v in a.exclude.split(",") if v])
+        videos(cfg, [v for v in a.exclude.split(",") if v], a.a29c)
 
 
 if __name__ == "__main__":

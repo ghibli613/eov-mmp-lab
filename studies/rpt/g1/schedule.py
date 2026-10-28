@@ -18,8 +18,10 @@ CAP_GPU_HOURS = 48.0
 LONG = 1000                                  # frames: above this, alone on a GPU and without A1
 OFFLOAD_VIDEO = "ILSVRC2015_train_00280000"
 GPU_SUM_GIB = 21.0
-A1_MB_PER_FRAME = 106.0
+A1_MB_PER_FRAME = 106.0                      # A29a's figure
+A1_MB_PER_FRAME_A29C = 112.0                 # A29c: measured on the first 20 (111.6-112.3)
 RAM_RESERVE_GB = 64.0
+RAM_PER_PROCESS_GB = 8.0                     # A29c
 CHECK_ORDER = ("A1", "A2", "A3", "offload")  # checks 1-4; check 5 drops the last added first
 
 
@@ -27,12 +29,17 @@ def predicted_peak_gib(frames: int) -> float:
     return 6.5 + 6.3 / 1024 * frames
 
 
-def a1_ram_gb(frames: int) -> float:
-    return A1_MB_PER_FRAME * frames / 1000
+def a1_ram_gb(frames: int, mb_per_frame: float = A1_MB_PER_FRAME) -> float:
+    return mb_per_frame * frames / 1000
 
 
 def a1_limit_gb(ram_gb: float) -> float:
     return ram_gb - RAM_RESERVE_GB
+
+
+def a1_limit_gb_a29c(ram_gb: float, processes: int) -> float:
+    """A29c: RAM - 64 GB - 8 GB x the number of SAM 3 processes."""
+    return ram_gb - RAM_RESERVE_GB - RAM_PER_PROCESS_GB * processes
 
 
 def job_options(video: str, frames: int, cfg: dict) -> dict:
@@ -61,12 +68,17 @@ def place(cand: dict, gpus: list, slots: int):
     return min(ok, key=lambda g: (len(gpus[g]), g)) if ok else None
 
 
-def use_a1(cand: dict, gpus: list, limit_gb: float) -> bool:
-    """A1 for this start only if asked for and all running A1 caches plus this one stay <= the limit."""
+def use_a1(cand: dict, gpus: list, limit_gb: float, mb_per_frame: float = A1_MB_PER_FRAME,
+           available_gb: float | None = None) -> bool:
+    """A1 for this start only if asked for and all running A1 caches plus this one stay <= the limit;
+    with `available_gb` (A29c's live guard), also available memory - this cache >= 64 GB."""
     if not cand["reuse_backbone"]:
         return False
-    running = sum(a1_ram_gb(r["frames"]) for g in gpus for r in g if r["reuse_backbone"])
-    return running + a1_ram_gb(cand["frames"]) <= limit_gb
+    mine = a1_ram_gb(cand["frames"], mb_per_frame)
+    running = sum(a1_ram_gb(r["frames"], mb_per_frame) for g in gpus for r in g if r["reuse_backbone"])
+    if running + mine > limit_gb:
+        return False
+    return available_gb is None or available_gb - mine >= RAM_RESERVE_GB
 
 
 def longest_first(videos: list, frames: dict) -> list:
