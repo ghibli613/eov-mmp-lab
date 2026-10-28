@@ -26,13 +26,15 @@ trap 'rm -rf "$STAGE"' EXIT
            openvoc_pred_class_spilt_info.json prior.pkl clip_L14_feat_vidvrd.pkl train_object_trajectories_gt.json \
            VidVRD_ECC_train.json; do echo "data/vidvrd/data/$f"; done
   echo "pilot_analysis/stage2/data/held_gt.json"
-  python3 -c "import json; print('\n'.join(sorted(json.load(open('pilot_analysis/stage1/train_split.json'))['held'])))" \
+  ${G1_VIDEOS_CMD:-python3 -c "import json; print('\n'.join(sorted(json.load(open('pilot_analysis/stage1/train_split.json'))['held'])))"} \
   | while read -r v; do
     echo "data/vidvrd/anno/train/$v.json"
     find "data/vidvrd/frames/$v" -name '*.jpg' | sort
   done
 ) > "$STAGE/upload_files.txt"
-[ "$(grep -c '^data/vidvrd/anno/train/' "$STAGE/upload_files.txt")" = 160 ] || { echo "!! STOP: not 160 HELD annotations"; exit 1; }
+[ -n "${G1_VIDEOS_CMD:-}" ] || [ "$(grep -c '^data/vidvrd/anno/train/' "$STAGE/upload_files.txt")" = 160 ] \
+  || { echo "!! STOP: not 160 HELD annotations"; exit 1; }
+[ -z "${G1_EXTRA_FILES:-}" ] || ( cd "$REPO" && ls $G1_EXTRA_FILES ) >> "$STAGE/upload_files.txt"
 if grep -qE '/anno/test/|test_relation_gt|test_object_trajectories|ECC_test|/test_' "$STAGE/upload_files.txt"; then
   echo "!! STOP: a test file is on the upload list"; exit 1
 fi

@@ -24,8 +24,13 @@ echo "cores      : $(nproc)"
 python -c "import torch,sys; print('python', sys.version.split()[0], '| torch', torch.__version__, '| cuda', torch.version.cuda, '| cudnn', torch.backends.cudnn.version(), '| gpu ok', torch.cuda.is_available())" \
   || echo "image torch: not importable (step 2 installs G0's set)"
 NG=$(nvidia-smi -L | grep -c "^GPU ")
-[ "$(nvidia-smi --query-gpu=name --format=csv,noheader | grep -vc "RTX 4090")" = 0 ] || stop "a GPU is not an RTX 4090"
-[ "$NG" = 8 ] || [ "$NG" = 4 ] || stop "$NG GPUs: A29a allows 8, or 4 as fallback"
+if [ "${G1_MACHINE:-}" = l40 ]; then                 # A29b: one Ada-generation 48 GB GPU
+  [ "$NG" = 1 ] || stop "$NG GPUs: A29b's machine has one"
+  nvidia-smi --query-gpu=name --format=csv,noheader | grep -qE "L40S?$|RTX 6000 Ada" || stop "not an L40, L40S or RTX 6000 Ada"
+else
+  [ "$(nvidia-smi --query-gpu=name --format=csv,noheader | grep -vc "RTX 4090")" = 0 ] || stop "a GPU is not an RTX 4090"
+  [ "$NG" = 8 ] || [ "$NG" = 4 ] || stop "$NG GPUs: A29a allows 8, or 4 as fallback"
+fi
 echo "driver     : $(nvidia-smi --query-gpu=driver_version --format=csv,noheader | sort -u | tr '\n' ' ')(recorded; G0 had 580.142)"
 RAM_GB=$(python -c "
 m = int(open('/proc/meminfo').read().split('MemTotal:')[1].split()[0]) * 1024
@@ -37,7 +42,7 @@ for p in ('/sys/fs/cgroup/memory.max', '/sys/fs/cgroup/memory/memory.limit_in_by
         pass
 print(int(m / 1e9))")
 echo "instance RAM: $RAM_GB GB (A1 limit $((RAM_GB - 64)) GB)"
-NEED=$([ "$NG" = 8 ] && echo 256 || echo 192)
+NEED=$([ "${G1_MACHINE:-}" = l40 ] && echo 64 || { [ "$NG" = 8 ] && echo 256 || echo 192; })
 [ "$RAM_GB" -ge $((NEED - 6)) ] || stop "$RAM_GB GB RAM; A29a needs >= $NEED GB with $NG GPUs"
 [ "$(df --output=avail -BG / | tail -1 | tr -dc 0-9)" -ge 150 ] || stop "< 150 GB free disk (200 GB rented)"
 CUDA=$(nvidia-smi | grep -oE "CUDA (UMD )?Version: [0-9.]+" | grep -oE "[0-9.]+$" || true)   # "CUDA UMD Version" on driver 610
