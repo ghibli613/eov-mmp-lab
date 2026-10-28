@@ -12,11 +12,12 @@ mkdir -p "$BOX"
 exec > >(tee -a "$BOX/setup.log") 2>&1
 say() { printf '\n== %s  [%s]\n' "$*" "$(date --iso-8601=seconds)"; }
 stop() { echo "!! STOP: $*"; exit 1; }
+trap 'echo "!! STOP: setup.sh failed at line $LINENO: $BASH_COMMAND"' ERR
 source /venv/main/bin/activate
 
 say "0. preflight (G0's stack)"
 nvidia-smi --query-gpu=index,name,memory.total,driver_version --format=csv,noheader
-nvidia-smi | grep -o "CUDA Version: [0-9.]*"
+nvidia-smi | grep -oE "CUDA (UMD )?Version: [0-9.]+" || true
 free -g | awk 'NR==2{printf "system RAM : %s GiB total, %s available\n", $2, $7}'
 df -h --output=avail / | tail -1 | xargs echo "disk avail :"
 echo "cores      : $(nproc)"
@@ -38,7 +39,7 @@ echo "instance RAM: $RAM_GB GB (A1 limit $((RAM_GB - 64)) GB)"
 NEED=$([ "$NG" = 8 ] && echo 256 || echo 192)
 [ "$RAM_GB" -ge $((NEED - 6)) ] || stop "$RAM_GB GB RAM; A29a needs >= $NEED GB with $NG GPUs"
 [ "$(df --output=avail -BG / | tail -1 | tr -dc 0-9)" -ge 150 ] || stop "< 150 GB free disk (200 GB rented)"
-CUDA=$(nvidia-smi | grep -o "CUDA Version: [0-9.]*" | grep -o "[0-9.]*$")
+CUDA=$(nvidia-smi | grep -oE "CUDA (UMD )?Version: [0-9.]+" | grep -oE "[0-9.]+$" || true)   # "CUDA UMD Version" on driver 610
 python -c "import sys; v = tuple(map(int, '$CUDA'.split('.'))); sys.exit(0 if v >= (12, 8) else 1)" || stop "CUDA $CUDA < 12.8"
 python -c "import sys; assert sys.version.split()[0] == '3.12.15', sys.version" || stop "/venv/main is not G0's Python 3.12.15"
 echo "image      : $(. /etc/os-release && echo "$PRETTY_NAME") | VAST_CONTAINERLABEL=${VAST_CONTAINERLABEL:-unset}"
