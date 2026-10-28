@@ -178,6 +178,18 @@ def main():
 
     class _Log:
         def info(self, *x): print(*x, flush=True)
+    import models.end2end_model as E2E
+    orig_gft, held_set = E2E.gen_feats_test, set(held)
+
+    def gen_feats_test_train_anno(video_name, trajectories, split, *rest):
+        """A29 item 1, from outside: End2End_Model's test path hard-codes the 'test' annotation folder
+        (end2end_model.py:326), which gen_feats_test reads only for the video's id, height and width
+        (gen_labels.py:25-29, :646-648). For a HELD video it reads the training annotation instead. The
+        final tracks (self.traj, :325) are set before this call; the guard still blocks test files."""
+        if split == "test" and video_name[0] in held_set:
+            split = "train"
+        return orig_gft(video_name, trajectories, split, *rest)
+    E2E.gen_feats_test = gen_feats_test_train_anno
     model, sort_model = build_model_stack(args, load_components=False)
     load_end2end(model, args.ckpt_path, _Log())
     model.eval()
