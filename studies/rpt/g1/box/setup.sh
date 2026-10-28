@@ -21,7 +21,8 @@ nvidia-smi | grep -oE "CUDA (UMD )?Version: [0-9.]+" || true
 free -g | awk 'NR==2{printf "system RAM : %s GiB total, %s available\n", $2, $7}'
 df -h --output=avail / | tail -1 | xargs echo "disk avail :"
 echo "cores      : $(nproc)"
-python -c "import torch,sys; print('python', sys.version.split()[0], '| torch', torch.__version__, '| cuda', torch.version.cuda, '| cudnn', torch.backends.cudnn.version(), '| gpu ok', torch.cuda.is_available())"
+python -c "import torch,sys; print('python', sys.version.split()[0], '| torch', torch.__version__, '| cuda', torch.version.cuda, '| cudnn', torch.backends.cudnn.version(), '| gpu ok', torch.cuda.is_available())" \
+  || echo "image torch: not importable (step 2 installs G0's set)"
 NG=$(nvidia-smi -L | grep -c "^GPU ")
 [ "$(nvidia-smi --query-gpu=name --format=csv,noheader | grep -vc "RTX 4090")" = 0 ] || stop "a GPU is not an RTX 4090"
 [ "$NG" = 8 ] || [ "$NG" = 4 ] || stop "$NG GPUs: A29a allows 8, or 4 as fallback"
