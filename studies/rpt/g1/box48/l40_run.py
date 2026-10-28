@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""RPT G1 on the 48 GB machine (A29b): `...00280000` only. Runs in /venv/main.
+"""RPT G1 on the 48 GB machine: A29b's `...00280000` and A29c's videos moved off the 8x machine
+(studies/rpt/g1/logs/box/moved_to_l40.json), longest first. Runs in /venv/main.
 
     python studies/rpt/g1/box48/l40_run.py check0      # smoke video 1 at defaults, bitwise against G0
-    python studies/rpt/g1/box48/l40_run.py video       # ...00280000: one process, defaults, no offload/A1/A2/A3
+    python studies/rpt/g1/box48/l40_run.py video       # each video: its own process, defaults, no offload/A1/A2/A3
     python studies/rpt/g1/box48/l40_run.py preflight   # the EOV-MMP preflight, against the 8x machine's
     python studies/rpt/g1/box48/l40_run.py eov         # R0w, R0 and (if the preflight matched) box sensitivity
 
-check0 failing writes ~/rpt_g1_box/STOP_check0.json and exits 3 (A29b: stop and ask). The SAM 3 side
+check0 failing writes ~/rpt_g1_box/STOP_check0.json and exits 3 (A29b: stop and ask); any video failing
+writes STOP_video.json and exits 5 (A29a; there is no further machine to move it to). The SAM 3 side
 uses the 8x machine's driver code (studies/rpt/g1/box/g1_driver.py: Worker, run_check); the EOV-MMP
 side its eov_held.py and eov_parallel.py's comparison. The bars' R0w and R0 tracks stay the 8x
 machine's (A29b); the ones computed here serve box sensitivity only.
@@ -29,13 +31,20 @@ import g1_driver as D      # noqa: E402
 import eov_parallel as EP  # noqa: E402
 
 VIDEO = "ILSVRC2015_train_00280000"
+MOVED = os.path.join(G1, "logs", "box", "moved_to_l40.json")   # A29c, from the 8x machine's copy-back
 REF8 = os.path.join(D.REPO, "studies", "rpt", "g1", "box_out", "preflight_eov", "g0")   # the 8x machine's, uploaded
+
+
+def videos():
+    vs = [VIDEO] + [m["video"] for m in json.load(open(MOVED))]
+    return sorted(vs, key=lambda v: (-len(os.listdir(os.path.join(D.FRAMES, v))), v))
 
 
 def check0():
     os.makedirs(D.BOX, exist_ok=True)
     if not os.path.exists(D.T0):
         open(D.T0, "w").write(f"{time.time()}\n")
+    print(f"videos for this machine: {videos()}", flush=True)       # their frames are here
     D.NGPU = 1
     r = D.run_check("c0_default", [0], 1, False, False, False, main=False, omp=8)
     D.save("checks_l40.json", r)
@@ -48,24 +57,31 @@ def video():
     if not json.load(open(os.path.join(D.BOX, "checks_l40.json")))["passed"]:
         raise SystemExit("!! check 0 has not passed")
     D.NGPU = 1
-    q = queue.Queue()
-    w = D.Worker("l40_w0", 0, False, q, 8)
-    D.wait_ready([w], main=False)
-    w.send(dict(video=VIDEO, out=os.path.join(D.OUT, "sam3"), reuse_backbone=False, offload_video_to_cpu=False))
-    while True:
-        try:
-            _, r = q.get(timeout=30)
-            break
-        except queue.Empty:
-            if w.dead():
-                D.stop(5, "video", dict(video=VIDEO, error="worker died"))
-    w.close()
-    if not r.get("ok"):
-        D.stop(5, "video", dict(video=VIDEO, result=r))
-    D.append(D.MANIFEST, dict(r, gpu=0, options=dict(reuse_backbone=False, offload_video_to_cpu=False, alone=True),
-                              group="l40", machine="48 GB (A29b)", t_end=round(time.time(), 2)))
-    D.save("sam3_done.json", dict(videos=1, files={VIDEO: r["sha256"]}, machine="48 GB (A29b)"))
-    print(f"{VIDEO}: {r['seconds_total']:.0f} s, peak {r['peak_gpu_allocated_gib']:.1f} GiB", flush=True)
+    files = {}
+    if os.path.exists(D.MANIFEST):
+        files = {r["video"]: r["sha256"] for r in map(json.loads, open(D.MANIFEST))}
+    for i, v in enumerate(videos()):
+        if v in files:
+            continue
+        q = queue.Queue()
+        w = D.Worker(f"l40_w{i}", 0, False, q, 8)
+        D.wait_ready([w], main=False)
+        w.send(dict(video=v, out=os.path.join(D.OUT, "sam3"), reuse_backbone=False, offload_video_to_cpu=False))
+        while True:
+            try:
+                _, r = q.get(timeout=30)
+                break
+            except queue.Empty:
+                if w.dead():
+                    D.stop(5, "video", dict(video=v, error="worker died"))
+        w.close()
+        if not r.get("ok"):
+            D.stop(5, "video", dict(video=v, result=r))
+        D.append(D.MANIFEST, dict(r, gpu=0, options=dict(reuse_backbone=False, offload_video_to_cpu=False, alone=True),
+                                  group="l40", machine="48 GB (A29b, A29c)", t_end=round(time.time(), 2)))
+        files[v] = r["sha256"]
+        print(f"{v}: {r['seconds_total']:.0f} s, peak {r['peak_gpu_allocated_gib']:.1f} GiB", flush=True)
+    D.save("sam3_done.json", dict(videos=len(files), files=files, machine="48 GB (A29b, A29c)"))
 
 
 def preflight():
@@ -82,9 +98,11 @@ def preflight():
 
 def eov():
     ok = all(json.load(open(os.path.join(D.BOX, "eov_preflight_l40.json")))["identical_to_8x"].values())
-    no_sam3 = [] if ok else [VIDEO]
-    print(f"box sensitivity for {VIDEO}: {'yes' if ok else 'no (preflight differs; A29b: judged on 159)'}", flush=True)
-    p = EP.launch(0, [VIDEO], os.path.join(D.OUT, "sam3"), os.path.join(D.OUT, "eov"), 8, "l40", no_sam3)
+    vs = videos()
+    no_sam3 = [] if ok else vs
+    print(f"box sensitivity for {vs}: {'yes' if ok else 'no (preflight differs; A29b: judged without them)'}",
+          flush=True)
+    p = EP.launch(0, vs, os.path.join(D.OUT, "sam3"), os.path.join(D.OUT, "eov"), 8, "l40", no_sam3)
     if p.wait():
         raise SystemExit("!! eov_held failed")
 

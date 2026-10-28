@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # The 48 GB machine -> laptop, then verify (A29b). Run on the laptop:
 #   bash studies/rpt/g1/box48/copy_back48.sh root@HOST PORT
-# To studies/rpt/g1/l40_out/: SAM 3's file for ...00280000, its EOV-MMP file, the checks' and the
+# To studies/rpt/g1/l40_out/: SAM 3's files for ...00280000 and the moved videos, their EOV-MMP files, the checks' and the
 # preflight's outputs, and the machine's logs. Every SAM 3 and EOV file must match its manifest.
 set -euo pipefail
 T="$1"; PORT="$2"

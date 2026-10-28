@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # The 48 GB machine (A29b), after G1_MACHINE=l40 setup.sh and the author's fetch_with_token.sh:
 #   nohup setsid bash ~/ov-vidvrd-lab/studies/rpt/g1/box48/run48.sh > ~/rpt_g1_box/run48.log 2>&1 &
-# check 0 (stop and ask if not identical to G0) -> ...00280000 -> the EOV-MMP preflight against the
-# 8x machine's -> the EOV-MMP side for ...00280000 (box sensitivity only if the preflight matched).
+# check 0 (stop and ask if not identical to G0) -> ...00280000 and A29c's moved videos -> the EOV-MMP
+# preflight against the 8x machine's -> the EOV-MMP side for them (box sensitivity only if the preflight matched).
 set -euo pipefail
 export OMP_NUM_THREADS=8 MKL_NUM_THREADS=8
 cd ~/ov-vidvrd-lab

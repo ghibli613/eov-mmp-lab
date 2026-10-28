@@ -355,3 +355,54 @@ def test_a29c_more_than_3_ooms_stop(tmp_path):
 def test_a29c_other_death_still_stops(tmp_path):
     p, box = drive_a29c(tmp_path, FAKE_DIE="ILSVRC2015_train_00125006")
     assert p.returncode == 5 and json.load(open(box / "STOP_video.json"))["error"] == "worker died"
+
+
+# ---------------------------------------------------------------- the 48 GB run (A29b, A29c)
+L40 = os.path.join(RPT, "g1", "box48", "l40_run.py")
+MOVED = ["ILSVRC2015_train_00225001", "ILSVRC2015_train_00971000"]      # moved_to_l40.json, 836 and 521 frames
+
+
+def run_l40(tmp_path, step, **env):
+    e = dict(os.environ, G1_BOX=str(tmp_path / "box"), G1_OUT=str(tmp_path / "out"), G1_SAM3PY=sys.executable,
+             G1_WORKER=os.path.join(TESTS, "fake_sam3_worker.py"), G1_EOVPY=sys.executable,
+             G1_EOV=os.path.join(TESTS, "fake_eov_held.py"), **env)
+    return subprocess.run([sys.executable, L40, step], env=e, capture_output=True, text=True, timeout=300)
+
+
+def l40_box(tmp_path, preflight_identical=True):
+    (tmp_path / "box").mkdir()
+    (tmp_path / "box" / "checks_l40.json").write_text(json.dumps(dict(passed=True)))
+    (tmp_path / "box" / "eov_preflight_l40.json").write_text(
+        json.dumps(dict(identical_to_8x={"ILSVRC2015_train_00008005": preflight_identical})))
+
+
+@needs_frames
+def test_l40_runs_280000_and_the_moved_videos_longest_first(tmp_path):
+    l40_box(tmp_path)
+    p = run_l40(tmp_path, "video")
+    assert p.returncode == 0, p.stdout + p.stderr
+    rows = [json.loads(line) for line in open(tmp_path / "box" / "sam3_manifest.jsonl")]
+    assert [r["video"] for r in rows] == [S.OFFLOAD_VIDEO] + MOVED
+    assert all(r["options"] == dict(reuse_backbone=False, offload_video_to_cpu=False, alone=True) for r in rows)
+    assert sorted((tmp_path / "box" / "workers").iterdir()) == [tmp_path / "box" / "workers" / f"l40_w{i}.log"
+                                                                 for i in range(3)]
+    assert json.load(open(tmp_path / "box" / "sam3_done.json"))["videos"] == 3
+    p = run_l40(tmp_path, "eov")
+    assert p.returncode == 0, p.stdout + p.stderr
+    eov = [json.loads(line) for line in open(tmp_path / "out" / "eov" / "manifest_l40.jsonl")]
+    assert [r["video"] for r in eov] == [S.OFFLOAD_VIDEO] + MOVED and all(r["sensitivity"] for r in eov)
+
+
+@needs_frames
+def test_l40_failure_stops_rerun_skips_finished_and_preflight_gates_sensitivity(tmp_path):
+    l40_box(tmp_path, preflight_identical=False)
+    p = run_l40(tmp_path, "video", FAKE_OOM=MOVED[0])
+    assert p.returncode == 5 and json.load(open(tmp_path / "box" / "STOP_video.json"))["video"] == MOVED[0]
+    p = run_l40(tmp_path, "video")
+    assert p.returncode == 0, p.stdout + p.stderr
+    rows = [json.loads(line) for line in open(tmp_path / "box" / "sam3_manifest.jsonl")]
+    assert [r["video"] for r in rows] == [S.OFFLOAD_VIDEO] + MOVED
+    p = run_l40(tmp_path, "eov")
+    assert p.returncode == 0, p.stdout + p.stderr
+    eov = [json.loads(line) for line in open(tmp_path / "out" / "eov" / "manifest_l40.jsonl")]
+    assert not any(r["sensitivity"] for r in eov)
