@@ -40,8 +40,7 @@ NEED=$([ "$NG" = 8 ] && echo 256 || echo 192)
 [ "$(df --output=avail -BG / | tail -1 | tr -dc 0-9)" -ge 150 ] || stop "< 150 GB free disk (200 GB rented)"
 CUDA=$(nvidia-smi | grep -o "CUDA Version: [0-9.]*" | grep -o "[0-9.]*$")
 python -c "import sys; v = tuple(map(int, '$CUDA'.split('.'))); sys.exit(0 if v >= (12, 8) else 1)" || stop "CUDA $CUDA < 12.8"
-python -c "import sys, torch; assert sys.version.split()[0] == '3.12.15' and torch.__version__ == '2.11.0+cu128', (sys.version, torch.__version__)" \
-  || stop "/venv/main is not G0's Python 3.12.15 + torch 2.11.0+cu128"
+python -c "import sys; assert sys.version.split()[0] == '3.12.15', sys.version" || stop "/venv/main is not G0's Python 3.12.15"
 echo "image      : $(. /etc/os-release && echo "$PRETTY_NAME") | VAST_CONTAINERLABEL=${VAST_CONTAINERLABEL:-unset}"
 echo "            (the image digest is not visible inside the container: read it from the Vast.ai instance page)"
 bash "$WORK/studies/rpt/g0/box/token_scan.sh" "setup, before any token"
@@ -52,13 +51,22 @@ say "1. the uploaded files against the laptop's SHA256; no test file"
 echo "  all match: $(wc -l < "$EXP/expected_data.sha256") data files, $(wc -l < "$EXP/expected_code.sha256") code files"
 if find "$WORK/data" \( -path '*anno/test*' -o -name 'test_*' -o -name '*ECC_test*' \) | grep -q .; then stop "a test file is on the machine"; fi
 
-say "2. EOV-MMP side: /venv/main, constrained to G0's freeze"
+say "2. EOV-MMP side: /venv/main made equal to G0's freeze"
+# A29a pins the package set, not the image: a newer template (e.g. torch 2.14.1+cu132) gets G0's
+# exact versions, each from the freeze without dependencies; packages G0 did not have are removed.
+pip freeze > "$BOX/pip_freeze_main_image.txt"
 grep -vE '^-e |^#| @ ' "$EXP/pip_freeze_main.txt" > "$BOX/constraints_main.txt"
-pip install -q -c "$BOX/constraints_main.txt" scipy scikit-learn matplotlib pyyaml ftfy regex einops timm fvcore \
-    pycocotools opencv-python-headless huggingface_hub hf_transfer easydict six protobuf pytest
+if ! diff -q "$EXP/pip_freeze_main.txt" "$BOX/pip_freeze_main_image.txt" >/dev/null; then
+  pip install -q --no-deps -r "$BOX/constraints_main.txt" --extra-index-url https://download.pytorch.org/whl/cu128
+  extra=$(comm -13 <(sed -E 's/[ =@].*//' "$EXP/pip_freeze_main.txt" | tr 'A-Z_' 'a-z-' | sort -u) \
+                   <(pip freeze | sed -E 's/[ =@].*//' | tr 'A-Z_' 'a-z-' | sort -u))
+  [ -z "$extra" ] || pip uninstall -q -y $extra
+fi
 pip freeze > "$BOX/pip_freeze_main.txt"
 diff "$EXP/pip_freeze_main.txt" "$BOX/pip_freeze_main.txt" || stop "/venv/main's packages differ from G0's freeze (diff above)"
 echo "  /venv/main equals G0's freeze: $(sha256sum < "$BOX/pip_freeze_main.txt" | cut -c1-16)"
+python -c "import torch; assert torch.__version__ == '2.11.0+cu128' and torch.version.cuda == '12.8' and torch.cuda.is_available(); print('torch', torch.__version__, '| cudnn', torch.backends.cudnn.version(), '| GPUs', torch.cuda.device_count())" \
+  || stop "/venv/main's torch is not G0's 2.11.0+cu128 with CUDA working"
 
 say "3. CLIP ViT-L/14@336px (public; the URL carries its SHA256)"
 ( cd "$WORK" && python -c "
