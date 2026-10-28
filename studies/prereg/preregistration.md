@@ -2276,3 +2276,63 @@ reported.
 
 **Not changed by this amendment:** everything else in A29 and A29a. Any change to the above is a
 new amendment, written before the result it affects.
+
+#### A29c (2026-10-28): G1, stop 2 — A2 off, a measured A1 RAM rule, and out-of-memory failures moved to the 48 GB run
+
+Written after G1's stop 2 and the plan author's decisions on it (`studies/rpt/g1/g1_stop_report_2.md`),
+before the rest of D1 runs.
+- **Already seen when written:** the 20 videos of the first 20 have SAM 3 files on the 8× machine,
+  and A29a's projection after them was made: 22.2 projected billed GPU-hours, below 48.
+- **Not computed:** no bar quantity.
+
+**Stop 2 and its cause.**
+- **The failure.** At 16:30:52 UTC, on the 8× machine, the kernel killed the SAM 3 process running
+  `ILSVRC2015_val_00027000`: the memory cgroup recorded `oom_kill`. System RAM was exhausted. A29a's
+  rule "any video that fails to run stops G1" fired.
+- **The cause.** A29a's A1 rule (all A1 caches ≤ RAM − 64 GB, at 106 MB per frame) was too loose:
+  - the caches measure **112 MB per frame** (all 20 finished videos: 111.6–112.3);
+  - each of the 16 SAM 3 processes (A2: 2 per GPU) needs about 4 GB of its own.
+- **Lost:** the videos in progress, including `…00237001` and `…00896000`. They run again from the
+  start.
+
+**The decisions** (the plan author), for the rest of D1 on the 8× machine:
+
+1. **A2 off.** One SAM 3 process per GPU: 8 processes.
+   - Reason: A2 measured only 1.04× in check 2, and it doubles the per-process RAM.
+   - With one process per GPU and A1, each process runs exactly check 1's configuration, which was
+     bitwise identical to G0 at the same OpenMP thread count (8).
+2. **The A1 RAM rule uses the measured 112 MB per frame.**
+   - **Total:** all A1 caches together ≤ instance RAM − 64 GB − 8 GB × the number of SAM 3 processes.
+     Here: 518.9 − 64 − 8 × 8 = 390.9 GB.
+   - **Live guard:** an A1 start also needs the available memory minus its own cache to stay ≥ 64 GB
+     at that moment. The available memory is the lower of `/proc/meminfo`'s MemAvailable and the
+     container's memory-cgroup limit minus its usage, with the inactive file cache counted as free.
+   - A video failing either test runs without A1, with the same output.
+3. **Out-of-memory failures no longer stop G1.**
+   - **What counts:** a video that fails only from GPU or system out-of-memory, i.e. a CUDA
+     out-of-memory error, or a kernel `oom_kill` of its process, seen as a rise of the cgroup's
+     `oom_kill` count when the process dies.
+   - **What happens to it:**
+     - it is logged, and its partial output discarded;
+     - it is **added to the 48 GB run of A29b**, under the same rules as `…00280000` (one process,
+       defaults, no offload, A1, A2 or A3; check 0 required there);
+     - a killed process is replaced on its GPU.
+   - G1 continues with the other videos.
+   - **Still stop and ask:**
+     - on any other failure;
+     - if more than 3 videos fail from out-of-memory in total (`…00280000`, the first, is not counted
+       among these 3);
+     - at the 48 GPU-hour hard stop.
+
+**The projection is not repeated;** the hard stop at 48 GPU-hours protects the cap.
+
+**After the SAM 3 phase** (as before):
+- the EOV-MMP side: R0w and R0 for all 160 videos; box sensitivity for the videos with SAM 3 files
+  on the 8× machine;
+- then copy-back.
+
+The videos moved to the 48 GB run are reported. Their box sensitivity follows A29b's rule for
+`…00280000`.
+
+**Not changed by this amendment:** everything else in A29, A29a and A29b. Any change to the above is a
+new amendment, written before the result it affects.
