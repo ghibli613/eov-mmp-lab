@@ -2226,3 +2226,53 @@ recorded on the machine (`~/rpt_g1_box/commits.txt`) and in the G1 report.
 pass rules and order, offload only for `…00280000`, A1 only for videos ≤ 1,000 frames, the stop
 conditions, the seeds, keeping and hashing every SAM 3 output). Any change to the above is a new
 amendment, written before the result it affects.
+
+#### A29b (2026-10-28): G1, stop 1 — `…00280000` on one Ada-generation 48 GB GPU (A29's fallback)
+
+Written after G1's stop 1 and the plan author's decisions on it, before `…00280000` has any G1
+output. When written, 11 of the first 20 videos' SAM 3 files existed and the checks' outcomes were
+known (`studies/rpt/g1/g1_stop_report_1.md`). No bar quantity has been computed.
+
+**The stop and its cause.**
+- On the 8× RTX 4090 machine of A29a, `ILSVRC2015_train_00280000` (2,947 frames) ran alone with
+  `offload_video_to_cpu`, the configuration check 5 had passed. It failed with CUDA out of memory
+  (22.79 GiB allocated, on a card with 23.54 GiB); its first prompt had already peaked at 22.19 GiB.
+- Offload moves only the video frames to the CPU; SAM 3's per-frame state, which grows with the
+  video's length, stays on the GPU. Check 4 had passed on the 130-frame smoke video.
+- A29a's rule "any video that fails to run stops G1" fired.
+
+**The decisions** (the plan author, after the stop).
+- **D1.** The other 159 videos run on the 8× machine, with `…00280000` excluded by an explicit,
+  logged list. The 11 finished videos are kept. On the 8× machine, the EOV-MMP side computes:
+  - R0w and R0 tracks for all 160 videos (they do not need SAM 3's files);
+  - box sensitivity for the 159 videos with SAM 3 files.
+
+  The 8× machine's EOV-MMP preflight outputs (the 2 smoke videos) are kept for the comparison below.
+- **D3.** The time spent waiting for these decisions counts toward A29a's 48 GPU-hour cap, as
+  defined. No change.
+- **D2.** `…00280000` takes A29's pre-registered fallback ("a 48 GB GPU for that video, at defaults"),
+  restricted as below. It runs as a separate rental, after the 8× machine is destroyed.
+
+##### The 48 GB machine
+
+- **GPU:** one 48 GB GPU of the Ada generation, the RTX 4090's: RTX 6000 Ada, L40S or L40. Not Ampere
+  (A6000, A40) or any other generation.
+- **Software:** the same stack as G1's 8× machine: Python 3.12.15, both package sets equal to G0's
+  `pip freeze`, EOV-MMP's operator built with nvcc 12.8 as there; the driver is recorded.
+- **Check 0 is required:** smoke video 1 at defaults, bitwise against G0's output (A29's check 0).
+  **If check 0 fails, stop and ask.**
+- **`…00280000`:** one process, SAM 3's defaults, no offload, no A1, no A2, no A3.
+- **Box sensitivity for `…00280000`** runs there only if that machine's EOV-MMP preflight on the 2
+  smoke videos is bitwise identical (apart from the timing fields) to the 8× machine's. Otherwise,
+  box sensitivity is judged on 159 videos, and this is disclosed.
+- **The R0w and R0 tracks used for every bar** are the 8× machine's, for all 160 videos.
+- **Cost:** within A29a's total budget of $35. Above it, ask the plan author.
+
+##### What G1 then reports
+
+Every A29 quantity on all 160 videos, with SAM 3's file for `…00280000` from the 48 GB machine.
+Box sensitivity is on 160 or 159 videos, as above. Which machine produced each SAM 3 file is
+reported.
+
+**Not changed by this amendment:** everything else in A29 and A29a. Any change to the above is a
+new amendment, written before the result it affects.
