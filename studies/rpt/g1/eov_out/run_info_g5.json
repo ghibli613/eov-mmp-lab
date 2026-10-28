@@ -1,0 +1,35 @@
+{
+ "modelC_load": {
+  "missing": [],
+  "unexpected": [],
+  "loaded": 196
+ },
+ "torch": "2.11.0+cu128",
+ "cudnn": 91900,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "cuda_visible_devices": "5",
+ "omp_num_threads": "8",
+ "videos": [
+  "ILSVRC2015_train_00476002",
+  "ILSVRC2015_train_00270000",
+  "ILSVRC2015_train_00780000",
+  "ILSVRC2015_train_00374000",
+  "ILSVRC2015_train_00759000",
+  "ILSVRC2015_train_01079000",
+  "ILSVRC2015_train_00215000",
+  "ILSVRC2015_train_00172007",
+  "ILSVRC2015_val_00123004",
+  "ILSVRC2015_train_00750000",
+  "ILSVRC2015_train_00071014",
+  "ILSVRC2015_train_00435001",
+  "ILSVRC2015_train_00253025",
+  "ILSVRC2015_train_00265063",
+  "ILSVRC2015_val_00028003",
+  "ILSVRC2015_train_00058003",
+  "ILSVRC2015_train_00071013",
+  "ILSVRC2015_train_00010024",
+  "ILSVRC2015_train_00265068",
+  "ILSVRC2015_train_00040005",
+  "ILSVRC2015_train_00060001"
+ ]
+}

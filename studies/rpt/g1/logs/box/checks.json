@@ -1,0 +1,817 @@
+{
+ "machine": {
+  "gpus": 8,
+  "ram_gb": 518.878396416,
+  "cores": 96
+ },
+ "c0": {
+  "label": "c0_default",
+  "gpus": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "workers_per_gpu": 1,
+  "omp_num_threads": 8,
+  "compile": false,
+  "reuse_backbone": false,
+  "offload_video_to_cpu": false,
+  "wall_seconds": 388.99,
+  "passed": true,
+  "runs": [
+   {
+    "worker": "c0_default_g0_w0",
+    "gpu": 0,
+    "ok": true,
+    "error": null,
+    "seconds_total": 387.186,
+    "wall_seconds": 388.99,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "fdfa69c62b6b3bc6f21665e7922172d099735858c3cd73137668e1fff3539bc2",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 387.19,
+     "speedup_a_over_b": 1.092,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g1_w0",
+    "gpu": 1,
+    "ok": true,
+    "error": null,
+    "seconds_total": 358.671,
+    "wall_seconds": 360.44,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "0d7c387a3322d36be178ac2e6f715b72f7ba36c27226bf549dc0ac22ace72aec",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 358.67,
+     "speedup_a_over_b": 1.179,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g2_w0",
+    "gpu": 2,
+    "ok": true,
+    "error": null,
+    "seconds_total": 360.929,
+    "wall_seconds": 362.66,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "9482656c9bfaa6583e90a7da873a04eaef09ff0f68602a03d2e2ed0f9cd67d47",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 360.93,
+     "speedup_a_over_b": 1.172,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g3_w0",
+    "gpu": 3,
+    "ok": true,
+    "error": null,
+    "seconds_total": 372.248,
+    "wall_seconds": 374.03,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "cc90fa6dd46bd1a51ce1aca892061a2053fea31317b40037cd4a0522664f3b24",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 372.25,
+     "speedup_a_over_b": 1.136,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g4_w0",
+    "gpu": 4,
+    "ok": true,
+    "error": null,
+    "seconds_total": 358.866,
+    "wall_seconds": 360.56,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "9bf18c483ed9e082f0bd99a039f6221c0928233fe741094957d5699583edfe4f",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 358.87,
+     "speedup_a_over_b": 1.178,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g5_w0",
+    "gpu": 5,
+    "ok": true,
+    "error": null,
+    "seconds_total": 364.005,
+    "wall_seconds": 365.75,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "76510e0e9ad0bd364ad266b61d2c4dff0253a72b6d685537df7818eefc16ec4e",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 364.0,
+     "speedup_a_over_b": 1.162,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g6_w0",
+    "gpu": 6,
+    "ok": true,
+    "error": null,
+    "seconds_total": 363.345,
+    "wall_seconds": 365.17,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "4a54c947a40af77a564ec6d3c01c451d3ee23b46665dbb606121ac4679f1df16",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 363.35,
+     "speedup_a_over_b": 1.164,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   },
+   {
+    "worker": "c0_default_g7_w0",
+    "gpu": 7,
+    "ok": true,
+    "error": null,
+    "seconds_total": 363.778,
+    "wall_seconds": 365.55,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "98ca7b344d8468a6d467d45fd8f35da25361cf9fc9f5959dbdfcbcfa420eced0",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 363.78,
+     "speedup_a_over_b": 1.162,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   }
+  ],
+  "worker_ready": [
+   {
+    "model_load_seconds": 7.3,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6587,
+    "seconds_to_ready": 10.0
+   },
+   {
+    "model_load_seconds": 7.4,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6589,
+    "seconds_to_ready": 10.0
+   },
+   {
+    "model_load_seconds": 7.1,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6591,
+    "seconds_to_ready": 9.8
+   },
+   {
+    "model_load_seconds": 6.5,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6593,
+    "seconds_to_ready": 9.1
+   },
+   {
+    "model_load_seconds": 7.1,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6595,
+    "seconds_to_ready": 9.7
+   },
+   {
+    "model_load_seconds": 6.8,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6597,
+    "seconds_to_ready": 9.4
+   },
+   {
+    "model_load_seconds": 7.2,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6599,
+    "seconds_to_ready": 9.8
+   },
+   {
+    "model_load_seconds": 6.7,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 6602,
+    "seconds_to_ready": 9.3
+   }
+  ]
+ },
+ "c1": {
+  "label": "c1_A1",
+  "gpus": [
+   0
+  ],
+  "workers_per_gpu": 1,
+  "omp_num_threads": 8,
+  "compile": false,
+  "reuse_backbone": true,
+  "offload_video_to_cpu": false,
+  "wall_seconds": 199.7,
+  "passed": true,
+  "runs": [
+   {
+    "worker": "c1_A1_g0_w0",
+    "gpu": 0,
+    "ok": true,
+    "error": null,
+    "seconds_total": 197.926,
+    "wall_seconds": 199.7,
+    "peak_gpu_allocated_gib": 7.316476821899414,
+    "peak_gpu_reserved_gib": 7.6328125,
+    "backbone_cache": {
+     "hits": 4420,
+     "misses": 130,
+     "passthrough": 0,
+     "stored_gib": 13.60052490234375
+    },
+    "sha256": "b49a55f45963614cc32626fe6eac89ea42aace11ad73400b88b8c3da7756a7db",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 197.93,
+     "speedup_a_over_b": 2.136,
+     "reuse_backbone": [
+      false,
+      true
+     ],
+     "backbone_cache": {
+      "hits": 4420,
+      "misses": 130,
+      "passthrough": 0,
+      "stored_gib": 13.60052490234375
+     }
+    }
+   }
+  ],
+  "worker_ready": [
+   {
+    "model_load_seconds": 6.2,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 7120,
+    "seconds_to_ready": 8.9
+   }
+  ]
+ },
+ "c2": {
+  "2": {
+   "label": "c2_A2_2",
+   "gpus": [
+    1
+   ],
+   "workers_per_gpu": 2,
+   "omp_num_threads": 8,
+   "compile": false,
+   "reuse_backbone": false,
+   "offload_video_to_cpu": false,
+   "wall_seconds": 745.38,
+   "passed": true,
+   "runs": [
+    {
+     "worker": "c2_A2_2_g1_w0",
+     "gpu": 1,
+     "ok": true,
+     "error": null,
+     "seconds_total": 743.645,
+     "wall_seconds": 745.38,
+     "peak_gpu_allocated_gib": 7.316072463989258,
+     "peak_gpu_reserved_gib": 7.625,
+     "backbone_cache": null,
+     "sha256": "38fc52a25d8e5713a51b03721e60d701a01ca09ff4fb5c2f45ad13c790b4424d",
+     "identical": true,
+     "compare": {
+      "video": "ILSVRC2015_train_00008005",
+      "prompts_compared": 35,
+      "prompts_identical": 35,
+      "bitwise_identical": true,
+      "differences": {},
+      "seconds_a": 422.86,
+      "seconds_b": 743.64,
+      "speedup_a_over_b": 0.569,
+      "reuse_backbone": [
+       false,
+       false
+      ],
+      "backbone_cache": null
+     }
+    },
+    {
+     "worker": "c2_A2_2_g1_w1",
+     "gpu": 1,
+     "ok": true,
+     "error": null,
+     "seconds_total": 743.455,
+     "wall_seconds": 745.14,
+     "peak_gpu_allocated_gib": 7.316072463989258,
+     "peak_gpu_reserved_gib": 7.625,
+     "backbone_cache": null,
+     "sha256": "132762c3392eaf20ae185cc12568e32c7fa757d2b26673ff9f4cf1e09ccaca35",
+     "identical": true,
+     "compare": {
+      "video": "ILSVRC2015_train_00008005",
+      "prompts_compared": 35,
+      "prompts_identical": 35,
+      "bitwise_identical": true,
+      "differences": {},
+      "seconds_a": 422.86,
+      "seconds_b": 743.46,
+      "speedup_a_over_b": 0.569,
+      "reuse_backbone": [
+       false,
+       false
+      ],
+      "backbone_cache": null
+     }
+    }
+   ],
+   "worker_ready": [
+    {
+     "model_load_seconds": 6.4,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 7123,
+     "seconds_to_ready": 9.0
+    },
+    {
+     "model_load_seconds": 6.4,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 7128,
+     "seconds_to_ready": 8.9
+    }
+   ],
+   "throughput_vs_c0": 1.044
+  },
+  "3": {
+   "label": "c2_A2_3",
+   "gpus": [
+    1
+   ],
+   "workers_per_gpu": 3,
+   "omp_num_threads": 8,
+   "compile": false,
+   "reuse_backbone": false,
+   "offload_video_to_cpu": false,
+   "wall_seconds": 297.49,
+   "passed": false,
+   "runs": [
+    {
+     "worker": "c2_A2_3_g1_w0",
+     "gpu": 1,
+     "ok": false,
+     "error": "CUDA out of memory",
+     "seconds_total": null,
+     "wall_seconds": null,
+     "peak_gpu_allocated_gib": 7.234530448913574,
+     "peak_gpu_reserved_gib": null,
+     "backbone_cache": null,
+     "sha256": null,
+     "identical": false
+    },
+    {
+     "worker": "c2_A2_3_g1_w1",
+     "gpu": 1,
+     "ok": false,
+     "error": "CUDA out of memory",
+     "seconds_total": null,
+     "wall_seconds": null,
+     "peak_gpu_allocated_gib": 7.07167387008667,
+     "peak_gpu_reserved_gib": null,
+     "backbone_cache": null,
+     "sha256": null,
+     "identical": false
+    },
+    {
+     "worker": "c2_A2_3_g1_w2",
+     "gpu": 1,
+     "ok": false,
+     "error": "CUDA out of memory",
+     "seconds_total": null,
+     "wall_seconds": null,
+     "peak_gpu_allocated_gib": 7.184800624847412,
+     "peak_gpu_reserved_gib": null,
+     "backbone_cache": null,
+     "sha256": null,
+     "identical": false
+    }
+   ],
+   "worker_ready": [
+    {
+     "model_load_seconds": 6.2,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 10959,
+     "seconds_to_ready": 8.8
+    },
+    {
+     "model_load_seconds": 6.1,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 10961,
+     "seconds_to_ready": 8.7
+    },
+    {
+     "model_load_seconds": 6.2,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 10963,
+     "seconds_to_ready": 8.8
+    }
+   ],
+   "throughput_vs_c0": 3.923
+  }
+ },
+ "c3": {
+  "label": "c3_A3",
+  "gpus": [
+   2
+  ],
+  "workers_per_gpu": 1,
+  "omp_num_threads": 8,
+  "compile": true,
+  "reuse_backbone": false,
+  "offload_video_to_cpu": false,
+  "wall_seconds": 526.76,
+  "passed": false,
+  "runs": [
+   {
+    "worker": "c3_A3_g2_w0",
+    "gpu": 2,
+    "ok": true,
+    "error": null,
+    "seconds_total": 524.242,
+    "wall_seconds": 526.76,
+    "peak_gpu_allocated_gib": 7.093075752258301,
+    "peak_gpu_reserved_gib": 8.177734375,
+    "backbone_cache": null,
+    "sha256": "418be67472058dcd8104c3a6d7ac8b1d857c36269b81987265d41d0abd9a188e",
+    "identical": false,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 34,
+     "bitwise_identical": false,
+     "differences": {
+      "prompt.raw_low": 1,
+      "prompt.raw_low_detections": 1,
+      "frame.area": 388,
+      "frame.rle": 390,
+      "frame.trk": 218,
+      "frame.det": 130,
+      "frame.box": 101,
+      "frame.box_sam3": 101,
+      "frame.prob": 130
+     },
+     "seconds_a": 422.86,
+     "seconds_b": 524.24,
+     "speedup_a_over_b": 0.807,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    },
+    "difference_size": {
+     "max_abs_delta_out_probs": 0.0031600594520568848,
+     "max_abs_delta_box": 26.0,
+     "mask_iou_min": 0.9605581105308286,
+     "mask_iou_mean": 0.9969401676879698,
+     "mask_iou_below_1": 390,
+     "shared_masks": 390,
+     "masklets_added": 0,
+     "masklets_lost": 0,
+     "frames_added": 0,
+     "frames_lost": 0
+    }
+   }
+  ],
+  "worker_ready": [
+   {
+    "model_load_seconds": 6.4,
+    "compile": true,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 7122,
+    "seconds_to_ready": 9.0
+   }
+  ]
+ },
+ "c4": {
+  "label": "c4_offload",
+  "gpus": [
+   3
+  ],
+  "workers_per_gpu": 1,
+  "omp_num_threads": 8,
+  "compile": false,
+  "reuse_backbone": false,
+  "offload_video_to_cpu": true,
+  "wall_seconds": 374.61,
+  "passed": true,
+  "runs": [
+   {
+    "worker": "c4_offload_g3_w0",
+    "gpu": 3,
+    "ok": true,
+    "error": null,
+    "seconds_total": 372.954,
+    "wall_seconds": 374.6,
+    "peak_gpu_allocated_gib": 7.316072463989258,
+    "peak_gpu_reserved_gib": 7.625,
+    "backbone_cache": null,
+    "sha256": "2ebe4a3b07f2efbe2fd03b22321c31201c41d173c27837da95a9c4c49d4e08a1",
+    "identical": true,
+    "compare": {
+     "video": "ILSVRC2015_train_00008005",
+     "prompts_compared": 35,
+     "prompts_identical": 35,
+     "bitwise_identical": true,
+     "differences": {},
+     "seconds_a": 422.86,
+     "seconds_b": 372.95,
+     "speedup_a_over_b": 1.134,
+     "reuse_backbone": [
+      false,
+      false
+     ],
+     "backbone_cache": null
+    }
+   }
+  ],
+  "worker_ready": [
+   {
+    "model_load_seconds": 6.4,
+    "compile": false,
+    "torch": "2.10.0+cu128",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "pid": 7125,
+    "seconds_to_ready": 9.0
+   }
+  ]
+ },
+ "c5": [
+  {
+   "label": "c5_A1+A2+offload",
+   "gpus": [
+    0
+   ],
+   "workers_per_gpu": 2,
+   "omp_num_threads": 6,
+   "compile": false,
+   "reuse_backbone": true,
+   "offload_video_to_cpu": true,
+   "wall_seconds": 276.75,
+   "passed": true,
+   "runs": [
+    {
+     "worker": "c5_A1+A2+offload_g0_w0",
+     "gpu": 0,
+     "ok": true,
+     "error": null,
+     "seconds_total": 274.879,
+     "wall_seconds": 276.75,
+     "peak_gpu_allocated_gib": 7.316476821899414,
+     "peak_gpu_reserved_gib": 7.6328125,
+     "backbone_cache": {
+      "hits": 4420,
+      "misses": 130,
+      "passthrough": 0,
+      "stored_gib": 13.60052490234375
+     },
+     "sha256": "a51b54dd9df829823342ea95e9eb55e849a0b29d45b64e92a449e761f7ea37b5",
+     "identical": true,
+     "compare": {
+      "video": "ILSVRC2015_train_00008005",
+      "prompts_compared": 35,
+      "prompts_identical": 35,
+      "bitwise_identical": true,
+      "differences": {},
+      "seconds_a": 422.86,
+      "seconds_b": 274.88,
+      "speedup_a_over_b": 1.538,
+      "reuse_backbone": [
+       false,
+       true
+      ],
+      "backbone_cache": {
+       "hits": 4420,
+       "misses": 130,
+       "passthrough": 0,
+       "stored_gib": 13.60052490234375
+      }
+     }
+    },
+    {
+     "worker": "c5_A1+A2+offload_g0_w1",
+     "gpu": 0,
+     "ok": true,
+     "error": null,
+     "seconds_total": 274.503,
+     "wall_seconds": 276.39,
+     "peak_gpu_allocated_gib": 7.316476821899414,
+     "peak_gpu_reserved_gib": 7.6328125,
+     "backbone_cache": {
+      "hits": 4420,
+      "misses": 130,
+      "passthrough": 0,
+      "stored_gib": 13.60052490234375
+     },
+     "sha256": "51765067d941d27075e3264df77cd522cdbad2eead832e5b5a09e3c62dde4d93",
+     "identical": true,
+     "compare": {
+      "video": "ILSVRC2015_train_00008005",
+      "prompts_compared": 35,
+      "prompts_identical": 35,
+      "bitwise_identical": true,
+      "differences": {},
+      "seconds_a": 422.86,
+      "seconds_b": 274.5,
+      "speedup_a_over_b": 1.54,
+      "reuse_backbone": [
+       false,
+       true
+      ],
+      "backbone_cache": {
+       "hits": 4420,
+       "misses": 130,
+       "passthrough": 0,
+       "stored_gib": 13.60052490234375
+      }
+     }
+    }
+   ],
+   "worker_ready": [
+    {
+     "model_load_seconds": 5.9,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 11080,
+     "seconds_to_ready": 8.5
+    },
+    {
+     "model_load_seconds": 6.0,
+     "compile": false,
+     "torch": "2.10.0+cu128",
+     "cudnn": 91002,
+     "gpu": "NVIDIA GeForce RTX 4090",
+     "pid": 11082,
+     "seconds_to_ready": 8.5
+    }
+   ],
+   "options": [
+    "A1",
+    "A2",
+    "offload"
+   ]
+  }
+ ]
+}

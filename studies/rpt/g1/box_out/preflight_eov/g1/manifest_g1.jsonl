@@ -1,0 +1,2 @@
+{"video": "ILSVRC2015_train_00010024", "frames": 64, "ecc": true, "tracks_R0w": 2, "tracks_R0": 2, "sensitivity_relations": 6, "seconds": 16.2, "sha256": "7d48399e7d15088c87c74af8e3545ae495fcecdfd69f28c1f6254093baa8c110"}
+{"video": "ILSVRC2015_train_00008005", "frames": 130, "ecc": true, "tracks_R0w": 2, "tracks_R0": 2, "sensitivity_relations": 8, "seconds": 30.8, "sha256": "637f89cba0d6a0035cf97c1b069696419995f40792971061edc3442f381af807"}

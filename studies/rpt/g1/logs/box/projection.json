@@ -1,0 +1,16 @@
+{
+ "elapsed_wall_hours": 1.342078834242291,
+ "remaining_wall_hours": 1.4323516661722535,
+ "gpus": 8,
+ "projected_gpu_hours": 22.195444003316354,
+ "cap_gpu_hours": 48.0,
+ "stop": false,
+ "r_short": 0.055220239860999276,
+ "r_check0": 0.0854923076923077,
+ "r_check4": 0.08232967032967034,
+ "running": [
+  "ILSVRC2015_train_00237001",
+  "ILSVRC2015_train_00896000"
+ ],
+ "n_queued": 137
+}

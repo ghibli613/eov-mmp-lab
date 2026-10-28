@@ -1,0 +1,1 @@
+template PyTorch (Vast); image docker.io/vastai/pytorch, default tag (author: no digest shown on the page); price $3.80/h for 8x RTX 4090 (author)

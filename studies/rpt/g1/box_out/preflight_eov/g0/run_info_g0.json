@@ -1,0 +1,16 @@
+{
+ "modelC_load": {
+  "missing": [],
+  "unexpected": [],
+  "loaded": 196
+ },
+ "torch": "2.11.0+cu128",
+ "cudnn": 91900,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "cuda_visible_devices": "0",
+ "omp_num_threads": "8",
+ "videos": [
+  "ILSVRC2015_train_00010024",
+  "ILSVRC2015_train_00008005"
+ ]
+}

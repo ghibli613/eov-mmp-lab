@@ -1,0 +1,7 @@
+{
+ "video": "ILSVRC2015_train_00008005",
+ "ok": false,
+ "error": "CUDA out of memory",
+ "message": "CUDA out of memory. Tried to allocate 152.00 MiB. GPU 0 has a total capacity of 23.54 GiB of which 151.88 MiB is free. Process 10959 has 7.90 GiB memory in use. Process 10963 has 7.74 GiB memory in use. Including non-PyTorch memory, this process has 7.74 GiB memory in use. Of the allocated memory 6.85 GiB is allocated by PyTorch, and 433.02 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+ "peak_gpu_allocated_gib": 7.07167387008667
+}

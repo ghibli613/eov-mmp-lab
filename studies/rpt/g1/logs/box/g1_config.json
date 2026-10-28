@@ -1,0 +1,23 @@
+{
+ "A1": true,
+ "A2": 2,
+ "A3": false,
+ "offload": true,
+ "passing_alone": [
+  "A1",
+  "A2",
+  "offload"
+ ],
+ "check5_options": [
+  "A1",
+  "A2",
+  "offload"
+ ],
+ "gpus": 8,
+ "ram_gb": 518.878396416,
+ "a1_limit_gb": 454.878396416,
+ "cores": 96,
+ "r_check0": 0.0854923076923077,
+ "r_check4": 0.08232967032967034,
+ "billed_gpu_hours_after_checks": 3.911
+}

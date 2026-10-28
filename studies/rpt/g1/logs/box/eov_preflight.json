@@ -1,0 +1,10 @@
+{
+ "gpus": [
+  0,
+  1
+ ],
+ "identical": {
+  "ILSVRC2015_train_00010024": true,
+  "ILSVRC2015_train_00008005": true
+ }
+}
