@@ -1,0 +1,9 @@
+# 2026-10-28T14:41:05+07:00 cd studies; python -m pytest -q rpt/tests   (laptop, CPU)
+.......................................................................  [100%]
+=============================== warnings summary ===============================
+rpt/tests/test_adapter.py::test_a_gap_on_a_clip_middle_frame_is_flagged
+  /home/totoro/Documents/thesis/source/ov-vidvrd-lab/models/gen_labels.py:713: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+    item[type_] = torch.tensor(pair_feats[type_]).unsqueeze(dim=0)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+71 passed, 1 warning in 96.79s (0:01:36)

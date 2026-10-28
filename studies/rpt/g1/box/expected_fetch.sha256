@@ -1,0 +1,5 @@
+d306952a51e9ca94c201ecf580f75a99221ae658dc187ae0ff38ff8b7dfc0e70  /root/ov-vidvrd-lab/output/ckpt/baseline_fbce_vidvrd_bs1_lr1e-05_dim512_none_rel_mot_clip_bbox_end2end_base-001.pth
+b35cbeddd3acc48fece820bd640640e6bfb1f5fbf570aa79af26c6a38958daa4  /root/ov-vidvrd-lab/output/ckpt/AFLink_epoch20.pth
+3035c92b350959924f9f00213499208652fc7ea050643e8b385c2dac08641f02  /root/.cache/clip/ViT-L-14-336px.pt
+9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e  /root/sam3_ckpt/sam3.pt
+4616385e4b21f2e5e22c875b65679185cbccfa95de42542b9166f7dc3d57160f  /root/sam3_ckpt/config.json
