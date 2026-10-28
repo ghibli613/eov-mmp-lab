@@ -19,7 +19,9 @@ step() {
   nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader
   case "$1" in
     tests) ( cd studies && /venv/main/bin/python -m pytest -q -p no:cacheprovider rpt/tests ) ;;
-    preflight) /venv/main/bin/python -B studies/rpt/g1/box/eov_parallel.py preflight ;;
+    preflight)
+      /venv/main/bin/python -c "import MultiScaleDeformableAttention" 2>/dev/null || bash studies/rpt/g1/box/build_ops.sh
+      /venv/main/bin/python -B studies/rpt/g1/box/eov_parallel.py preflight ;;
     checks) /venv/main/bin/python -B studies/rpt/g1/box/g1_driver.py checks ;;
     videos) /venv/main/bin/python -B studies/rpt/g1/box/g1_driver.py videos ;;
     eov) /venv/main/bin/python -B studies/rpt/g1/box/eov_parallel.py full ;;
