@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# G1 machine setup, no token present (A29, "The machine"):
+# G1 machine setup, no token present (A29, A29a "The machine"):
 #   bash ~/ov-vidvrd-lab/studies/rpt/g1/box/setup.sh
-# Preflight against G0's stack (RTX 4090, driver 580.142, Python 3.12.15, torch 2.11.0+cu128 in
-# /venv/main; >= 192 GB RAM); records the cuDNN versions and what the container shows of its image
-# (A29: the image digest and cuDNN are recorded, check 0 decides); the uploaded files against the
+# Preflight: 8 RTX 4090s with >= 256 GB RAM, or 4 with >= 192 GB (A29a); disk >= 200 GB; CUDA >= 12.8;
+# G0's Python 3.12.15 and torch 2.11.0+cu128 in /venv/main. The driver, the cuDNN versions and what the
+# container shows of its image are recorded, not required (A29a: check 0 decides); the uploaded files against the
 # laptop's SHA256; both package sets installed under G0's `pip freeze` as constraints and then
 # required to equal it exactly; CLIP from its public URL, hash-checked. Any mismatch stops.
 set -euo pipefail
@@ -15,15 +15,31 @@ stop() { echo "!! STOP: $*"; exit 1; }
 source /venv/main/bin/activate
 
 say "0. preflight (G0's stack)"
-nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
+nvidia-smi --query-gpu=index,name,memory.total,driver_version --format=csv,noheader
+nvidia-smi | grep -o "CUDA Version: [0-9.]*"
 free -g | awk 'NR==2{printf "system RAM : %s GiB total, %s available\n", $2, $7}'
 df -h --output=avail / | tail -1 | xargs echo "disk avail :"
 echo "cores      : $(nproc)"
 python -c "import torch,sys; print('python', sys.version.split()[0], '| torch', torch.__version__, '| cuda', torch.version.cuda, '| cudnn', torch.backends.cudnn.version(), '| gpu ok', torch.cuda.is_available())"
-nvidia-smi --query-gpu=name --format=csv,noheader | grep -q "RTX 4090" || stop "not an RTX 4090"
-[ "$(nvidia-smi --query-gpu=driver_version --format=csv,noheader)" = "580.142" ] || stop "driver is not G0's 580.142"
-[ "$(awk '/MemTotal/{print int($2/1048576)}' /proc/meminfo)" -ge 178 ] || stop "< 192 GB RAM"
-[ "$(df --output=avail -BG / | tail -1 | tr -dc 0-9)" -ge 60 ] || stop "< 60 GB free disk"
+NG=$(nvidia-smi -L | grep -c "^GPU ")
+[ "$(nvidia-smi --query-gpu=name --format=csv,noheader | grep -vc "RTX 4090")" = 0 ] || stop "a GPU is not an RTX 4090"
+[ "$NG" = 8 ] || [ "$NG" = 4 ] || stop "$NG GPUs: A29a allows 8, or 4 as fallback"
+echo "driver     : $(nvidia-smi --query-gpu=driver_version --format=csv,noheader | sort -u | tr '\n' ' ')(recorded; G0 had 580.142)"
+RAM_GB=$(python -c "
+m = int(open('/proc/meminfo').read().split('MemTotal:')[1].split()[0]) * 1024
+for p in ('/sys/fs/cgroup/memory.max', '/sys/fs/cgroup/memory/memory.limit_in_bytes'):
+    try:
+        v = open(p).read().strip()
+        m = min(m, int(v)) if v.isdigit() else m
+    except OSError:
+        pass
+print(int(m / 1e9))")
+echo "instance RAM: $RAM_GB GB (A1 limit $((RAM_GB - 64)) GB)"
+NEED=$([ "$NG" = 8 ] && echo 256 || echo 192)
+[ "$RAM_GB" -ge $((NEED - 6)) ] || stop "$RAM_GB GB RAM; A29a needs >= $NEED GB with $NG GPUs"
+[ "$(df --output=avail -BG / | tail -1 | tr -dc 0-9)" -ge 150 ] || stop "< 150 GB free disk (200 GB rented)"
+CUDA=$(nvidia-smi | grep -o "CUDA Version: [0-9.]*" | grep -o "[0-9.]*$")
+python -c "import sys; v = tuple(map(int, '$CUDA'.split('.'))); sys.exit(0 if v >= (12, 8) else 1)" || stop "CUDA $CUDA < 12.8"
 python -c "import sys, torch; assert sys.version.split()[0] == '3.12.15' and torch.__version__ == '2.11.0+cu128', (sys.version, torch.__version__)" \
   || stop "/venv/main is not G0's Python 3.12.15 + torch 2.11.0+cu128"
 echo "image      : $(. /etc/os-release && echo "$PRETTY_NAME") | VAST_CONTAINERLABEL=${VAST_CONTAINERLABEL:-unset}"

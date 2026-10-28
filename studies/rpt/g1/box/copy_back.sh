@@ -19,15 +19,17 @@ import hashlib, json, os, sys
 g1 = sys.argv[1]
 sha = lambda p: hashlib.sha256(open(p, "rb").read()).hexdigest()
 bad, n = [], 0
-for man, folder in (("logs/box/sam3_manifest.jsonl", "sam3_out"), ("eov_out/manifest.jsonl", "eov_out")):
-    p = os.path.join(g1, man)
-    if not os.path.exists(p):
-        print(f"(no {man})")
+import glob
+for pattern, folder in (("logs/box/sam3_manifest.jsonl", "sam3_out"), ("eov_out/manifest*.jsonl", "eov_out")):
+    mans = sorted(glob.glob(os.path.join(g1, pattern)))
+    if not mans:
+        print(f"(no {pattern})")
         continue
     last = {}
-    for line in open(p):
-        r = json.loads(line)
-        last[r["video"]] = r["sha256"]
+    for p in mans:
+        for line in open(p):
+            r = json.loads(line)
+            last[r["video"]] = r["sha256"]
     for v, h in last.items():
         n += 1
         if sha(os.path.join(g1, folder, f"{v}.json.gz")) != h:

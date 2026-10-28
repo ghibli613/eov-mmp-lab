@@ -124,6 +124,7 @@ def main():
     ap.add_argument("--sam3", required=True, help="the folder of G1's SAM 3 files")
     ap.add_argument("--out", required=True)
     ap.add_argument("--videos", nargs="*", default=None, help="a subset (the preflight); default all 160")
+    ap.add_argument("--tag", default="", help="this process's manifest name, when several GPUs share --out (A29a)")
     a = ap.parse_args()
     a.sam3, a.out = os.path.abspath(os.path.expanduser(a.sam3)), os.path.abspath(os.path.expanduser(a.out))
     os.chdir(REPO)
@@ -155,14 +156,16 @@ def main():
     from utils.parser_func import parse_args
 
     os.makedirs(a.out, exist_ok=True)
-    man_path = os.path.join(a.out, "manifest.jsonl")
+    suffix = f"_{a.tag}" if a.tag else ""
+    man_path = os.path.join(a.out, f"manifest{suffix}.jsonl")
     done = set()
-    if os.path.exists(man_path):
-        for line in open(man_path):
-            r = json.loads(line)
-            p = os.path.join(a.out, f"{r['video']}.json.gz")
-            if os.path.exists(p) and sha256(p) == r["sha256"]:
-                done.add(r["video"])
+    for name in sorted(os.listdir(a.out)):
+        if name.startswith("manifest") and name.endswith(".jsonl"):
+            for line in open(os.path.join(a.out, name)):
+                r = json.loads(line)
+                p = os.path.join(a.out, f"{r['video']}.json.gz")
+                if os.path.exists(p) and sha256(p) == r["sha256"]:
+                    done.add(r["video"])
     todo = [v for v in videos if v not in done]
 
     seed_everything(SEED)
@@ -227,7 +230,9 @@ def main():
         del data
         torch.cuda.empty_cache()
     json.dump(dict(modelC_load=load_info, torch=torch.__version__, cudnn=torch.backends.cudnn.version(),
-                   gpu=torch.cuda.get_device_name(0)), open(os.path.join(a.out, "run_info.json"), "w"), indent=1)
+                   gpu=torch.cuda.get_device_name(0), cuda_visible_devices=os.environ.get("CUDA_VISIBLE_DEVICES"),
+                   omp_num_threads=os.environ.get("OMP_NUM_THREADS"), videos=todo),
+              open(os.path.join(a.out, f"run_info{suffix}.json"), "w"), indent=1)
     print("done", flush=True)
 
 

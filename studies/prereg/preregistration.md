@@ -2121,3 +2121,108 @@ and the stack record (the machine).
 **Not changed by this amendment:** anything in A28 and A28a other than the erratum, and the two
 changes listed under "Changed from the proposal". Any change to the above is a new amendment,
 written before the result it affects.
+
+#### A29a (2026-10-28): G1 on one multi-GPU machine — the machine, the driver pin, parallel checks, longest-first scheduling, a 48 GPU-hour cap
+
+Written after A29 (chain head `b0f1ec509d3b77d03c58db8f98e63f6e3df480fa34c4e7dbb2447225c8552fd0`) and
+before any G1 run. No G1 data exists. It changes how G1 runs, not what G1 measures: every bar,
+definition and pass rule of A29 stands.
+
+**Reasons.**
+- No RTX 4090 offered on Vast.ai on 2026-10-28 has G0's driver 580.142 (the offers had 565, 580.82,
+  580.126, 580.159, 580.173, 580.178, 590, 595, 610 and 615). So A29's driver pin cannot be met.
+- The author chose one machine with several RTX 4090s, to cut G1's wall clock from about 1.5 days on
+  one GPU to about 4-6 hours, at a moderately higher cost.
+- On several GPUs, the long-video tail and the checks leave GPUs idle but billed. So A29's cap of 35
+  GPU-hours, set for one GPU, no longer fits.
+
+##### The machine (replaces A29's "One RTX 4090" and "≥ 192 GB RAM")
+
+- **8 RTX 4090s on one machine, with ≥ 256 GB RAM;** if none is available, **4 RTX 4090s with ≥ 192 GB
+  RAM**. Never another GPU model (no RTX 5090, no other generation): check 0 must reproduce G0 bitwise.
+- **Both:** disk ≥ 200 GB, CUDA ≥ 12.8, a verified host, reliability ≥ 0.98, download ≥ 200 Mbps.
+- **The image:** Vast.ai's own PyTorch template, as G0's (G0: `/venv/main`, Ubuntu 24.04.5, Python
+  3.12.15, torch 2.11.0+cu128). G0 did not record the template's tag or the image digest. The
+  author copies G1's digest from the instance page; setup records the OS, the driver and both cuDNN
+  versions.
+- **The driver pin is relaxed.** Any driver is accepted and recorded. Check 0 decides whether the
+  stack matches, as A29 already says for the image and cuDNN. Python 3.12.15, torch, CUDA 12.8 and
+  both package sets stay pinned to G0's `pip freeze` (setup stops on any difference).
+
+##### The checks (adds to A29's "first machine hour")
+
+- **Check 0 on every GPU, at once.** Each GPU reruns smoke video 1 at defaults. Every GPU must
+  reproduce G0 bitwise; if any GPU does not, stop and ask.
+- **Checks 1-4 at once, each on its own GPU, each against G0:** A1 on GPU 0; A2 on GPU 1 (2
+  processes, then 3 if 2 passed); A3 on GPU 2; offload on GPU 3.
+- **Then check 5** on GPU 0, as A29 says (all passing options together; on a mismatch, drop the option
+  added last and repeat). It runs with the OpenMP thread count the videos will use, so that count is
+  covered by a bitwise check too.
+- **Threads:** each SAM 3 process gets `OMP_NUM_THREADS` = CPU cores ÷ concurrent processes, at most 8.
+
+##### Scheduling (replaces A29's order; A29's per-GPU rules stand)
+
+- **Longest first.**
+  - `…00280000` (2,947 frames), with offload if it passed, `…00237001` (1,470) and `…00896000`
+    (1,080) start at once, each alone on its own GPU, without A1. A GPU running one of them alone
+    has one SAM 3 process; when the video ends, the GPU gets A2's other processes.
+  - The first 20 videos (A29's) run, longest first, on the other GPUs, and on any GPU that frees up.
+  - When the first 20 are done, the projection is made; then the other 137 run, longest first.
+- **Placement.** A video starts on the GPU, among those it fits on, with the fewest running
+  processes (ties: the lowest index). If the longest queued video fits on no GPU, the next-longest
+  one that fits starts, so no GPU waits while a shorter video could run.
+- **Per GPU, A29's rules:** the predicted peaks (6.5 GiB + 6.3 MiB × frames) of the processes on one
+  GPU sum to under 21 GiB, and A2's process count is used only if A2 passed.
+- **RAM, machine-wide** (replaces A29's "about 150 GB"). The A1 caches (106 MB per frame) of all
+  running processes together stay at most the instance's RAM − 64 GB. The RAM is measured at the
+  start: `/proc/meminfo`, or the container's cgroup limit if lower. A video whose A1 cache would
+  exceed the limit runs without A1, with the same output.
+- **Without offload:** `…00280000` is not started; the other 159 run; then stop and ask (A29).
+- **Any video that fails to run stops G1** (confirmed by the plan author).
+
+##### The cost cap (replaces A29's 35 GPU-hours)
+
+- **The SAM 3 phase is capped at 48 billed GPU-hours** = billed wall clock × GPUs rented, from the
+  start of check 0 to the moment the last of the 160 SAM 3 files is written. That is about 6 hours
+  of wall clock on 8 GPUs, or 12 on 4. Set-up, the tests, the preflight, the token fetch, the
+  EOV-MMP side and copy-back count in the budget, not in the cap.
+- **Hard stop:** at 48 billed GPU-hours, stop and ask.
+- **Projection after the first 20:** the remaining schedule is simulated with the scheduler's own
+  placement rule, including the videos still running.
+  - Each video's duration is frames × 35 × *r*, frame-weighted as in A29, with *r* the measured
+    seconds per frame per prompt of one SAM 3 process:
+    - for videos ≤ 1,000 frames, over the first 20 (summed process time ÷ summed frames × 35);
+    - for `…00237001` and `…00896000`, check 0's (its slowest GPU);
+    - for `…00280000`, check 4's.
+  - A running video's elapsed time is subtracted.
+  - Projected billed GPU-hours = GPUs × (wall clock so far + simulated remaining wall clock).
+  - If above 48, stop and ask.
+
+##### The EOV-MMP side (adds to A29's Definitions items 1 and 7)
+
+- R0w, R0 and box sensitivity are split by video across the GPUs, one `eov_held.py` process per
+  GPU, after all 160 SAM 3 files exist. Videos are assigned longest first to the GPU with the fewest
+  frames so far.
+- **A video's result must not depend on its GPU.** Before check 0, the 2 preflight videos
+  (`…00010024`, `…00008005`, with G0's SAM 3 files) run on GPU 0 and on GPU 1. Their outputs must be
+  identical, apart from the timing fields; otherwise, stop and ask.
+
+##### Before check 0, on the machine
+
+The RPT unit tests run on the machine's CPU, then the EOV-MMP preflight. Both are set-up (budget,
+not cap).
+
+##### Budget (replaces A29's "up to about $15")
+
+- **Up to $35 in total,** including set-up, the EOV-MMP side and copy-back.
+- **Price limits:** 8× RTX 4090 at most $0.50 per GPU-hour ($4.00/h for the machine); 4× at most
+  $0.55 per GPU-hour ($2.20/h). Above these, ask the plan author.
+
+**Implementation:** `studies/rpt/g1/schedule.py`, `studies/rpt/g1/box/g1_driver.py`,
+`studies/rpt/g1/box/eov_parallel.py` and `studies/rpt/g1/box/setup.sh`. The commit that runs is
+recorded on the machine (`~/rpt_g1_box/commits.txt`) and in the G1 report.
+
+**Not changed by this amendment:** everything else in A29 (the bars, the definitions, the checks'
+pass rules and order, offload only for `…00280000`, A1 only for videos ≤ 1,000 frames, the stop
+conditions, the seeds, keeping and hashing every SAM 3 output). Any change to the above is a new
+amendment, written before the result it affects.
