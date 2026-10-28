@@ -23,7 +23,7 @@ step() {
       /venv/main/bin/python -c "import MultiScaleDeformableAttention" 2>/dev/null || bash studies/rpt/g1/box/build_ops.sh
       /venv/main/bin/python -B studies/rpt/g1/box/eov_parallel.py preflight ;;
     checks) /venv/main/bin/python -B studies/rpt/g1/box/g1_driver.py checks ;;
-    videos) /venv/main/bin/python -B studies/rpt/g1/box/g1_driver.py videos ;;
+    videos) /venv/main/bin/python -B studies/rpt/g1/box/g1_driver.py videos ${G1_EXCLUDE:+--exclude "$G1_EXCLUDE"} ;;
     eov) /venv/main/bin/python -B studies/rpt/g1/box/eov_parallel.py full ;;
     *) echo "usage: run.sh tests|preflight|checks|videos|eov|all"; exit 2 ;;
   esac

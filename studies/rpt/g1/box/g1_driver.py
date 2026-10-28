@@ -451,19 +451,26 @@ def make_projection(cfg, frames, running, rest):
     return proj
 
 
-def videos(cfg):
+def videos(cfg, exclude=()):
+    """`exclude`: videos the plan author has taken off this machine (stop 1: `...00280000`, decision D1),
+    logged and recorded in plan.json and sam3_done.json. The first 20 are A29's, from all 160."""
     held, frames = held_frames()
-    groups = S.plan(held, frames, cfg)
-    save("plan.json", groups)
+    exclude = sorted(set(exclude))
+    assert set(exclude) <= set(held), sorted(set(exclude) - set(held))
+    if exclude:
+        log(f"excluded by the plan author's decision: {exclude}")
+    groups = {k: [v for v in vs if v not in exclude] for k, vs in S.plan(held, frames, cfg).items()}
+    save("plan.json", dict(groups, excluded=exclude))
     run_videos(cfg, held, frames, groups, done_videos())
     d = done_videos()
     if not cfg["offload"]:
         stop(7, "offload", dict(error="offload did not pass; ...00280000 is not run on this GPU",
                                 done=len(d)))
-    assert sorted(d) == held, sorted(set(held) - set(d))
-    save("sam3_done.json", dict(videos=len(d), billed_gpu_hours=round(gpu_hours(), 3), gpus=NGPU,
+    want = [v for v in held if v not in exclude]
+    assert sorted(d) == want, sorted(set(want) - set(d))
+    save("sam3_done.json", dict(videos=len(d), excluded=exclude, billed_gpu_hours=round(gpu_hours(), 3), gpus=NGPU,
                                 files={v: d[v]["sha256"] for v in sorted(d)}))
-    log(f"all 160 SAM 3 files written; billed SAM 3 GPU-hours {gpu_hours():.2f}")
+    log(f"all {len(d)} SAM 3 files written (excluded: {exclude}); billed SAM 3 GPU-hours {gpu_hours():.2f}")
 
 
 def gpu_monitor():
@@ -484,6 +491,7 @@ def main():
     global NGPU
     ap = argparse.ArgumentParser()
     ap.add_argument("what", choices=["checks", "videos", "all"])
+    ap.add_argument("--exclude", default="", help="comma-separated videos taken off this machine by a decision")
     a = ap.parse_args()
     os.makedirs(BOX, exist_ok=True)
     NGPU = n_gpus()
@@ -492,7 +500,7 @@ def main():
     if cfg["gpus"] != NGPU:
         raise SystemExit(f"!! the config was made on {cfg['gpus']} GPUs, this machine has {NGPU}")
     if a.what in ("videos", "all"):
-        videos(cfg)
+        videos(cfg, [v for v in a.exclude.split(",") if v])
 
 
 if __name__ == "__main__":

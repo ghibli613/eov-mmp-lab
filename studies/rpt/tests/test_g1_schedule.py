@@ -261,3 +261,32 @@ def test_eov_full_runs_every_video_once_over_8_gpus(tmp_path):
     assert p.returncode == 0, p.stdout + p.stderr
     rows = [json.loads(line) for f in sorted((tmp_path / "out" / "eov").glob("manifest_*.jsonl")) for line in open(f)]
     assert len(rows) == 160 and len({r["video"] for r in rows}) == 160 and len({r["gpu"] for r in rows}) == 8
+
+
+# ---------------------------------------------------------------- stop 1, decision D1: an exclude list
+@needs_frames
+def test_driver_exclude_list_runs_the_other_159(tmp_path):
+    box = tmp_path / "box"
+    p, box, _ = drive(tmp_path, 8, "checks")
+    assert p.returncode == 0, p.stdout[-2000:]
+    e = dict(os.environ, G1_BOX=str(box), G1_OUT=str(tmp_path / "out"), G1_SAM3PY=sys.executable, G1_GPUS="8",
+             G1_RAM_GB="512", G1_CORES="64", G1_WORKER=os.path.join(TESTS, "fake_sam3_worker.py"))
+    p = subprocess.run([sys.executable, DRIVER, "videos", "--exclude", S.OFFLOAD_VIDEO], env=e,
+                       capture_output=True, text=True, timeout=1200)
+    assert p.returncode == 0, p.stdout[-2000:]
+    done = json.load(open(box / "sam3_done.json"))
+    assert done["videos"] == 159 and done["excluded"] == [S.OFFLOAD_VIDEO] and S.OFFLOAD_VIDEO not in done["files"]
+    ev = events(box)
+    assert S.OFFLOAD_VIDEO not in {x["video"] for x in ev} and [x["video"] for x in ev[:2]] == LONG3[1:]
+    assert sum(x["group"] == "first20" for x in ev) == 20
+    assert json.load(open(box / "plan.json"))["excluded"] == [S.OFFLOAD_VIDEO]
+
+
+@needs_frames
+def test_eov_full_skips_sensitivity_only_for_the_excluded(tmp_path):
+    (tmp_path / "box").mkdir()
+    (tmp_path / "box" / "sam3_done.json").write_text(json.dumps(dict(excluded=[S.OFFLOAD_VIDEO])))
+    p = run_eov(tmp_path, "full")
+    assert p.returncode == 0, p.stdout + p.stderr
+    rows = [json.loads(line) for f in sorted((tmp_path / "out" / "eov").glob("manifest_*.jsonl")) for line in open(f)]
+    assert len(rows) == 160 and [r["video"] for r in rows if not r["sensitivity"]] == [S.OFFLOAD_VIDEO]

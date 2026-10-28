@@ -125,6 +125,8 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--videos", nargs="*", default=None, help="a subset (the preflight); default all 160")
     ap.add_argument("--tag", default="", help="this process's manifest name, when several GPUs share --out (A29a)")
+    ap.add_argument("--no-sam3", default="", help="comma-separated videos without a SAM 3 file here: R0w and R0 "
+                    "only, no box sensitivity (stop 1, decision D1)")
     a = ap.parse_args()
     a.sam3, a.out = os.path.abspath(os.path.expanduser(a.sam3)), os.path.abspath(os.path.expanduser(a.out))
     os.chdir(REPO)
@@ -138,6 +140,7 @@ def main():
     held = sorted(json.load(open("pilot_analysis/stage1/train_split.json"))["held"])
     assert len(held) == 160
     videos = held if a.videos is None else a.videos
+    no_sam3 = {v for v in a.no_sam3.split(",") if v}
     assert set(videos) <= set(held), set(videos) - set(held)
     rels_all = held_relations()
     assert sorted(rels_all) == held
@@ -216,23 +219,28 @@ def main():
                                         tracks=serialize_tracks(model.traj.get(vid, [])),
                                         seconds=round(time.time() - tc, 2))
             model.traj.pop(vid, None)
-        s3 = A.tracks_from_sam3(A.load_sam3(os.path.join(a.sam3, f"{vid}.json.gz")))
-        sam3_tr = M.tracks_from_list(s3["repo"])
-        eov_tr = M.tracks_from_list(rec["configs"]["R0w"]["tracks"])
-        rels = rels_all[vid]
-        rec_s = dict(pairs=[M.bucket(sam3_tr, r) for r in rels])
-        rec_e = dict(pairs=[M.bucket(eov_tr, r) for r in rels])
-        ts = time.time()
-        rec["sensitivity"] = sensitivity(vid, rels, sam3_tr, eov_tr, rec_s, rec_e, data, m, paths.FRAME_DIR)
-        rec["sensitivity_seconds"] = round(time.time() - ts, 2)
-        rec["sam3_file_sha256"] = sha256(os.path.join(a.sam3, f"{vid}.json.gz"))
+        if vid in no_sam3:
+            rec.update(sensitivity=None, sam3_file_sha256=None,
+                       sensitivity_note="no SAM 3 file on this machine (stop 1, D1): R0w and R0 only")
+        else:
+            s3 = A.tracks_from_sam3(A.load_sam3(os.path.join(a.sam3, f"{vid}.json.gz")))
+            sam3_tr = M.tracks_from_list(s3["repo"])
+            eov_tr = M.tracks_from_list(rec["configs"]["R0w"]["tracks"])
+            rels = rels_all[vid]
+            rec_s = dict(pairs=[M.bucket(sam3_tr, r) for r in rels])
+            rec_e = dict(pairs=[M.bucket(eov_tr, r) for r in rels])
+            ts = time.time()
+            rec["sensitivity"] = sensitivity(vid, rels, sam3_tr, eov_tr, rec_s, rec_e, data, m, paths.FRAME_DIR)
+            rec["sensitivity_seconds"] = round(time.time() - ts, 2)
+            rec["sam3_file_sha256"] = sha256(os.path.join(a.sam3, f"{vid}.json.gz"))
         path = os.path.join(a.out, f"{vid}.json.gz")
         with gzip.open(path + ".part", "wt") as f:
             json.dump(rec, f)
         os.replace(path + ".part", path)
         row = dict(video=vid, frames=rec["video_len"], ecc=rec["ecc"],
                    tracks_R0w=len(rec["configs"]["R0w"]["tracks"]), tracks_R0=len(rec["configs"]["R0"]["tracks"]),
-                   sensitivity_relations=len(rec["sensitivity"]), seconds=round(time.time() - tv, 1),
+                   sensitivity_relations=None if rec["sensitivity"] is None else len(rec["sensitivity"]),
+                   seconds=round(time.time() - tv, 1),
                    sha256=sha256(path))
         with open(man_path, "a") as f:
             f.write(json.dumps(row) + "\n")

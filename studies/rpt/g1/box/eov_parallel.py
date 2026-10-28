@@ -50,11 +50,12 @@ def split(videos: list, frames: dict, n: int) -> list:
     return parts
 
 
-def launch(g, videos, sam3, out, omp, tag):
+def launch(g, videos, sam3, out, omp, tag, no_sam3=()):
     env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(g), OMP_NUM_THREADS=str(omp), MKL_NUM_THREADS=str(omp))
     os.makedirs(out, exist_ok=True)
     log = open(os.path.join(BOX, f"eov_{os.path.basename(out)}_{tag or 'g' + str(g)}.log"), "a")
-    return subprocess.Popen([PY, "-B", EOV, "--sam3", sam3, "--out", out, "--tag", tag, "--videos", *videos],
+    return subprocess.Popen([PY, "-B", EOV, "--sam3", sam3, "--out", out, "--tag", tag,
+                             "--no-sam3", ",".join(no_sam3), "--videos", *videos],
                             cwd=REPO, env=env, stdout=log, stderr=subprocess.STDOUT)
 
 
@@ -105,7 +106,9 @@ def main():
     json.dump(dict(gpus=n, parts=parts, frames=[sum(frames[v] for v in p) for p in parts]),
               open(os.path.join(BOX, "eov_split.json"), "w"), indent=1)
     omp = max(1, min(8, cores // n))
-    ps = [launch(g, parts[g], os.path.join(OUT, "sam3"), os.path.join(OUT, "eov"), omp, f"g{g}")
+    excluded = json.load(open(os.path.join(BOX, "sam3_done.json"))).get("excluded", [])
+    print(f"EOV side: all 160 videos for R0w and R0; no box sensitivity for {excluded} (no SAM 3 file)", flush=True)
+    ps = [launch(g, parts[g], os.path.join(OUT, "sam3"), os.path.join(OUT, "eov"), omp, f"g{g}", excluded)
           for g in range(n) if parts[g]]
     codes = [p.wait() for p in ps]
     if any(codes):
