@@ -92,9 +92,8 @@ these were **not** computed:
 - the bootstrap CIs;
 - the raw detections for missed objects, gap exposure and the visual check.
 
-They can be computed on the 157 videos from the committed files if the plan author asks. One may help
-interpret the fail: A29 item 5's class-agnostic unmatched count shows whether SAM 3's extra
-unmatched tracks are misnamed or spurious.
+After the verdict, the plan author asked for five descriptive quantities about the unmatched tracks.
+They are in section 6. The rest of the list above stays not computed.
 
 ## 5. Events and notes
 
@@ -108,3 +107,95 @@ unmatched tracks are misnamed or spurious.
     23:14 UTC. Its total cost is between about $23 and $35; the exact figure from Vast's billing is
     pending.
   - Nothing else was rented. The 48 GB machine was not rented.
+
+## 6. Descriptive, after the verdict
+
+**These were computed after the verdict, at the plan author's request. They describe the fail, decide
+nothing and change no verdict.**
+- **Data:** the 157 videos with SAM 3 files, for SAM 3 and EOV-MMP (R0w), from the committed files,
+  on the laptop.
+- **Code:** `studies/rpt/g1/describe_unmatched.py`, reusing A29's matching and cut-vIoU code
+  (`metrics.py`).
+- **Output:** `studies/rpt/g1/results_descriptive/descriptive.json` (every class, every count);
+  log: `studies/rpt/g1/logs/descriptive_run.log`.
+
+### 6.1 Unmatched confident tracks, class-aware and class-agnostic (A29 item 5)
+
+| count, 157 videos | SAM 3 | EOV-MMP (R0w) | SAM 3 ÷ EOV-MMP |
+|---|---|---|---|
+| class-aware (the bar's count) | 278 (1.771 per video) | 151 (0.962) | 1.84× |
+| class-agnostic | 234 (1.490 per video) | 112 (0.713) | 2.09× |
+
+Ignoring class names removes 44 of SAM 3's unmatched tracks and 39 of EOV-MMP's. The ratio grows
+rather than shrinks, so misnaming does not explain the excess.
+
+### 6.2 Unmatched confident tracks by class
+
+The 10 classes where SAM 3 has the most unmatched tracks more than EOV-MMP. Each cell is unmatched
+tracks / all confident tracks of that class.
+
+| class | SAM 3 | EOV-MMP (R0w) | SAM 3 − EOV-MMP, unmatched |
+|---|---|---|---|
+| person | 55 / 114 | 18 / 68 | +37 |
+| bird | 41 / 64 | 7 / 31 | +34 |
+| car | 28 / 60 | 9 / 35 | +19 |
+| dog | 13 / 34 | 2 / 26 | +11 |
+| elephant | 10 / 20 | 0 / 10 | +10 |
+| sheep | 23 / 51 | 14 / 45 | +9 |
+| monkey | 23 / 44 | 16 / 39 | +7 |
+| antelope | 7 / 17 | 2 / 10 | +5 |
+| giant_panda | 5 / 15 | 0 / 0 | +5 |
+| ball | 7 / 11 | 4 / 9 | +3 |
+| the other 24 classes | 66 / 208 | 79 / 217 | −13 |
+| **all** | **278 / 638** | **151 / 490** | **+127** |
+
+Person, bird and car alone account for 90 of the 127 extra unmatched tracks.
+
+### 6.3 What the unmatched tracks overlap
+
+Each unmatched track's best cut-vIoU (A29 item 2) to the video's GT runs:
+
+| group | SAM 3 | EOV-MMP (R0w) |
+|---|---|---|
+| misnamed: ≥ 0.5 to a run of another class | 46 | 40 |
+| poorly placed: best in [0.1, 0.5) | 35 | 67 |
+| **no GT object nearby: best < 0.1** | **196** | **44** |
+| none of the three: ≥ 0.5 only to a run of its own class, which went to another track | 1 | 0 |
+| total | 278 | 151 |
+
+- The three requested groups leave out one case: a track ≥ 0.5 to a run of its own class that lost
+  that run to a better track. It is counted apart (1 SAM 3 track).
+- No track is ≥ 0.5 to runs of two classes.
+- **SAM 3's excess is in the "no GT object nearby" group:** 196 tracks against 44, +152. The
+  misnamed groups are similar (46 against 40), and SAM 3 has fewer poorly placed tracks (35 against
+  67).
+
+### 6.4 SAM 3's tracks by score
+
+| track score | unmatched | matched | unmatched share |
+|---|---|---|---|
+| 0.5–0.6 | 37 | 15 | 71% |
+| 0.6–0.7 | 35 | 27 | 56% |
+| 0.7–0.8 | 121 | 65 | 65% |
+| 0.8–0.9 | 68 | 89 | 43% |
+| ≥ 0.9 | 17 | 164 | 9% |
+| all | 278 | 360 | 44% |
+
+- "Matched" tracks are SAM 3's confident tracks that match at least one GT run (360 tracks, matching
+  555 runs).
+- No confident track scores below 0.5.
+- Unmatched tracks are concentrated below 0.9: 261 of the 278 score under 0.9, against 196 of the
+  360 matched tracks.
+
+### 6.5 A visual sample of "no GT object nearby"
+
+- **What:** 20 of SAM 3's 196 such tracks, each drawn on its middle frame. The track is in red, with
+  its class and score; the GT runs covering that frame are in green.
+- **How they were chosen:** `numpy.random.default_rng(0).choice(196, 20, replace=False)` over the
+  tracks sorted by (video, track id).
+- **Where:** `studies/rpt/g1/viz_unmatched/`.
+- **An informal look, not a count:**
+  - many sit on real objects that HELD's annotation leaves out: seagulls (`ILSVRC2015_val_00028003`),
+    background airplanes at an airport (`ILSVRC2015_val_00103000`), a parked car
+    (`…00339003`), lawn flamingos labelled bird (`…00025029`);
+  - others sit on no visible object of their class, such as a "person" box on bushes (`…00989000`).
