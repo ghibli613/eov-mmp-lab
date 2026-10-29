@@ -2336,3 +2336,67 @@ The videos moved to the 48 GB run are reported. Their box sensitivity follows A2
 
 **Not changed by this amendment:** everything else in A29, A29a and A29b. Any change to the above is a
 new amendment, written before the result it affects.
+
+#### A29d (2026-10-29): G1 — an offload erratum, and a futility rule before the 48 GB run
+
+Written after the 8× machine's copy-back (`studies/rpt/g1/g1_8x_done_report.md`) and the plan
+author's decisions on it, before the 48 GB run.
+- **Already seen when written:** 157 of the 160 HELD videos have SAM 3 files; all 160 have EOV-MMP
+  files (R0w and R0; box sensitivity for the 157). All are copied back and hashed (commit
+  `6ea77c7`). Moved to the 48 GB run under A29c: `ILSVRC2015_train_00225001` and
+  `ILSVRC2015_train_00971000`.
+- **Not computed:** no bar quantity, on any set of videos. The only counts taken so far are from the
+  ground truth: the 3 videos without SAM 3 files hold 39 of the 753 GT runs and 156 of the 4,390 HELD
+  base GT relations.
+
+##### 1. Erratum: SAM 3's video offload is a no-op
+
+- **The finding.** SAM 3's `offload_video_to_cpu` has no effect in this code.
+  - The request reaches SAM 3, and its frame loader keeps the frames on the CPU.
+  - But the video model then copies every frame to the GPU regardless: `_construct_initial_input_batch`
+    builds the input batch from all frames and moves it to the GPU with `copy_data_to_device`
+    (`sam3/model/sam3_video_inference.py:145-153`, SAM 3 commit `f1647e8d`).
+  - The evidence: check 4's peak allocated GPU memory with offload equals check 0's without it,
+    7.316072 GiB.
+- **So:**
+  - The cause given in stop report 1 and in A29b ("Offload moves only the video frames to the CPU;
+    SAM 3's per-frame state, which grows with the video's length, stays on the GPU") is wrong.
+    `…00280000` failed with its frames on the GPU.
+  - Check 4's "pass" means only that offload is a no-op. **Offload is not a validated option. It is
+    not carried into G2 or the test session.**
+- **No rule and no result changes.** `…00280000` was the only video that asked for offload, and it
+  produced no file on the 8× machine.
+- **A memory observation, for the test-session amendment.**
+  - `…00225001` (836 frames) and `…00971000` (521 frames) ran out of GPU memory at 21.46 and
+    22.42 GiB allocated.
+  - G0's formula (6.5 GiB + 6.3 MiB × frames) gives them 11.6 and 9.7 GiB.
+  - GPU memory depends on the number of objects SAM 3 tracks, not only on the frame count.
+  - No rule in G1 changes.
+
+##### 2. The futility rule, before the 48 GB run
+
+- **First,** every binding bar of A29 is computed on the 157 videos with SAM 3 files, SAM 3 against
+  EOV-MMP (R0w) on the same 157 videos.
+- **Then each binding bar's best possible value for SAM 3 over all 160 videos.**
+  - SAM 3 takes its best case on the 3 videos without SAM 3 files (`…00280000`, `…00225001`,
+    `…00971000`).
+  - EOV-MMP takes its real values on all 160 videos, from the 8× machine (R0w).
+
+  | binding bar | SAM 3's best case on the 3 videos | the bound, against A29's threshold |
+  |---|---|---|
+  | Overall recall | all 39 of their GT runs count as matched | (SAM 3's matched runs on the 157 + 39) ÷ 753, minus EOV-MMP's fraction of the 753 |
+  | Pair recall | all 156 of their base relations count as recalled | (SAM 3's recalled relations on the 157 + 156) ÷ 4,390, minus EOV-MMP's fraction of the 4,390 |
+  | False-track burden | SAM 3 has 0 unmatched confident tracks on them | (SAM 3's unmatched tracks on the 157 ÷ 160), divided by EOV-MMP's mean over the 160 |
+  | Box style | one extra pair at IoU 1.0 per GT run, 39 in all, the most possible (each run is matched by at most one track) | the median over SAM 3's pairs on the 157 plus those 39 |
+
+  Box sensitivity is secondary and not part of this rule.
+- **If any binding bar fails even at its best case,** G1 fails for certain.
+  - The 3 videos are not run, and nothing is rented.
+  - `studies/rpt/g1_report.md` gives the verdict and this rule's computation.
+- **Otherwise,** the plan author sees the outcome and decides on the 48 GB run (A29b, A29c).
+  - If it runs, every bar is judged on all 160 videos as A29 says.
+  - The 157-video numbers are not used for any decision.
+- **Either way,** the 157-video numbers and the bounds are reported in `g1_report.md`.
+
+**Not changed by this amendment:** everything else in A29, A29a, A29b and A29c. Any change to the
+above is a new amendment, written before the result it affects.
