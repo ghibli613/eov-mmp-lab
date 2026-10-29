@@ -1,0 +1,258 @@
+[1/160] ILSVRC2015_train_00008005: SAM 3 3 confident, runs 3, relations 28
+[2/160] ILSVRC2015_train_00010024: SAM 3 4 confident, runs 2, relations 6
+[3/160] ILSVRC2015_train_00024005: SAM 3 1 confident, runs 8, relations 34
+[4/160] ILSVRC2015_train_00025029: SAM 3 6 confident, runs 2, relations 4
+[5/160] ILSVRC2015_train_00027003: SAM 3 3 confident, runs 2, relations 5
+[6/160] ILSVRC2015_train_00032000: SAM 3 5 confident, runs 9, relations 70
+[7/160] ILSVRC2015_train_00040000: SAM 3 3 confident, runs 3, relations 7
+[8/160] ILSVRC2015_train_00040005: SAM 3 3 confident, runs 2, relations 4
+[9/160] ILSVRC2015_train_00040030: SAM 3 2 confident, runs 2, relations 6
+[10/160] ILSVRC2015_train_00050006: SAM 3 3 confident, runs 3, relations 203
+[11/160] ILSVRC2015_train_00051015: SAM 3 3 confident, runs 3, relations 9
+[12/160] ILSVRC2015_train_00051016: SAM 3 2 confident, runs 2, relations 5
+[13/160] ILSVRC2015_train_00052001: SAM 3 3 confident, runs 9, relations 61
+[14/160] ILSVRC2015_train_00055002: SAM 3 4 confident, runs 2, relations 9
+[15/160] ILSVRC2015_train_00058003: SAM 3 3 confident, runs 2, relations 26
+[16/160] ILSVRC2015_train_00060001: SAM 3 2 confident, runs 2, relations 4
+[17/160] ILSVRC2015_train_00060005: SAM 3 3 confident, runs 3, relations 10
+[18/160] ILSVRC2015_train_00065002: SAM 3 3 confident, runs 2, relations 0
+[19/160] ILSVRC2015_train_00065003: SAM 3 2 confident, runs 2, relations 5
+[20/160] ILSVRC2015_train_00069006: SAM 3 3 confident, runs 2, relations 11
+[21/160] ILSVRC2015_train_00071013: SAM 3 8 confident, runs 8, relations 97
+[22/160] ILSVRC2015_train_00071014: SAM 3 2 confident, runs 4, relations 9
+[23/160] ILSVRC2015_train_00071019: SAM 3 4 confident, runs 2, relations 18
+[24/160] ILSVRC2015_train_00073037: SAM 3 2 confident, runs 2, relations 20
+[25/160] ILSVRC2015_train_00074010: SAM 3 2 confident, runs 4, relations 4
+[26/160] ILSVRC2015_train_00077006: SAM 3 5 confident, runs 3, relations 22
+[27/160] ILSVRC2015_train_00078000: SAM 3 4 confident, runs 5, relations 12
+[28/160] ILSVRC2015_train_00097003: SAM 3 2 confident, runs 8, relations 10
+[29/160] ILSVRC2015_train_00112000: SAM 3 2 confident, runs 2, relations 1
+[30/160] ILSVRC2015_train_00116002: SAM 3 8 confident, runs 4, relations 7
+[31/160] ILSVRC2015_train_00119013: SAM 3 2 confident, runs 2, relations 3
+[32/160] ILSVRC2015_train_00119025: SAM 3 2 confident, runs 2, relations 6
+[33/160] ILSVRC2015_train_00125006: SAM 3 3 confident, runs 2, relations 9
+[34/160] ILSVRC2015_train_00125007: SAM 3 5 confident, runs 4, relations 18
+[35/160] ILSVRC2015_train_00125013: SAM 3 3 confident, runs 2, relations 42
+[36/160] ILSVRC2015_train_00125014: SAM 3 4 confident, runs 4, relations 16
+[37/160] ILSVRC2015_train_00135004: SAM 3 8 confident, runs 4, relations 29
+[38/160] ILSVRC2015_train_00139004: SAM 3 2 confident, runs 2, relations 12
+[39/160] ILSVRC2015_train_00146005: SAM 3 8 confident, runs 17, relations 176
+[40/160] ILSVRC2015_train_00149004: SAM 3 4 confident, runs 3, relations 18
+[41/160] ILSVRC2015_train_00154002: SAM 3 2 confident, runs 2, relations 6
+[42/160] ILSVRC2015_train_00159010: SAM 3 4 confident, runs 2, relations 6
+[43/160] ILSVRC2015_train_00161016: SAM 3 4 confident, runs 2, relations 0
+[44/160] ILSVRC2015_train_00165000: SAM 3 4 confident, runs 2, relations 98
+[45/160] ILSVRC2015_train_00171001: SAM 3 3 confident, runs 6, relations 12
+[46/160] ILSVRC2015_train_00171004: SAM 3 5 confident, runs 6, relations 12
+[47/160] ILSVRC2015_train_00172007: SAM 3 2 confident, runs 8, relations 16
+[48/160] ILSVRC2015_train_00175001: SAM 3 4 confident, runs 3, relations 10
+[49/160] ILSVRC2015_train_00181011: SAM 3 3 confident, runs 2, relations 6
+[50/160] ILSVRC2015_train_00185000: SAM 3 4 confident, runs 4, relations 36
+[51/160] ILSVRC2015_train_00209003: SAM 3 3 confident, runs 2, relations 4
+[52/160] ILSVRC2015_train_00209005: SAM 3 8 confident, runs 17, relations 135
+[53/160] ILSVRC2015_train_00215000: SAM 3 2 confident, runs 6, relations 12
+[54/160] ILSVRC2015_train_00215006: SAM 3 3 confident, runs 3, relations 10
+[55/160] ILSVRC2015_train_00215010: SAM 3 4 confident, runs 6, relations 44
+[56/160] ILSVRC2015_train_00218002: SAM 3 5 confident, runs 2, relations 16
+[57/160] ILSVRC2015_train_00225001: no SAM 3 file; EOV R0w only
+[58/160] ILSVRC2015_train_00227012: SAM 3 4 confident, runs 4, relations 11
+[59/160] ILSVRC2015_train_00228000: SAM 3 2 confident, runs 6, relations 12
+[60/160] ILSVRC2015_train_00234001: SAM 3 3 confident, runs 2, relations 4
+[61/160] ILSVRC2015_train_00234007: SAM 3 4 confident, runs 2, relations 2
+[62/160] ILSVRC2015_train_00235006: SAM 3 3 confident, runs 6, relations 12
+[63/160] ILSVRC2015_train_00235007: SAM 3 6 confident, runs 5, relations 154
+[64/160] ILSVRC2015_train_00237001: SAM 3 2 confident, runs 11, relations 25
+[65/160] ILSVRC2015_train_00246002: SAM 3 1 confident, runs 6, relations 14
+[66/160] ILSVRC2015_train_00253025: SAM 3 2 confident, runs 4, relations 7
+[67/160] ILSVRC2015_train_00265004: SAM 3 3 confident, runs 3, relations 10
+[68/160] ILSVRC2015_train_00265042: SAM 3 3 confident, runs 2, relations 3
+[69/160] ILSVRC2015_train_00265063: SAM 3 3 confident, runs 3, relations 7
+[70/160] ILSVRC2015_train_00265066: SAM 3 3 confident, runs 2, relations 3
+[71/160] ILSVRC2015_train_00265068: SAM 3 3 confident, runs 2, relations 2
+[72/160] ILSVRC2015_train_00265074: SAM 3 4 confident, runs 3, relations 5
+[73/160] ILSVRC2015_train_00270000: SAM 3 7 confident, runs 7, relations 40
+[74/160] ILSVRC2015_train_00272005: SAM 3 2 confident, runs 2, relations 3
+[75/160] ILSVRC2015_train_00272034: SAM 3 4 confident, runs 4, relations 20
+[76/160] ILSVRC2015_train_00280000: no SAM 3 file; EOV R0w only
+[77/160] ILSVRC2015_train_00284001: SAM 3 5 confident, runs 8, relations 36
+[78/160] ILSVRC2015_train_00290008: SAM 3 3 confident, runs 3, relations 16
+[79/160] ILSVRC2015_train_00290019: SAM 3 3 confident, runs 3, relations 24
+[80/160] ILSVRC2015_train_00293004: SAM 3 11 confident, runs 8, relations 102
+[81/160] ILSVRC2015_train_00293005: SAM 3 9 confident, runs 8, relations 12
+[82/160] ILSVRC2015_train_00300008: SAM 3 5 confident, runs 5, relations 30
+[83/160] ILSVRC2015_train_00302021: SAM 3 8 confident, runs 3, relations 14
+[84/160] ILSVRC2015_train_00303008: SAM 3 2 confident, runs 2, relations 6
+[85/160] ILSVRC2015_train_00308017: SAM 3 5 confident, runs 2, relations 4
+[86/160] ILSVRC2015_train_00309001: SAM 3 7 confident, runs 5, relations 34
+[87/160] ILSVRC2015_train_00311002: SAM 3 4 confident, runs 2, relations 3
+[88/160] ILSVRC2015_train_00339001: SAM 3 6 confident, runs 5, relations 44
+[89/160] ILSVRC2015_train_00339003: SAM 3 6 confident, runs 2, relations 4
+[90/160] ILSVRC2015_train_00349000: SAM 3 11 confident, runs 14, relations 80
+[91/160] ILSVRC2015_train_00353000: SAM 3 4 confident, runs 5, relations 12
+[92/160] ILSVRC2015_train_00354000: SAM 3 3 confident, runs 2, relations 9
+[93/160] ILSVRC2015_train_00356001: SAM 3 2 confident, runs 2, relations 8
+[94/160] ILSVRC2015_train_00371013: SAM 3 2 confident, runs 2, relations 6
+[95/160] ILSVRC2015_train_00374000: SAM 3 4 confident, runs 13, relations 41
+[96/160] ILSVRC2015_train_00398004: SAM 3 3 confident, runs 4, relations 14
+[97/160] ILSVRC2015_train_00407001: SAM 3 5 confident, runs 4, relations 17
+[98/160] ILSVRC2015_train_00415007: SAM 3 2 confident, runs 2, relations 9
+[99/160] ILSVRC2015_train_00415008: SAM 3 4 confident, runs 2, relations 6
+[100/160] ILSVRC2015_train_00435001: SAM 3 3 confident, runs 2, relations 4
+[101/160] ILSVRC2015_train_00467000: SAM 3 7 confident, runs 7, relations 47
+[102/160] ILSVRC2015_train_00476002: SAM 3 2 confident, runs 10, relations 35
+[103/160] ILSVRC2015_train_00477000: SAM 3 3 confident, runs 6, relations 8
+[104/160] ILSVRC2015_train_00480000: SAM 3 7 confident, runs 6, relations 16
+[105/160] ILSVRC2015_train_00494000: SAM 3 2 confident, runs 4, relations 8
+[106/160] ILSVRC2015_train_00532000: SAM 3 2 confident, runs 4, relations 4
+[107/160] ILSVRC2015_train_00533003: SAM 3 3 confident, runs 2, relations 4
+[108/160] ILSVRC2015_train_00572000: SAM 3 3 confident, runs 9, relations 43
+[109/160] ILSVRC2015_train_00588000: SAM 3 2 confident, runs 2, relations 4
+[110/160] ILSVRC2015_train_00596000: SAM 3 3 confident, runs 2, relations 2
+[111/160] ILSVRC2015_train_00632001: SAM 3 4 confident, runs 7, relations 21
+[112/160] ILSVRC2015_train_00636001: SAM 3 4 confident, runs 5, relations 14
+[113/160] ILSVRC2015_train_00667002: SAM 3 3 confident, runs 4, relations 8
+[114/160] ILSVRC2015_train_00679000: SAM 3 3 confident, runs 6, relations 14
+[115/160] ILSVRC2015_train_00683000: SAM 3 3 confident, runs 8, relations 34
+[116/160] ILSVRC2015_train_00691000: SAM 3 5 confident, runs 2, relations 0
+[117/160] ILSVRC2015_train_00721000: SAM 3 5 confident, runs 3, relations 16
+[118/160] ILSVRC2015_train_00750000: SAM 3 2 confident, runs 4, relations 12
+[119/160] ILSVRC2015_train_00756000: SAM 3 6 confident, runs 6, relations 115
+[120/160] ILSVRC2015_train_00759000: SAM 3 2 confident, runs 8, relations 16
+[121/160] ILSVRC2015_train_00760001: SAM 3 2 confident, runs 6, relations 12
+[122/160] ILSVRC2015_train_00766000: SAM 3 2 confident, runs 2, relations 93
+[123/160] ILSVRC2015_train_00772004: SAM 3 4 confident, runs 4, relations 16
+[124/160] ILSVRC2015_train_00780000: SAM 3 5 confident, runs 3, relations 10
+[125/160] ILSVRC2015_train_00796000: SAM 3 3 confident, runs 6, relations 78
+[126/160] ILSVRC2015_train_00873000: SAM 3 3 confident, runs 2, relations 24
+[127/160] ILSVRC2015_train_00882000: SAM 3 3 confident, runs 2, relations 2
+[128/160] ILSVRC2015_train_00896000: SAM 3 2 confident, runs 16, relations 70
+[129/160] ILSVRC2015_train_00897005: SAM 3 8 confident, runs 6, relations 117
+[130/160] ILSVRC2015_train_00912002: SAM 3 2 confident, runs 6, relations 37
+[131/160] ILSVRC2015_train_00917000: SAM 3 11 confident, runs 7, relations 64
+[132/160] ILSVRC2015_train_00971000: no SAM 3 file; EOV R0w only
+[133/160] ILSVRC2015_train_00978000: SAM 3 0 confident, runs 2, relations 5
+[134/160] ILSVRC2015_train_00987000: SAM 3 5 confident, runs 2, relations 44
+[135/160] ILSVRC2015_train_00988001: SAM 3 2 confident, runs 10, relations 10
+[136/160] ILSVRC2015_train_00989000: SAM 3 7 confident, runs 2, relations 4
+[137/160] ILSVRC2015_train_01014000: SAM 3 11 confident, runs 10, relations 202
+[138/160] ILSVRC2015_train_01020000: SAM 3 2 confident, runs 2, relations 4
+[139/160] ILSVRC2015_train_01025001: SAM 3 2 confident, runs 8, relations 8
+[140/160] ILSVRC2015_train_01034001: SAM 3 3 confident, runs 3, relations 13
+[141/160] ILSVRC2015_train_01079000: SAM 3 7 confident, runs 12, relations 71
+[142/160] ILSVRC2015_train_01108001: SAM 3 3 confident, runs 2, relations 16
+[143/160] ILSVRC2015_val_00007022: SAM 3 9 confident, runs 9, relations 88
+[144/160] ILSVRC2015_val_00008001: SAM 3 3 confident, runs 8, relations 16
+[145/160] ILSVRC2015_val_00020001: SAM 3 2 confident, runs 2, relations 0
+[146/160] ILSVRC2015_val_00026003: SAM 3 4 confident, runs 2, relations 19
+[147/160] ILSVRC2015_val_00027000: SAM 3 3 confident, runs 13, relations 75
+[148/160] ILSVRC2015_val_00028003: SAM 3 30 confident, runs 5, relations 222
+[149/160] ILSVRC2015_val_00035000: SAM 3 3 confident, runs 10, relations 27
+[150/160] ILSVRC2015_val_00035008: SAM 3 3 confident, runs 2, relations 24
+[151/160] ILSVRC2015_val_00035013: SAM 3 3 confident, runs 6, relations 24
+[152/160] ILSVRC2015_val_00037004: SAM 3 2 confident, runs 2, relations 6
+[153/160] ILSVRC2015_val_00046000: SAM 3 2 confident, runs 6, relations 11
+[154/160] ILSVRC2015_val_00078000: SAM 3 4 confident, runs 2, relations 3
+[155/160] ILSVRC2015_val_00082000: SAM 3 3 confident, runs 4, relations 6
+[156/160] ILSVRC2015_val_00103000: SAM 3 13 confident, runs 6, relations 23
+[157/160] ILSVRC2015_val_00123004: SAM 3 5 confident, runs 2, relations 4
+[158/160] ILSVRC2015_val_00135000: SAM 3 7 confident, runs 3, relations 18
+[159/160] ILSVRC2015_val_00150003: SAM 3 4 confident, runs 4, relations 6
+[160/160] ILSVRC2015_val_00169000: SAM 3 3 confident, runs 6, relations 13
+{
+ "outcome": {
+  "g1_fails_for_certain": true,
+  "failing_at_best_case": [
+   "false_track_burden"
+  ],
+  "rule": "A29d item 2: if any binding bar fails even at SAM 3's best case over 160, G1 fails"
+ },
+ "bounds_over_160": {
+  "overall_recall": {
+   "sam3": 0.7888446215139442,
+   "eov": 0.6640106241699867,
+   "diff_points": 12.48339973439575,
+   "threshold": ">= 10 points",
+   "status": "binding",
+   "pass_": true
+  },
+  "pair_recall": {
+   "sam3": 0.6621867881548975,
+   "eov": 0.5492027334851937,
+   "diff_points": 11.298405466970385,
+   "threshold": ">= 10 points",
+   "status": "binding",
+   "pass_": true
+  },
+  "false_track_burden": {
+   "sam3": 1.7375,
+   "eov": 0.9625,
+   "ratio": 1.8051948051948052,
+   "threshold": "<= 1.5x",
+   "status": "binding",
+   "pass_": false
+  },
+  "box_style": {
+   "median": 0.8828032177864955,
+   "n_pairs": 594,
+   "threshold": ">= 0.70",
+   "status": "binding",
+   "pass_": true
+  }
+ },
+ "bars_on_157": {
+  "overall_recall": {
+   "sam3": 0.7773109243697479,
+   "eov": 0.6792717086834734,
+   "diff_points": 9.80392156862745,
+   "threshold": ">= 10 points",
+   "status": "binding",
+   "pass_": false
+  },
+  "pair_recall": {
+   "sam3": 0.6497401983939537,
+   "eov": 0.5581010864430799,
+   "diff_points": 9.163911195087382,
+   "threshold": ">= 10 points",
+   "status": "binding",
+   "pass_": false
+  },
+  "false_track_burden": {
+   "sam3": 1.7707006369426752,
+   "eov": 0.9617834394904459,
+   "ratio": 1.8410596026490067,
+   "threshold": "<= 1.5x",
+   "status": "binding",
+   "pass_": false
+  },
+  "box_style": {
+   "median": 0.8732514419717211,
+   "n_pairs": 555,
+   "threshold": ">= 0.70",
+   "status": "binding",
+   "pass_": true
+  }
+ }
+}
+	Command being timed: "/home/totoro/miniconda3/envs/repro-next/bin/python -B studies/rpt/g1/futility.py --sam3 studies/rpt/g1/sam3_out --eov studies/rpt/g1/eov_out --done studies/rpt/g1/logs/box/sam3_done.json --out studies/rpt/g1/results_futility"
+	User time (seconds): 24.15
+	System time (seconds): 2.62
+	Percent of CPU this job got: 94%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:28.28
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 704528
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 2513
+	Minor (reclaiming a frame) page faults: 138426
+	Voluntary context switches: 4489
+	Involuntary context switches: 124
+	Swaps: 0
+	File system inputs: 2529425
+	File system outputs: 128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
