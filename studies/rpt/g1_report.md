@@ -194,8 +194,15 @@ Each unmatched track's best cut-vIoU (A29 item 2) to the video's GT runs:
 - **How they were chosen:** `numpy.random.default_rng(0).choice(196, 20, replace=False)` over the
   tracks sorted by (video, track id).
 - **Where:** `studies/rpt/g1/viz_unmatched/`.
-- **An informal look, not a count:**
-  - many sit on real objects that HELD's annotation leaves out: seagulls (`ILSVRC2015_val_00028003`),
-    background airplanes at an airport (`ILSVRC2015_val_00103000`), a parked car
-    (`…00339003`), lawn flamingos labelled bird (`…00025029`);
-  - others sit on no visible object of their class, such as a "person" box on bushes (`…00989000`).
+- **A closer visual reading** of each image is in `studies/rpt/g1/viz_unmatched_observations.md`.
+  It was checked by the thesis author and read from the raw frames, because the drawn outline and
+  label hide what is inside small boxes. It is a judgement from one frame per track, not a
+  measurement:
+  - 6 of the 20 are clearly real objects of the named class with no GT box on that frame, and 1 more
+    probably is;
+  - 9 are SAM 3 errors: boxes on no visible object (5), small pieces of larger objects (3), and a
+    wrong class on a real object (1);
+  - 4 are unclear;
+  - four are tiny boxes touching the frame edge that persist for 83–149 frames.
+  - This corrects an earlier one-line summary here, which named examples from the drawn images that
+    the raw frames do not support.
