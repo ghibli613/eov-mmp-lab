@@ -2400,3 +2400,104 @@ author's decisions on it, before the 48 GB run.
 
 **Not changed by this amendment:** everything else in A29, A29a, A29b and A29c. Any change to the
 above is a new amendment, written before the result it affects.
+
+#### A30 (2026-11-02): post-G1 Task 2 — the SAM 3 screen on HELD (the last chance for SAM 3 as a detector)
+
+Written before the screen runs, from the agreed post-G1 plan (`studies/postg1/monday-pack.md`, Part 1,
+Task 2). **Exploration on HELD, in-sample for EOV-MMP; not a test result.** The trimming oracle
+(Task 1) is not hashed yet and takes the next free label.
+- **Already seen when written:** G1's bars and descriptive numbers on these 157 videos
+  (`studies/rpt/g1_report.md`), and the 20 inspected tracks
+  (`studies/rpt/g1/viz_unmatched_observations.md`, SHA256 `b26f1976…6667`).
+- **Not computed:** no rule's effect, at any setting.
+
+##### Data
+
+- **Videos:** the 157 HELD videos with G1 SAM 3 files.
+- **SAM 3:** G1's confident tracks (`studies/rpt/g1/sam3_out/`, manifest
+  `studies/rpt/g1/logs/box/sam3_manifest.jsonl`, SHA256 `9d508db4…a45d`), read by G1's adapter.
+- **EOV-MMP:** G1's R0w tracks (`studies/rpt/g1/eov_out/`) on the same 157 videos.
+- **Scoring:** A29's matching, pair recall (D1's best pair) and unmatched-track count, from
+  `studies/rpt/g1/metrics.py` (SHA256 `359c3d9a…dbf8`), re-run on the kept tracks.
+- **Code:** `studies/postg1/sam3_screen.py` (SHA256 `b20de27d…721c`), tested by
+  `studies/postg1/tests/test_sam3_screen.py` (`17cbc00d…132b`). The scorer must equal `metrics.py`
+  on the no-rule configuration, the full configuration and 25 configurations drawn with
+  `numpy.random.default_rng(0)`, or the run stops.
+
+##### Boxes and how rules combine
+
+- **"Box":** the confident track's per-frame box as G1 used it: the tight box of SAM 3's mask, with
+  gap frames interpolated and rounded by the repo's `round_and_positive`.
+  - Coordinates are integer pixel indices.
+  - Width is x2 − x1 + 1, height y2 − y1 + 1 (the official `iou`'s convention); area is
+    width × height.
+  - A box's centre is its midpoint, and its diagonal is √(width² + height²).
+- **Every rule is judged on the video's full set of confident tracks,** before any removal. A
+  configuration removes the union of the tracks its rules flag.
+
+##### The rules (each removes whole SAM 3 confident tracks)
+
+1. **Tiny:** remove if min(median box width, median box height) < t px; t ∈ {8, 12, 16, 24}.
+2. **Edge sliver:** remove if the box touches the left or right frame edge on ≥ f of the track's
+   frames **and** its median width < w px; (f, w) ∈ {0.5, 0.8} × {16, 32}.
+   - "Touches" means x1 ≤ 2 or x2 ≥ W − 3, where W is the frame width in SAM 3's file and pixel
+     indices run 0 to W − 1. That is, within 2 px of the edge.
+3. **Fragment:** remove if, on ≥ f of the frames it shares with some larger confident SAM 3 track,
+   ≥ c of its box area lies inside that track's box; (c, f) ∈ {0.8, 0.9} × {0.5, 0.8}.
+   - The larger track may be of any class. "Larger" means a strictly larger median box area.
+   - The inside share on a frame is the intersection area ÷ the track's own box area.
+4. **Score cut (reference only, never selected or combined):** remove if track score < s;
+   s ∈ {0.6, 0.7, 0.8, 0.9}. The score is G1's track score.
+5. **Geometry-only partner:** keep only if some other confident SAM 3 track overlaps it in time by
+   ≥ 10 frames and, on ≥ half of those frames, their box centres are within d × the larger box's
+   diagonal; d ∈ {1, 2, 3}.
+   - "The larger box's diagonal" is the larger of the two boxes' diagonals on that frame.
+6. **modelC partner: skipped.**
+   - G1 cached modelC scores only for SAM 3 pairs that recall a GT relation (A29 item 7, box
+     sensitivity), not for every pair of confident tracks.
+   - No features are computed.
+7. **Class gate:** keep only if EOV-MMP's R0w tracks contain its class in the same video. One
+   setting.
+
+##### The grid, the criterion and the decision
+
+- **The grid (full search):** each of rules 1, 2, 3, 5 and 7 is off or at one of its settings:
+  5 × 5 × 5 × 4 × 2 = **1,000 configurations**. Rules 4 and 6 are computed alone and reported,
+  never combined (rule 6 is skipped, as above).
+- **Criterion ("worth validating"):** a configuration passes if, on the 157 videos against EOV-MMP
+  R0w, all three hold:
+  - overall recall gain ≥ +8 points;
+  - pair recall gain ≥ +8 points;
+  - false-track burden ≤ 1.35×.
+- **The class gate is required.** A pass counts only with rule 7 on.
+  - Passes without rule 7 are reported descriptively. Option 2 would then need all 35 prompts at G1's
+    cost.
+  - The screen's gate uses R0w tracks (score ≥ 0.35), stricter than Option 2's planned ≥ 0.1 gate, so
+    the screen is conservative here.
+- **The selection rule.** Among passing configurations with rule 7 on, the one that goes forward has
+  the highest min(recall gain, pair-recall gain).
+  - Ties go to the lower burden, then to fewer rules on, then to the earlier configuration in grid
+    order.
+  - No other configuration is carried forward.
+- **Fragility:** if only one or two configurations pass with rule 7 on, the pass is flagged as
+  fragile.
+- **Decision (binding):**
+  - **Pass:** the selected configuration becomes Option 2, to be validated later on a fresh FIT
+    subset.
+  - **Fail:** **SAM 3 closes as a detector**, with no second round of rules on HELD. SAM 3's tracker
+    remains a candidate for Option 1.
+
+##### Report
+
+`studies/postg1/sam3_screen_report.md`, verdict first, with:
+- the configurations tried, and the passes with and without rule 7;
+- the trade-off between burden and the recall gains (the Pareto front);
+- for each single rule at each setting: recall, pair recall, burden, matched tracks lost and
+  unmatched tracks removed;
+- rule 4 alone, and the reason rule 6 is skipped;
+- the class gate's removals: novel against base class, matched against unmatched;
+- which of the 20 inspected tracks the selected configuration removes, and which each single rule's
+  settings remove.
+
+**Not changed by this amendment:** everything in A29–A29d. Any change to the above is a new
+amendment, written before the result it affects.
