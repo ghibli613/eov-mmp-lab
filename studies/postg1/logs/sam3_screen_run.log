@@ -1,0 +1,173 @@
+[1/157] ILSVRC2015_train_00008005: 3 confident, 3 runs, 28 relations
+[2/157] ILSVRC2015_train_00010024: 4 confident, 2 runs, 6 relations
+[3/157] ILSVRC2015_train_00024005: 1 confident, 8 runs, 34 relations
+[4/157] ILSVRC2015_train_00025029: 6 confident, 2 runs, 4 relations
+[5/157] ILSVRC2015_train_00027003: 3 confident, 2 runs, 5 relations
+[6/157] ILSVRC2015_train_00032000: 5 confident, 9 runs, 70 relations
+[7/157] ILSVRC2015_train_00040000: 3 confident, 3 runs, 7 relations
+[8/157] ILSVRC2015_train_00040005: 3 confident, 2 runs, 4 relations
+[9/157] ILSVRC2015_train_00040030: 2 confident, 2 runs, 6 relations
+[10/157] ILSVRC2015_train_00050006: 3 confident, 3 runs, 203 relations
+[11/157] ILSVRC2015_train_00051015: 3 confident, 3 runs, 9 relations
+[12/157] ILSVRC2015_train_00051016: 2 confident, 2 runs, 5 relations
+[13/157] ILSVRC2015_train_00052001: 3 confident, 9 runs, 61 relations
+[14/157] ILSVRC2015_train_00055002: 4 confident, 2 runs, 9 relations
+[15/157] ILSVRC2015_train_00058003: 3 confident, 2 runs, 26 relations
+[16/157] ILSVRC2015_train_00060001: 2 confident, 2 runs, 4 relations
+[17/157] ILSVRC2015_train_00060005: 3 confident, 3 runs, 10 relations
+[18/157] ILSVRC2015_train_00065002: 3 confident, 2 runs, 0 relations
+[19/157] ILSVRC2015_train_00065003: 2 confident, 2 runs, 5 relations
+[20/157] ILSVRC2015_train_00069006: 3 confident, 2 runs, 11 relations
+[21/157] ILSVRC2015_train_00071013: 8 confident, 8 runs, 97 relations
+[22/157] ILSVRC2015_train_00071014: 2 confident, 4 runs, 9 relations
+[23/157] ILSVRC2015_train_00071019: 4 confident, 2 runs, 18 relations
+[24/157] ILSVRC2015_train_00073037: 2 confident, 2 runs, 20 relations
+[25/157] ILSVRC2015_train_00074010: 2 confident, 4 runs, 4 relations
+[26/157] ILSVRC2015_train_00077006: 5 confident, 3 runs, 22 relations
+[27/157] ILSVRC2015_train_00078000: 4 confident, 5 runs, 12 relations
+[28/157] ILSVRC2015_train_00097003: 2 confident, 8 runs, 10 relations
+[29/157] ILSVRC2015_train_00112000: 2 confident, 2 runs, 1 relations
+[30/157] ILSVRC2015_train_00116002: 8 confident, 4 runs, 7 relations
+[31/157] ILSVRC2015_train_00119013: 2 confident, 2 runs, 3 relations
+[32/157] ILSVRC2015_train_00119025: 2 confident, 2 runs, 6 relations
+[33/157] ILSVRC2015_train_00125006: 3 confident, 2 runs, 9 relations
+[34/157] ILSVRC2015_train_00125007: 5 confident, 4 runs, 18 relations
+[35/157] ILSVRC2015_train_00125013: 3 confident, 2 runs, 42 relations
+[36/157] ILSVRC2015_train_00125014: 4 confident, 4 runs, 16 relations
+[37/157] ILSVRC2015_train_00135004: 8 confident, 4 runs, 29 relations
+[38/157] ILSVRC2015_train_00139004: 2 confident, 2 runs, 12 relations
+[39/157] ILSVRC2015_train_00146005: 8 confident, 17 runs, 176 relations
+[40/157] ILSVRC2015_train_00149004: 4 confident, 3 runs, 18 relations
+[41/157] ILSVRC2015_train_00154002: 2 confident, 2 runs, 6 relations
+[42/157] ILSVRC2015_train_00159010: 4 confident, 2 runs, 6 relations
+[43/157] ILSVRC2015_train_00161016: 4 confident, 2 runs, 0 relations
+[44/157] ILSVRC2015_train_00165000: 4 confident, 2 runs, 98 relations
+[45/157] ILSVRC2015_train_00171001: 3 confident, 6 runs, 12 relations
+[46/157] ILSVRC2015_train_00171004: 5 confident, 6 runs, 12 relations
+[47/157] ILSVRC2015_train_00172007: 2 confident, 8 runs, 16 relations
+[48/157] ILSVRC2015_train_00175001: 4 confident, 3 runs, 10 relations
+[49/157] ILSVRC2015_train_00181011: 3 confident, 2 runs, 6 relations
+[50/157] ILSVRC2015_train_00185000: 4 confident, 4 runs, 36 relations
+[51/157] ILSVRC2015_train_00209003: 3 confident, 2 runs, 4 relations
+[52/157] ILSVRC2015_train_00209005: 8 confident, 17 runs, 135 relations
+[53/157] ILSVRC2015_train_00215000: 2 confident, 6 runs, 12 relations
+[54/157] ILSVRC2015_train_00215006: 3 confident, 3 runs, 10 relations
+[55/157] ILSVRC2015_train_00215010: 4 confident, 6 runs, 44 relations
+[56/157] ILSVRC2015_train_00218002: 5 confident, 2 runs, 16 relations
+[57/157] ILSVRC2015_train_00227012: 4 confident, 4 runs, 11 relations
+[58/157] ILSVRC2015_train_00228000: 2 confident, 6 runs, 12 relations
+[59/157] ILSVRC2015_train_00234001: 3 confident, 2 runs, 4 relations
+[60/157] ILSVRC2015_train_00234007: 4 confident, 2 runs, 2 relations
+[61/157] ILSVRC2015_train_00235006: 3 confident, 6 runs, 12 relations
+[62/157] ILSVRC2015_train_00235007: 6 confident, 5 runs, 154 relations
+[63/157] ILSVRC2015_train_00237001: 2 confident, 11 runs, 25 relations
+[64/157] ILSVRC2015_train_00246002: 1 confident, 6 runs, 14 relations
+[65/157] ILSVRC2015_train_00253025: 2 confident, 4 runs, 7 relations
+[66/157] ILSVRC2015_train_00265004: 3 confident, 3 runs, 10 relations
+[67/157] ILSVRC2015_train_00265042: 3 confident, 2 runs, 3 relations
+[68/157] ILSVRC2015_train_00265063: 3 confident, 3 runs, 7 relations
+[69/157] ILSVRC2015_train_00265066: 3 confident, 2 runs, 3 relations
+[70/157] ILSVRC2015_train_00265068: 3 confident, 2 runs, 2 relations
+[71/157] ILSVRC2015_train_00265074: 4 confident, 3 runs, 5 relations
+[72/157] ILSVRC2015_train_00270000: 7 confident, 7 runs, 40 relations
+[73/157] ILSVRC2015_train_00272005: 2 confident, 2 runs, 3 relations
+[74/157] ILSVRC2015_train_00272034: 4 confident, 4 runs, 20 relations
+[75/157] ILSVRC2015_train_00284001: 5 confident, 8 runs, 36 relations
+[76/157] ILSVRC2015_train_00290008: 3 confident, 3 runs, 16 relations
+[77/157] ILSVRC2015_train_00290019: 3 confident, 3 runs, 24 relations
+[78/157] ILSVRC2015_train_00293004: 11 confident, 8 runs, 102 relations
+[79/157] ILSVRC2015_train_00293005: 9 confident, 8 runs, 12 relations
+[80/157] ILSVRC2015_train_00300008: 5 confident, 5 runs, 30 relations
+[81/157] ILSVRC2015_train_00302021: 8 confident, 3 runs, 14 relations
+[82/157] ILSVRC2015_train_00303008: 2 confident, 2 runs, 6 relations
+[83/157] ILSVRC2015_train_00308017: 5 confident, 2 runs, 4 relations
+[84/157] ILSVRC2015_train_00309001: 7 confident, 5 runs, 34 relations
+[85/157] ILSVRC2015_train_00311002: 4 confident, 2 runs, 3 relations
+[86/157] ILSVRC2015_train_00339001: 6 confident, 5 runs, 44 relations
+[87/157] ILSVRC2015_train_00339003: 6 confident, 2 runs, 4 relations
+[88/157] ILSVRC2015_train_00349000: 11 confident, 14 runs, 80 relations
+[89/157] ILSVRC2015_train_00353000: 4 confident, 5 runs, 12 relations
+[90/157] ILSVRC2015_train_00354000: 3 confident, 2 runs, 9 relations
+[91/157] ILSVRC2015_train_00356001: 2 confident, 2 runs, 8 relations
+[92/157] ILSVRC2015_train_00371013: 2 confident, 2 runs, 6 relations
+[93/157] ILSVRC2015_train_00374000: 4 confident, 13 runs, 41 relations
+[94/157] ILSVRC2015_train_00398004: 3 confident, 4 runs, 14 relations
+[95/157] ILSVRC2015_train_00407001: 5 confident, 4 runs, 17 relations
+[96/157] ILSVRC2015_train_00415007: 2 confident, 2 runs, 9 relations
+[97/157] ILSVRC2015_train_00415008: 4 confident, 2 runs, 6 relations
+[98/157] ILSVRC2015_train_00435001: 3 confident, 2 runs, 4 relations
+[99/157] ILSVRC2015_train_00467000: 7 confident, 7 runs, 47 relations
+[100/157] ILSVRC2015_train_00476002: 2 confident, 10 runs, 35 relations
+[101/157] ILSVRC2015_train_00477000: 3 confident, 6 runs, 8 relations
+[102/157] ILSVRC2015_train_00480000: 7 confident, 6 runs, 16 relations
+[103/157] ILSVRC2015_train_00494000: 2 confident, 4 runs, 8 relations
+[104/157] ILSVRC2015_train_00532000: 2 confident, 4 runs, 4 relations
+[105/157] ILSVRC2015_train_00533003: 3 confident, 2 runs, 4 relations
+[106/157] ILSVRC2015_train_00572000: 3 confident, 9 runs, 43 relations
+[107/157] ILSVRC2015_train_00588000: 2 confident, 2 runs, 4 relations
+[108/157] ILSVRC2015_train_00596000: 3 confident, 2 runs, 2 relations
+[109/157] ILSVRC2015_train_00632001: 4 confident, 7 runs, 21 relations
+[110/157] ILSVRC2015_train_00636001: 4 confident, 5 runs, 14 relations
+[111/157] ILSVRC2015_train_00667002: 3 confident, 4 runs, 8 relations
+[112/157] ILSVRC2015_train_00679000: 3 confident, 6 runs, 14 relations
+[113/157] ILSVRC2015_train_00683000: 3 confident, 8 runs, 34 relations
+[114/157] ILSVRC2015_train_00691000: 5 confident, 2 runs, 0 relations
+[115/157] ILSVRC2015_train_00721000: 5 confident, 3 runs, 16 relations
+[116/157] ILSVRC2015_train_00750000: 2 confident, 4 runs, 12 relations
+[117/157] ILSVRC2015_train_00756000: 6 confident, 6 runs, 115 relations
+[118/157] ILSVRC2015_train_00759000: 2 confident, 8 runs, 16 relations
+[119/157] ILSVRC2015_train_00760001: 2 confident, 6 runs, 12 relations
+[120/157] ILSVRC2015_train_00766000: 2 confident, 2 runs, 93 relations
+[121/157] ILSVRC2015_train_00772004: 4 confident, 4 runs, 16 relations
+[122/157] ILSVRC2015_train_00780000: 5 confident, 3 runs, 10 relations
+[123/157] ILSVRC2015_train_00796000: 3 confident, 6 runs, 78 relations
+[124/157] ILSVRC2015_train_00873000: 3 confident, 2 runs, 24 relations
+[125/157] ILSVRC2015_train_00882000: 3 confident, 2 runs, 2 relations
+[126/157] ILSVRC2015_train_00896000: 2 confident, 16 runs, 70 relations
+[127/157] ILSVRC2015_train_00897005: 8 confident, 6 runs, 117 relations
+[128/157] ILSVRC2015_train_00912002: 2 confident, 6 runs, 37 relations
+[129/157] ILSVRC2015_train_00917000: 11 confident, 7 runs, 64 relations
+[130/157] ILSVRC2015_train_00978000: 0 confident, 2 runs, 5 relations
+[131/157] ILSVRC2015_train_00987000: 5 confident, 2 runs, 44 relations
+[132/157] ILSVRC2015_train_00988001: 2 confident, 10 runs, 10 relations
+[133/157] ILSVRC2015_train_00989000: 7 confident, 2 runs, 4 relations
+[134/157] ILSVRC2015_train_01014000: 11 confident, 10 runs, 202 relations
+[135/157] ILSVRC2015_train_01020000: 2 confident, 2 runs, 4 relations
+[136/157] ILSVRC2015_train_01025001: 2 confident, 8 runs, 8 relations
+[137/157] ILSVRC2015_train_01034001: 3 confident, 3 runs, 13 relations
+[138/157] ILSVRC2015_train_01079000: 7 confident, 12 runs, 71 relations
+[139/157] ILSVRC2015_train_01108001: 3 confident, 2 runs, 16 relations
+[140/157] ILSVRC2015_val_00007022: 9 confident, 9 runs, 88 relations
+[141/157] ILSVRC2015_val_00008001: 3 confident, 8 runs, 16 relations
+[142/157] ILSVRC2015_val_00020001: 2 confident, 2 runs, 0 relations
+[143/157] ILSVRC2015_val_00026003: 4 confident, 2 runs, 19 relations
+[144/157] ILSVRC2015_val_00027000: 3 confident, 13 runs, 75 relations
+[145/157] ILSVRC2015_val_00028003: 30 confident, 5 runs, 222 relations
+[146/157] ILSVRC2015_val_00035000: 3 confident, 10 runs, 27 relations
+[147/157] ILSVRC2015_val_00035008: 3 confident, 2 runs, 24 relations
+[148/157] ILSVRC2015_val_00035013: 3 confident, 6 runs, 24 relations
+[149/157] ILSVRC2015_val_00037004: 2 confident, 2 runs, 6 relations
+[150/157] ILSVRC2015_val_00046000: 2 confident, 6 runs, 11 relations
+[151/157] ILSVRC2015_val_00078000: 4 confident, 2 runs, 3 relations
+[152/157] ILSVRC2015_val_00082000: 3 confident, 4 runs, 6 relations
+[153/157] ILSVRC2015_val_00103000: 13 confident, 6 runs, 23 relations
+[154/157] ILSVRC2015_val_00123004: 5 confident, 2 runs, 4 relations
+[155/157] ILSVRC2015_val_00135000: 7 confident, 3 runs, 18 relations
+[156/157] ILSVRC2015_val_00150003: 4 confident, 4 runs, 6 relations
+[157/157] ILSVRC2015_val_00169000: 3 confident, 6 runs, 13 relations
+{
+ "passes_with_gate": 0,
+ "passes_without_gate": 16,
+ "fragile": false,
+ "selected": null,
+ "decision": "fail: SAM 3 closes as a detector"
+}
+{
+ "recall": 0.7773109243697479,
+ "pair": 0.6497401983939537,
+ "unmatched_per_video": 1.7707006369426752,
+ "recall_gain": 9.80392156862745,
+ "pair_gain": 9.163911195087382,
+ "burden": 1.8410596026490067
+}
+wall 104.54 s, max RSS 728024 KB
