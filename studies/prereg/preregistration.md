@@ -2501,3 +2501,164 @@ Task 2). **Exploration on HELD, in-sample for EOV-MMP; not a test result.** The 
 
 **Not changed by this amendment:** everything in A29–A29d. Any change to the above is a new
 amendment, written before the result it affects.
+
+#### A31 (2026-11-04): PaD — the HELD split (HELD-A, HELD-B), HELD-B's gates and gate 3, the extracts and the HELD-B guard, FIT annotation counts
+
+Written before the split is built, from `studies/postg1/d7-session-prompt.md` (v2) and the planning
+chat's reply to the developer review (`studies/postg1/dev-review-reply-1.md`). Giang's decisions
+recorded there: Task 1 (the trimming oracle) is not run; A30's scope is option (a), written in the
+next amendment.
+- **Already seen when written:** G1's results on the 157 HELD videos with SAM 3 files
+  (`studies/rpt/g1_report.md`), A29d's futility computation, the descriptive analysis and its 20
+  inspected tracks, and A30's screen. All of them used every HELD video, so both halves defined
+  below. Also the structure of `train_object_trajectories_gt.json`: each tid is stored as contiguous
+  fragments, and 905 of the 1,958 FIT tids have more than one.
+- **Not computed:** the flags, the median, the split, and any count per half or on FIT.
+
+##### Phase names and gates (fixed)
+
+| phase | what it is | at test time |
+|---|---|---|
+| Phase 1, Prompt | the main method: a learned class-free prompt for SAM 3 (P1), learned keep/drop (P3), naming by modelB (P4), EOV-MMP's relation classifier with T1 (P5) | SAM 3 |
+| Phase 2, Filtered Distill | EOV-MMP's detector learns from Phase 1's boxes, cleaned by P3 | EOV-MMP's detector |
+| Phase 3, Split Distill | box-only distillation plus gap fill by SAM 3's tracker; EOV-MMP's own score judges junk, no P3 | EOV-MMP's detector |
+| Phase 4, Improve | further ideas, only if needed | — |
+
+Gates 0–3 belong to Phase 1, gate 4 to Phase 2, gate 5 to Phase 3.
+
+##### 1. The split
+
+- **Videos:** the 160 HELD videos of `pilot_analysis/stage1/train_split.json` (SHA256 `095dd89c…1f1a`).
+  142 have `ILSVRC2015_train_` IDs and 18 have `ILSVRC2015_val_` IDs.
+- **Flags:**
+  - **novel:** the video's annotation file (`data/vidvrd/anno/train/<video>.json`) lists in
+    `subject/objects` at least one object whose category is novel in
+    `data/vidvrd/data/openvoc_obj_class_spilt_info.json` (`cls2split`). This reads all 160 HELD
+    annotation files. It happens before the guard is installed.
+  - **long:** the number of entries in the video's frame folder (`data/vidvrd/frames/<video>/`) is
+    strictly above `numpy.median` of the 160 counts.
+- **Strata, in this fixed order:** (novel, long), (novel, not long), (not novel, long),
+  (not novel, not long).
+- **Procedure:**
+  - one generator, `numpy.random.default_rng(20261102)`;
+  - for each stratum in that order: its video IDs sorted (Python `sorted` on the strings), then
+    `rng.permutation` of that list;
+  - the four permuted lists concatenated in stratum order;
+  - A, B, A, B… assigned along the whole list, starting with A. The alternation does not restart per
+    stratum, so the split is exactly 80/80.
+- **Recorded:** the halves of the 3 videos without SAM 3 files (`…00280000`, `…00225001`, `…00971000`).
+- **Output:** `studies/d7/held_split.json` (the two lists, the flags, the frame counts, the median, the
+  strata, the input hashes), and its SHA256 in `studies/d7/held_split.json.sha256`.
+- **Code:** `studies/d7/make_split.py`; the test-label guard is installed first.
+
+##### 2. The roles
+
+- **HELD-A:** prompt selection, the naming check, and P3's training (cross-validated by video inside
+  HELD-A).
+- **HELD-B: sealed.** It serves at most three pre-registered, tracker-level gates, with nothing ever
+  tuned on it:
+  - **gate 3:** the Phase 1 (Prompt) system against EOV-MMP R0w;
+  - **only if gate 3 passes, gate 4:** the Phase 2 (Filtered Distill) student against R2;
+  - **only if gate 3 passes, gate 5:** the Phase 3 (Split Distill) student against R2.
+  - Each gate gets its own amendment before it runs. All uses are disclosed. No other use is allowed.
+
+##### 3. Gate 3, fixed now
+
+A later amendment may only make it stricter.
+- **Tracker-level, not mAP,** since modelC is in-sample on HELD.
+- **G1's matching** (A29's rules), **class-aware**, against EOV-MMP R0w on HELD-B. All three must
+  hold:
+  - overall recall gain ≥ +8 points;
+  - pair recall gain ≥ +8 points;
+  - burden ≤ 1.35×.
+- Class-agnostic numbers are reported.
+- **No skips:** gate 3 runs every HELD-B video, on a 48 GB GPU planned in advance.
+
+**P3 follows option (b).** SAM 3 tracks that match a novel GT object are unlabelled like any other
+unmatched track, and are never excluded. Novel GT is used only to report suppression.
+
+##### 4. Disclosure
+
+- **HELD-B is sealed from now on, not unseen.** These all used it: G1, A29d's futility rule, the
+  descriptive analysis (including the 20 inspected tracks) and A30's screen.
+- **P3's starting rule family** (tiny, edge sliver, fragment) was seen on all of HELD.
+
+##### 5. The extracts, then the guard
+
+**What counts as an aggregate here.** A file is an aggregate if it holds HELD-B ground truth or
+HELD-B system output for more than one video. The repo was searched for every file that mentions a
+HELD video ID, both ID forms, inside gzip files too.
+
+**(a) Data aggregates: extracts, then blocked.**
+- **Extracts:** a FIT-only extract where the file holds FIT videos, and a HELD-A-only extract where it
+  holds HELD-A videos. Each keeps the file's structure, restricted to the subset's video keys, in
+  `studies/d7/extracts/`. Its SHA256 goes in `studies/d7/extracts/SHA256SUMS`, and the source's
+  SHA256 in `studies/d7/extracts/manifest.json`.
+- **Ground truth, keyed by video:**
+  - `data/vidvrd/data/train_object_trajectories_gt.json` (FIT, HELD-A);
+  - `pilot_analysis/stage1c/gt_tracks_train.json` and `gt_tracks_train_optionA.json` (FIT, HELD-A);
+  - `pilot_analysis/stage2/data/held_gt.json` and `held_pairs.json` (HELD-A);
+  - `studies/rpt/g1/held_gt_missing3.json` and `studies/rpt/g0/held_gt_smoke3.json` (HELD-A);
+  - the 5-video pilot subsets (HELD-A): `pilot_analysis/stage2/data_small/held_gt.json` and
+    `held_pairs.json`, `pilot_analysis/stage2/data/held_gt_small5.json`,
+    `pilot_analysis/boundary/data/held_gt_small.json`, `pilot_analysis/f1/data_small/held_gt_small.json`.
+- **Results files:** `studies/rpt/g1/results_futility/futility.json`,
+  `studies/rpt/g1/results_descriptive/descriptive.json`, `studies/postg1/results_screen/sam3_screen.json`.
+  - Their HELD-A extract keeps only the per-video entries of HELD-A videos: the `files` hashes, and
+    for the last two the `viz_sample` and `inspected_20` entries of HELD-A videos.
+  - Their pooled numbers mix both halves, so they are left out.
+- **Images:** `studies/rpt/g1/viz_unmatched/`. The HELD-A images are copied to
+  `studies/d7/extracts/viz_unmatched.held_a/`.
+- **Manifests later code needs for hash checks:** `studies/rpt/g1/logs/box/sam3_manifest.jsonl` and
+  `studies/rpt/g1/eov_out/manifest_g*.jsonl`. Their HELD-A extract keeps the lines of HELD-A videos.
+
+**(b) Blocked without an extract.** Each holds HELD-B data that cannot be split by video, or is a run
+record that no later code reads:
+- **Values without video keys:** `studies/rpt/g1/results_futility/box_style_values_157.json` (555
+  values pooled over 157 videos).
+- **Pilot data directories:** these hold HELD ground truth and HELD results as aligned arrays without
+  video keys (`slots.npz`, `pos_meta.json`, `*.npy`, `*.pt`). All of `pilot_analysis/*/data/` and
+  `pilot_analysis/*/data_small/`, and `pilot_analysis/stage1c/task2_results/`.
+- **Run records:**
+  - `studies/rpt/g0/logs/`, `studies/rpt/g0/box_out/`, `studies/rpt/g0/dryrun_laptop/`;
+  - `studies/rpt/g1/logs/`, `studies/rpt/g1/box_out/`, `studies/rpt/g1/eov_out/run_info_g*.json`;
+  - `studies/postg1/logs/sam3_screen_run.log`;
+  - logs, per-run manifests, schedules and driver output with per-video lines.
+
+**(c) Not blocked, because they hold no HELD-B labels or outputs:**
+- prose and committed records: reports, `preregistration.md` and its backups, drafts;
+- code and tests that name a few video IDs;
+- ID lists and schedules (`train_split.json`, `gt_tracks_report.json`, `step0_selection.json`);
+- frame-derived inputs: frames, videos, `VidVRD_ECC_train.json`, the class-level CLIP bank.
+
+**The guard** (`studies/d7/held_b_guard.py`) is an audit hook like the test-label guard. It reads the
+HELD-B list from `held_split.json`, after checking its SHA256. From then on, for the life of the
+process, opening any of these raises `PermissionError`:
+- **per-video files:** any path that contains a HELD-B video ID, of either form, except under
+  `data/vidvrd/frames/` and `data/vidvrd/videos/`. This covers the annotation files, G0's and G1's
+  SAM 3 outputs, EOV-MMP's outputs and any other per-video derivative;
+- **every path in (a) and (b),** by file or by directory prefix.
+
+The guard covers Python processes that install it. Every script of this session installs both
+guards first. Shell tools are not covered, so no shell command reads a blocked path.
+
+**Committed:** `held_split.json` and its hash, the extracts with `SHA256SUMS` and `manifest.json`, the
+guard and its tests (`studies/d7/tests/test_held_b_guard.py`).
+
+##### 6. FIT annotation counts (report only)
+
+Computed from the FIT-only extract of `train_object_trajectories_gt.json`; nothing is decided by them.
+- **Sampled frames:** frame indices f with f mod 30 = 0, from 0 to the frame-folder count − 1.
+- **A track** is a (video, tid). Its fragments are merged. Its span runs from its first to its last
+  annotated frame.
+- **Reported:**
+  - the share of sampled frames with no GT box: over all sampled frames, and over the sampled frames
+    inside the union of the video's track spans;
+  - the share of sampled (frame, track) pairs, with the frame inside the track's span, where the track
+    has no box on that frame (inside an annotation gap);
+  - the distribution of track coverage (annotated frames ÷ span length): quantiles, the share under
+    65%, and the share with full coverage.
+- **Output:** `studies/d7/fit_counts.json`, from `studies/d7/fit_counts.py`.
+
+**Not changed by this amendment:** anything in A28–A30. Any change to the above is a new amendment,
+written before the result it affects.
