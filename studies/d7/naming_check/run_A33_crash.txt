@@ -1,0 +1,39 @@
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+Traceback (most recent call last):
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 346, in <module>
+    main()
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 340, in main
+    run(a.videos or vids)
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 193, in run
+    probs = reorder(m(pooled_feature(pp, box, w, h))[0].detach().float().cpu().tolist())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/models/object_classifier.py", line 59, in forward
+    text_feats = self.text_encoder(visual_feats)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/vlm/text_encoder.py", line 154, in forward
+    prompts = self.prompt_learner(image_features).cuda()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/vlm/text_encoder.py", line 127, in forward
+    bias_reshape = bias.expand(bias.shape[0],self.n_ctx,bias.shape[2])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: expand(torch.cuda.FloatTensor{[1, 1, 1, 768]}, size=[1, 16, 1]): the number of sizes provided (3) must be greater or equal to the number of dimensions in the tensor (4)
+exit=1

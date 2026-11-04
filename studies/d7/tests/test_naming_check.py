@@ -35,6 +35,7 @@ def test_pooling_matches_an_independent_coverage_mean():
     for box, w, h in [([10, 20, 300, 200], 640, 360), ([0, 0, 1279, 719], 1280, 720), ([5.5, 3, 40, 41], 320, 240),
                       ([-4, -2, 700, 400], 640, 360)]:
         got = N.pooled_feature(pp, box, w, h)
+        assert tuple(got.shape) == (1, 768)          # what modelB is given in end2end_model.py:253-256
         m = torch.from_numpy(coverage_mask(box, w, h)).float()
         ref = (pp[0] * m[:, None]).sum(0) / m.sum().clamp(min=1e-9)
         ref = ref / ref.norm()

@@ -90,8 +90,9 @@ def pooled_feature(pp, box, w, h):
     mask_tensor = torch.from_numpy(mask).float().to(pp.device).unsqueeze(0)
     m_ = mask_tensor.unsqueeze(-1).expand_as(pp)
     weights_sum = m_.sum(dim=1, keepdim=True).clamp(min=1e-9)
-    xx4 = (pp * m_).sum(dim=1) / weights_sum
+    xx4 = (pp * m_).sum(dim=1) / weights_sum                         # (1, 1, 768), as the original
     xx4 /= xx4.norm(dim=-1, keepdim=True)
+    xx4 = xx4.squeeze(0)                                             # end2end_model.py:253
     return xx4                                                       # (1, 768)
 
 
