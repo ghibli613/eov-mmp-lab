@@ -1,0 +1,104 @@
+# 2026-11-04T23:30:30+07:00 cd ov-vidvrd-lab/studies; python3 migration/verify_after_A26m.py   (after A32)
+== 1. hash chains
+ok    pilot_analysis/stage1b: current     442623b8…11f0
+ok    pilot_analysis/stage1b: after-A21   4bb0acbd…49f3
+ok    pilot_analysis/stage1b: after-A20   71ab5315…8c1e
+ok    pilot_analysis/stage1b: after-A19   e1f16c4f…be0d
+ok    pilot_analysis/stage1b: after-A18   9be2155a…3bd4
+ok    pilot_analysis/stage1b: after-A17   0aff1345…b2b5
+ok    pilot_analysis/stage1b: after-A16   a9517bd7…ccc0
+ok    pilot_analysis/stage1b: after-A15   4de6a7f7…a560
+ok    pilot_analysis/stage1b: after-A14   1baeb99d…f86c
+ok    pilot_analysis/stage1b: after-A13   b43dd969…7436
+ok    pilot_analysis/stage1b: after-A12   f86d1355…5776
+ok    pilot_analysis/stage1b: after-A11   6b14b025…3c95
+ok    pilot_analysis/stage1b: after-A10   4410598f…3c80
+ok    pilot_analysis/stage1b: after-A9    86a0f18a…6538
+ok    pilot_analysis/stage1b: after-A8    ca7ad1b7…ba7d
+ok    pilot_analysis/stage1b: after-A7    2b34d0ef…dadc
+ok    pilot_analysis/stage1b: after-A6    0e3ceb5c…eda1
+ok    pilot_analysis/stage1b: after-A5    43676566…a3f7
+ok    pilot_analysis/stage1b: after-A1-A4 3f85adb8…6637
+ok    pilot_analysis/stage1b: original    8bec195d…6d18
+ok    studies/prereg: current     ceedec74…872b
+ok    studies/prereg: after-A31   fec77dd3…e007
+ok    studies/prereg: after-A30   b10cf7a7…0aae
+ok    studies/prereg: after-A29d  c9718301…fac8
+ok    studies/prereg: after-A29c  631d492d…821c
+ok    studies/prereg: after-A29b  69179079…6e63
+ok    studies/prereg: after-A29a  85d7d748…047b
+ok    studies/prereg: after-A29   b0f1ec50…2fd0
+ok    studies/prereg: after-A28a  0d62e838…947b
+ok    studies/prereg: after-A28   b94e1986…cc9c
+ok    studies/prereg: after-A26m  ac77e243…a591
+ok    studies/prereg: after-A26   9485e1a8…c494
+ok    studies/prereg: after-A25e  7365374b…0114
+ok    studies/prereg: after-A25d  c805144e…ec2a
+ok    studies/prereg: after-A25c  838111d1…ba60
+ok    studies/prereg: after-A25b  58211c14…6d6a
+ok    studies/prereg: after-A25a  f18440cb…e175
+ok    studies/prereg: after-A25   2b54bf65…69ea
+ok    studies/prereg: after-A23a  bdfe25e6…268b
+ok    studies/prereg: after-A23   30eecc02…7f6d
+ok    studies/prereg: original    056299d1…8f0e
+ok    snapshot studies/a26/logs/preregistration.after-A25e.bak = state after-A25e
+ok    snapshot studies/d2/logs/preregistration.after-A23a.bak = state after-A23a
+ok    snapshot studies/d2/logs/preregistration.after-A25.bak = state after-A25
+ok    snapshot studies/d2/logs/preregistration.after-A25a.bak = state after-A25a
+ok    snapshot studies/d2/logs/preregistration.after-A25b.bak = state after-A25b
+ok    snapshot studies/d2/logs/preregistration.after-A25c.bak = state after-A25c
+ok    snapshot studies/design_review/logs/preregistration.after-A25d.bak = state after-A25d
+ok    snapshot studies/migration/logs/preregistration.after-A26.bak = state after-A26
+ok    snapshot studies/rb1/logs/preregistration.after-A22.md.bak = state after-A22
+ok    snapshot studies/rb1/logs/preregistration.after-A23.bak = state after-A23
+ok    snapshot studies/rpt/logs/preregistration.after-A26m.bak = state after-A26m
+ok    snapshot studies/rpt/logs/preregistration.after-A28.bak = state after-A28
+ok    snapshot studies/rpt/logs/preregistration.after-A28a.bak = state after-A28a
+ok    snapshot studies/rpt/logs/preregistration.after-A29.bak = state after-A29
+ok    snapshot studies/rpt/logs/preregistration.after-A29a.bak = state after-A29a
+ok    snapshot studies/rpt/logs/preregistration.after-A29b.bak = state after-A29b
+ok    snapshot studies/rpt/logs/preregistration.after-A29c.bak = state after-A29c
+ok    snapshot studies/rpt/logs/preregistration.after-A29d.bak = state after-A29d
+ok    snapshot studies/rpt/logs/preregistration.after-A30.bak = state after-A30
+ok    snapshot studies/rpt/logs/preregistration.after-A31.bak = state after-A31
+ok    hash list studies/a26/logs/preregistration.sha256.before-A26.bak = the list as it stood at 7365374b…0114
+ok    hash list studies/d2/logs/preregistration.sha256.before-A25.bak = the list as it stood at bdfe25e6…268b
+ok    hash list studies/d2/logs/preregistration.sha256.before-A25a.bak = the list as it stood at 2b54bf65…69ea
+ok    hash list studies/d2/logs/preregistration.sha256.before-A25b.bak = the list as it stood at f18440cb…e175
+ok    hash list studies/d2/logs/preregistration.sha256.before-A25c.bak = the list as it stood at 58211c14…6d6a
+ok    hash list studies/d2/logs/preregistration.sha256.before-A25d.bak = the list as it stood at 838111d1…ba60
+ok    hash list studies/design_review/logs/preregistration.sha256.before-A25e.bak = the list as it stood at c805144e…ec2a
+ok    hash list studies/migration/logs/preregistration.sha256.before-A26m.bak = the list as it stood at 9485e1a8…c494
+ok    hash list studies/rb1/logs/preregistration.sha256.before-A23.bak = the list as it stood at 442623b8…11f0
+ok    hash list studies/rb1/logs/preregistration.sha256.before-A23a.bak = the list as it stood at 30eecc02…7f6d
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A28.bak = the list as it stood at ac77e243…a591
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A28a.bak = the list as it stood at b94e1986…cc9c
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A29.bak = the list as it stood at 0d62e838…947b
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A29a.bak = the list as it stood at b0f1ec50…2fd0
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A29b.bak = the list as it stood at 85d7d748…047b
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A29c.bak = the list as it stood at 69179079…6e63
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A29d.bak = the list as it stood at 631d492d…821c
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A30.bak = the list as it stood at c9718301…fac8
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A31.bak = the list as it stood at b10cf7a7…0aae
+ok    hash list studies/rpt/logs/preregistration.sha256.before-A32.bak = the list as it stood at fec77dd3…e007
+== 2. links
+ok    A23 header cites the pilot file's final hash 442623b8…11f0, and the pilot file has it
+ok    A25 cites ov-pairtime's final 981bf067…5ce5 and its base bdfe25e6…268b (= after-A23a)
+ok    ov-pairtime prereg (M1, A24-A24i) at a820a0e hashes to 981bf067…5ce5 (read only, from /home/totoro/Documents/thesis/archive/ov-pairtime-2026-10-24-a820a0e.bundle)
+ok    the chain through A26 recomputes to 9485e1a8…c494 (METOR's head)
+ok    A26m cites MIGRATION.md's SHA256 4c4df287…daf0
+      current head: ceedec74bac1672c9195b0e1f90a09eeff2f226e82b7573bd04cda59e1a1872b
+== 3. moved files
+ok    manifest: 775/775 files have their SHA256 at the new path (the 2 prereg files through their pre-A26m backups)
+== 4. pins
+ok    a26 code_pins: metor_code: 157/157 match
+ok    a26 code_pins: a26_code: 9/9 match
+ok    a26 code_pins: in-repo inputs: 2/2 match
+ok    d2 code_pins: d2_code, d2_tests, d2_box: 24/24 match
+ok    d2 code_pins: baseline tracks: 1/1 match
+ok    d2 code_pins: EOV-MMP front end (repo root, fdeeeb4): 22/22 match
+ok    rb1 changed_files_sha256.txt: 14/14 match
+ok    d2 rec_sha256.txt (the test recordings): 404/404 match
+ok    closure through the moved files: 677 hashed by the chain (METOR: 677)
+== ALL CHECKS PASSED
+exit=0

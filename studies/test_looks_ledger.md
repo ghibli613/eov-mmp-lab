@@ -50,8 +50,8 @@ Every access to VidVRD's test relation labels in the project, from the existing 
 | 2026-10-06 | T1 dry run: SGDet path label-free on 5 test videos | A17, `t1_report.md` §1 |
 | 2026-10-07 | Position verifier: "label-free test reach" on cached test inputs | A18–A19, `pilot_analysis/position/position_report.md` |
 
-## Pending entry
+## Closed entry (formerly pending)
 
 | # | when | what | labels | kind | decision | crash rule |
 |---|---|---|---|---|---|---|
-| 17 | — | **Trimming oracle (post-G1 Task 1):** not run. Its amendment is not hashed, because the rule needs the plan author's decision first (`studies/postg1/trim_oracle_stop.md`) | — | analysis (one disclosed look) | — | — |
+| 17 | closed 2026-11-04 | **Trimming oracle (post-G1 Task 1):** **not run by decision; no test label accessed.** Its amendment was never hashed (`studies/postg1/trim_oracle_stop.md`); Giang decided not to run it (`studies/postg1/d7-session-prompt.md` v2, decision 1). The label A31 went to the HELD split. | none | — | — | — |
