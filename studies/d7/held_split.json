@@ -1,0 +1,1781 @@
+{
+ "label": "A31 \u00a71: the HELD split",
+ "seed": 20261102,
+ "method": "strata (novel, long), (novel, not long), (not novel, long), (not novel, not long); per stratum sorted IDs then default_rng(20261102).permutation, one generator; concatenated; A, B, A, B... starting with A",
+ "inputs": {
+  "pilot_analysis/stage1/train_split.json": "095dd89ced7260945e76f020a68dcee5793bdd5bca3a6f375f7537dc7c267f1a",
+  "data/vidvrd/data/openvoc_obj_class_spilt_info.json": "9ac86fc36f2c7679f76bc19039057b40263796ea9e8536b6294bfb157b186dec"
+ },
+ "median_frames": 171.5,
+ "held_a": [
+  "ILSVRC2015_train_00010024",
+  "ILSVRC2015_train_00024005",
+  "ILSVRC2015_train_00032000",
+  "ILSVRC2015_train_00040000",
+  "ILSVRC2015_train_00040030",
+  "ILSVRC2015_train_00050006",
+  "ILSVRC2015_train_00052001",
+  "ILSVRC2015_train_00055002",
+  "ILSVRC2015_train_00058003",
+  "ILSVRC2015_train_00060001",
+  "ILSVRC2015_train_00060005",
+  "ILSVRC2015_train_00065002",
+  "ILSVRC2015_train_00071013",
+  "ILSVRC2015_train_00071014",
+  "ILSVRC2015_train_00074010",
+  "ILSVRC2015_train_00077006",
+  "ILSVRC2015_train_00112000",
+  "ILSVRC2015_train_00119013",
+  "ILSVRC2015_train_00125013",
+  "ILSVRC2015_train_00135004",
+  "ILSVRC2015_train_00146005",
+  "ILSVRC2015_train_00154002",
+  "ILSVRC2015_train_00159010",
+  "ILSVRC2015_train_00161016",
+  "ILSVRC2015_train_00172007",
+  "ILSVRC2015_train_00175001",
+  "ILSVRC2015_train_00181011",
+  "ILSVRC2015_train_00185000",
+  "ILSVRC2015_train_00209005",
+  "ILSVRC2015_train_00215000",
+  "ILSVRC2015_train_00215010",
+  "ILSVRC2015_train_00225001",
+  "ILSVRC2015_train_00228000",
+  "ILSVRC2015_train_00234001",
+  "ILSVRC2015_train_00235006",
+  "ILSVRC2015_train_00237001",
+  "ILSVRC2015_train_00246002",
+  "ILSVRC2015_train_00253025",
+  "ILSVRC2015_train_00265004",
+  "ILSVRC2015_train_00265042",
+  "ILSVRC2015_train_00265063",
+  "ILSVRC2015_train_00265066",
+  "ILSVRC2015_train_00265068",
+  "ILSVRC2015_train_00265074",
+  "ILSVRC2015_train_00290008",
+  "ILSVRC2015_train_00290019",
+  "ILSVRC2015_train_00293004",
+  "ILSVRC2015_train_00293005",
+  "ILSVRC2015_train_00309001",
+  "ILSVRC2015_train_00311002",
+  "ILSVRC2015_train_00349000",
+  "ILSVRC2015_train_00353000",
+  "ILSVRC2015_train_00371013",
+  "ILSVRC2015_train_00407001",
+  "ILSVRC2015_train_00415008",
+  "ILSVRC2015_train_00476002",
+  "ILSVRC2015_train_00480000",
+  "ILSVRC2015_train_00588000",
+  "ILSVRC2015_train_00636001",
+  "ILSVRC2015_train_00667002",
+  "ILSVRC2015_train_00683000",
+  "ILSVRC2015_train_00691000",
+  "ILSVRC2015_train_00721000",
+  "ILSVRC2015_train_00750000",
+  "ILSVRC2015_train_00759000",
+  "ILSVRC2015_train_00772004",
+  "ILSVRC2015_train_00780000",
+  "ILSVRC2015_train_00873000",
+  "ILSVRC2015_train_00896000",
+  "ILSVRC2015_train_00971000",
+  "ILSVRC2015_train_00978000",
+  "ILSVRC2015_train_01014000",
+  "ILSVRC2015_train_01025001",
+  "ILSVRC2015_train_01034001",
+  "ILSVRC2015_train_01079000",
+  "ILSVRC2015_val_00020001",
+  "ILSVRC2015_val_00027000",
+  "ILSVRC2015_val_00035008",
+  "ILSVRC2015_val_00037004",
+  "ILSVRC2015_val_00078000"
+ ],
+ "held_b": [
+  "ILSVRC2015_train_00008005",
+  "ILSVRC2015_train_00025029",
+  "ILSVRC2015_train_00027003",
+  "ILSVRC2015_train_00040005",
+  "ILSVRC2015_train_00051015",
+  "ILSVRC2015_train_00051016",
+  "ILSVRC2015_train_00065003",
+  "ILSVRC2015_train_00069006",
+  "ILSVRC2015_train_00071019",
+  "ILSVRC2015_train_00073037",
+  "ILSVRC2015_train_00078000",
+  "ILSVRC2015_train_00097003",
+  "ILSVRC2015_train_00116002",
+  "ILSVRC2015_train_00119025",
+  "ILSVRC2015_train_00125006",
+  "ILSVRC2015_train_00125007",
+  "ILSVRC2015_train_00125014",
+  "ILSVRC2015_train_00139004",
+  "ILSVRC2015_train_00149004",
+  "ILSVRC2015_train_00165000",
+  "ILSVRC2015_train_00171001",
+  "ILSVRC2015_train_00171004",
+  "ILSVRC2015_train_00209003",
+  "ILSVRC2015_train_00215006",
+  "ILSVRC2015_train_00218002",
+  "ILSVRC2015_train_00227012",
+  "ILSVRC2015_train_00234007",
+  "ILSVRC2015_train_00235007",
+  "ILSVRC2015_train_00270000",
+  "ILSVRC2015_train_00272005",
+  "ILSVRC2015_train_00272034",
+  "ILSVRC2015_train_00280000",
+  "ILSVRC2015_train_00284001",
+  "ILSVRC2015_train_00300008",
+  "ILSVRC2015_train_00302021",
+  "ILSVRC2015_train_00303008",
+  "ILSVRC2015_train_00308017",
+  "ILSVRC2015_train_00339001",
+  "ILSVRC2015_train_00339003",
+  "ILSVRC2015_train_00354000",
+  "ILSVRC2015_train_00356001",
+  "ILSVRC2015_train_00374000",
+  "ILSVRC2015_train_00398004",
+  "ILSVRC2015_train_00415007",
+  "ILSVRC2015_train_00435001",
+  "ILSVRC2015_train_00467000",
+  "ILSVRC2015_train_00477000",
+  "ILSVRC2015_train_00494000",
+  "ILSVRC2015_train_00532000",
+  "ILSVRC2015_train_00533003",
+  "ILSVRC2015_train_00572000",
+  "ILSVRC2015_train_00596000",
+  "ILSVRC2015_train_00632001",
+  "ILSVRC2015_train_00679000",
+  "ILSVRC2015_train_00756000",
+  "ILSVRC2015_train_00760001",
+  "ILSVRC2015_train_00766000",
+  "ILSVRC2015_train_00796000",
+  "ILSVRC2015_train_00882000",
+  "ILSVRC2015_train_00897005",
+  "ILSVRC2015_train_00912002",
+  "ILSVRC2015_train_00917000",
+  "ILSVRC2015_train_00987000",
+  "ILSVRC2015_train_00988001",
+  "ILSVRC2015_train_00989000",
+  "ILSVRC2015_train_01020000",
+  "ILSVRC2015_train_01108001",
+  "ILSVRC2015_val_00007022",
+  "ILSVRC2015_val_00008001",
+  "ILSVRC2015_val_00026003",
+  "ILSVRC2015_val_00028003",
+  "ILSVRC2015_val_00035000",
+  "ILSVRC2015_val_00035013",
+  "ILSVRC2015_val_00046000",
+  "ILSVRC2015_val_00082000",
+  "ILSVRC2015_val_00103000",
+  "ILSVRC2015_val_00123004",
+  "ILSVRC2015_val_00135000",
+  "ILSVRC2015_val_00150003",
+  "ILSVRC2015_val_00169000"
+ ],
+ "strata": [
+  {
+   "novel": true,
+   "long": true,
+   "count": 26,
+   "A": 13,
+   "B": 13,
+   "members_sorted": [
+    "ILSVRC2015_train_00024005",
+    "ILSVRC2015_train_00074010",
+    "ILSVRC2015_train_00097003",
+    "ILSVRC2015_train_00146005",
+    "ILSVRC2015_train_00172007",
+    "ILSVRC2015_train_00215010",
+    "ILSVRC2015_train_00228000",
+    "ILSVRC2015_train_00246002",
+    "ILSVRC2015_train_00280000",
+    "ILSVRC2015_train_00284001",
+    "ILSVRC2015_train_00300008",
+    "ILSVRC2015_train_00309001",
+    "ILSVRC2015_train_00467000",
+    "ILSVRC2015_train_00476002",
+    "ILSVRC2015_train_00572000",
+    "ILSVRC2015_train_00588000",
+    "ILSVRC2015_train_00632001",
+    "ILSVRC2015_train_00636001",
+    "ILSVRC2015_train_00760001",
+    "ILSVRC2015_train_00796000",
+    "ILSVRC2015_train_00896000",
+    "ILSVRC2015_train_00988001",
+    "ILSVRC2015_train_00989000",
+    "ILSVRC2015_val_00035000",
+    "ILSVRC2015_val_00035008",
+    "ILSVRC2015_val_00046000"
+   ],
+   "permuted": [
+    "ILSVRC2015_train_00896000",
+    "ILSVRC2015_train_00796000",
+    "ILSVRC2015_train_00309001",
+    "ILSVRC2015_train_00300008",
+    "ILSVRC2015_train_00024005",
+    "ILSVRC2015_train_00097003",
+    "ILSVRC2015_train_00074010",
+    "ILSVRC2015_val_00046000",
+    "ILSVRC2015_train_00246002",
+    "ILSVRC2015_val_00035000",
+    "ILSVRC2015_val_00035008",
+    "ILSVRC2015_train_00632001",
+    "ILSVRC2015_train_00172007",
+    "ILSVRC2015_train_00572000",
+    "ILSVRC2015_train_00588000",
+    "ILSVRC2015_train_00467000",
+    "ILSVRC2015_train_00146005",
+    "ILSVRC2015_train_00284001",
+    "ILSVRC2015_train_00215010",
+    "ILSVRC2015_train_00760001",
+    "ILSVRC2015_train_00636001",
+    "ILSVRC2015_train_00989000",
+    "ILSVRC2015_train_00476002",
+    "ILSVRC2015_train_00280000",
+    "ILSVRC2015_train_00228000",
+    "ILSVRC2015_train_00988001"
+   ]
+  },
+  {
+   "novel": true,
+   "long": false,
+   "count": 31,
+   "A": 16,
+   "B": 15,
+   "members_sorted": [
+    "ILSVRC2015_train_00008005",
+    "ILSVRC2015_train_00027003",
+    "ILSVRC2015_train_00040000",
+    "ILSVRC2015_train_00040005",
+    "ILSVRC2015_train_00040030",
+    "ILSVRC2015_train_00058003",
+    "ILSVRC2015_train_00065002",
+    "ILSVRC2015_train_00065003",
+    "ILSVRC2015_train_00077006",
+    "ILSVRC2015_train_00135004",
+    "ILSVRC2015_train_00175001",
+    "ILSVRC2015_train_00181011",
+    "ILSVRC2015_train_00227012",
+    "ILSVRC2015_train_00234001",
+    "ILSVRC2015_train_00234007",
+    "ILSVRC2015_train_00235006",
+    "ILSVRC2015_train_00235007",
+    "ILSVRC2015_train_00371013",
+    "ILSVRC2015_train_00415007",
+    "ILSVRC2015_train_00415008",
+    "ILSVRC2015_train_00494000",
+    "ILSVRC2015_train_00533003",
+    "ILSVRC2015_train_00596000",
+    "ILSVRC2015_train_00691000",
+    "ILSVRC2015_train_00721000",
+    "ILSVRC2015_train_00756000",
+    "ILSVRC2015_val_00020001",
+    "ILSVRC2015_val_00026003",
+    "ILSVRC2015_val_00028003",
+    "ILSVRC2015_val_00035013",
+    "ILSVRC2015_val_00037004"
+   ],
+   "permuted": [
+    "ILSVRC2015_train_00691000",
+    "ILSVRC2015_train_00040005",
+    "ILSVRC2015_train_00065002",
+    "ILSVRC2015_train_00008005",
+    "ILSVRC2015_train_00040000",
+    "ILSVRC2015_train_00596000",
+    "ILSVRC2015_train_00077006",
+    "ILSVRC2015_train_00415007",
+    "ILSVRC2015_train_00371013",
+    "ILSVRC2015_train_00235007",
+    "ILSVRC2015_train_00175001",
+    "ILSVRC2015_train_00227012",
+    "ILSVRC2015_train_00181011",
+    "ILSVRC2015_train_00027003",
+    "ILSVRC2015_train_00721000",
+    "ILSVRC2015_val_00035013",
+    "ILSVRC2015_train_00235006",
+    "ILSVRC2015_val_00028003",
+    "ILSVRC2015_train_00135004",
+    "ILSVRC2015_train_00065003",
+    "ILSVRC2015_train_00058003",
+    "ILSVRC2015_val_00026003",
+    "ILSVRC2015_val_00037004",
+    "ILSVRC2015_train_00533003",
+    "ILSVRC2015_val_00020001",
+    "ILSVRC2015_train_00494000",
+    "ILSVRC2015_train_00234001",
+    "ILSVRC2015_train_00234007",
+    "ILSVRC2015_train_00415008",
+    "ILSVRC2015_train_00756000",
+    "ILSVRC2015_train_00040030"
+   ]
+  },
+  {
+   "novel": false,
+   "long": true,
+   "count": 54,
+   "A": 27,
+   "B": 27,
+   "members_sorted": [
+    "ILSVRC2015_train_00050006",
+    "ILSVRC2015_train_00052001",
+    "ILSVRC2015_train_00055002",
+    "ILSVRC2015_train_00071014",
+    "ILSVRC2015_train_00078000",
+    "ILSVRC2015_train_00116002",
+    "ILSVRC2015_train_00125006",
+    "ILSVRC2015_train_00125013",
+    "ILSVRC2015_train_00139004",
+    "ILSVRC2015_train_00165000",
+    "ILSVRC2015_train_00209003",
+    "ILSVRC2015_train_00209005",
+    "ILSVRC2015_train_00215000",
+    "ILSVRC2015_train_00215006",
+    "ILSVRC2015_train_00218002",
+    "ILSVRC2015_train_00225001",
+    "ILSVRC2015_train_00237001",
+    "ILSVRC2015_train_00270000",
+    "ILSVRC2015_train_00293004",
+    "ILSVRC2015_train_00293005",
+    "ILSVRC2015_train_00349000",
+    "ILSVRC2015_train_00353000",
+    "ILSVRC2015_train_00354000",
+    "ILSVRC2015_train_00374000",
+    "ILSVRC2015_train_00407001",
+    "ILSVRC2015_train_00477000",
+    "ILSVRC2015_train_00480000",
+    "ILSVRC2015_train_00532000",
+    "ILSVRC2015_train_00667002",
+    "ILSVRC2015_train_00679000",
+    "ILSVRC2015_train_00683000",
+    "ILSVRC2015_train_00750000",
+    "ILSVRC2015_train_00759000",
+    "ILSVRC2015_train_00766000",
+    "ILSVRC2015_train_00772004",
+    "ILSVRC2015_train_00780000",
+    "ILSVRC2015_train_00882000",
+    "ILSVRC2015_train_00912002",
+    "ILSVRC2015_train_00917000",
+    "ILSVRC2015_train_00971000",
+    "ILSVRC2015_train_00987000",
+    "ILSVRC2015_train_01014000",
+    "ILSVRC2015_train_01020000",
+    "ILSVRC2015_train_01025001",
+    "ILSVRC2015_train_01034001",
+    "ILSVRC2015_train_01079000",
+    "ILSVRC2015_train_01108001",
+    "ILSVRC2015_val_00008001",
+    "ILSVRC2015_val_00027000",
+    "ILSVRC2015_val_00082000",
+    "ILSVRC2015_val_00103000",
+    "ILSVRC2015_val_00123004",
+    "ILSVRC2015_val_00150003",
+    "ILSVRC2015_val_00169000"
+   ],
+   "permuted": [
+    "ILSVRC2015_train_00139004",
+    "ILSVRC2015_train_00349000",
+    "ILSVRC2015_val_00123004",
+    "ILSVRC2015_train_00683000",
+    "ILSVRC2015_train_00116002",
+    "ILSVRC2015_train_00225001",
+    "ILSVRC2015_train_00354000",
+    "ILSVRC2015_train_00353000",
+    "ILSVRC2015_train_00917000",
+    "ILSVRC2015_train_00293005",
+    "ILSVRC2015_train_00882000",
+    "ILSVRC2015_train_01014000",
+    "ILSVRC2015_val_00150003",
+    "ILSVRC2015_train_00480000",
+    "ILSVRC2015_val_00008001",
+    "ILSVRC2015_train_01079000",
+    "ILSVRC2015_train_00477000",
+    "ILSVRC2015_train_00050006",
+    "ILSVRC2015_train_00270000",
+    "ILSVRC2015_val_00027000",
+    "ILSVRC2015_train_00532000",
+    "ILSVRC2015_train_00780000",
+    "ILSVRC2015_train_00209003",
+    "ILSVRC2015_train_00125013",
+    "ILSVRC2015_val_00082000",
+    "ILSVRC2015_train_01034001",
+    "ILSVRC2015_train_00165000",
+    "ILSVRC2015_train_00215000",
+    "ILSVRC2015_train_00374000",
+    "ILSVRC2015_train_00209005",
+    "ILSVRC2015_train_00078000",
+    "ILSVRC2015_train_00071014",
+    "ILSVRC2015_train_00218002",
+    "ILSVRC2015_train_00407001",
+    "ILSVRC2015_train_01020000",
+    "ILSVRC2015_train_00667002",
+    "ILSVRC2015_train_00912002",
+    "ILSVRC2015_train_00750000",
+    "ILSVRC2015_val_00169000",
+    "ILSVRC2015_train_00237001",
+    "ILSVRC2015_train_00987000",
+    "ILSVRC2015_train_00055002",
+    "ILSVRC2015_train_00679000",
+    "ILSVRC2015_train_00772004",
+    "ILSVRC2015_train_00766000",
+    "ILSVRC2015_train_00759000",
+    "ILSVRC2015_train_01108001",
+    "ILSVRC2015_train_00052001",
+    "ILSVRC2015_train_00125006",
+    "ILSVRC2015_train_01025001",
+    "ILSVRC2015_val_00103000",
+    "ILSVRC2015_train_00971000",
+    "ILSVRC2015_train_00215006",
+    "ILSVRC2015_train_00293004"
+   ]
+  },
+  {
+   "novel": false,
+   "long": false,
+   "count": 49,
+   "A": 24,
+   "B": 25,
+   "members_sorted": [
+    "ILSVRC2015_train_00010024",
+    "ILSVRC2015_train_00025029",
+    "ILSVRC2015_train_00032000",
+    "ILSVRC2015_train_00051015",
+    "ILSVRC2015_train_00051016",
+    "ILSVRC2015_train_00060001",
+    "ILSVRC2015_train_00060005",
+    "ILSVRC2015_train_00069006",
+    "ILSVRC2015_train_00071013",
+    "ILSVRC2015_train_00071019",
+    "ILSVRC2015_train_00073037",
+    "ILSVRC2015_train_00112000",
+    "ILSVRC2015_train_00119013",
+    "ILSVRC2015_train_00119025",
+    "ILSVRC2015_train_00125007",
+    "ILSVRC2015_train_00125014",
+    "ILSVRC2015_train_00149004",
+    "ILSVRC2015_train_00154002",
+    "ILSVRC2015_train_00159010",
+    "ILSVRC2015_train_00161016",
+    "ILSVRC2015_train_00171001",
+    "ILSVRC2015_train_00171004",
+    "ILSVRC2015_train_00185000",
+    "ILSVRC2015_train_00253025",
+    "ILSVRC2015_train_00265004",
+    "ILSVRC2015_train_00265042",
+    "ILSVRC2015_train_00265063",
+    "ILSVRC2015_train_00265066",
+    "ILSVRC2015_train_00265068",
+    "ILSVRC2015_train_00265074",
+    "ILSVRC2015_train_00272005",
+    "ILSVRC2015_train_00272034",
+    "ILSVRC2015_train_00290008",
+    "ILSVRC2015_train_00290019",
+    "ILSVRC2015_train_00302021",
+    "ILSVRC2015_train_00303008",
+    "ILSVRC2015_train_00308017",
+    "ILSVRC2015_train_00311002",
+    "ILSVRC2015_train_00339001",
+    "ILSVRC2015_train_00339003",
+    "ILSVRC2015_train_00356001",
+    "ILSVRC2015_train_00398004",
+    "ILSVRC2015_train_00435001",
+    "ILSVRC2015_train_00873000",
+    "ILSVRC2015_train_00897005",
+    "ILSVRC2015_train_00978000",
+    "ILSVRC2015_val_00007022",
+    "ILSVRC2015_val_00078000",
+    "ILSVRC2015_val_00135000"
+   ],
+   "permuted": [
+    "ILSVRC2015_train_00171001",
+    "ILSVRC2015_train_00311002",
+    "ILSVRC2015_train_00303008",
+    "ILSVRC2015_train_00161016",
+    "ILSVRC2015_train_00069006",
+    "ILSVRC2015_train_00265074",
+    "ILSVRC2015_train_00302021",
+    "ILSVRC2015_val_00078000",
+    "ILSVRC2015_train_00897005",
+    "ILSVRC2015_train_00060001",
+    "ILSVRC2015_train_00051016",
+    "ILSVRC2015_train_00265042",
+    "ILSVRC2015_train_00171004",
+    "ILSVRC2015_train_00265004",
+    "ILSVRC2015_train_00025029",
+    "ILSVRC2015_train_00010024",
+    "ILSVRC2015_train_00073037",
+    "ILSVRC2015_train_00119013",
+    "ILSVRC2015_val_00007022",
+    "ILSVRC2015_train_00185000",
+    "ILSVRC2015_train_00272005",
+    "ILSVRC2015_train_00265068",
+    "ILSVRC2015_train_00272034",
+    "ILSVRC2015_train_00253025",
+    "ILSVRC2015_train_00125014",
+    "ILSVRC2015_train_00060005",
+    "ILSVRC2015_train_00398004",
+    "ILSVRC2015_train_00290008",
+    "ILSVRC2015_train_00356001",
+    "ILSVRC2015_train_00154002",
+    "ILSVRC2015_val_00135000",
+    "ILSVRC2015_train_00159010",
+    "ILSVRC2015_train_00071019",
+    "ILSVRC2015_train_00265066",
+    "ILSVRC2015_train_00119025",
+    "ILSVRC2015_train_00978000",
+    "ILSVRC2015_train_00149004",
+    "ILSVRC2015_train_00032000",
+    "ILSVRC2015_train_00435001",
+    "ILSVRC2015_train_00071013",
+    "ILSVRC2015_train_00339001",
+    "ILSVRC2015_train_00290019",
+    "ILSVRC2015_train_00308017",
+    "ILSVRC2015_train_00112000",
+    "ILSVRC2015_train_00051015",
+    "ILSVRC2015_train_00265063",
+    "ILSVRC2015_train_00125007",
+    "ILSVRC2015_train_00873000",
+    "ILSVRC2015_train_00339003"
+   ]
+  }
+ ],
+ "no_sam3_files": {
+  "ILSVRC2015_train_00280000": "B",
+  "ILSVRC2015_train_00225001": "A",
+  "ILSVRC2015_train_00971000": "A"
+ },
+ "per_video": {
+  "ILSVRC2015_train_00008005": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "cattle"
+   ],
+   "frames": 130,
+   "long": false
+  },
+  "ILSVRC2015_train_00010024": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 64,
+   "long": false
+  },
+  "ILSVRC2015_train_00024005": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 981,
+   "long": true
+  },
+  "ILSVRC2015_train_00025029": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 34,
+   "long": false
+  },
+  "ILSVRC2015_train_00027003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 91,
+   "long": false
+  },
+  "ILSVRC2015_train_00032000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 145,
+   "long": false
+  },
+  "ILSVRC2015_train_00040000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 41,
+   "long": false
+  },
+  "ILSVRC2015_train_00040005": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 45,
+   "long": false
+  },
+  "ILSVRC2015_train_00040030": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 85,
+   "long": false
+  },
+  "ILSVRC2015_train_00050006": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 475,
+   "long": true
+  },
+  "ILSVRC2015_train_00051015": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 44,
+   "long": false
+  },
+  "ILSVRC2015_train_00051016": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 33,
+   "long": false
+  },
+  "ILSVRC2015_train_00052001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 329,
+   "long": true
+  },
+  "ILSVRC2015_train_00055002": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 381,
+   "long": true
+  },
+  "ILSVRC2015_train_00058003": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "fox"
+   ],
+   "frames": 91,
+   "long": false
+  },
+  "ILSVRC2015_train_00060001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 36,
+   "long": false
+  },
+  "ILSVRC2015_train_00060005": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 81,
+   "long": false
+  },
+  "ILSVRC2015_train_00065002": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "giant_panda"
+   ],
+   "frames": 72,
+   "long": false
+  },
+  "ILSVRC2015_train_00065003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "giant_panda"
+   ],
+   "frames": 108,
+   "long": false
+  },
+  "ILSVRC2015_train_00069006": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 105,
+   "long": false
+  },
+  "ILSVRC2015_train_00071013": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 85,
+   "long": false
+  },
+  "ILSVRC2015_train_00071014": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 175,
+   "long": true
+  },
+  "ILSVRC2015_train_00071019": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 162,
+   "long": false
+  },
+  "ILSVRC2015_train_00073037": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 94,
+   "long": false
+  },
+  "ILSVRC2015_train_00074010": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "giant_panda"
+   ],
+   "frames": 298,
+   "long": true
+  },
+  "ILSVRC2015_train_00077006": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 97,
+   "long": false
+  },
+  "ILSVRC2015_train_00078000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 195,
+   "long": true
+  },
+  "ILSVRC2015_train_00097003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 550,
+   "long": true
+  },
+  "ILSVRC2015_train_00112000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 112,
+   "long": false
+  },
+  "ILSVRC2015_train_00116002": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 375,
+   "long": true
+  },
+  "ILSVRC2015_train_00119013": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 33,
+   "long": false
+  },
+  "ILSVRC2015_train_00119025": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 73,
+   "long": false
+  },
+  "ILSVRC2015_train_00125006": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 212,
+   "long": true
+  },
+  "ILSVRC2015_train_00125007": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 112,
+   "long": false
+  },
+  "ILSVRC2015_train_00125013": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 225,
+   "long": true
+  },
+  "ILSVRC2015_train_00125014": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 86,
+   "long": false
+  },
+  "ILSVRC2015_train_00135004": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 124,
+   "long": false
+  },
+  "ILSVRC2015_train_00139004": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 179,
+   "long": true
+  },
+  "ILSVRC2015_train_00146005": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 183,
+   "long": true
+  },
+  "ILSVRC2015_train_00149004": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 113,
+   "long": false
+  },
+  "ILSVRC2015_train_00154002": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 143,
+   "long": false
+  },
+  "ILSVRC2015_train_00159010": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 75,
+   "long": false
+  },
+  "ILSVRC2015_train_00161016": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 134,
+   "long": false
+  },
+  "ILSVRC2015_train_00165000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 278,
+   "long": true
+  },
+  "ILSVRC2015_train_00171001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 113,
+   "long": false
+  },
+  "ILSVRC2015_train_00171004": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 156,
+   "long": false
+  },
+  "ILSVRC2015_train_00172007": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "fox"
+   ],
+   "frames": 300,
+   "long": true
+  },
+  "ILSVRC2015_train_00175001": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 41,
+   "long": false
+  },
+  "ILSVRC2015_train_00181011": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 48,
+   "long": false
+  },
+  "ILSVRC2015_train_00185000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 89,
+   "long": false
+  },
+  "ILSVRC2015_train_00209003": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 285,
+   "long": true
+  },
+  "ILSVRC2015_train_00209005": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 438,
+   "long": true
+  },
+  "ILSVRC2015_train_00215000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 370,
+   "long": true
+  },
+  "ILSVRC2015_train_00215006": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 191,
+   "long": true
+  },
+  "ILSVRC2015_train_00215010": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 220,
+   "long": true
+  },
+  "ILSVRC2015_train_00218002": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 464,
+   "long": true
+  },
+  "ILSVRC2015_train_00225001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 836,
+   "long": true
+  },
+  "ILSVRC2015_train_00227012": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 45,
+   "long": false
+  },
+  "ILSVRC2015_train_00228000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "giant_panda"
+   ],
+   "frames": 651,
+   "long": true
+  },
+  "ILSVRC2015_train_00234001": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 60,
+   "long": false
+  },
+  "ILSVRC2015_train_00234007": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 110,
+   "long": false
+  },
+  "ILSVRC2015_train_00235006": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 110,
+   "long": false
+  },
+  "ILSVRC2015_train_00235007": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 135,
+   "long": false
+  },
+  "ILSVRC2015_train_00237001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 1470,
+   "long": true
+  },
+  "ILSVRC2015_train_00246002": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 300,
+   "long": true
+  },
+  "ILSVRC2015_train_00253025": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 136,
+   "long": false
+  },
+  "ILSVRC2015_train_00265004": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 52,
+   "long": false
+  },
+  "ILSVRC2015_train_00265042": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 42,
+   "long": false
+  },
+  "ILSVRC2015_train_00265063": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 117,
+   "long": false
+  },
+  "ILSVRC2015_train_00265066": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 44,
+   "long": false
+  },
+  "ILSVRC2015_train_00265068": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 49,
+   "long": false
+  },
+  "ILSVRC2015_train_00265074": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 130,
+   "long": false
+  },
+  "ILSVRC2015_train_00270000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 783,
+   "long": true
+  },
+  "ILSVRC2015_train_00272005": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 47,
+   "long": false
+  },
+  "ILSVRC2015_train_00272034": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 74,
+   "long": false
+  },
+  "ILSVRC2015_train_00280000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "cattle"
+   ],
+   "frames": 2947,
+   "long": true
+  },
+  "ILSVRC2015_train_00284001": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 402,
+   "long": true
+  },
+  "ILSVRC2015_train_00290008": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 92,
+   "long": false
+  },
+  "ILSVRC2015_train_00290019": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 124,
+   "long": false
+  },
+  "ILSVRC2015_train_00293004": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 448,
+   "long": true
+  },
+  "ILSVRC2015_train_00293005": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 629,
+   "long": true
+  },
+  "ILSVRC2015_train_00300008": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "lizard"
+   ],
+   "frames": 240,
+   "long": true
+  },
+  "ILSVRC2015_train_00302021": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 56,
+   "long": false
+  },
+  "ILSVRC2015_train_00303008": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 60,
+   "long": false
+  },
+  "ILSVRC2015_train_00308017": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 74,
+   "long": false
+  },
+  "ILSVRC2015_train_00309001": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 240,
+   "long": true
+  },
+  "ILSVRC2015_train_00311002": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 63,
+   "long": false
+  },
+  "ILSVRC2015_train_00339001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 70,
+   "long": false
+  },
+  "ILSVRC2015_train_00339003": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 124,
+   "long": false
+  },
+  "ILSVRC2015_train_00349000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 600,
+   "long": true
+  },
+  "ILSVRC2015_train_00353000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 450,
+   "long": true
+  },
+  "ILSVRC2015_train_00354000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 345,
+   "long": true
+  },
+  "ILSVRC2015_train_00356001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 165,
+   "long": false
+  },
+  "ILSVRC2015_train_00371013": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 60,
+   "long": false
+  },
+  "ILSVRC2015_train_00374000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 525,
+   "long": true
+  },
+  "ILSVRC2015_train_00398004": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 150,
+   "long": false
+  },
+  "ILSVRC2015_train_00407001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 841,
+   "long": true
+  },
+  "ILSVRC2015_train_00415007": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 118,
+   "long": false
+  },
+  "ILSVRC2015_train_00415008": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 49,
+   "long": false
+  },
+  "ILSVRC2015_train_00435001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 146,
+   "long": false
+  },
+  "ILSVRC2015_train_00467000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 539,
+   "long": true
+  },
+  "ILSVRC2015_train_00476002": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 899,
+   "long": true
+  },
+  "ILSVRC2015_train_00477000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 347,
+   "long": true
+  },
+  "ILSVRC2015_train_00480000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 600,
+   "long": true
+  },
+  "ILSVRC2015_train_00494000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 157,
+   "long": false
+  },
+  "ILSVRC2015_train_00532000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 710,
+   "long": true
+  },
+  "ILSVRC2015_train_00533003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 122,
+   "long": false
+  },
+  "ILSVRC2015_train_00572000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "bear"
+   ],
+   "frames": 180,
+   "long": true
+  },
+  "ILSVRC2015_train_00588000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "fox"
+   ],
+   "frames": 232,
+   "long": true
+  },
+  "ILSVRC2015_train_00596000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "motorcycle"
+   ],
+   "frames": 39,
+   "long": false
+  },
+  "ILSVRC2015_train_00632001": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "fox"
+   ],
+   "frames": 325,
+   "long": true
+  },
+  "ILSVRC2015_train_00636001": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 325,
+   "long": true
+  },
+  "ILSVRC2015_train_00667002": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 190,
+   "long": true
+  },
+  "ILSVRC2015_train_00679000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 401,
+   "long": true
+  },
+  "ILSVRC2015_train_00683000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 375,
+   "long": true
+  },
+  "ILSVRC2015_train_00691000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 145,
+   "long": false
+  },
+  "ILSVRC2015_train_00721000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 158,
+   "long": false
+  },
+  "ILSVRC2015_train_00750000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 195,
+   "long": true
+  },
+  "ILSVRC2015_train_00756000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 89,
+   "long": false
+  },
+  "ILSVRC2015_train_00759000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 450,
+   "long": true
+  },
+  "ILSVRC2015_train_00760001": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "lizard"
+   ],
+   "frames": 325,
+   "long": true
+  },
+  "ILSVRC2015_train_00766000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 450,
+   "long": true
+  },
+  "ILSVRC2015_train_00772004": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 348,
+   "long": true
+  },
+  "ILSVRC2015_train_00780000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 689,
+   "long": true
+  },
+  "ILSVRC2015_train_00796000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 856,
+   "long": true
+  },
+  "ILSVRC2015_train_00873000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 160,
+   "long": false
+  },
+  "ILSVRC2015_train_00882000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 550,
+   "long": true
+  },
+  "ILSVRC2015_train_00896000": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "red_panda"
+   ],
+   "frames": 1080,
+   "long": true
+  },
+  "ILSVRC2015_train_00897005": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 90,
+   "long": false
+  },
+  "ILSVRC2015_train_00912002": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 310,
+   "long": true
+  },
+  "ILSVRC2015_train_00917000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 370,
+   "long": true
+  },
+  "ILSVRC2015_train_00971000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 521,
+   "long": true
+  },
+  "ILSVRC2015_train_00978000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 127,
+   "long": false
+  },
+  "ILSVRC2015_train_00987000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 710,
+   "long": true
+  },
+  "ILSVRC2015_train_00988001": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 377,
+   "long": true
+  },
+  "ILSVRC2015_train_00989000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "horse"
+   ],
+   "frames": 561,
+   "long": true
+  },
+  "ILSVRC2015_train_01014000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 480,
+   "long": true
+  },
+  "ILSVRC2015_train_01020000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 263,
+   "long": true
+  },
+  "ILSVRC2015_train_01025001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 435,
+   "long": true
+  },
+  "ILSVRC2015_train_01034001": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 203,
+   "long": true
+  },
+  "ILSVRC2015_train_01079000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 382,
+   "long": true
+  },
+  "ILSVRC2015_train_01108001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 350,
+   "long": true
+  },
+  "ILSVRC2015_val_00007022": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 46,
+   "long": false
+  },
+  "ILSVRC2015_val_00008001": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 749,
+   "long": true
+  },
+  "ILSVRC2015_val_00020001": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 115,
+   "long": false
+  },
+  "ILSVRC2015_val_00026003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "antelope"
+   ],
+   "frames": 168,
+   "long": false
+  },
+  "ILSVRC2015_val_00027000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 953,
+   "long": true
+  },
+  "ILSVRC2015_val_00028003": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "watercraft"
+   ],
+   "frames": 114,
+   "long": false
+  },
+  "ILSVRC2015_val_00035000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "cattle"
+   ],
+   "frames": 546,
+   "long": true
+  },
+  "ILSVRC2015_val_00035008": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "cattle"
+   ],
+   "frames": 208,
+   "long": true
+  },
+  "ILSVRC2015_val_00035013": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "cattle"
+   ],
+   "frames": 140,
+   "long": false
+  },
+  "ILSVRC2015_val_00037004": {
+   "half": "A",
+   "novel": true,
+   "novel_objects": [
+    "fox"
+   ],
+   "frames": 78,
+   "long": false
+  },
+  "ILSVRC2015_val_00046000": {
+   "half": "B",
+   "novel": true,
+   "novel_objects": [
+    "giant_panda"
+   ],
+   "frames": 492,
+   "long": true
+  },
+  "ILSVRC2015_val_00078000": {
+   "half": "A",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 123,
+   "long": false
+  },
+  "ILSVRC2015_val_00082000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 720,
+   "long": true
+  },
+  "ILSVRC2015_val_00103000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 595,
+   "long": true
+  },
+  "ILSVRC2015_val_00123004": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 246,
+   "long": true
+  },
+  "ILSVRC2015_val_00135000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 129,
+   "long": false
+  },
+  "ILSVRC2015_val_00150003": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 200,
+   "long": true
+  },
+  "ILSVRC2015_val_00169000": {
+   "half": "B",
+   "novel": false,
+   "novel_objects": [],
+   "frames": 893,
+   "long": true
+  }
+ }
+}

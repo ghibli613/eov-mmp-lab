@@ -1,0 +1,7 @@
+{"video": "ILSVRC2015_train_00237001", "frames": 1470, "ecc": true, "tracks_R0w": 4, "tracks_R0": 4, "sensitivity_relations": 0, "seconds": 156.1, "sha256": "777f2ffd18e24683e4218aad7f71602549a94785bbd9b70ee62e3a1a27ff0d61"}
+{"video": "ILSVRC2015_train_00209005", "frames": 438, "ecc": true, "tracks_R0w": 5, "tracks_R0": 5, "sensitivity_relations": 100, "seconds": 201.1, "sha256": "c77e212381bf11117ec34f517cd1b6e16f7d9b309137009e8b7c33d1d60485f6"}
+{"video": "ILSVRC2015_train_00683000", "frames": 375, "ecc": true, "tracks_R0w": 3, "tracks_R0": 3, "sensitivity_relations": 21, "seconds": 82.0, "sha256": "e1fc594f9aa290edcf064a58d3da95087432cc4ac31ed034a6bd10aac13c08dc"}
+{"video": "ILSVRC2015_train_00235006", "frames": 110, "ecc": true, "tracks_R0w": 2, "tracks_R0": 2, "sensitivity_relations": 6, "seconds": 29.7, "sha256": "e0a6919fb0860d8a35b53b7cb0c02a63b770a0721d51a46fd2dbaeafdc65f3a8"}
+{"video": "ILSVRC2015_val_00037004", "frames": 78, "ecc": true, "tracks_R0w": 2, "tracks_R0": 2, "sensitivity_relations": 0, "seconds": 11.0, "sha256": "f3c1a2f13d544b85760bf72d56ce03604ff71bb22a0872f0f68f402ef1e71f32"}
+{"video": "ILSVRC2015_train_00415008", "frames": 49, "ecc": true, "tracks_R0w": 2, "tracks_R0": 2, "sensitivity_relations": 6, "seconds": 15.6, "sha256": "40e135bc2fff389872ae10815baf4579ecd384e00cc2c6d7a198e0fc6314ec6e"}
+{"video": "ILSVRC2015_train_00040000", "frames": 41, "ecc": true, "tracks_R0w": 3, "tracks_R0": 3, "sensitivity_relations": 7, "seconds": 13.7, "sha256": "7e725c88eb77aa8fac223a7eaacfeac4afb3000b7b3fdccb10245a137fe50fc5"}

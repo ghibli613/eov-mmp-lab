@@ -1,0 +1,37 @@
+{
+ "label": "A31 \u00a76: FIT annotation counts (report only)",
+ "extract": "studies/d7/extracts/data__vidvrd__data__train_object_trajectories_gt.fit.json",
+ "extract_sha256": "5730692a94750751b17904f92d1a87de207132a9e95aaf36de9be80410f35e01",
+ "sampling": "f mod 30 == 0 over the frame folder",
+ "videos": 640,
+ "tracks": 1958,
+ "sampled_frames": 6847,
+ "no_box_share_all_sampled": 0.7041039871476559,
+ "sampled_frames_inside_some_span": 4280,
+ "no_box_share_inside_spans": 0.5266355140186916,
+ "frame_track_pairs_in_span": 10493,
+ "in_gap_share": 0.5115791480034309,
+ "coverage_quantiles": {
+  "0.05": 0.23529411764705882,
+  "0.1": 0.3,
+  "0.25": 0.5,
+  "0.5": 1.0,
+  "0.75": 1.0,
+  "0.9": 1.0
+ },
+ "coverage_mean": 0.7618233000708903,
+ "coverage_under_65_share": 0.34167517875383047,
+ "coverage_full_share": 0.5377936670071501,
+ "coverage_histogram": {
+  "[0.0,0.1)": 6,
+  "[0.1,0.2)": 43,
+  "[0.2,0.3)": 150,
+  "[0.3,0.4)": 128,
+  "[0.4,0.5)": 144,
+  "[0.5,0.6)": 174,
+  "[0.6,0.7)": 115,
+  "[0.7,0.8)": 27,
+  "[0.8,0.9)": 116,
+  "[0.9,1.0]": 1055
+ }
+}
