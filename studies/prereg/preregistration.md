@@ -2842,3 +2842,77 @@ written before the result it affects.
   0.33 s.
 
 **Not changed:** everything else in A33, including the method, the measures and the stop rule.
+
+#### A33b (2026-11-05): the naming check moves to one rented 48 GB GPU, which then serves the D7 check; Giang's conditional approval of D7 and its limits
+
+Written before any rental, from Giang's decisions of 2026-11-05.
+- **Already seen when written:** none of the naming check's results. The laptop run under A33a was
+  stopped by Giang's decision after 5 of 78 videos (its log says `KeyboardInterrupt`).
+  - Its 5 outputs are set aside in `studies/d7/naming_check/laptop_stopped/`.
+  - They are **not analysed and not used**, since mixing machines could change floating-point results.
+
+##### 1. The naming check on a rented machine
+
+- **The machine:** one Ada-generation 48 GB GPU (L40, L40S or RTX 6000 Ada), ≥ 64 GB RAM, the G1
+  template. Giang picks it from three offers. It is also the D7 check's machine (A34, §2 below).
+- **The stack is G1's, unchanged.** `studies/rpt/g1/box/setup.sh` (`G1_MACHINE=l40`):
+  - `/venv/main` made equal to G0's EOV-MMP freeze; the naming check runs there, the stack G1's R0w
+    ran on;
+  - CLIP ViT-L/14@336 from its public URL, hash-checked;
+  - `~/sam3env` made equal to G0's SAM 3 freeze, for D7.
+- **The weights:** `studies/rpt/g1/box/fetch_with_token.sh`, run by Giang. It fetches the end-to-end
+  checkpoint and SAM 3's checkpoint, checked against the hashes A28 and A28a pin.
+- **All 78 videos are run on this machine,** with A33a's code and pins unchanged.
+- **The upload:**
+  - an explicit list of committed code folders;
+  - the 78 videos' G1 SAM 3 files and training annotations, all HELD-A;
+  - EOV-MMP's class files;
+  - the frames of the 78 videos, 21,678 frames (2.52 GiB).
+  - No HELD-B file and no test file: the upload refuses any path that names a HELD-B video or a test
+    file.
+- **Copy-back:** every output is checked against the machine's SHA256. The analysis (`naming_check.py
+  analyse`) runs on the laptop.
+- **Machine scripts:** `studies/d7/rental/`.
+
+**One named exemption from A31's guard.** `studies/d7/check/copy_expected.py` copies G0's two pinned
+package lists (`pip_freeze_main.txt` and `pip_freeze_sam3env.txt`, in the sealed
+`studies/rpt/g0/logs/box/`) to `studies/d7/check/expected/`, once. Each copy is refused if it names any
+video, or if it differs from the committed blob. Nothing else in a sealed path is read.
+
+##### 2. Giang's conditional approval of the D7 check (option a)
+
+**D7 runs on the same machine without waiting for Giang only if all of these hold:**
+1. the naming check passes A33's stop rule;
+2. A34's guard does not stop;
+3. D7's time and cost estimate fits within **8 hours and $5 in total**, including the 35-name reference
+   rerun if check 0 is not bitwise. The estimate is computed from the final list's frame counts at the
+   chosen offer's price.
+
+**If any one fails:** stop and ask. The machine waits.
+
+**How condition 3 is applied:** check 0's outcome is not known before it runs.
+- **Before check 0:** if even the bitwise case (no reference rerun) exceeds the cap, stop and ask
+  before check 0.
+- **Otherwise:** run check 0. It takes a few minutes and costs well under $0.10.
+  - If it is bitwise, the bitwise estimate applies.
+  - If it is not, the estimate including the reference rerun applies. If that exceeds the cap, stop and
+    ask before the reference rerun.
+- The 40-video case with a non-bitwise check 0 is expected to exceed the cap.
+
+**Posted to Giang as soon as known:** the naming check's result, the guard number, the video list and
+the cost.
+
+##### 3. Rental rules
+
+- **The auto-stop:** a watchdog on the machine stops the instance through Vast.ai's per-instance key
+  (`vastai stop instance $CONTAINER_ID`). The CLI goes in its own venv, so neither pinned
+  environment changes. Stopping ends GPU billing and keeps the disk.
+  - **The deadline:** 4 hours after setup starts, covering setup, the naming check, copy-back, the
+    analysis and the guard.
+  - **If D7 starts under §2:** the deadline moves to D7's start plus its estimate plus 1 hour, never
+    past 8 hours after D7's start.
+- **After the run:** copy back and verify every hash, then tell Giang at once so the machine is
+  destroyed.
+
+**Not changed by this amendment:** A33 and A33a's method, measures and stop rule, and anything in
+A28–A32. Any change to the above is a new amendment, written before the result it affects.
