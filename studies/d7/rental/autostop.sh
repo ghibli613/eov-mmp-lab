@@ -3,7 +3,8 @@
 # deadline passes. Stopping ends GPU billing and keeps the disk. The Vast CLI goes in its own venv
 # (~/vastcli), so neither pinned environment changes. The key and the instance ID are read from the
 # container's environment (/proc/1/environ); the key is never printed.
-#   bash autostop.sh arm HOURS          # install, test with a no-op start, set the deadline, start the watchdog
+#   bash autostop.sh arm HOURS [keep]   # install, test the key read-only, set the deadline (keep: keep an
+#                                       # existing one), start the watchdog
 #   bash autostop.sh extend HOURS       # move the deadline to now + HOURS
 #   bash autostop.sh status
 set -euo pipefail
@@ -18,9 +19,10 @@ case "${1:-status}" in
     [ -n "$CONTAINER_ID" ] || { echo "!! no CONTAINER_ID: the auto-stop cannot work; set a stop in the Vast console"; exit 1; }
     [ -n "$CONTAINER_API_KEY" ] || { echo "!! no CONTAINER_API_KEY: the auto-stop cannot work; set a stop in the Vast console"; exit 1; }
     [ -x ~/vastcli/bin/vastai ] || { python3 -m venv ~/vastcli && ~/vastcli/bin/pip install -q vastai; }
-    ~/vastcli/bin/vastai start instance "$CONTAINER_ID" >/dev/null 2>&1 \
-      || { echo "!! the instance key does not work (no-op start failed): set a stop in the Vast console"; exit 1; }
-    echo $(( $(now) + ${2:?hours} * 3600 )) > "$DL"
+    # a read-only key test: `vastai start instance` on a running instance restarted the container (2026-11-05)
+    ~/vastcli/bin/vastai show instance "$CONTAINER_ID" >/dev/null 2>&1 \
+      || { echo "!! the instance key does not work (show instance failed): set a stop in the Vast console"; exit 1; }
+    [ "${3:-}" = keep ] && [ -f "$DL" ] || echo $(( $(now) + ${2:?hours} * 3600 )) > "$DL"
     nohup setsid bash -c '
       while true; do
         if [ "$(date +%s)" -ge "$(cat '"$DL"')" ]; then
@@ -38,6 +40,7 @@ case "${1:-status}" in
     ;;
   status)
     [ -f "$DL" ] && echo "deadline $(date -d @"$(cat "$DL")" --iso-8601=seconds); now $(date --iso-8601=seconds)" || echo "not armed"
-    pgrep -f "vastai stop instance" >/dev/null && echo "a stop is in progress" || true
+    pgrep -f "autostop_deadline" >/dev/null && echo "watchdog running" || echo "!! no watchdog running"
+    grep -q "deadline reached" "$LOG" 2>/dev/null && echo "!! the deadline was reached: a stop was requested" || true
     ;;
 esac
