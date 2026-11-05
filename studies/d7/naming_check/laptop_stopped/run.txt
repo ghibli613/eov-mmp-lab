@@ -1,0 +1,46 @@
+Initial context: "X X X X X X X X X X X X X X X X"
+Number of context words (tokens): 16
+[1/78] ILSVRC2015_train_00010024: 64 frames, 324 boxes, 157 s
+[2/78] ILSVRC2015_train_00024005: 737 frames, 1183 boxes, 673 s
+[3/78] ILSVRC2015_train_00032000: 145 frames, 758 boxes, 327 s
+[4/78] ILSVRC2015_train_00040000: 41 frames, 213 boxes, 90 s
+[5/78] ILSVRC2015_train_00040030: 70 frames, 225 boxes, 103 s
+Traceback (most recent call last):
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 347, in <module>
+    main()
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 341, in main
+    run(a.videos or vids)
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/studies/d7/naming_check.py", line 194, in run
+    probs = reorder(m(pooled_feature(pp, box, w, h))[0].detach().float().cpu().tolist())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/models/object_classifier.py", line 59, in forward
+    text_feats = self.text_encoder(visual_feats)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/vlm/text_encoder.py", line 158, in forward
+    text_features = self.text_encoder(pts_i, tokenized_prompts)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/Documents/thesis/source/ov-vidvrd-lab/vlm/text_encoder.py", line 49, in forward
+    x = x[torch.arange(x.shape[0]), tokenized_prompts.argmax(dim=-1)] @ self.text_projection
+                                                                        ^^^^^^^^^^^^^^^^^^^^
+  File "/home/totoro/miniconda3/envs/repro-next/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1955, in __getattr__
+    def __getattr__(self, name: str) -> Union[Tensor, "Module"]:
+
+KeyboardInterrupt

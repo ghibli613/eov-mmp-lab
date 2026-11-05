@@ -1,0 +1,5 @@
+{"video": "ILSVRC2015_train_00010024", "sha256": "c80369d6ef08f100b7747fb68e447fe24e69efe1d2e3e8b58c6b4abeec11a787", "seconds": 156.9, "frames": 64, "boxes": 324}
+{"video": "ILSVRC2015_train_00024005", "sha256": "f386a1cb91cf5b66f745deed8e879e46a3b9d56985184b90d73de3d67b0ae570", "seconds": 673.3, "frames": 737, "boxes": 1183}
+{"video": "ILSVRC2015_train_00032000", "sha256": "792d85613102567f45ba475a729a93c4af3ef5cc18a07f5081c403e5149e1458", "seconds": 326.8, "frames": 145, "boxes": 758}
+{"video": "ILSVRC2015_train_00040000", "sha256": "a8fbb01f5d1e517c31a2ad9c0b7918e84b16ee53ed158453427b7507d4eb4256", "seconds": 90.5, "frames": 41, "boxes": 213}
+{"video": "ILSVRC2015_train_00040030", "sha256": "99c304f03f3f00daa19079f7153d1c8e272dd9e848ef0582b4549bb7d992ec46", "seconds": 103.2, "frames": 70, "boxes": 225}

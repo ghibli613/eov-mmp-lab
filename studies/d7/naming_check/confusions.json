@@ -1,0 +1,642 @@
+{
+ "label": "after A33, descriptive: modelB's choices for HELD-A's novel GT objects (decides nothing)",
+ "novel_classes_present": [
+  "antelope",
+  "bear",
+  "cattle",
+  "fox",
+  "giant_panda",
+  "horse",
+  "motorcycle",
+  "red_panda",
+  "watercraft"
+ ],
+ "novel_classes_absent": [
+  "lizard"
+ ],
+ "per_class": {
+  "antelope": {
+   "gt_runs": 38,
+   "videos": 7,
+   "boxes": 1290,
+   "box_top1_correct": 415,
+   "box_top": [
+    [
+     "antelope",
+     415
+    ],
+    [
+     "sheep",
+     246
+    ],
+    [
+     "bird",
+     184
+    ],
+    [
+     "zebra",
+     176
+    ],
+    [
+     "fox",
+     112
+    ]
+   ],
+   "run_names": [
+    [
+     "antelope",
+     13
+    ],
+    [
+     "sheep",
+     8
+    ],
+    [
+     "bird",
+     5
+    ],
+    [
+     "zebra",
+     4
+    ],
+    [
+     "fox",
+     4
+    ]
+   ],
+   "matched_tracks": 31,
+   "matched_tracks_modelB": [
+    [
+     "zebra",
+     10
+    ],
+    [
+     "antelope",
+     8
+    ],
+    [
+     "sheep",
+     5
+    ],
+    [
+     "bird",
+     4
+    ],
+    [
+     "fox",
+     3
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "sheep",
+     18
+    ],
+    [
+     "antelope",
+     10
+    ],
+    [
+     "fox",
+     3
+    ]
+   ]
+  },
+  "watercraft": {
+   "gt_runs": 12,
+   "videos": 4,
+   "boxes": 915,
+   "box_top1_correct": 382,
+   "box_top": [
+    [
+     "airplane",
+     404
+    ],
+    [
+     "watercraft",
+     382
+    ],
+    [
+     "train",
+     101
+    ],
+    [
+     "person",
+     22
+    ],
+    [
+     "whale",
+     4
+    ]
+   ],
+   "run_names": [
+    [
+     "watercraft",
+     5
+    ],
+    [
+     "airplane",
+     4
+    ],
+    [
+     "train",
+     2
+    ],
+    [
+     "person",
+     1
+    ]
+   ],
+   "matched_tracks": 6,
+   "matched_tracks_modelB": [
+    [
+     "airplane",
+     4
+    ],
+    [
+     "watercraft",
+     2
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "watercraft",
+     6
+    ]
+   ]
+  },
+  "red_panda": {
+   "gt_runs": 16,
+   "videos": 1,
+   "boxes": 810,
+   "box_top1_correct": 178,
+   "box_top": [
+    [
+     "monkey",
+     364
+    ],
+    [
+     "red_panda",
+     178
+    ],
+    [
+     "tiger",
+     148
+    ],
+    [
+     "fox",
+     83
+    ],
+    [
+     "dog",
+     21
+    ]
+   ],
+   "run_names": [
+    [
+     "monkey",
+     7
+    ],
+    [
+     "fox",
+     3
+    ],
+    [
+     "tiger",
+     3
+    ],
+    [
+     "red_panda",
+     3
+    ]
+   ],
+   "matched_tracks": 14,
+   "matched_tracks_modelB": [
+    [
+     "monkey",
+     14
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "red_panda",
+     14
+    ]
+   ]
+  },
+  "bear": {
+   "gt_runs": 11,
+   "videos": 2,
+   "boxes": 600,
+   "box_top1_correct": 5,
+   "box_top": [
+    [
+     "dog",
+     155
+    ],
+    [
+     "sheep",
+     146
+    ],
+    [
+     "tiger",
+     141
+    ],
+    [
+     "whale",
+     73
+    ],
+    [
+     "person",
+     48
+    ]
+   ],
+   "run_names": [
+    [
+     "sheep",
+     4
+    ],
+    [
+     "tiger",
+     3
+    ],
+    [
+     "dog",
+     2
+    ],
+    [
+     "person",
+     1
+    ],
+    [
+     "whale",
+     1
+    ]
+   ],
+   "matched_tracks": 11,
+   "matched_tracks_modelB": [
+    [
+     "tiger",
+     10
+    ],
+    [
+     "person",
+     1
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "bear",
+     10
+    ],
+    [
+     "person",
+     1
+    ]
+   ]
+  },
+  "giant_panda": {
+   "gt_runs": 12,
+   "videos": 3,
+   "boxes": 420,
+   "box_top1_correct": 1,
+   "box_top": [
+    [
+     "person",
+     121
+    ],
+    [
+     "bird",
+     65
+    ],
+    [
+     "red_panda",
+     54
+    ],
+    [
+     "zebra",
+     45
+    ],
+    [
+     "monkey",
+     40
+    ]
+   ],
+   "run_names": [
+    [
+     "person",
+     4
+    ],
+    [
+     "red_panda",
+     2
+    ],
+    [
+     "tiger",
+     1
+    ],
+    [
+     "bird",
+     1
+    ],
+    [
+     "whale",
+     1
+    ]
+   ],
+   "matched_tracks": 12,
+   "matched_tracks_modelB": [
+    [
+     "person",
+     6
+    ],
+    [
+     "red_panda",
+     4
+    ],
+    [
+     "tiger",
+     1
+    ],
+    [
+     "bird",
+     1
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "giant_panda",
+     12
+    ]
+   ]
+  },
+  "cattle": {
+   "gt_runs": 2,
+   "videos": 1,
+   "boxes": 390,
+   "box_top1_correct": 363,
+   "box_top": [
+    [
+     "cattle",
+     363
+    ],
+    [
+     "sheep",
+     19
+    ],
+    [
+     "lion",
+     8
+    ]
+   ],
+   "run_names": [
+    [
+     "cattle",
+     2
+    ]
+   ],
+   "matched_tracks": 2,
+   "matched_tracks_modelB": [
+    [
+     "cattle",
+     2
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "cattle",
+     2
+    ]
+   ]
+  },
+  "horse": {
+   "gt_runs": 9,
+   "videos": 3,
+   "boxes": 360,
+   "box_top1_correct": 211,
+   "box_top": [
+    [
+     "horse",
+     211
+    ],
+    [
+     "zebra",
+     90
+    ],
+    [
+     "cattle",
+     28
+    ],
+    [
+     "train",
+     17
+    ],
+    [
+     "watercraft",
+     8
+    ]
+   ],
+   "run_names": [
+    [
+     "horse",
+     6
+    ],
+    [
+     "zebra",
+     2
+    ],
+    [
+     "train",
+     1
+    ]
+   ],
+   "matched_tracks": 9,
+   "matched_tracks_modelB": [
+    [
+     "horse",
+     7
+    ],
+    [
+     "zebra",
+     2
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "horse",
+     9
+    ]
+   ]
+  },
+  "fox": {
+   "gt_runs": 7,
+   "videos": 4,
+   "boxes": 300,
+   "box_top1_correct": 283,
+   "box_top": [
+    [
+     "fox",
+     283
+    ],
+    [
+     "bird",
+     11
+    ],
+    [
+     "antelope",
+     2
+    ],
+    [
+     "dog",
+     2
+    ],
+    [
+     "lion",
+     1
+    ]
+   ],
+   "run_names": [
+    [
+     "fox",
+     7
+    ]
+   ],
+   "matched_tracks": 6,
+   "matched_tracks_modelB": [
+    [
+     "fox",
+     6
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "fox",
+     6
+    ]
+   ]
+  },
+  "motorcycle": {
+   "gt_runs": 4,
+   "videos": 4,
+   "boxes": 180,
+   "box_top1_correct": 4,
+   "box_top": [
+    [
+     "person",
+     115
+    ],
+    [
+     "bicycle",
+     53
+    ],
+    [
+     "car",
+     7
+    ],
+    [
+     "motorcycle",
+     4
+    ],
+    [
+     "turtle",
+     1
+    ]
+   ],
+   "run_names": [
+    [
+     "bicycle",
+     2
+    ],
+    [
+     "person",
+     2
+    ]
+   ],
+   "matched_tracks": 4,
+   "matched_tracks_modelB": [
+    [
+     "bicycle",
+     2
+    ],
+    [
+     "person",
+     2
+    ]
+   ],
+   "matched_tracks_prompt": [
+    [
+     "motorcycle",
+     4
+    ]
+   ]
+  }
+ },
+ "top_box_confusions": [
+  [
+   "watercraft",
+   "airplane",
+   404
+  ],
+  [
+   "red_panda",
+   "monkey",
+   364
+  ],
+  [
+   "antelope",
+   "sheep",
+   246
+  ],
+  [
+   "antelope",
+   "bird",
+   184
+  ],
+  [
+   "antelope",
+   "zebra",
+   176
+  ],
+  [
+   "bear",
+   "dog",
+   155
+  ],
+  [
+   "red_panda",
+   "tiger",
+   148
+  ],
+  [
+   "bear",
+   "sheep",
+   146
+  ],
+  [
+   "bear",
+   "tiger",
+   141
+  ],
+  [
+   "giant_panda",
+   "person",
+   121
+  ],
+  [
+   "motorcycle",
+   "person",
+   115
+  ],
+  [
+   "antelope",
+   "fox",
+   112
+  ]
+ ],
+ "l40_seconds": {
+  "tagclip_encode": 551.8,
+  "modelB": 1846.1,
+  "frames_encoded": 20036,
+  "boxes": 59647
+ }
+}

@@ -40,6 +40,8 @@ Every access to VidVRD's test relation labels in the project, from the existing 
 **No test-label access:**
 - **G0 and G1 (A28–A29d):** a guard was installed that raises on any test annotation.
 - **The SAM 3 screen (A30):** HELD only.
+- **PaD, the split and the naming check (A31–A33b, 2026-11-04/05):** HELD-A and FIT only; both the test-label guard
+  and the HELD-B guard were installed in every script; D7 not run.
 
 ## Test videos used without labels (not label access)
 

@@ -1,0 +1,166 @@
+{
+ "label": "A33: the naming check (HELD-A, in-sample for modelB and R0w on base objects)",
+ "videos": 78,
+ "systems": {
+  "prompt": {
+   "recall": 0.7161458333333334,
+   "recall_base": 0.73992673992674,
+   "recall_novel": 0.6576576576576577,
+   "recall_counts": {
+    "all": [
+     275,
+     384
+    ],
+    "base": [
+     202,
+     273
+    ],
+    "novel": [
+     73,
+     111
+    ]
+   },
+   "pair_recall": 0.5626142595978062,
+   "pairs_n": 2188,
+   "burden": 1.6794871794871795,
+   "agnostic": {
+    "recall": 0.8489583333333334,
+    "recall_base": 0.8461538461538461,
+    "recall_novel": 0.8558558558558559,
+    "pair_recall": 0.7778793418647166,
+    "burden": 1.2820512820512822
+   }
+  },
+  "modelB": {
+   "recall": 0.6536458333333334,
+   "recall_base": 0.8278388278388278,
+   "recall_novel": 0.22522522522522523,
+   "recall_counts": {
+    "all": [
+     251,
+     384
+    ],
+    "base": [
+     226,
+     273
+    ],
+    "novel": [
+     25,
+     111
+    ]
+   },
+   "pair_recall": 0.6197440585009141,
+   "pairs_n": 2188,
+   "burden": 1.7564102564102564,
+   "agnostic": {
+    "recall": 0.8489583333333334,
+    "recall_base": 0.8461538461538461,
+    "recall_novel": 0.8558558558558559,
+    "pair_recall": 0.7778793418647166,
+    "burden": 1.2820512820512822
+   }
+  },
+  "R0w": {
+   "recall": 0.6588541666666666,
+   "recall_base": 0.7765567765567766,
+   "recall_novel": 0.36936936936936937,
+   "recall_counts": {
+    "all": [
+     253,
+     384
+    ],
+    "base": [
+     212,
+     273
+    ],
+    "novel": [
+     41,
+     111
+    ]
+   },
+   "pair_recall": 0.5740402193784278,
+   "pairs_n": 2188,
+   "burden": 0.9487179487179487,
+   "agnostic": {
+    "recall": 0.7421875,
+    "recall_base": 0.7802197802197802,
+    "recall_novel": 0.6486486486486487,
+    "pair_recall": 0.6211151736745887,
+    "burden": 0.6538461538461539
+   }
+  }
+ },
+ "gains_over_R0w": {
+  "(i) prompt names": {
+   "recall_points": 5.729166666666674,
+   "recall_base_points": -3.663003663003661,
+   "recall_novel_points": 28.828828828828833,
+   "pair_recall_points": -1.1425959780621553,
+   "burden_ratio": 1.7702702702702704
+  },
+  "(ii) modelB names": {
+   "recall_points": -0.5208333333333259,
+   "recall_base_points": 5.128205128205121,
+   "recall_novel_points": -14.414414414414415,
+   "pair_recall_points": 4.570383912248632,
+   "burden_ratio": 1.8513513513513513
+  }
+ },
+ "verdict": "STOP: modelB's gain is less than half of the prompt names' gain; naming is the bottleneck",
+ "naming_accuracy_on_agnostic_matches": {
+  "modelB": {
+   "base": {
+    "correct": 226,
+    "n": 231,
+    "accuracy": 0.9783549783549783
+   },
+   "novel": {
+    "correct": 25,
+    "n": 95,
+    "accuracy": 0.2631578947368421
+   }
+  },
+  "prompt": {
+   "base": {
+    "correct": 202,
+    "n": 231,
+    "accuracy": 0.8744588744588745
+   },
+   "novel": {
+    "correct": 73,
+    "n": 95,
+    "accuracy": 0.7684210526315789
+   }
+  }
+ },
+ "modelB_top1_gt_boxes": {
+  "base": {
+   "correct": 13056,
+   "n": 13305,
+   "accuracy": 0.9812852311161218
+  },
+  "novel": {
+   "correct": 1842,
+   "n": 5265,
+   "accuracy": 0.34985754985754985
+  }
+ },
+ "modelB_top1_gt_runs_mean_vector": {
+  "base": {
+   "correct": 272,
+   "n": 273,
+   "accuracy": 0.9963369963369964
+  },
+  "novel": {
+   "correct": 36,
+   "n": 111,
+   "accuracy": 0.32432432432432434
+  }
+ },
+ "runtime": {
+  "seconds": 2402.1999999999994,
+  "hours": 0.6672777777777776,
+  "frames_encoded": 20036,
+  "boxes": 59647
+ }
+}
